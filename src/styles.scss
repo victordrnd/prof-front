@@ -6,6 +6,26 @@
   @include nb-theme-global();
 };
 /* You can add global styles to this file, and also import other style files */
-body{
-  font-family: Open Sans, sans-serif !important; 
+
+.nb-theme-corporate nb-layout .layout {
+  background-color:#fff;
+}
+.light {
+  font-family: OdudoLight !important;
+}
+.text-primary{
+  color : #806BFF !important;
+}
+
+@font-face {
+  font-family: "OdudoLight";
+  src: url(assets/fonts/Odudo-Light.otf) format("truetype");
+}
+@font-face {
+  font-family: "OdudoBold";
+  src: url(assets/fonts/Odudo-SemiBold.otf) format("truetype");
+}
+@font-face {
+  font-family: "Odudo";
+  src: url(assets/fonts/Odudo-Regular.otf) format("truetype");
 }

@@ -7,10 +7,11 @@ import { Platform } from '@angular/cdk/platform';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { OverlayModule, OverlayPositionBuilder, ViewportRuler, OverlayKeyboardDispatcher } from '@angular/cdk/overlay';
 import { Directionality } from '@angular/cdk/bidi';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, FooterComponent],
   imports: [
     CommonModule,
     NzModalModule,
@@ -19,7 +20,7 @@ import { Directionality } from '@angular/cdk/bidi';
     NbThemeModule,
     NbButtonModule
   ],
-  exports : [HeaderComponent],
+  exports : [HeaderComponent, FooterComponent],
   providers: [
     Platform,
     OverlayPositionBuilder,

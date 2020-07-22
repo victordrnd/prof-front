@@ -1,0 +1,39 @@
+.bg-pattern-stripe {
+    height: 40vh;
+    margin-top: -35vh;
+    z-index: -1;
+    width: 45%;
+    background-image: url(../../../assets/home/stripe.png);
+    background-position: 100% 50%;
+    background-size: 26px;
+    background-repeat: repeat;
+    opacity: 0.25;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width:45%;
+}
+
+.item-front{
+    z-index:3;
+}
+
+.card-image{
+    vertical-align: middle;
+    display: inline-block;
+}
+.img-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:130px;
+}
+.hero-bg{
+    background-image: url(../../../assets/home/hero-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
