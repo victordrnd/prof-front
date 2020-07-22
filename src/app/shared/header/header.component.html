@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light  bg-white rounded">
+    <a class="navbar-brand" routerLink="/"><img src="../../../assets/logo2.gif" class="logo" /></a>
+    <div class="collapse navbar-collapse d-none d-md-block" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/products">Produits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/informations">Informations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact">Contact</a>
+        </li>
+      </ul>
+      <div class="d-inline">
+        <button nz-button nzType="primary" routerLink="/dashboard/home"><i nz-icon nzType="user" nzTheme="outline"></i> Espace
+          client</button>
+      </div>
+    </div>
+    <div class="float-right d-block d-md-none mobile-menu">
+      <img src="../../../assets/images/menu.png" class="menu-burger" (click)="visible = !visible" />
+      <nz-modal [(nzVisible)]="visible" nzTitle="Menu" nzCancelText="Cancel" nzFooter="null" nzClosable="true" (nzOnCancel)="visible = !visible">
+        <ul class="navbar-nav mr-auto text-center mt-5">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" (click)="visible = !visible">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/products" (click)="visible = !visible">Produits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/informations" (click)="visible = !visible">Informations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/contact" (click)="visible = !visible">Contact</a>
+          </li>
+        </ul> 
+          <button nz-button nzType="primary" routerLink="/dashboard/home"  class="mx-auto d-block my-5" (click)="visible = !visible"><i nz-icon nzType="user" nzTheme="outline"></i>Espace
+            client</button>
+      </nz-modal>
+      <br />
+    </div>
+  
+  </nav>
