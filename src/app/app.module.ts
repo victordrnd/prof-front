@@ -7,19 +7,18 @@ import { HeaderComponent } from './shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-
+import { NzModalModule, NzButtonModule, NzNotificationModule, NzIconModule } from "ng-zorro-antd";
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'corporate' }),
-    NbLayoutModule,
-    NbEvaIconsModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
