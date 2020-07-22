@@ -18,7 +18,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'corporate' }),
-    SharedModule
+    SharedModule,
+    NbLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
