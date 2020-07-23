@@ -3,20 +3,24 @@
     <div class="collapse navbar-collapse d-none d-md-block" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" routerLink="">Home</a>
+                <a class="nav-link" routerLink="">{{'header.home' | translate}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">About us</a>
+                <a class="nav-link">{{'header.about' | translate}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Contact</a>
+                <a class="nav-link">{{'header.contact' | translate}}</a>
             </li>
         </ul>
         <div class="d-inline">
-            <button nbButton hero size="small" routerLink="/dashboard/home" class="mx-2"><i nz-icon
-                nzType="user" nzTheme="outline"></i> Login</button>
-            <button nbButton hero status="primary" size="small" routerLink="/dashboard/home" class=" ml-2 mr-4"><i nz-icon
-                    nzType="user" nzTheme="outline"></i> Register !</button>
+            <nb-select class="language-selector" size="small" (selectedChange)="languageChange($event)" [(selected)]="language">
+                <nb-option selected value="en">English</nb-option>
+                <nb-option value="fr">Français</nb-option>
+              </nb-select>
+            <button nbButton hero size="small" routerLink="/login" class="mx-2"><i nz-icon   
+                nzType="user" nzTheme="outline"></i> {{'header.login' | translate}}</button>
+            <button nbButton hero status="primary" size="small" routerLink="/register" class=" ml-2 mr-4"><i nz-icon
+                    nzType="user" nzTheme="outline"></i> {{'header.register' | translate}} !</button>
         </div>
     </div>
     <!-- <div class="float-right d-block d-md-none mobile-menu">

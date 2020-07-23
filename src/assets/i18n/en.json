@@ -1,0 +1,24 @@
+{
+    "header" : {
+        "home" : "Home",
+        "about" : "About us",
+        "contact" : "Contact",
+        "login" : "Login",
+        "register" : "Register"
+    },
+    "register" : {
+        "title" : "Register",
+        "student" : {
+            "title" : "I am a student",
+            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
+        },
+        "teacher" : {
+            "title" : "I am a teacher",
+            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
+        },
+        "next" : "Next"
+    },
+    "login" : {
+        "title" : "Connexion"
+    }
+}

@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="headband"></div>
+<div class="container margin-negative">
+    <nb-card class="p-3">
+        <h2 class="text-center">{{'register.title' | translate}}</h2>
+        <div class="row mt-4">
+            <div class="offset-2 col-4">
+
+                <nb-card class="px-5 py-3" (click)="select('student')"
+                    [accent]="form.type=='student' ? 'primary' : 'default'">
+                    <nb-radio [checked]="form.type=='student'" status="primary">
+                        {{'register.student.title' | translate}}</nb-radio>
+                    <p class="caption mt-2">{{'register.student.desc' | translate}}</p>
+                </nb-card>
+            </div>
+            <div class="col-4">
+                <nb-card class="px-5 py-3" (click)="select('teacher')"
+                    [accent]="form.type=='teacher' ? 'primary' : 'default'">
+                    <nb-radio [checked]="form.type=='teacher'" status="primary">
+                        {{'register.teacher.title' | translate}}</nb-radio>
+                    <p class="caption mt-2">{{'register.teacher.desc' | translate}}</p>
+                </nb-card>
+            </div>
+        </div>
+        <button nbButton status="primary" class="d-block mx-auto">{{'register.next' | translate}} <nb-icon icon="arrow-forward-outline"></nb-icon></button>
+    </nb-card>
+</div>
+<app-footer></app-footer>
