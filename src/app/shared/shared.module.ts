@@ -8,7 +8,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { OverlayModule, OverlayPositionBuilder, ViewportRuler, OverlayKeyboardDispatcher } from '@angular/cdk/overlay';
 import { Directionality } from '@angular/cdk/bidi';
 import { FooterComponent } from './footer/footer.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -24,7 +24,8 @@ import { RouterModule } from '@angular/router';
     NbButtonModule,
     HttpClientModule,
     NbSelectModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   exports : [HeaderComponent, FooterComponent, TranslateModule],
   providers: [
@@ -33,7 +34,7 @@ import { RouterModule } from '@angular/router';
     ViewportRuler,
     OverlayKeyboardDispatcher,
     Directionality,
-    NzConfigService
+    NzConfigService,
   ]
 })
 export class SharedModule { }
