@@ -34,7 +34,7 @@ import { RouterModule } from '@angular/router';
     ViewportRuler,
     OverlayKeyboardDispatcher,
     Directionality,
-    NzConfigService,
+    NzConfigService
   ]
 })
 export class SharedModule { }
