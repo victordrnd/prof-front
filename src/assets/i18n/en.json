@@ -16,7 +16,15 @@
             "title" : "I am a teacher",
             "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
         },
-        "next" : "Next"
+        "next" : "Next",
+        "lastname" : "Lastname",
+        "firstname" : "Firstname",
+        "email" : "Email",
+        "password" : "Password",
+        "repeat-password" : "Repeat password",
+        "gender" : "Gender",
+        "male" : "Male",
+        "female" : "Female" 
     },
     "login" : {
         "title" : "Connexion"

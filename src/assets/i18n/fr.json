@@ -16,7 +16,15 @@
             "title" : "Je suis professeur",
             "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
         },
-        "next" : "Suivant"
+        "next" : "Suivant",
+        "lastname" : "Nom",
+        "firstname" : "Prénom",
+        "email" : "Email",
+        "password" : "Mot de passe",
+        "repeat-password" : "Répétez votre mot de passe",
+        "gender" : "Genre",
+        "male" : "Homme",
+        "female" : "Femme"  
     },
     "login" : {
         "title" : "Connexion"

@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
     NbFormFieldModule,
     NbButtonModule,
     NbRadioModule
+
   ]
 })
 export class HomeModule { }
