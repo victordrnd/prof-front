@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { RouterModule } from '@angular/router';
     ViewportRuler,
     OverlayKeyboardDispatcher,
     Directionality,
-    NzConfigService
+    NzConfigService,
+    FormsModule
   ]
 })
 export class SharedModule { }

@@ -10,12 +10,14 @@ import { NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule, NbButtonC
 import { HeadbandComponent } from './home/headband/headband.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
+    FormsModule,
     HomeRoutingModule,
     SharedModule,
     NbCardModule,
@@ -23,7 +25,7 @@ import { RegisterComponent } from './register/register.component';
     NbIconModule,
     NbFormFieldModule,
     NbButtonModule,
-    NbRadioModule
+    NbRadioModule,
 
   ]
 })
