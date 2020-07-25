@@ -13,40 +13,24 @@
             </li>
         </ul>
         <div class="d-inline">
-            <nb-select class="language-selector" size="small" (selectedChange)="languageChange($event)" [(selected)]="language">
+            <nb-select class="language-selector" size="small" (selectedChange)="languageChange($event)"
+                [(selected)]="language">
                 <nb-option selected value="en">English</nb-option>
                 <nb-option value="fr">Français</nb-option>
-              </nb-select>
-            <button nbButton hero size="small" routerLink="/login" class="mx-2"><i nz-icon   
-                nzType="user" nzTheme="outline"></i> {{'header.login' | translate}}</button>
+            </nb-select>
+            <button nbButton hero size="small" routerLink="/login" class="mx-2"><i nz-icon nzType="user"
+                    nzTheme="outline"></i> {{'header.login' | translate}}</button>
             <button nbButton hero status="primary" size="small" routerLink="/register" class=" ml-2 mr-4"><i nz-icon
                     nzType="user" nzTheme="outline"></i> {{'header.register' | translate}} !</button>
         </div>
     </div>
-    <!-- <div class="float-right d-block d-md-none mobile-menu">
-                <img src="../../../assets/images/menu.png" class="menu-burger" (click)="visible = !visible" />
-                <nz-modal [(nzVisible)]="visible" nzTitle="Menu" nzCancelText="Cancel" nzFooter="null" nzClosable="true"
-                    (nzOnCancel)="visible = !visible">
-                    <ul class="navbar-nav mr-auto text-center mt-5">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/" (click)="visible = !visible">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/products" (click)="visible = !visible">Produits</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/informations" (click)="visible = !visible">Informations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/contact" (click)="visible = !visible">Contact</a>
-                        </li>
-                    </ul>
-                    <button nbButton status="primary" size="small" routerLink="/dashboard/home"
-                        class="mx-auto d-block my-5" (click)="visible = !visible"><i nz-icon nzType="user"
-                            nzTheme="outline"></i>Espace
-                        client</button>
-                </nz-modal>
-                <br />
-            </div> -->
+    <div class="float-right d-inline d-md-none mobile-menu">
+        <div class="d-inline">
+            <button nbButton hero size="small" routerLink="/login" class="mx-2"><i nz-icon nzType="user"
+                    nzTheme="outline"></i> {{'header.login' | translate}}</button>
+            <button nbButton hero status="primary" size="small" routerLink="/register" class=" ml-2 mr-4"><i nz-icon
+                    nzType="user" nzTheme="outline"></i> {{'header.register' | translate}} !</button>
+        </div>
+    </div>
 
 </nav>

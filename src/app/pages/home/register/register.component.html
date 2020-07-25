@@ -6,7 +6,7 @@
 
             <h2 class="text-center">{{'register.title' | translate}}</h2>
             <div class="row my-4" *ngSwitchCase="1">
-                <div class="offset-2 col-4">
+                <div class="offset-md-2 col-md-4">
 
                     <nb-card class="px-5 py-3" (click)="select('student')"
                         [accent]="type.value=='student' ? 'primary' : 'default'">
@@ -15,7 +15,7 @@
                         <p class="caption mt-2">{{'register.student.desc' | translate}}</p>
                     </nb-card>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <nb-card class="px-5 py-3" (click)="select('teacher')"
                         [accent]="type.value=='teacher' ? 'primary' : 'default'">
                         <nb-radio [checked]="type.value=='teacher'" status="primary">
@@ -25,21 +25,21 @@
                 </div>
             </div>
             <div class="row my-4" *ngSwitchCase="2">
-                <div class="offset-2 col-4">
+                <div class="offset-md-2 col-md-4">
                     <label>{{'register.lastname' | translate}} :</label><br />
                     <nb-form-field>
                         <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
-                        <input type="text" formControlName="lastname" nbInput class="w-100" placeholder="{{'register.lastname' | translate}}">
+                        <input type="text" formControlName="lastname" nbInput class="w-100 input-full-width" placeholder="{{'register.lastname' | translate}}">
                     </nb-form-field>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <label>{{'register.firstname' | translate}} :</label><br />
                     <nb-form-field>
                         <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
-                        <input type="text" formControlName="firstname" nbInput class="w-100" placeholder="{{'register.firstname' | translate}}">
+                        <input type="text" formControlName="firstname" nbInput class="w-100 input-full-width" placeholder="{{'register.firstname' | translate}}">
                     </nb-form-field>
                 </div>
-                <div class="offset-2 col-4 mt-4">
+                <div class="offset-md-2 col-md-4 mt-4">
                     <label>{{'register.gender' | translate}} : </label>
                     <nb-radio-group formControlName="sexe">
                         <nb-radio value="m">
@@ -50,25 +50,25 @@
                         </nb-radio>
                     </nb-radio-group>
                 </div>
-                <div class="col-4 mt-4">
+                <div class="col-md-4 mt-4">
                     <label>{{'register.email' | translate}} :</label><br />
                     <nb-form-field>
                         <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
-                        <input type="email" formControlName="email" nbInput class="w-100" placeholder="{{'register.email' | translate}}">
+                        <input type="email" formControlName="email" nbInput class="w-100 input-full-width" placeholder="{{'register.email' | translate}}">
                     </nb-form-field>
                 </div>
-                <div class="offset-2 col-4 mt-4">
+                <div class="offset-d-2 col-md-4 mt-4">
                     <label>{{'register.password' | translate}} : </label>
                     <nb-form-field>
                         <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
-                        <input type="password" formControlName="password" nbInput class="w-100" placeholder="{{'register.password' | translate}}">
+                        <input type="password" formControlName="password" nbInput class="w-100 input-full-width" placeholder="{{'register.password' | translate}}">
                     </nb-form-field>
                 </div>
-                <div class="col-4 mt-4">
+                <div class="col-md-4 mt-4">
                     <label>{{'register.repeat-password' | translate}} :</label><br />
                     <nb-form-field>
                         <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
-                        <input type="password" formControlName="repeat_password" nbInput class="w-100"
+                        <input type="password" formControlName="repeat_password" nbInput class="w-100 input-full-width"
                             placeholder="{{'register.repeat-password' | translate}}">
                     </nb-form-field>
                 </div>
