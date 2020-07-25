@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="headband"></div>
+<div class="container margin-negative">
+    <nb-card class="p-3">
+        <h2 class="text-center">{{'login.title' | translate}}</h2>
+        <div class="row mt-4">
+            <div class="col-6 mx-auto d-block">
+                    <label>{{'register.email' | translate}} :</label>
+                    <nb-form-field class="w-100 my-2">
+                        <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+                        <input type="text" [(ngModel)]="credentials.email" nbInput class="input-full-width" placeholder="{{'register.email' | translate}}">
+                    </nb-form-field>
+                    <label class="mt-4">{{'register.password' | translate}} :</label>
+                    <nb-form-field class="w-100 my-2">
+                        <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+                        <input type="password" [(ngModel)]="credentials.password" nbInput class="input-full-width" placeholder="{{'register.password' | translate}}">
+                    </nb-form-field>
+                    <button nbButton status="primary" class="d-block mx-auto mt-4"
+                (click)="submit()">{{'login.submit' | translate}}
+                <nb-icon icon="arrow-forward-outline"></nb-icon></button>
+            </div>
+        </div>
+    </nb-card>
+</div>
+<app-footer></app-footer>

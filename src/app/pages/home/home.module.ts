@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from '../shared/header/header.component';
-import { AppModule } from '../app.module';
-import { SharedModule } from '../shared/shared.module';
-import { NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule, NbButtonComponent, NbButtonModule, NbCheckboxModule, NbRadioModule } from '@nebular/theme';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { AppModule } from '../../app.module';
+import { SharedModule } from '../../shared/shared.module';
+import { NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule, NbButtonComponent, NbButtonModule, NbCheckboxModule, NbRadioModule, NbToastrModule } from '@nebular/theme';
 import { HeadbandComponent } from './home/headband/headband.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HomeRoutingModule,
     SharedModule,
     NbCardModule,
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     NbFormFieldModule,
     NbButtonModule,
     NbRadioModule,
+    NbToastrModule.forRoot()
 
   ]
 })

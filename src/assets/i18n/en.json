@@ -24,9 +24,18 @@
         "repeat-password" : "Repeat password",
         "gender" : "Gender",
         "male" : "Male",
-        "female" : "Female" 
+        "female" : "Female",
+        "success" : {
+            "title" : "Success",
+            "desc" : "Your account has successfully been created" 
+        },
+        "error" : {
+            "title" : "Error",
+            "desc" : "An error has occured"   
+        }
     },
     "login" : {
-        "title" : "Connexion"
+        "title" : "Login",
+        "submit" : "Log in"
     }
 }

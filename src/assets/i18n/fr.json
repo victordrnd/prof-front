@@ -24,9 +24,18 @@
         "repeat-password" : "Répétez votre mot de passe",
         "gender" : "Genre",
         "male" : "Homme",
-        "female" : "Femme"  
+        "female" : "Femme",
+        "success" : {
+            "title" : "Succès",
+            "desc" : "Votre compte a correctement été créé"   
+        },
+        "error" : {
+            "title" : "Erreur",
+            "desc" : "Une erreur est survenue"   
+        }
     },
     "login" : {
-        "title" : "Connexion"
+        "title" : "Connexion",
+        "submit" : "Se connecter"
     }
 }
