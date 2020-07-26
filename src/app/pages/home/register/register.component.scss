@@ -1,4 +1,4 @@
-.headband{
+.headband {
     display: flex;
     justify-content: space-around;
     -webkit-box-align: center;
@@ -10,8 +10,14 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
-
-.margin-negative{
-    margin-top:-20vh;
+:host::ng-deep {
+    .nb-theme-corporate nb-option {
+        em{
+            color: #806bff !important;
+        }
+    }
+}
+.margin-negative {
+    margin-top: -20vh;
     margin-bottom: 20vh;
 }

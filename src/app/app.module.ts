@@ -10,8 +10,9 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NzModalModule, NzButtonModule, NzNotificationModule, NzIconModule } from "ng-zorro-antd";
 import { SharedModule } from './shared/shared.module';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { HttpTokenInterceptor } from './core/interceptors/http.token.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,7 +37,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     }
     })
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

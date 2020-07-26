@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { AppModule } from '../../app.module';
 import { SharedModule } from '../../shared/shared.module';
-import { NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule, NbButtonComponent, NbButtonModule, NbCheckboxModule, NbRadioModule, NbToastrModule } from '@nebular/theme';
+import { NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule, NbButtonComponent, NbButtonModule, NbCheckboxModule, NbRadioModule, NbToastrModule, NbAutocompleteModule } from '@nebular/theme';
 import { HeadbandComponent } from './home/headband/headband.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -27,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbFormFieldModule,
     NbButtonModule,
     NbRadioModule,
-    NbToastrModule.forRoot()
+    NbToastrModule.forRoot(),
+    NbAutocompleteModule
 
   ]
 })

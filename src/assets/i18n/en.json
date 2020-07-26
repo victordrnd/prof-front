@@ -8,6 +8,8 @@
     },
     "register" : {
         "title" : "Register",
+        "profil" : "Your informations",
+        "location" : "Your address",
         "student" : {
             "title" : "I am a student",
             "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"

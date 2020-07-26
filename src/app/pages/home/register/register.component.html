@@ -4,7 +4,7 @@
     <nb-card class="p-3" [ngSwitch]="step">
         <form [formGroup]="form">
 
-            <h2 class="text-center">{{'register.title' | translate}}</h2>
+            <h2 class="text-center">{{steps[step - 1].title | translate}}</h2>
             <div class="row my-4" *ngSwitchCase="1">
                 <div class="offset-md-2 col-md-4">
 
@@ -57,7 +57,7 @@
                         <input type="email" formControlName="email" nbInput class="w-100 input-full-width" placeholder="{{'register.email' | translate}}">
                     </nb-form-field>
                 </div>
-                <div class="offset-d-2 col-md-4 mt-4">
+                <div class="offset-md-2 col-md-4 mt-4">
                     <label>{{'register.password' | translate}} : </label>
                     <nb-form-field>
                         <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
@@ -71,6 +71,24 @@
                         <input type="password" formControlName="repeat_password" nbInput class="w-100 input-full-width"
                             placeholder="{{'register.repeat-password' | translate}}">
                     </nb-form-field>
+                </div>
+            </div>
+            <div class="row my-4" *ngSwitchCase="3">
+                <div class="col-12">
+                    <label class="mx-5">{{'register.location' | translate}} :</label>
+                    <nb-form-field class="center mx-5 mt-1">
+                        <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
+                        <input type="text" [nbAutocomplete]="auto" (input)="findPlaces($event)" nbInput fullWidth fieldSize="giant" placeholder="{{'register.location' | translate}}" formControlName="place">
+                    </nb-form-field>
+                    <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+                        <nb-option *ngFor="let option of places" value="{{option.locale_names.default[0]}} {{ option.country.default }}, {{ option.city.default[0] }}">
+                            <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon><span [innerHtml]="option._highlightResult.locale_names.default[0].value"></span>  <span class="caption mt-1 ml-2">{{ option.country?.default }}, {{ option.city?.default[0] }}</span>
+                        </nb-option>
+                  
+                      </nb-autocomplete>
+                  
+                  
                 </div>
             </div>
             <button nbButton status="primary" class="d-block mx-auto"

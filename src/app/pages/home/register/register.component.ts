@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
+import { AddressService } from 'src/app/core/services/address.service';
 
 @Component({
   selector: 'app-register',
@@ -17,12 +18,26 @@ export class RegisterComponent implements OnInit {
   initGroup: any;
   subscription: Subscription;
   form: any;
+  steps : Array<any> = [
+    {
+      title : 'register.title'
+    },
+    {
+      title : 'register.profil'
+    },
+    {
+      title : 'register.location'
+    }
+  ]
+  places; 
+  place;
   constructor(private route: ActivatedRoute,
     private router : Router,
     private fb : FormBuilder,
     private authService : AuthService,
     private notificationService : NbToastrService,
-    private translate : TranslateService) { }
+    private translate : TranslateService,
+    private addressService : AddressService) { }
 
 
   ngOnInit() {
@@ -33,7 +48,8 @@ export class RegisterComponent implements OnInit {
         email : [null,[Validators.email, Validators.required]],
         password : [null, Validators.required],
         repeat_password : [null, Validators.required],
-        sexe : ["m", Validators.required]
+        sexe : ["m", Validators.required],
+        place : [null, Validators.required]
     });
     this.subscription = this.route.params.subscribe(async (params: any) => {
       if (params.step) {
@@ -48,12 +64,12 @@ export class RegisterComponent implements OnInit {
   }
 
   nextStep(){
-    if(this.step < 2){
+    if(this.step < 3){
       this.step++;
       this.router.navigate([`.`, { step : this.step, type : this.type.value }], { relativeTo: this.route });
-    }else{
-      this.submit();
     }
+    if(this.step == 2)
+      this.submit();
   }
 
   async submit(){
@@ -67,6 +83,17 @@ export class RegisterComponent implements OnInit {
       })
   }
 
+
+  async findPlaces(keyword){
+    if(keyword.srcElement.value.length % 4 == 0){
+      await this.addressService.findPlaces(keyword.srcElement.value).toPromise().then((res : any)=> this.places = res.hits);
+    }
+  }
+
+  onSelectionChange(place){
+    console.log(place)
+    
+  }
   get type(){
     return this.form.get('type');
   }
