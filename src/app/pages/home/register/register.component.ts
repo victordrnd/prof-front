@@ -66,14 +66,14 @@ export class RegisterComponent implements OnInit {
   }
 
   nextStep() {
-    if (this.step < 2) {
-      this.step++;
-      this.router.navigate([`.`, { step: this.step, type: this.type.value }], { relativeTo: this.route });
-    }
     if (this.step == 2)
       this.submit();
     if (this.step == 3)
       this.attachPlace()
+    if (this.step < 2) {
+      this.step++;
+      this.router.navigate([`.`, { step: this.step, type: this.type.value }], { relativeTo: this.route });
+    }
   }
 
   async submit() {
@@ -108,13 +108,13 @@ export class RegisterComponent implements OnInit {
 
   async attachPlace() {
     const obj = {
-      address : this.place.locale_names.default[0], 
-      lat : this.place._geoloc.lat,
-      lng : this.place._geoloc.lng,
-      country : this.place.country.default,
-      city : this.place.city.default[0],
-      local : this.place.county.default[0],
-      postcode : this.place.postcode[0],
+      address: this.place.locale_names.default[0],
+      lat: this.place._geoloc.lat,
+      lng: this.place._geoloc.lng,
+      country: this.place.country.default,
+      city: this.place.city.default[0],
+      local: this.place.county.default[0],
+      postcode: this.place.postcode[0],
     }
     await this.addressService.attach(obj).toPromise()
   }
