@@ -34,7 +34,9 @@
         "error" : {
             "title" : "Error",
             "desc" : "An error has occured"   
-        }
+        },
+        "no_account" : "No account yet ?",
+        "register_now" : "Register now"
     },
     "login" : {
         "title" : "Login",

@@ -34,7 +34,9 @@
         "error" : {
             "title" : "Erreur",
             "desc" : "Une erreur est survenue"   
-        }
+        },
+        "no_account" : "Pas encore de compte ?",
+        "register_now" : "Inscrivez vous"
     },
     "login" : {
         "title" : "Connexion",
