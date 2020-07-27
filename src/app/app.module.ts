@@ -7,7 +7,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NzModalModule, NzButtonModule, NzNotificationModule, NzIconModule } from "ng-zorro-antd";
+import { NzModalModule, NzButtonModule, NzNotificationModule, NzIconModule, NzSpinModule } from "ng-zorro-antd";
 import { SharedModule } from './shared/shared.module';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -35,7 +35,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
     }
-    })
+    }),
+    NzSpinModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +10,31 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
   language = localStorage.getItem('language') ?? 'en';
-  constructor(private translationService : TranslateService) { }
+  isConnected: any;
+  constructor(private translationService : TranslateService,
+    private authService: AuthService,
+    private cdr : ChangeDetectorRef,
+    private router : Router) { }
 
   ngOnInit() {
+    this.isConnected = this.authService.getToken() ? true : false;
+    console.log(this.isConnected)
+    this.cdr.markForCheck();
   }
 
   languageChange(language = 'en'){
     localStorage.setItem('language', language);
     this.translationService.use(language);
+  }
+  async goToDashboard(){
+    await this.authService.populate();
+    this.authService.currentUser.subscribe(user => {
+      if(user.role.slug == 'student'){
+        this.router.navigate(['student/dashboard']);
+      }else{
+        this.router.navigate(['teacher/dashboard']);
+      }
+    })
   }
 
 }

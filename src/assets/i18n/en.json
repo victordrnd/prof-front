@@ -4,7 +4,8 @@
         "about" : "About us",
         "contact" : "Contact",
         "login" : "Login",
-        "register" : "Register"
+        "register" : "Register",
+        "dashboard" : "Dashboard"
     },
     "register" : {
         "title" : "Register",

@@ -4,7 +4,8 @@
         "about" : "A propos",
         "contact" : "Contact",
         "login" : "Connexion",
-        "register" : "Inscription"
+        "register" : "Inscription",
+        "dashboard" : "Tableau de bord"
     },
     "register" : {
         "title" : "Inscription",

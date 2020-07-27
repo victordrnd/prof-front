@@ -116,7 +116,13 @@ export class RegisterComponent implements OnInit {
       local: this.place.county.default[0],
       postcode: this.place.postcode[0],
     }
-    await this.addressService.attach(obj).toPromise()
+    await this.addressService.attach(obj).toPromise().then((res : any) => {
+      if(res.role.slug == 'student'){
+        this.router.navigate(['student/dashboard']);
+      }else{
+        this.router.navigate(['teacher/dashboard']);
+      }
+    })
   }
   get type() {
     return this.form.get('type');

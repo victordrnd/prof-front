@@ -28,6 +28,7 @@ export class AuthService {
           .toPromise();
         this.setAuth(res);
         this.isAuthenticatedSubject.next(true);
+        this.currentUserSubject.next(res);
         return true;
       } catch (error) {
         this.purgeAuth();

@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,24 +11,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  form: any;
 
   constructor(private authService : AuthService,
     private notificationService: NbToastrService,
     private translate : TranslateService,
-    private router : Router) { }
+    private router : Router,
+    private fb : FormBuilder) { }
 
-  credentials = {
-    email : null,
-    password : null
-  }
   ngOnInit() {
+    this.form = this.fb.group({
+      email : [null, [Validators.email,Validators.required]],
+      password : [null, Validators.required]
+    })
   }
 
   submit(){
-    this.authService.attemptAuth(this.credentials).toPromise().then(res => {
+    this.authService.attemptAuth(this.form.value).toPromise().then(res => {
       //TODO : redirect to dashboard
       if(!res.user.address){
-        this.router.navigate([`/register`, { step: 3,  }]);
+        this.router.navigate([`/register`, { step: 3}]);
+      }else{
+        if(res.user.role.slug == 'student'){
+          this.router.navigate(['student/dashboard']);
+        }else{
+          this.router.navigate(['teacher/dashboard']);
+        }
       }
     }).catch(err => {
       for (const [key, value] of Object.entries(err)) {
