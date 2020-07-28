@@ -1,0 +1,9 @@
+<nz-tabset>
+    <nz-tab *ngFor="let date of dates" [nzTitle]="title">
+        <ng-template #title>
+            <h2 class="text-center ant-tabs-tab">{{date.date}}</h2>
+            <p class="caption text-center">{{date.month}}</p>
+        </ng-template>
+      Content of Tab Pane 1
+    </nz-tab>
+  </nz-tabset>

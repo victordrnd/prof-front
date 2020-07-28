@@ -1,0 +1,15 @@
+:host::ng-deep{
+    .ant-tabs-tab {
+        position: relative;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0 16px 0 16px;
+        padding: 12px 0;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 60px;
+        text-align: center;
+        transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+}

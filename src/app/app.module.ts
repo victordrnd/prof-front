@@ -7,16 +7,19 @@ import { HeaderComponent } from './shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NzModalModule, NzButtonModule, NzNotificationModule, NzIconModule, NzSpinModule } from "ng-zorro-antd";
+import { NzModalModule, NzButtonModule, NzNotificationModule, NzIconModule, NzSpinModule, NZ_I18N, fr_FR } from "ng-zorro-antd";
 import { SharedModule } from './shared/shared.module';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpTokenInterceptor } from './core/interceptors/http.token.interceptor';
+import { registerLocaleData } from '@angular/common';
+import fr from "@angular/common/locales/fr";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+registerLocaleData(fr);
 @NgModule({
   declarations: [
     AppComponent
@@ -40,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},
+    { provide: NZ_I18N, useValue: fr_FR } 
   ],
   bootstrap: [AppComponent]
 })

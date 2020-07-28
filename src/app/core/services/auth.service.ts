@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { distinctUntilChanged, map, catchError } from "rxjs/operators";
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private router : Router) { }
 
   private currentUserSubject = new BehaviorSubject<any>({});
   public currentUser = this.currentUserSubject
@@ -32,11 +33,14 @@ export class AuthService {
         return true;
       } catch (error) {
         this.purgeAuth();
+        this.currentUserSubject.next(null);
         this.isAuthenticatedSubject.next(false);
+        this.router.navigate(['/login']);
         return false;
       }
     } else {
       this.purgeAuth();
+      this.router.navigate(['/login']);
       return false;
     }
   }
