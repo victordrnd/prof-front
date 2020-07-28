@@ -13,8 +13,8 @@
         transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
     .margin-negative{
-        margin-top:-62px;
-        background-color: #f8f9fb ;
+        margin-top:-75px;
+        // background-color: #f8f9fb ;
     }
     .list-virtual{
         max-height: 70vh;
@@ -29,5 +29,13 @@
     }
     .status-warning {
         background-color: #23d7ff !important;
+    }
+    nz-list-item{
+        min-height: 115px !important;
+        max-height: 115px !important;
+    }
+    .status-warning {
+        height:220px;
+        margin-top: 110px;
     }
 }
