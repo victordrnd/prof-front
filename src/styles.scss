@@ -10,6 +10,9 @@
 .nb-theme-corporate nb-layout .layout {
   background-color:#fff;
 }
+.anticon {
+  transform: translateY(-5px); 
+}
 .light {
   font-family: OdudoLight !important;
 }
@@ -21,6 +24,13 @@
   cursor: pointer;
 }
 
+::-webkit-scrollbar {
+  width: 5px; 
+}
+::-webkit-scrollbar-thumb {
+  background: #B5A6FF;
+  border-radius: 10px;
+}
 @font-face {
   font-family: "OdudoLight";
   src: url(assets/fonts/Odudo-Light.otf) format("truetype");

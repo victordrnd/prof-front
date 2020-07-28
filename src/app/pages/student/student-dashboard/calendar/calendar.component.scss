@@ -12,4 +12,22 @@
         text-align: center;
         transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
+    .margin-negative{
+        margin-top:-62px;
+        background-color: #f8f9fb ;
+    }
+    .list-virtual{
+        max-height: 70vh;
+        overflow-y: auto;
+        padding-top: 15px;
+    }
+    .caption-2{
+        color :#fff;
+    }
+    .user-name, .user-picture{
+        color : #fff !important;
+    }
+    .status-warning {
+        background-color: #23d7ff !important;
+    }
 }
