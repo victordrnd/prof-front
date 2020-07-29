@@ -11,6 +11,7 @@ import { HeadbandComponent } from './home/headband/headband.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzTagModule, NzUploadModule, NzIconModule } from 'ng-zorro-antd';
 
 
 @NgModule({
@@ -28,7 +29,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbButtonModule,
     NbRadioModule,
     NbToastrModule.forRoot(),
-    NbAutocompleteModule
+    NbAutocompleteModule,
+    NzTagModule,
+    NzUploadModule,
+    NzIconModule
 
   ]
 })
