@@ -82,13 +82,12 @@
                     <label class="mx-5">{{'register.location' | translate}} :</label>
                     <nb-form-field class="center mx-5 mt-1">
                         <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
-                        <input type="text" #placeInput [nbAutocomplete]="auto" (input)="findPlaces($event)" nbInput fullWidth
-                            fieldSize="giant" placeholder="{{'register.location' | translate}}">
+                        <input type="text" #placeInput [nbAutocomplete]="auto" (input)="findPlaces($event)" nbInput
+                            fullWidth fieldSize="giant" placeholder="{{'register.location' | translate}}">
                     </nb-form-field>
                     <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
 
-                        <nb-option *ngFor="let option of places"
-                            [value]="option">
+                        <nb-option *ngFor="let option of places" [value]="option">
                             <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon><span
                                 [innerHtml]="option._highlightResult.locale_names.default[0].value"></span> <span
                                 class="caption mt-1 ml-2">{{ option.country?.default }},
@@ -100,19 +99,58 @@
 
                 </div>
             </div>
-            <button nbButton status="primary" class="d-block mx-auto" [disabled]="step==3 && !selected"
+            <div class="row my-4" *ngSwitchCase="4">
+                <div class="col-12">
+                    <div class="mx-5">
+
+                        <label>{{'register.avatar' | translate}} : </label>
+                        <nz-upload class="avatar-uploader" nzName="avatar" nzListType="picture-card"
+                            [nzShowUploadList]="false" [nzBeforeUpload]="beforeUpload" (nzChange)="getAvatarBlob($event)">
+                            <ng-container *ngIf="!avatarUrl">
+                                <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+                                <div class="ant-upload-text">Avatar</div>
+                            </ng-container>
+                            <img #avatarImg [src]="avatarUrl" style="width: 100%" />
+                        </nz-upload>
+                    </div>
+                    <label class="mx-5 mt-5">{{'register.subjects.title' | translate}} :</label><br />
+                    <nb-card class="mx-5 my-3">
+                        <nb-card-body>
+                            <div>
+                                <nz-tag nzMode="checkable" (nzCheckedChange)="checkSubject($event, subject)"
+                                    *ngFor="let subject of subjects; let i = index" class="pointer">
+                                    {{ subject.libelle | translate }}
+                                    <nb-icon class="caption text-white mt-1" icon="checkmark-outline" pack="eva"
+                                        *ngIf="subject.checked"></nb-icon>
+                                </nz-tag>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
+                    <div class="mx-5 mt-5">
+                        <label>{{'register.rate' | translate}} :</label><br />
+                        <nb-form-field>
+                            <nb-icon nbPrefix icon="credit-card-outline" pack="eva"></nb-icon>
+                            <input type="text" formControlName="rate" placeholder="40" nbInput class="my-3"> €
+                        </nb-form-field>
+                        <label class="mt-5">{{'register.description.title' | translate}} :</label><br />
+                        <textarea nbInput fullWidth formControlName="description" placeholder="" class="my-3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button nbButton status="primary" class="d-block mx-auto"
+                [disabled]="step==3 && !selected || step ==4 && taught_subject.length == 0"
                 (click)="nextStep()">{{'register.next' | translate}}
-                <nb-icon icon="arrow-forward-outline" ></nb-icon></button>
-                
-                <div class="row" *ngIf="step < 3">
-                    <div class="col-8 mx-auto d-block">
-                        <hr/>
-                        <p class="text-center mt-2">{{'register.no_account' | translate}} <a
+                <nb-icon icon="arrow-forward-outline"></nb-icon></button>
+
+            <div class="row" *ngIf="step < 3">
+                <div class="col-8 mx-auto d-block">
+                    <hr />
+                    <p class="text-center mt-2">{{'register.no_account' | translate}} <a
                             class="text-primary text-decoration-none"
                             routerLink="/register">{{'register.register_now' | translate}}</a></p>
-                        </div>
                 </div>
-                    
+            </div>
+
         </form>
     </nb-card>
 </div>

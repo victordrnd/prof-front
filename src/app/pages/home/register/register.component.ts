@@ -7,6 +7,8 @@ import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { AddressService } from 'src/app/core/services/address.service';
 import { cpuUsage } from 'process';
+import { SubjectService } from 'src/app/core/services/subject.service';
+import { TeacherService } from 'src/app/core/services/teacher.service';
 
 @Component({
   selector: 'app-register',
@@ -28,22 +30,31 @@ export class RegisterComponent implements OnInit {
     },
     {
       title: 'register.location'
+    },
+    {
+      title: 'register.profil'
     }
   ]
   places;
   place;
   selected = false;
+  subjects;
+  taught_subject: Array<any> = []
   @ViewChild('placeInput') placeInput;
+  avatarUrl: string | ArrayBuffer;
+  avatar: any;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
     private notificationService: NbToastrService,
     private translate: TranslateService,
-    private addressService: AddressService) { }
+    private addressService: AddressService,
+    private subjectService: SubjectService,
+    private teacherService: TeacherService) { }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.form = this.fb.group({
       type: ["student", Validators.required],
       firstname: [null, Validators.required],
@@ -51,7 +62,10 @@ export class RegisterComponent implements OnInit {
       email: [null, [Validators.email, Validators.required]],
       password: [null, Validators.required],
       repeat_password: [null, Validators.required],
-      sexe: ["m", Validators.required]
+      sexe: ["m", Validators.required],
+      rate: [30],
+      description: [""]
+
     });
     this.subscription = this.route.params.subscribe(async (params: any) => {
       if (params.step) {
@@ -59,6 +73,7 @@ export class RegisterComponent implements OnInit {
         this.form.controls.type.value = params.type ?? 'student';
       }
     });
+    this.subjects = await this.subjectService.getAll().toPromise();
   }
 
   select(type = 'student') {
@@ -70,6 +85,8 @@ export class RegisterComponent implements OnInit {
       this.submit();
     if (this.step == 3)
       this.attachPlace()
+    if (this.step == 4)
+      this.completeTeacherProfil()
     if (this.step < 2) {
       this.step++;
       this.router.navigate([`.`, { step: this.step, type: this.type.value }], { relativeTo: this.route });
@@ -116,15 +133,54 @@ export class RegisterComponent implements OnInit {
       local: this.place.county.default[0],
       postcode: this.place.postcode[0],
     }
-    await this.addressService.attach(obj).toPromise().then((res : any) => {
-      if(res.role.slug == 'student'){
+    await this.addressService.attach(obj).toPromise().then(async (res: any) => {
+      if (res.role.slug == 'student') {
         this.router.navigate(['student/dashboard']);
-      }else{
-        this.router.navigate(['teacher/dashboard']);
+      } else {
+        this.router.navigate([`.`, { step: this.step++, type: this.type.value }], { relativeTo: this.route });
       }
     })
   }
+
+  beforeUpload = (file) => {
+    this.avatar = file;
+    this.getAvatarBlob(file)
+    return false;
+  }
+
+  getAvatarBlob(file): any {
+    var reader = new FileReader();
+    reader.onloadend = () => { this.avatarUrl = reader.result }
+    reader.readAsDataURL(file)
+  }
+
+  checkSubject(event, subject) {
+    if (subject.checked) {
+      subject.checked = false
+      this.taught_subject = this.taught_subject.filter((val) => val != subject.id);
+    } else {
+      subject.checked = true;
+      this.taught_subject.push(subject.id);
+    }
+  }
+
+  completeTeacherProfil() {
+    const obj = {
+      subjects: this.taught_subject,
+      description: this.form.controls.description.value,
+      rate: this.form.controls.rate.value
+    }
+    this.teacherService.attachProfile(obj).toPromise().then(async res => {
+      const formData = new FormData();
+      formData.append('avatar', this.avatar);
+      await this.teacherService.uploadAvatar(formData).toPromise()
+      this.router.navigate(['teacher/dashboard']);
+    }
+    ).catch(err => console.log(err))
+  }
+
   get type() {
     return this.form.get('type');
   }
+
 }

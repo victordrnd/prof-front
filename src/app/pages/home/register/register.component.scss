@@ -16,6 +16,20 @@
             color: #806bff !important;
         }
     }
+    nz-tag{
+        cursor : pointer !important
+    }
+    .ant-upload.ant-upload-select-picture-card {
+        float: none !important;
+        margin-left:auto !important;
+        margin-right:auto !important;
+        width:200px;
+        height : 200px;
+
+    }
+    textarea{
+        height:200px
+    }
 }
 .margin-negative {
     margin-top: -20vh;
