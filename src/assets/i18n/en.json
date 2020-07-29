@@ -37,7 +37,15 @@
             "desc" : "An error has occured"   
         },
         "no_account" : "No account yet ?",
-        "register_now" : "Register now"
+        "register_now" : "Register now",
+        "avatar" : "My profil picture",
+        "rate" : "Hourly rate",
+        "description" : {
+            "title" : "About me"
+        },
+        "subjects" : {
+            "title" : "Taught Subjects"
+        }
     },
     "login" : {
         "title" : "Login",

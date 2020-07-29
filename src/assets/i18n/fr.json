@@ -37,7 +37,15 @@
             "desc" : "Une erreur est survenue"   
         },
         "no_account" : "Pas encore de compte ?",
-        "register_now" : "Inscrivez vous"
+        "register_now" : "Inscrivez vous",
+        "avatar" : "Ma photo de profil",
+        "rate" : "Taux horraire",
+        "description" : {
+            "title" : "Ma description"
+        },
+        "subjects" : {
+            "title" : "Matières enseignées"
+        }
     },
     "login" : {
         "title" : "Connexion",
