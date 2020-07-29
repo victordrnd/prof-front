@@ -6,9 +6,19 @@
         </div>
         <nb-form-field class="center mx-5">
             <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
-            <input type="text" nbInput fullWidth fieldSize="giant" placeholder="Search a place, a teacher...">
+            <input type="text" nbInput fullWidth fieldSize="giant" placeholder="Search a place, a teacher..."
+                [nbAutocomplete]="autoNgModel">
+
         </nb-form-field>
-        <p class="text-center mt-5 center">You'd like to give classes ? <span class="text-primary pointer" (click)="registerTeacher()">Register as teacher</span></p>
+        <nb-autocomplete #autoNgModel>
+
+            <nb-option *ngFor="let subject of subjects" value="{{subject.libelle | translate}}">
+                {{ subject.libelle | translate}}
+            </nb-option>
+
+        </nb-autocomplete>
+        <p class="text-center mt-5 center">You'd like to give classes ? <span class="text-primary pointer"
+                (click)="registerTeacher()">Register as teacher</span></p>
     </div>
     <div class="col-md-6">
         <img src="../../../assets/home/hero.png" class="w-100">
@@ -55,7 +65,11 @@
         <img src="../../../assets/home/idea.png" width="120" class="d-block mx-auto">
         <h1 class="text-center">Lorem ipsum dolor sit.</h1>
         <div class="container mt-5 ">
-            <p class="text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem soluta dolor numquam ullam, veniam dignissimos, nemo recusandae aperiam obcaecati labore quidem possimus, enim dolores nisi voluptates ab a dolore quam assumenda officia? Iure nesciunt voluptatem tenetur molestiae alias expedita laboriosam illo aliquam, architecto ea quidem libero molestias sequi quos. Maxime, et laudantium. Molestias exercitationem dicta reprehenderit quidem harum recusandae maxime.</p>
+            <p class="text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem soluta dolor numquam
+                ullam, veniam dignissimos, nemo recusandae aperiam obcaecati labore quidem possimus, enim dolores nisi
+                voluptates ab a dolore quam assumenda officia? Iure nesciunt voluptatem tenetur molestiae alias expedita
+                laboriosam illo aliquam, architecto ea quidem libero molestias sequi quos. Maxime, et laudantium.
+                Molestias exercitationem dicta reprehenderit quidem harum recusandae maxime.</p>
             <div class="my-5">
                 <home-headband></home-headband>
             </div>

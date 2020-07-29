@@ -2,14 +2,14 @@
 <nz-layout class="layout">
     <nz-sider nzCollapsible [nzCollapsed]="mobile ? true : false" [nzWidth]="290" [nzCollapsedWidth]="mobile ? 0 : 80">
         <ul nz-menu nzMode="inline" class="w-100">
-            <li class="mt-0" nz-menu-item routerLink="/dashboard/home"><i
-                    nz-icon nzType="home" nzTheme="outline"></i><span>Tableau de bord</span></li>
+            <li class="mt-0" nz-menu-item routerLink="/dashboard/home"><i nz-icon nzType="home"
+                    nzTheme="outline"></i><span>Tableau de bord</span></li>
             <li nz-submenu nzTitle="Mes cours" nzIcon="shopping" nzOpen>
                 <ul>
                     <li nz-menu-item routerLink="/dashboard/reservations">Afficher tous mes cours</li>
                     <!-- <li nz-menu-item [nzDisabled]="true">Annuler une commande</li> -->
                 </ul>
-            <!-- <li nz-submenu nzTitle="Administration" nzIcon="setting" nzOpen>
+                <!-- <li nz-submenu nzTitle="Administration" nzIcon="setting" nzOpen>
                 <ul>
                     <li nz-menu-item routerLink="/dashboard/settings/import">Import des produits</li>
                     <li nz-menu-item routerLink="/dashboard/settings/users">Gestion des utilisateurs</li>
@@ -20,6 +20,8 @@
                 <ul>
                     <li nz-menu-item routerLink="/dashboard/profil">
                         Afficher mon profil</li>
+                    <li nz-menu-item routerLink="/dashboard/profil">
+                        Informations de paiement</li>
                     <li nz-menu-item [nzDisabled]="true">Réinitialiser mon mot de passe</li>
                     <li nz-menu-item (click)="logout()">Déconnexion
                     </li>
@@ -29,7 +31,7 @@
     </nz-sider>
 
     <nz-layout>
-        <nz-content >
+        <nz-content>
             <div class="body pb-5" style="min-height : calc(100vh - 150px) !important">
                 <router-outlet></router-outlet>
             </div>

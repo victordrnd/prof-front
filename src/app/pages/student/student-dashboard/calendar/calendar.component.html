@@ -1,4 +1,4 @@
-<nz-tabset>
+<nz-tabset nzSelectedIndex="0">
     <nz-tab *ngFor="let date of dates" [nzTitle]="title">
         <ng-template #title>
             <h2 class="text-center ant-tabs-tab">{{date.date.day}}</h2>
@@ -12,14 +12,14 @@
                             <h6 class="caption margin-negative px-3">{{item.time}}</h6>
                         </nz-list-item-meta-title>
                     </nz-list-item-meta>
-                    <nb-alert [status]="color[i % 5]" class="w-100 mx-4" *ngIf="i % 4 == 0">
+                    <nb-alert *ngFor="let lesson of item.lessons" [style.backgroundColor]="lesson.subject.color" class="w-100 mx-4" [style.height]="'calc(110px *'+ lesson.duration +')'" [style.marginTop.px]="getLessonMarginTop(lesson)">
                         <div class="row">
                             <div class="col-6">
-                                {{item.time}} - Histoire
-                                <span class="caption-2">Révision sur la guerre du Vietnam</span>
+                                <h6 class="text-white">{{item.time}} - {{lesson.subject.libelle | translate}}</h6>
+                                <p class="caption-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam, et?</p>
                             </div>
                             <div class="col-6">
-                                <nb-user class="float-right" size="small" name="John Doe" title="Teacher">
+                                <nb-user class="float-right" size="small" [name]="lesson.teacher.firstname + ' ' +lesson.teacher.lastname"  title="Teacher">
                                 </nb-user>
                             </div>
                         </div>
@@ -33,4 +33,9 @@
             </nz-list-item>
         </nz-list>
     </nz-tab>
+    <!-- <nz-tab [nzTitle]="nextIcon">
+        <ng-template #nextIcon>
+            <nb-icon  class="text-center h4" style="transform: translateY(-22px);" icon="arrow-ios-forward-outline" pack="eva"></nb-icon>
+        </ng-template>
+    </nz-tab> -->
 </nz-tabset>

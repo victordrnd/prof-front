@@ -42,5 +42,13 @@
     "login" : {
         "title" : "Connexion",
         "submit" : "Se connecter"
+    },
+    "subject" : {
+        "maths" : "Mathématiques",
+        "english" : "Anglais",
+        "french" : "Français",
+        "history" : "Histoire",
+        "law" : "Droit",
+        "physics" : "Physique"
     }
 }

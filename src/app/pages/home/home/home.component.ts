@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SubjectService } from 'src/app/core/services/subject.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  subjects: Object;
 
-  constructor(private router : Router) { }
+  constructor(private router : Router,
+    private subjectService : SubjectService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.subjects = await this.subjectService.getAll().toPromise();
   }
 
   registerTeacher(){

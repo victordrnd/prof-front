@@ -42,5 +42,13 @@
     "login" : {
         "title" : "Login",
         "submit" : "Log in"
+    },
+    "subject" : {
+        "maths" : "Maths",
+        "english" : "English",
+        "french" : "French",
+        "history" : "History",
+        "law" : "Law",
+        "physics" : "Physics"
     }
 }
