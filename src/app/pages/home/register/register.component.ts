@@ -137,7 +137,8 @@ export class RegisterComponent implements OnInit {
       if (res.role.slug == 'student') {
         this.router.navigate(['student/dashboard']);
       } else {
-        this.router.navigate([`.`, { step: this.step++, type: this.type.value }], { relativeTo: this.route });
+        this.step = 4
+        this.router.navigate([`.`, { step: this.step, type: this.type.value }], { relativeTo: this.route });
       }
     })
   }
