@@ -66,6 +66,9 @@
         "expiration_placeholder" : "MM/YY",
         "cvv" : "Card verification value",
         "add_card" : "Add card",
-        "error" : "An error has occured, retry later"
+        "error" : "An error has occured, retry later",
+        "delete" : {
+            "title" : "Do you want to remove this Payment method from your account ?"
+        }
     }
 }

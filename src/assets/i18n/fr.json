@@ -66,6 +66,9 @@
         "expiration_placeholder" : "MM/AA",
         "cvv" : "Code de sécurité",
         "add_card" :"Ajouter une carte",
-        "error" : "Une erreur est survenue, veuillez réessayer plus tard"
+        "error" : "Une erreur est survenue, veuillez réessayer plus tard",
+        "delete" : {
+            "title" : "Etes vous certains de vouloir supprimer cette carte de votre compte ?"
+        }
     }
 }

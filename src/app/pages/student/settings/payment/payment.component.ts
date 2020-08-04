@@ -22,11 +22,26 @@ export class PaymentComponent implements OnInit {
   }
 
   addPaymentMethod(){
-    this.modalService.create({
+    const modalRef = this.modalService.create({
       nzContent : AddPaymentComponent,
       nzTitle : this.translate.instant('payment.add'),
       nzFooter: null
     })
+    modalRef.afterClose.subscribe(async () => {
+      this.paymentMethods = await this.paymentService.getAllPaymentMethods().toPromise();
+    })
   }
 
+
+  detach(card){
+    this.modalService.confirm({
+      nzTitle : this.translate.instant('payment.delete.title'),
+      nzIconType : "exclamation-circle",
+      nzOnOk : () => {
+        this.paymentService.detachPaymentMethod({pm_id : card.id}).toPromise().then(async () => {
+          this.paymentMethods = await this.paymentService.getAllPaymentMethods().toPromise();
+        })
+      }
+    })
+  }
 }

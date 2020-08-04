@@ -16,4 +16,9 @@ export class PaymentService {
   createPaymentMethod(values){
     return this.http.post(`${environment.apiUrl}/payments`, values);
   }
+
+
+  detachPaymentMethod(obj){
+    return this.http.post(`${environment.apiUrl}/payments/detach`, obj);
+  }
 }

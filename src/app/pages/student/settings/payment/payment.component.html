@@ -5,13 +5,18 @@
         <div class="col-6 px-5" *ngFor="let card of paymentMethods?.data">
             <nb-card accent="primary">
                 <nb-card-body>
+                    <nb-icon icon="edit-outline" pack="eva" class="float-right pointer" (click)="detach(card)"></nb-icon>
                     <p>**** **** **** {{card.card.last4}} </p>
-                    <span class="text-right caption">{{card.card.exp_month}}/{{card.card.exp_year}}</span>
-                    <img src="../../../../../assets/payments/visa.svg" class="float-right" *ngIf="card.card.brand == 'visa'">
+                    <img src="../../../../../assets/payments/visa.svg" class="float-right mt-5" *ngIf="card.card.brand == 'visa'">
+                    <p class="caption ml-2 mt-5 float-left">{{card.card.exp_month}}/{{card.card.exp_year}}</p>
 
                 </nb-card-body>
             </nb-card>
         </div>
-        
+        <div class="col-12" *ngIf="paymentMethods?.data.length == 0">
+            <nb-card>
+                <nz-empty nzNotFoundImage="simple" class="my-4"></nz-empty>
+            </nb-card>
+        </div>
     </div>
 </div>
