@@ -1,9 +1,9 @@
 <div class="container mt-5">
     <button nbButton class="float-right" size="small"
         (click)="addPaymentMethod()">{{'payment.add' | translate}}</button><br />
-    <div class="row m-5">
-        <div class="col-6 px-5">
-            <nb-card accent="primary" *ngFor="let card of paymentMethods?.data">
+    <div class="row mt-5">
+        <div class="col-6 px-5" *ngFor="let card of paymentMethods?.data">
+            <nb-card accent="primary">
                 <nb-card-body>
                     <p>**** **** **** {{card.card.last4}} </p>
                     <span class="text-right caption">{{card.card.exp_month}}/{{card.card.exp_year}}</span>
@@ -11,7 +11,7 @@
 
                 </nb-card-body>
             </nb-card>
-
         </div>
+        
     </div>
 </div>
