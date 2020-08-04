@@ -28,7 +28,7 @@ import { NzTagModule, NzUploadModule, NzIconModule } from 'ng-zorro-antd';
     NbFormFieldModule,
     NbButtonModule,
     NbRadioModule,
-    NbToastrModule.forRoot(),
+ 
     NbAutocompleteModule,
     NzTagModule,
     NzUploadModule,

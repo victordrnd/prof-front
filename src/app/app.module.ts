@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbToastrModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NzModalModule, NzButtonModule, NzNotificationModule, NzIconModule, NzSpinModule, NZ_I18N, fr_FR } from "ng-zorro-antd";
 import { SharedModule } from './shared/shared.module';
@@ -39,6 +39,7 @@ registerLocaleData(fr);
         deps: [HttpClient]
     }
     }),
+    NbToastrModule.forRoot(),
     NzSpinModule
   ],
   providers: [

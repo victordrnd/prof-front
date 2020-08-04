@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { StudentComponent } from './student.component';
 import { AuthGuardService } from 'src/app/core/gards/auth-gards.service';
+import { PaymentComponent } from './settings/payment/payment.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,15 @@ const routes: Routes = [
       {
         path : "dashboard",
         component : StudentDashboardComponent
+      },
+      {
+        path : 'settings',
+        children : [
+          {
+            path : 'payments',
+            component : PaymentComponent
+          }
+        ]
       }
     ]
   }

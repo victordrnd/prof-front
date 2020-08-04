@@ -1,0 +1,17 @@
+<div class="container mt-5">
+    <button nbButton class="float-right" size="small"
+        (click)="addPaymentMethod()">{{'payment.add' | translate}}</button><br />
+    <div class="row m-5">
+        <div class="col-6 px-5">
+            <nb-card accent="primary" *ngFor="let card of paymentMethods?.data">
+                <nb-card-body>
+                    <p>**** **** **** {{card.card.last4}} </p>
+                    <span class="text-right caption">{{card.card.exp_month}}/{{card.card.exp_year}}</span>
+                    <img src="../../../../../assets/payments/visa.svg" class="float-right" *ngIf="card.card.brand == 'visa'">
+
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+    </div>
+</div>

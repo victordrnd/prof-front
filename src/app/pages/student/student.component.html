@@ -20,7 +20,7 @@
                 <ul>
                     <li nz-menu-item routerLink="/dashboard/profil">
                         Afficher mon profil</li>
-                    <li nz-menu-item routerLink="/dashboard/profil">
+                    <li nz-menu-item routerLink="settings/payments">
                         Informations de paiement</li>
                     <li nz-menu-item [nzDisabled]="true">Réinitialiser mon mot de passe</li>
                     <li nz-menu-item (click)="logout()">Déconnexion
@@ -32,7 +32,7 @@
 
     <nz-layout>
         <nz-content>
-            <div class="body pb-5" style="min-height : calc(100vh - 150px) !important">
+            <div class="body pb-5" style="min-height : 100vh !important">
                 <router-outlet></router-outlet>
             </div>
         </nz-content>

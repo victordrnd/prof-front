@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+
+    <div class="row">
+        <div class="col-12">
+            <label>{{'payment.number' | translate}}</label>
+            <input type="text" formControlName="number" nbInput (input)="cardRegex($event)" maxlength="19" status="basic" class="input-full-width">
+        </div>
+        <div class="col-6 mt-3">
+            <label>{{'payment.expiration' | translate}}</label>
+            <input type="text" formControlName="expiration" [status]="invalid.expiration ? 'danger' : 'basic'" nbInput (input)="expirationRegex($event)" maxlength="5" placeholder="{{'payment.expiration_placeholder' | translate}}" class="input-full-width">
+        </div>
+        <div class="col-6 mt-3">
+            <label>{{'payment.cvv' | translate}}</label>
+            <input type="text" formControlName="cvv" nbInput  maxlength="3" status="basic" class="input-full-width">
+        </div>
+    </div>
+    <button nbButton (click)="submit()" class="w-100 mt-4" status="primary">{{'payment.add_card' | translate}}</button>
+</form>

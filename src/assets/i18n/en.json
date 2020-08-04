@@ -58,5 +58,14 @@
         "history" : "History",
         "law" : "Law",
         "physics" : "Physics"
+    },
+    "payment" : {
+        "add" : "Add a payment method",
+        "number" : "Card number",
+        "expiration" : "Expiration date",
+        "expiration_placeholder" : "MM/YY",
+        "cvv" : "Card verification value",
+        "add_card" : "Add card",
+        "error" : "An error has occured, retry later"
     }
 }
