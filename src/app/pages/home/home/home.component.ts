@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubjectService } from 'src/app/core/services/subject.service';
+import { TeacherService } from 'src/app/core/services/teacher.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +11,12 @@ import { SubjectService } from 'src/app/core/services/subject.service';
 })
 export class HomeComponent implements OnInit {
   subjects: Object;
-
+  keyword:any;
+  subject : any
   constructor(private router : Router,
-    private subjectService : SubjectService) { }
+    private subjectService : SubjectService,
+    private teacherService : TeacherService,
+    private translate : TranslateService) { }
 
   async ngOnInit() {
     this.subjects = await this.subjectService.getAll().toPromise();
@@ -21,4 +26,14 @@ export class HomeComponent implements OnInit {
     this.router.navigate([`register`, { step : 1, type : 'teacher' }]);
   }
 
+
+  async search(){
+    let teachers =  await this.teacherService.search(this.subject.id).toPromise();
+    console.log(teachers);
+  }
+
+  setSelected(ev){
+    this.keyword = this.translate.instant(ev.libelle)
+    this.subject = ev;
+  }
 }

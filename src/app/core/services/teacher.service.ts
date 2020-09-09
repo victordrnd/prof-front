@@ -14,6 +14,10 @@ export class TeacherService {
   }
   uploadAvatar(avatar){
     return this.http.post(`${environment.apiUrl}/teacher/profile/avatar`, avatar);
+  }
 
+
+  search(subject_id){
+    return this.http.post(`${environment.apiUrl}/teacher/search`, {subject_id});
   }
 }

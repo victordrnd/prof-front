@@ -6,13 +6,13 @@
         </div>
         <nb-form-field class="center mx-5">
             <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
-            <input type="text" nbInput fullWidth fieldSize="giant" placeholder="Search a place, a teacher..."
+            <input type="text" nbInput fullWidth fieldSize="giant"  [(ngModel)]="keyword" placeholder="Search a place, a teacher..."
                 [nbAutocomplete]="autoNgModel">
-            <button nbButton hero nbSuffix status="primary" class="mr-4">Go</button>
+            <button nbButton hero nbSuffix status="primary" class="mr-4" (click)="search()">Go</button>
         </nb-form-field>
-        <nb-autocomplete #autoNgModel>
+        <nb-autocomplete #autoNgModel (selectedChange)="setSelected($event)">
 
-            <nb-option *ngFor="let subject of subjects" value="{{subject.libelle | translate}}">
+            <nb-option *ngFor="let subject of subjects" [value]="subject">
                 {{ subject.libelle | translate}}
             </nb-option>
 

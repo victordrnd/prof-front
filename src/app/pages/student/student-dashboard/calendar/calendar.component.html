@@ -1,7 +1,7 @@
 <nz-tabset nzSelectedIndex="0">
-    <nz-tab *ngFor="let date of dates" [nzTitle]="title">
+    <nz-tab *ngFor="let date of dates;let i =index" [nzTitle]="title">
         <ng-template #title>
-            <h2 class="text-center ant-tabs-tab">{{date.date.day}}</h2>
+            <h2 class="text-center ant-tabs-tab" [class.color-hover]="i==0">{{date.date.day}}</h2>
             <p class="caption text-center">{{date.date.month}}</p>
         </ng-template>
         <nz-list class="list-virtual">
