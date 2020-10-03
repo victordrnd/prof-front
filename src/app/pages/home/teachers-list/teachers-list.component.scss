@@ -1,0 +1,15 @@
+.profile{
+    height:270px;
+    .profil-img{
+        background-size: cover;
+        background-position: center;
+        width: calc(100% + 10px);
+        height: calc(100% + 10px);
+        border-radius : 9px;
+        filter : grayscale(15%)
+    }
+    .inblock-profile{
+        display: inline-block;
+        // align-self: flex-end;
+    }
+}

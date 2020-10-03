@@ -28,8 +28,9 @@ export class HomeComponent implements OnInit {
 
 
   async search(){
-    let teachers =  await this.teacherService.search(this.subject.id).toPromise();
-    console.log(teachers);
+    // let teachers =  await this.teacherService.search(this.subject.id).toPromise();
+    // console.log(teachers);
+    this.router.navigate(['search', {subject_id : this.subject.id}]);
   }
 
   setSelected(ev){

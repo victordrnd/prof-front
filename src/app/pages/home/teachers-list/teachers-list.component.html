@@ -1,0 +1,64 @@
+<app-header></app-header>
+<nb-layout>
+    <nb-sidebar>
+        <div class="m-1">
+            <h4>{{'register.location' | translate}}</h4>
+            <nb-form-field >
+                <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
+                <input type="text" #placeInput [nbAutocomplete]="auto" (input)="findPlaces($event)" nbInput fullWidth
+                    fieldSize="medium" placeholder="{{'register.location' | translate}}">
+            </nb-form-field>
+            <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+                <nb-option *ngFor="let option of places" [value]="option">
+                    <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon><span
+                        [innerHtml]="option._highlightResult.locale_names.default[0].value"></span> <span
+                        class="caption mt-1 ml-2">{{ option.country?.default }},
+                        {{ option.city?.default[0] }}</span>
+                </nb-option>
+
+            </nb-autocomplete>
+            <h4 class="mt-4">Matières</h4>
+            <nz-checkbox-wrapper style="width: 100%;">
+                <div nz-row>
+                    <div *ngFor="let subj of subjects" nz-col nzSpan="24" class="mt-1"><label nz-checkbox nzValue="A"
+                            [ngModel]="subj.id == searchable.subject_id" (ngModelChange)="selectedSubjectsChange($event, subj)">{{subj.libelle | translate}}</label></div>
+                </div>
+            </nz-checkbox-wrapper>
+        </div>
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <div class="row mx-0 mt-4 px-5" *ngIf="data">
+            <div class="col-md-3 col-12 px-4" *ngFor="let teacher of data?.data">
+                <div class="profile pointer">
+                    <div class="profil-img"
+                        [ngStyle]="{'background-image' : 'url(' + environement.assetsUrl + teacher.teacher_profil.avatar+ ')'}">
+                        <div class="d-flex h-100">
+                            <div class="inblock-profile">
+                                <h2 class="text-white m-2 float-right">{{teacher.firstname | titlecase}}
+                                    {{teacher.lastname | titlecase}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="mt-2">
+                                <nz-tag *ngFor="let subject of teacher.teacher_subject"
+                                    [nzColor]="subject.subject.color">
+                                    {{subject.subject.libelle | translate}}</nz-tag>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="float-right">4.8 <nb-icon icon="star" class="mt-1"></nb-icon>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nb-layout-column>
+</nb-layout>
+
+<app-footer></app-footer>
