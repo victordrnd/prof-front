@@ -20,4 +20,8 @@ export class TeacherService {
   search(subject_id){
     return this.http.post(`${environment.apiUrl}/teacher/search`, {subject_id});
   }
+
+  get(teacher_id){
+    return this.http.get(`${environment.apiUrl}/teacher/${teacher_id}`);
+  }
 }

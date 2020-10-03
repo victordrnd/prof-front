@@ -70,5 +70,16 @@
         "delete" : {
             "title" : "Etes vous certains de vouloir supprimer cette carte de votre compte ?"
         }
+    },
+    "teacher" : {
+        "desc" : "Description",
+        "teached_subjects" : "Matières enseignées",
+        "reviews" : "Avis",
+        "no_reviews" :"Aucun avis publié",
+        "click_to_book" : "Cliquez pour réserver le cours"
+    },
+    "general" :{
+        "hour" : "heure",
+        "hours" : "heures"
     }
 }

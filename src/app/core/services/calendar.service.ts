@@ -13,4 +13,8 @@ export class CalendarService {
   getTimeTable(){
     return this.http.get(`${environment.apiUrl}/calendar/timetable`)
   }
+
+  getTwoUsersTimeTable(teacher_id){
+    return this.http.post(`${environment.apiUrl}/calendar/teacher/timetable`, {teacher_id})
+  }
 }

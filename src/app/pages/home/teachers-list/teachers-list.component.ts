@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Route } from '@angular/compiler/src/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TeacherService } from 'src/app/core/services/teacher.service';
 import { environment } from '../../../../environments/environment';
 import { SubjectService } from 'src/app/core/services/subject.service';
@@ -26,7 +26,8 @@ export class TeachersListComponent implements OnInit {
   constructor(private route : ActivatedRoute,
     private teacherService : TeacherService,
     private subjectService : SubjectService,
-    private addressService : AddressService) { }
+    private addressService : AddressService,
+    private router : Router) { }
 
   async ngOnInit() {
     this.subscription = this.route.params.subscribe(async (params: any) => {
@@ -59,5 +60,9 @@ export class TeachersListComponent implements OnInit {
     console.log(value, subj);
     subj.selected = value;
     console.log(this.subjects)
+  }
+
+  openTeacherProfile(teacher_id){
+    this.router.navigate([`teacher/profile/${teacher_id}`]);
   }
 }

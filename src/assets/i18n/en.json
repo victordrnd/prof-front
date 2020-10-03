@@ -70,5 +70,16 @@
         "delete" : {
             "title" : "Do you want to remove this Payment method from your account ?"
         }
+    },
+    "teacher" : {
+        "desc" : "Description",
+        "teached_subjects" : "Teached subjects",
+        "reviews" : "Reviews",
+        "no_reviews" :"No review",
+        "click_to_book" : "Click here to book lesson"
+    },
+    "general" :{
+        "hour" : "heure",
+        "hours" : "heures"
     }
 }

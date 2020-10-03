@@ -1,0 +1,12 @@
+.profile{
+    height:300px;
+    width:300px;
+    .profile-img{
+        background-size: cover;
+        background-position: center;
+        width: calc(100% + 10px);
+        height: calc(100% + 10px);
+        border-radius : 9px;
+        filter : grayscale(15%)
+    }
+} 
