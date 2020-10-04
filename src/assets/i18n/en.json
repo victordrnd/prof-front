@@ -76,7 +76,8 @@
         "teached_subjects" : "Teached subjects",
         "reviews" : "Reviews",
         "no_reviews" :"No review",
-        "click_to_book" : "Click here to book lesson"
+        "click_to_book" : "Click here to book lesson",
+        "locality" : "Locality"
     },
     "general" :{
         "hour" : "heure",

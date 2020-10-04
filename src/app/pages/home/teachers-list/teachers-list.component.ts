@@ -56,10 +56,16 @@ export class TeachersListComponent implements OnInit {
 
 
 
-  selectedSubjectsChange(value, subj){
-    console.log(value, subj);
-    subj.selected = value;
-    console.log(this.subjects)
+  async selectedSubjectsChange(value, subj){
+    this.subjects.forEach(element => {
+      if(subj.id == element.id){
+        element.selected = true;
+      }else{
+        element.selected = false;
+      }
+    });
+    this.searchable.subject_id = subj.id;
+    this.data = await this.teacherService.search(this.searchable.subject_id).toPromise();
   }
 
   openTeacherProfile(teacher_id){

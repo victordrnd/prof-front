@@ -76,7 +76,8 @@
         "teached_subjects" : "Matières enseignées",
         "reviews" : "Avis",
         "no_reviews" :"Aucun avis publié",
-        "click_to_book" : "Cliquez pour réserver le cours"
+        "click_to_book" : "Cliquez pour réserver le cours",
+        "locality" : "Localité"
     },
     "general" :{
         "hour" : "heure",
