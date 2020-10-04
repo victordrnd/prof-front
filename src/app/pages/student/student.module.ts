@@ -45,6 +45,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NzEmptyModule
     ],
   bootstrap : [StudentComponent],
+  exports : [CalendarComponent],
   entryComponents : [
     AddPaymentComponent
   ]

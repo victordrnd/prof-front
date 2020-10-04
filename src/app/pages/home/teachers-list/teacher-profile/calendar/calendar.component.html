@@ -1,41 +1,55 @@
-<nz-tabset nzSelectedIndex="0">
-    <nz-tab *ngFor="let date of dates;let i =index" [nzTitle]="title">
-        <ng-template #title>
-            <h2 class="text-center ant-tabs-tab" [class.color-hover]="i==0">{{date.date.day}}</h2>
-            <p class="caption text-center">{{date.date.month}}</p>
-        </ng-template>
-        <nz-list class="list-virtual">
-            <nz-list-item *ngFor="let item of date.hours;let i = index" [class.pointer]="item?.lessons.length == 0" (click)="bookLesson(item, date, i )" nzTooltipTitle="{{'teacher.click_to_book' | translate}}" nzTooltipPlacement="topCenter" nz-tooltip>
-                <ng-container>
-                    <nz-list-item-meta>
-                        <nz-list-item-meta-title>
-                            <h6 class="caption margin-negative px-3">{{item.time}}</h6>
-                        </nz-list-item-meta-title>
-                    </nz-list-item-meta>
-                    <nb-alert *ngFor="let lesson of item.lessons | slice:0:1" [style.backgroundColor]="lesson.subject.color" class="w-100 mx-4" [style.height]="'calc(90px *'+ lesson.duration +')'" [style.marginTop.px]="getLessonMarginTop(lesson)">
-                        <div class="row">
-                            <div class="col-6">
-                                <h6 class="text-white">{{item.time}} - {{lesson.subject.libelle | translate}}</h6>
-                                <p class="caption-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam, et?</p>
-                            </div>
-                            <div class="col-6">
-                                <nb-user class="float-right" size="small" name="{{lesson.teacher.firstname | titlecase}} {{lesson.teacher.lastname | titlecase}}"  title="Teacher">
-                                </nb-user>
-                            </div>
-                        </div>
-                    </nb-alert><br />
-                    <!-- <nb-alert *ngIf="i % 4 != 0"> </nb-alert> -->
-                    <!-- <ul nz-list-item-actions>
-                        <nz-list-item-action><a (click)="edit(item)">edit</a></nz-list-item-action>
-                        <nz-list-item-action><a (click)="edit(item)">more</a></nz-list-item-action>
-                    </ul> -->
-                </ng-container>
-            </nz-list-item>
-        </nz-list>
-    </nz-tab>
-    <!-- <nz-tab [nzTitle]="nextIcon">
-        <ng-template #nextIcon>
-            <nb-icon  class="text-center h4" style="transform: translateY(-22px);" icon="arrow-ios-forward-outline" pack="eva"></nb-icon>
-        </ng-template>
-    </nz-tab> -->
-</nz-tabset>
+<nb-layout>
+    <nb-layout-column>
+        <nz-tabset nzSelectedIndex="0">
+            <nz-tab *ngFor="let date of dates;let i =index" [nzTitle]="title">
+                <ng-template #title>
+                    <h2 class="text-center ant-tabs-tab" [class.color-hover]="i==0">{{date.date.day}}</h2>
+                    <p class="caption text-center">{{date.date.month}}</p>
+                </ng-template>
+                <nz-list class="list-virtual">
+                    <nz-list-item *ngFor="let item of date.hours;let i = index"
+                        [class.pointer]="item?.lessons.length == 0" (click)="bookLesson(item, date, i )"
+                        nbPopover="{{'teacher.click_to_book' | translate}}" nbPopoverTrigger="hint"
+                        nbPopoverPlacement="left">
+                        <ng-container>
+                            <nz-list-item-meta>
+                                <nz-list-item-meta-title>
+                                    <h6 class="caption margin-negative px-3">{{item.time}}</h6>
+                                </nz-list-item-meta-title>
+                            </nz-list-item-meta>
+                            <nb-alert *ngFor="let lesson of item.lessons | slice:0:1"
+                                [style.backgroundColor]="lesson.subject.color" class="w-100 mx-4"
+                                [style.height]="'calc(90px *'+ lesson.duration +')'"
+                                [style.marginTop.px]="getLessonMarginTop(lesson)">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="text-white">{{item.time}} - {{lesson.subject.libelle | translate}}
+                                        </h6>
+                                        <p class="caption-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                            Laboriosam, et?</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <nb-user class="float-right" size="small"
+                                            name="{{lesson.teacher.firstname | titlecase}} {{lesson.teacher.lastname | titlecase}}"
+                                            title="Teacher">
+                                        </nb-user>
+                                    </div>
+                                </div>
+                            </nb-alert><br />
+                            <!-- <nb-alert *ngIf="i % 4 != 0"> </nb-alert> -->
+                            <!-- <ul nz-list-item-actions>
+                                <nz-list-item-action><a (click)="edit(item)">edit</a></nz-list-item-action>
+                                <nz-list-item-action><a (click)="edit(item)">more</a></nz-list-item-action>
+                            </ul> -->
+                        </ng-container>
+                    </nz-list-item>
+                </nz-list>
+            </nz-tab>
+            <!-- <nz-tab [nzTitle]="nextIcon">
+                <ng-template #nextIcon>
+                    <nb-icon  class="text-center h4" style="transform: translateY(-22px);" icon="arrow-ios-forward-outline" pack="eva"></nb-icon>
+                </ng-template>
+            </nz-tab> -->
+        </nz-tabset>
+    </nb-layout-column>
+</nb-layout>

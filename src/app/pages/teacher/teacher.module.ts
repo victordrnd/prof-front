@@ -4,16 +4,30 @@ import { CommonModule } from '@angular/common';
 import { TeacherRoutingModule } from './teacher-routing.module';
 import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
 import { TeacherComponent } from './teacher.component';
-import { NbButtonModule } from '@nebular/theme';
+import { NbAlertModule,  NbButtonModule,  NbIconModule,  NbLayoutModule } from '@nebular/theme';
+import {  NzLayoutModule, NzListModule, NzMenuModule, NzModalModule, NzSelectModule} from 'ng-zorro-antd';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { StudentModule } from '../student/student.module';
 
 
 @NgModule({
-  declarations: [TeacherDashboardComponent, TeacherComponent],
+  declarations: [TeacherDashboardComponent, TeacherComponent,],
   imports: [
     CommonModule,
     TeacherRoutingModule,
-    NbButtonModule
+    NbButtonModule,
+    NbAlertModule,
+    NzListModule,
+    NzModalModule,
+    NzSelectModule,
+    SharedModule,
+    NbLayoutModule,
+    NbIconModule,
+    NzLayoutModule,
+    NzMenuModule,
+    StudentModule
   ],
-  bootstrap : [TeacherComponent]
+  bootstrap : [TeacherComponent],
+ 
 })
 export class TeacherModule { }

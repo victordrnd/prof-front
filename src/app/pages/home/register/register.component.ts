@@ -130,7 +130,7 @@ export class RegisterComponent implements OnInit {
       lng: this.place._geoloc.lng,
       country: this.place.country.default,
       city: this.place.city.default[0],
-      local: this.place.county.default[0],
+      local: this.place.country.en,
       postcode: this.place.postcode[0],
     }
     await this.addressService.attach(obj).toPromise().then(async (res: any) => {

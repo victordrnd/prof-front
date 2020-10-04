@@ -13,8 +13,5 @@ export class TeacherDashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout(){
-    this.userService.purgeAuth();
-    document.location.reload();
-  }
+ 
 }

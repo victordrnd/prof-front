@@ -11,7 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     TranslateModule
   ],
-  exports : [HeaderComponent, FooterComponent, TranslateModule],
+  exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule],
   providers: [
     Platform,
     OverlayPositionBuilder,
@@ -36,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     OverlayKeyboardDispatcher,
     Directionality,
     NzConfigService,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

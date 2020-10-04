@@ -1,5 +1,6 @@
 .profile{
     height:270px;
+    transition: all 0.2s;
     .profil-img{
         background-size: cover;
         background-position: center;
@@ -14,5 +15,9 @@
     }
     .locale{
         font-family: OdudoLight !important;
+    }
+    :hover{
+        transform: scale(1.02);
+        transition: all 0.4s;
     }
 }

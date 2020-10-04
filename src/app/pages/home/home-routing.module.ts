@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { TeachersListComponent } from './teachers-list/teachers-list.component';
 import { TeacherProfileComponent } from './teachers-list/teacher-profile/teacher-profile.component';
+import { TeachersListComponent } from './teachers-list/teachers-list.component';
 
 
 const routes: Routes = [
@@ -16,16 +16,16 @@ const routes: Routes = [
         component : HomeComponent
       },
       {
+        path : 'login',
+        component : LoginComponent
+      },
+      {
         path : 'search',
         component : TeachersListComponent
       },
       {
         path : 'teacher/profile/:id',
         component : TeacherProfileComponent
-      },
-      {
-        path : 'login',
-        component : LoginComponent
       },
       {
         path : 'register',

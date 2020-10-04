@@ -22,7 +22,7 @@
             <nz-checkbox-wrapper style="width: 100%;">
                 <div nz-row>
                     <div *ngFor="let subj of subjects" nz-col nzSpan="24" class="mt-1"><label nz-checkbox nzValue="A"
-                            [ngModel]="subj.id == searchable.subject_id"
+                        [ngModel]="subj.id == searchable.subject_id"
                             (ngModelChange)="selectedSubjectsChange($event, subj)">{{subj.libelle | translate}}</label>
                     </div>
                 </div>
@@ -32,34 +32,40 @@
 
     <nb-layout-column>
         <div class="row mx-0 mt-4 px-5" *ngIf="data">
-            <div class="col-md-3 col-12 px-4" *ngFor="let teacher of data?.data">
-                <div class="profile pointer" (click)="openTeacherProfile(teacher.id)">
-                    <div class="profil-img"
-                        [ngStyle]="{'background-image' : 'url(' + environement.assetsUrl + teacher.teacher_profil.avatar+ ')'}">
-                        <div class="d-flex h-100">
-                            <div class="inblock-profile">
-                            <h2 class="text-white m-2 d-inline-block">{{teacher.firstname | titlecase}}
-                                {{teacher.lastname | titlecase}}</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="locale mb-0 mt-1 text-right"><nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon> {{teacher.address.city}}</p>
-                    <div class="row">
-                        
-                        <div class="col-7">
-                            <div class="mt-2">
-                                <nz-tag *ngFor="let subject of teacher.teacher_subject"
-                                    [nzColor]="subject.subject.color">
-                                    {{subject.subject.libelle | translate}}</nz-tag>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="float-right">4.8 <nb-icon icon="star" class="mt-1"></nb-icon>
-                            </div>
-                        </div>
+            <div class="col-md-3 col-12 px-4 mt-5" *ngFor="let teacher of data?.data">
+                <div class="mt-5">
 
+                    <div class="profile pointer" (click)="openTeacherProfile(teacher.id)">
+                        <div class="profil-img"
+                            [ngStyle]="{'background-image' : 'url(' + environement.assetsUrl + teacher.teacher_profil.avatar+ ')'}">
+                            <div class="d-flex h-100">
+                                <div class="inblock-profile">
+                                    <h2 class="text-white m-2 d-inline-block">{{teacher.firstname | titlecase}}
+                                        {{teacher.lastname | titlecase}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="locale mb-0 mt-1 text-right">
+                            <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon> {{teacher.address.city}}
+                        </p>
+                        <div class="row">
+
+                            <div class="col-7">
+                                <div class="mt-2">
+                                    <nz-tag *ngFor="let subject of teacher.teacher_subject"
+                                        [nzColor]="subject.subject.color">
+                                        {{subject.subject.libelle | translate}}</nz-tag>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="float-right">4.8 <nb-icon icon="star" class="mt-1"></nb-icon>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </nb-layout-column>

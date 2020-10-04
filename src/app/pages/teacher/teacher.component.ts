@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-teacher',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeacherComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService : AuthService) { }
 
   ngOnInit() {
+  }
+
+  logout(){
+    this.userService.purgeAuth();
+    document.location.reload();
   }
 
 }

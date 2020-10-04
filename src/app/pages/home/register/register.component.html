@@ -1,157 +1,165 @@
-<app-header></app-header>
-<div class="headband"></div>
-<div class="container margin-negative">
-    <nb-card class="p-3" [ngSwitch]="step">
-        <form [formGroup]="form">
+<nb-layout>
+    <nb-layout-column>
+        <app-header></app-header>
+        <div class="headband"></div>
+        <div class="container margin-negative">
+            <nb-card class="p-3" [ngSwitch]="step">
+                <form [formGroup]="form">
 
-            <h2 class="text-center">{{steps[step - 1].title | translate}}</h2>
-            <div class="row my-4" *ngSwitchCase="1">
-                <div class="offset-md-2 col-md-4">
+                    <h2 class="text-center">{{steps[step - 1].title | translate}}</h2>
+                    <div class="row my-4" *ngSwitchCase="1">
+                        <div class="offset-md-2 col-md-4">
 
-                    <nb-card class="px-5 py-3" (click)="select('student')"
-                        [accent]="type.value=='student' ? 'primary' : 'default'">
-                        <nb-radio [checked]="type.value=='student'" status="primary">
-                            {{'register.student.title' | translate}}</nb-radio>
-                        <p class="caption mt-2">{{'register.student.desc' | translate}}</p>
-                    </nb-card>
-                </div>
-                <div class="col-md-4">
-                    <nb-card class="px-5 py-3" (click)="select('teacher')"
-                        [accent]="type.value=='teacher' ? 'primary' : 'default'">
-                        <nb-radio [checked]="type.value=='teacher'" status="primary">
-                            {{'register.teacher.title' | translate}}</nb-radio>
-                        <p class="caption mt-2">{{'register.teacher.desc' | translate}}</p>
-                    </nb-card>
-                </div>
-            </div>
-            <div class="row my-4" *ngSwitchCase="2">
-                <div class="offset-md-2 col-md-4">
-                    <label>{{'register.lastname' | translate}} :</label><br />
-                    <nb-form-field>
-                        <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
-                        <input type="text" formControlName="lastname" nbInput class="w-100 input-full-width"
-                            placeholder="{{'register.lastname' | translate}}">
-                    </nb-form-field>
-                </div>
-                <div class="col-md-4">
-                    <label>{{'register.firstname' | translate}} :</label><br />
-                    <nb-form-field>
-                        <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
-                        <input type="text" formControlName="firstname" nbInput class="w-100 input-full-width"
-                            placeholder="{{'register.firstname' | translate}}">
-                    </nb-form-field>
-                </div>
-                <div class="offset-md-2 col-md-4 mt-4">
-                    <label>{{'register.gender' | translate}} : </label>
-                    <nb-radio-group formControlName="sexe">
-                        <nb-radio value="m">
-                            {{'register.male' | translate}}
-                        </nb-radio>
-                        <nb-radio value="f">
-                            {{ 'register.female' | translate }}
-                        </nb-radio>
-                    </nb-radio-group>
-                </div>
-                <div class="col-md-4 mt-4">
-                    <label>{{'register.email' | translate}} :</label><br />
-                    <nb-form-field>
-                        <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
-                        <input type="email" formControlName="email" nbInput class="w-100 input-full-width"
-                            placeholder="{{'register.email' | translate}}">
-                    </nb-form-field>
-                </div>
-                <div class="offset-md-2 col-md-4 mt-4">
-                    <label>{{'register.password' | translate}} : </label>
-                    <nb-form-field>
-                        <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
-                        <input type="password" formControlName="password" nbInput class="w-100 input-full-width"
-                            placeholder="{{'register.password' | translate}}">
-                    </nb-form-field>
-                </div>
-                <div class="col-md-4 mt-4">
-                    <label>{{'register.repeat-password' | translate}} :</label><br />
-                    <nb-form-field>
-                        <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
-                        <input type="password" formControlName="repeat_password" nbInput class="w-100 input-full-width"
-                            placeholder="{{'register.repeat-password' | translate}}">
-                    </nb-form-field>
-                </div>
-            </div>
-            <div class="row my-4" *ngSwitchCase="3">
-                <div class="col-12">
-                    <label class="mx-5">{{'register.location' | translate}} :</label>
-                    <nb-form-field class="center mx-5 mt-1">
-                        <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
-                        <input type="text" #placeInput [nbAutocomplete]="auto" (input)="findPlaces($event)" nbInput
-                            fullWidth fieldSize="giant" placeholder="{{'register.location' | translate}}">
-                    </nb-form-field>
-                    <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
-
-                        <nb-option *ngFor="let option of places" [value]="option">
-                            <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon><span
-                                [innerHtml]="option._highlightResult.locale_names.default[0].value"></span> <span
-                                class="caption mt-1 ml-2">{{ option.country?.default }},
-                                {{ option.city?.default[0] }}</span>
-                        </nb-option>
-
-                    </nb-autocomplete>
-
-
-                </div>
-            </div>
-            <div class="row my-4" *ngSwitchCase="4">
-                <div class="col-12">
-                    <div class="mx-5">
-
-                        <label>{{'register.avatar' | translate}} : </label>
-                        <nz-upload class="avatar-uploader" nzName="avatar" nzListType="picture-card"
-                            [nzShowUploadList]="false" [nzBeforeUpload]="beforeUpload" (nzChange)="getAvatarBlob($event)">
-                            <ng-container *ngIf="!avatarUrl">
-                                <i class="upload-icon" nz-icon nzType="plus"></i>
-                                <div class="ant-upload-text">Avatar</div>
-                            </ng-container>
-                            <img #avatarImg [src]="avatarUrl" style="width: 100%" />
-                        </nz-upload>
+                            <nb-card class="px-5 py-3" (click)="select('student')"
+                                [accent]="type.value=='student' ? 'primary' : 'default'">
+                                <nb-radio [checked]="type.value=='student'" status="primary">
+                                    {{'register.student.title' | translate}}</nb-radio>
+                                <p class="caption mt-2">{{'register.student.desc' | translate}}</p>
+                            </nb-card>
+                        </div>
+                        <div class="col-md-4">
+                            <nb-card class="px-5 py-3" (click)="select('teacher')"
+                                [accent]="type.value=='teacher' ? 'primary' : 'default'">
+                                <nb-radio [checked]="type.value=='teacher'" status="primary">
+                                    {{'register.teacher.title' | translate}}</nb-radio>
+                                <p class="caption mt-2">{{'register.teacher.desc' | translate}}</p>
+                            </nb-card>
+                        </div>
                     </div>
-                    <label class="mx-5 mt-5">{{'register.subjects.title' | translate}} :</label><br />
-                    <nb-card class="mx-5 my-3">
-                        <nb-card-body>
-                            <div>
-                                <nz-tag nzMode="checkable" (nzCheckedChange)="checkSubject($event, subject)"
-                                    *ngFor="let subject of subjects; let i = index" class="pointer">
-                                    {{ subject.libelle | translate }}
-                                    <nb-icon class="caption text-white mt-1" icon="checkmark-outline" pack="eva"
-                                        *ngIf="subject.checked"></nb-icon>
-                                </nz-tag>
+                    <div class="row my-4" *ngSwitchCase="2">
+                        <div class="offset-md-2 col-md-4">
+                            <label>{{'register.lastname' | translate}} :</label><br />
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
+                                <input type="text" formControlName="lastname" nbInput class="w-100 input-full-width"
+                                    placeholder="{{'register.lastname' | translate}}">
+                            </nb-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <label>{{'register.firstname' | translate}} :</label><br />
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
+                                <input type="text" formControlName="firstname" nbInput class="w-100 input-full-width"
+                                    placeholder="{{'register.firstname' | translate}}">
+                            </nb-form-field>
+                        </div>
+                        <div class="offset-md-2 col-md-4 mt-4">
+                            <label>{{'register.gender' | translate}} : </label>
+                            <nb-radio-group formControlName="sexe">
+                                <nb-radio value="m">
+                                    {{'register.male' | translate}}
+                                </nb-radio>
+                                <nb-radio value="f">
+                                    {{ 'register.female' | translate }}
+                                </nb-radio>
+                            </nb-radio-group>
+                        </div>
+                        <div class="col-md-4 mt-4">
+                            <label>{{'register.email' | translate}} :</label><br />
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+                                <input type="email" formControlName="email" nbInput class="w-100 input-full-width"
+                                    placeholder="{{'register.email' | translate}}">
+                            </nb-form-field>
+                        </div>
+                        <div class="offset-md-2 col-md-4 mt-4">
+                            <label>{{'register.password' | translate}} : </label>
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
+                                <input type="password" formControlName="password" nbInput class="w-100 input-full-width"
+                                    placeholder="{{'register.password' | translate}}">
+                            </nb-form-field>
+                        </div>
+                        <div class="col-md-4 mt-4">
+                            <label>{{'register.repeat-password' | translate}} :</label><br />
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
+                                <input type="password" formControlName="repeat_password" nbInput
+                                    class="w-100 input-full-width"
+                                    placeholder="{{'register.repeat-password' | translate}}">
+                            </nb-form-field>
+                        </div>
+                    </div>
+                    <div class="row my-4" *ngSwitchCase="3">
+                        <div class="col-12">
+                            <label class="mx-5">{{'register.location' | translate}} :</label>
+                            <nb-form-field class="center mx-5 mt-1">
+                                <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
+                                <input type="text" #placeInput [nbAutocomplete]="auto" (input)="findPlaces($event)"
+                                    nbInput fullWidth fieldSize="giant"
+                                    placeholder="{{'register.location' | translate}}">
+                            </nb-form-field>
+                            <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+                                <nb-option *ngFor="let option of places" [value]="option">
+                                    <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon><span
+                                        [innerHtml]="option._highlightResult.locale_names.default[0].value"></span>
+                                    <span class="caption mt-1 ml-2">{{ option.country?.default }},
+                                        {{ option.city?.default[0] }}</span>
+                                </nb-option>
+
+                            </nb-autocomplete>
+
+
+                        </div>
+                    </div>
+                    <div class="row my-4" *ngSwitchCase="4">
+                        <div class="col-12">
+                            <div class="mx-5">
+
+                                <label>{{'register.avatar' | translate}} : </label>
+                                <nz-upload class="avatar-uploader" nzName="avatar" nzListType="picture-card"
+                                    [nzShowUploadList]="false" [nzBeforeUpload]="beforeUpload"
+                                    (nzChange)="getAvatarBlob($event)">
+                                    <ng-container *ngIf="!avatarUrl">
+                                        <i class="upload-icon" nz-icon nzType="plus"></i>
+                                        <div class="ant-upload-text">Avatar</div>
+                                    </ng-container>
+                                    <img #avatarImg [src]="avatarUrl" style="width: 100%" />
+                                </nz-upload>
                             </div>
-                        </nb-card-body>
-                    </nb-card>
-                    <div class="mx-5 mt-5">
-                        <label>{{'register.rate' | translate}} :</label><br />
-                        <nb-form-field>
-                            <nb-icon nbPrefix icon="credit-card-outline" pack="eva"></nb-icon>
-                            <input type="text" formControlName="rate" placeholder="40" nbInput class="my-3"> €
-                        </nb-form-field>
-                        <label class="mt-5">{{'register.description.title' | translate}} :</label><br />
-                        <textarea nbInput fullWidth formControlName="description" placeholder="" class="my-3"></textarea>
+                            <label class="mx-5 mt-5">{{'register.subjects.title' | translate}} :</label><br />
+                            <nb-card class="mx-5 my-3">
+                                <nb-card-body>
+                                    <div>
+                                        <nz-tag nzMode="checkable" (nzCheckedChange)="checkSubject($event, subject)"
+                                            *ngFor="let subject of subjects; let i = index" class="pointer">
+                                            {{ subject.libelle | translate }}
+                                            <nb-icon class="caption text-white mt-1" icon="checkmark-outline" pack="eva"
+                                                *ngIf="subject.checked"></nb-icon>
+                                        </nz-tag>
+                                    </div>
+                                </nb-card-body>
+                            </nb-card>
+                            <div class="mx-5 mt-5">
+                                <label>{{'register.rate' | translate}} :</label><br />
+                                <nb-form-field>
+                                    <nb-icon nbPrefix icon="credit-card-outline" pack="eva"></nb-icon>
+                                    <input type="text" formControlName="rate" placeholder="40" nbInput class="my-3"> €
+                                </nb-form-field>
+                                <label class="mt-5">{{'register.description.title' | translate}} :</label><br />
+                                <textarea nbInput fullWidth formControlName="description" placeholder=""
+                                    class="my-3"></textarea>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <button nbButton status="primary" class="d-block mx-auto"
-                [disabled]="step==3 && !selected || step ==4 && taught_subject.length == 0"
-                (click)="nextStep()">{{'register.next' | translate}}
-                <nb-icon icon="arrow-forward-outline"></nb-icon></button>
+                    <button nbButton status="primary" class="d-block mx-auto"
+                        [disabled]="step==3 && !selected || step ==4 && taught_subject.length == 0"
+                        (click)="nextStep()">{{'register.next' | translate}}
+                        <nb-icon icon="arrow-forward-outline"></nb-icon></button>
 
-            <div class="row" *ngIf="step < 3">
-                <div class="col-8 mx-auto d-block">
-                    <hr />
-                    <p class="text-center mt-2">{{'register.no_account' | translate}} <a
-                            class="text-primary text-decoration-none"
-                            routerLink="/register">{{'register.register_now' | translate}}</a></p>
-                </div>
-            </div>
+                    <div class="row" *ngIf="step < 3">
+                        <div class="col-8 mx-auto d-block">
+                            <hr />
+                            <p class="text-center mt-2">{{'register.no_account' | translate}} <a
+                                    class="text-primary text-decoration-none"
+                                    routerLink="/register">{{'register.register_now' | translate}}</a></p>
+                        </div>
+                    </div>
 
-        </form>
-    </nb-card>
-</div>
-<app-footer></app-footer>
+                </form>
+            </nb-card>
+        </div>
+        <app-footer></app-footer>
+    </nb-layout-column>
+</nb-layout>

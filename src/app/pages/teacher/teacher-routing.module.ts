@@ -5,16 +5,18 @@ import { TeacherComponent } from './teacher.component';
 import { AuthGuardService } from 'src/app/core/gards/auth-gards.service';
 
 
+
 const routes: Routes = [
   {
     path : "",
     component : TeacherComponent,
-    canActivate: [AuthGuardService],
     children : [
       {
         path : "dashboard",
-        component : TeacherDashboardComponent
-      }
+        component : TeacherDashboardComponent,
+        canActivate : [AuthGuardService]
+      },
+     
     ]
   }
 ];
