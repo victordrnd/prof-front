@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CalendarService } from 'src/app/core/services/calendar.service';
 import { NzModalService } from 'ng-zorro-antd';
-import { LessonModalComponent } from './lesson-modal/lesson-modal.component';
+import { BookingModalComponent } from '../booking-modal/booking-modal.component';
 
 @Component({
   selector: 'teacher-calendar',
@@ -49,7 +49,7 @@ export class CalendarComponent implements OnInit {
       }
       this.modalService.create({
         nzTitle : null,
-        nzContent : LessonModalComponent,
+        nzContent : BookingModalComponent,
         nzComponentParams : {item : item,date:date, teacher : this.teacher, maxDuration : maxDuration},
         nzOkText : "Confirmer",
         nzFooter : null,

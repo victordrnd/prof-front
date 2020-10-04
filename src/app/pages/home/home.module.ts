@@ -11,15 +11,15 @@ import { HeadbandComponent } from './home/headband/headband.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NzTagModule, NzUploadModule, NzIconModule, NzCheckboxModule, NzRateModule, NzDividerModule, NzEmptyModule, NzListModule, NzTabsModule, NzModalModule, NzToolTipModule, NzSelectModule, NzMenuModule } from 'ng-zorro-antd';
+import { NzTagModule, NzUploadModule, NzIconModule, NzCheckboxModule, NzDividerModule, NzEmptyModule, NzListModule, NzTabsModule, NzModalModule,  NzSelectModule, NzMenuModule } from 'ng-zorro-antd';
 import { TeachersListComponent } from './teachers-list/teachers-list.component';
 import { TeacherProfileComponent } from './teachers-list/teacher-profile/teacher-profile.component';
-import { LessonModalComponent } from './teachers-list/teacher-profile/calendar/lesson-modal/lesson-modal.component';
+import { BookingModalComponent } from './teachers-list/teacher-profile/booking-modal/booking-modal.component';
 import {CalendarComponent as TeacherCalendar} from './teachers-list/teacher-profile/calendar/calendar.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, LessonModalComponent],
+  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -48,9 +48,10 @@ import {CalendarComponent as TeacherCalendar} from './teachers-list/teacher-prof
     NbPopoverModule,
     NzSelectModule,
     NbAlertModule,
-    NbUserModule
+    NbUserModule,
+    NzModalModule
 
   ],
-  entryComponents : [LessonModalComponent]
+  entryComponents : [BookingModalComponent]
 })
 export class HomeModule { }

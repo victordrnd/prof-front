@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd';
-import { TeachersListComponent } from '../../../teachers-list.component';
-import { LessonService } from 'src/app/core/services/lesson.service';
-import { createInject } from '@angular/compiler/src/core';
+import { LessonService } from '../../../../../core/services/lesson.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-lesson-modal',
-  templateUrl: './lesson-modal.component.html',
-  styleUrls: ['./lesson-modal.component.scss']
+  selector: 'teacher-booking-modal',
+  templateUrl: './booking-modal.component.html',
+  styleUrls: ['./booking-modal.component.scss']
 })
-export class LessonModalComponent implements OnInit {
+export class BookingModalComponent implements OnInit {
   item;
   date;
   teacher;
