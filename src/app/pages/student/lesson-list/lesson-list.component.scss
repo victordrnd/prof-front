@@ -1,0 +1,38 @@
+:host::ng-deep{
+    .ant-table-thead > tr > th {
+        background-color : #fff;
+    }
+    .rounded-lg {
+        border-radius: 1.4rem !important;
+    }
+}
+
+
+.flex{
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
+    .btn-holder{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .text-large{
+        font-size:4rem;
+        text-align: center;
+    }
+}
+
+.fade-pink{
+    background-color: rgba(252, 205, 249, 0.663);
+    height : 250px;
+}
+
+.fade-orange{
+    background-color: rgba(255, 236, 185, 0.653);
+    height : 250px;
+}
+
+.fade-blue{
+    background-color: rgba(164, 189, 255, 0.653);
+    height : 250px;
+}

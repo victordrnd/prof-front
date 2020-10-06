@@ -1,0 +1,64 @@
+<div class="row mx-5 mt-5">
+    <div class="col-md-8">
+        <div class="mb-4">
+            <h2 class="float-left">Vos cours</h2>
+            <nb-form-field class="float-right">
+                <nb-icon nbSuffix icon="search-outline" pack="eva"></nb-icon>
+                <input type="text" nbInput>
+            </nb-form-field>
+            <p>&nbsp;</p>
+        </div>
+        <div class="bg-white p-5 rounded-lg shadow-sm mt-5">
+
+            <nz-table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of [1,2,3,4]">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a>Action</a>
+                            <a>Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row px-5">
+            <div class="col-12">
+                <div class="fade-pink rounded-lg p-3 flex">
+                    <h4 class="text-white">Reviews</h4>
+                    <nb-icon icon="heart" class="text-white text-large d-block mx-auto"></nb-icon>
+                    <p class="text-center">Lorem ipsum dolor sit amet.</p>
+                    <button nbButton status="control">Write review</button>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="fade-orange rounded-lg p-3 flex">
+                    <h4 class="text-white">Lesson</h4>
+                    <nb-icon icon="book-open" class="text-white text-large d-block mx-auto"></nb-icon>
+                    <p class="text-center">Lorem ipsum dolor sit amet.</p>
+                    <button nbButton status="control">Book Leson</button>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="fade-blue rounded-lg p-3 flex">
+                    <h4 class="text-white">Reviews</h4>
+                    <nb-icon icon="globe-2" class="text-white text-large d-block mx-auto"></nb-icon>
+                    <p class="text-center">Lorem ipsum dolor sit amet.</p>
+                    <button nbButton status="control">Book Leson</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

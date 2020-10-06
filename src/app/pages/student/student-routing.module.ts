@@ -4,6 +4,7 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { StudentComponent } from './student.component';
 import { AuthGuardService } from 'src/app/core/gards/auth-gards.service';
 import { PaymentComponent } from './settings/payment/payment.component';
+import { LessonListComponent } from './lesson-list/lesson-list.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
             component : PaymentComponent
           }
         ]
+      },
+      {
+        path : 'lessons',
+        component : LessonListComponent
       }
     ]
   }
