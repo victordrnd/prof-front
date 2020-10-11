@@ -8,3 +8,28 @@ a{
 .language-selector{
     z-index:-1;
 }
+
+nb-icon{
+    vertical-align: middle;
+}
+:host::ng-deep{
+    .ant-scroll-number-only-unit{
+        
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: #fff !important;
+    }
+
+    .ant-badge-count {
+        z-index: auto;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 6px;
+        white-space: nowrap;
+        text-align: center;
+        background: #806BFF;
+        border-radius: 10px;
+        box-shadow: 0 0 0 1px #fff;
+    }
+}

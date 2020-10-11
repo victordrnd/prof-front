@@ -46,7 +46,8 @@ import { LessonListComponent } from './lesson-list/lesson-list.component';
     NbToastrModule,
     NzEmptyModule,
     NzTableModule,
-    NbFormFieldModule 
+    NbFormFieldModule,
+    NzDropDownModule
     ],
   bootstrap : [StudentComponent],
   exports : [CalendarComponent],

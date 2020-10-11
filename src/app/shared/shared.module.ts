@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
-import { NzModalModule, NzConfigService } from 'ng-zorro-antd';
-import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule } from '@nebular/theme';
+import { NzModalModule, NzConfigService, NzBadgeModule } from 'ng-zorro-antd';
+import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule, NbIconModule, NbBadgeModule } from '@nebular/theme';
 import { Platform } from '@angular/cdk/platform';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { OverlayModule, OverlayPositionBuilder, ViewportRuler, OverlayKeyboardDispatcher } from '@angular/cdk/overlay';
@@ -26,7 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     NbSelectModule,
     RouterModule,
-    TranslateModule
+    TranslateModule,
+    NbIconModule,
+    NzBadgeModule
   ],
   exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule],
   providers: [

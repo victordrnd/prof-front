@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LessonService } from 'src/app/core/services/lesson.service';
 
 @Component({
   selector: 'app-lesson-list',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lesson-list.component.scss']
 })
 export class LessonListComponent implements OnInit {
+  lessons;
+  constructor(private lessonService : LessonService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  async ngOnInit() {
+    this.lessons = await this.lessonService.getMyLessons().toPromise();
+    console.log(this.lessons);
   }
 
 }

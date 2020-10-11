@@ -9,6 +9,11 @@ export class LessonService {
 
   constructor(private http : HttpClient) { }
 
+  public getMyLessons(){
+    return this.http.get(`${environment.apiUrl}/lessons`);
+  }
+
+  
   public store(obj){
     return this.http.post(`${environment.apiUrl}/lessons`, {...obj});
   }

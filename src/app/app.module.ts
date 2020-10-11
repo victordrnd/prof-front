@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbToastrModule, NbAutocompleteModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbToastrModule, NbAutocompleteModule, NbIconModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NzModalModule, NzButtonModule, NzNotificationModule, NzIconModule, NzSpinModule, NZ_I18N, fr_FR } from "ng-zorro-antd";
 import { SharedModule } from './shared/shared.module';
@@ -41,7 +41,7 @@ registerLocaleData(fr);
     }),
     NbToastrModule.forRoot(),
     NzSpinModule,
-    NbAutocompleteModule
+    NbAutocompleteModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},

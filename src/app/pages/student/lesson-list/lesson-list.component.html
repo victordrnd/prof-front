@@ -13,20 +13,33 @@
             <nz-table>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Address</th>
+                        <th>Student</th>
+                        <th>Teacher</th>
+                        <th>Subject</th>
+                        <th>Scheduled at</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let data of [1,2,3,4]">
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr *ngFor="let lesson of lessons">
+                        <td>{{lesson.student.firstname}} {{lesson.student.lastname}}</td>
+                        <td>{{lesson.teacher.firstname}} {{lesson.teacher.lastname}}</td>
                         <td>
-                            <a>Action</a>
-                            <a>Delete</a>
+                            <nz-tag [nzColor]="lesson.subject.color">
+                                {{lesson.subject.libelle | translate}}</nz-tag>
+                        </td>
+                        <td>{{lesson.scheduled_at | date:'medium'}}</td>
+                        <td>
+                            <button nz-button nz-dropdown [nzDropdownMenu]="menu">
+                                Action
+                                <i nz-icon nzType="down"></i>
+                              </button>
+                              <nz-dropdown-menu #menu="nzDropdownMenu">
+                                <ul nz-menu>
+                                  <li nz-menu-item>Afficher le cours</li>
+                                  <li nz-menu-item>Annuler le cours</li>
+                                </ul>
+                              </nz-dropdown-menu>
                         </td>
                     </tr>
                 </tbody>
