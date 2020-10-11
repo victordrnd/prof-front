@@ -1,0 +1,86 @@
+{
+    "header" : {
+        "home" : "Accueil",
+        "about" : "A propos",
+        "contact" : "Contact",
+        "login" : "Connexion",
+        "register" : "Inscription",
+        "dashboard" : "Tableau de bord"
+    },
+    "register" : {
+        "title" : "Inscription",
+        "profil" : "Vos informations",
+        "location" : "Votre adresse",
+        "student" : {
+            "title" : "Je suis un élève",
+            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
+        },
+        "teacher" : {
+            "title" : "Je suis professeur",
+            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
+        },
+        "next" : "Suivant",
+        "lastname" : "Nom",
+        "firstname" : "Prénom",
+        "email" : "Email",
+        "password" : "Mot de passe",
+        "repeat-password" : "Répétez votre mot de passe",
+        "gender" : "Genre",
+        "male" : "Homme",
+        "female" : "Femme",
+        "success" : {
+            "title" : "Succès",
+            "desc" : "Votre compte a correctement été créé"   
+        },
+        "error" : {
+            "title" : "Erreur",
+            "desc" : "Une erreur est survenue"   
+        },
+        "no_account" : "Pas encore de compte ?",
+        "register_now" : "Inscrivez vous",
+        "avatar" : "Ma photo de profil",
+        "rate" : "Taux horraire",
+        "description" : {
+            "title" : "Ma description"
+        },
+        "subjects" : {
+            "title" : "Matières enseignées"
+        }
+    },
+    "login" : {
+        "title" : "Connexion",
+        "submit" : "Se connecter"
+    },
+    "subject" : {
+        "maths" : "Mathématiques",
+        "english" : "Anglais",
+        "french" : "Français",
+        "history" : "Histoire",
+        "law" : "Droit",
+        "physics" : "Physique"
+    },
+    "payment" : {
+        "add" : "Ajouter un moyen de paiement",
+        "number" : "Numéro de carte",
+        "expiration" : "Date d'expiration",
+        "expiration_placeholder" : "MM/AA",
+        "cvv" : "Code de sécurité",
+        "add_card" :"Ajouter une carte",
+        "error" : "Une erreur est survenue, veuillez réessayer plus tard",
+        "delete" : {
+            "title" : "Etes vous certains de vouloir supprimer cette carte de votre compte ?"
+        }
+    },
+    "teacher" : {
+        "desc" : "Description",
+        "teached_subjects" : "Matières enseignées",
+        "reviews" : "Avis",
+        "no_reviews" :"Aucun avis publié",
+        "click_to_book" : "Cliquez pour réserver le cours",
+        "locality" : "Localité"
+    },
+    "general" :{
+        "hour" : "heure",
+        "hours" : "heures"
+    }
+}

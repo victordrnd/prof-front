@@ -1,0 +1,86 @@
+{
+    "header" : {
+        "home" : "Home",
+        "about" : "About us",
+        "contact" : "Contact",
+        "login" : "Login",
+        "register" : "Register",
+        "dashboard" : "Dashboard"
+    },
+    "register" : {
+        "title" : "Register",
+        "profil" : "Your informations",
+        "location" : "Your address",
+        "student" : {
+            "title" : "I am a student",
+            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
+        },
+        "teacher" : {
+            "title" : "I am a teacher",
+            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
+        },
+        "next" : "Next",
+        "lastname" : "Lastname",
+        "firstname" : "Firstname",
+        "email" : "Email",
+        "password" : "Password",
+        "repeat-password" : "Repeat password",
+        "gender" : "Gender",
+        "male" : "Male",
+        "female" : "Female",
+        "success" : {
+            "title" : "Success",
+            "desc" : "Your account has successfully been created" 
+        },
+        "error" : {
+            "title" : "Error",
+            "desc" : "An error has occured"   
+        },
+        "no_account" : "No account yet ?",
+        "register_now" : "Register now",
+        "avatar" : "My profil picture",
+        "rate" : "Hourly rate",
+        "description" : {
+            "title" : "About me"
+        },
+        "subjects" : {
+            "title" : "Taught Subjects"
+        }
+    },
+    "login" : {
+        "title" : "Login",
+        "submit" : "Log in"
+    },
+    "subject" : {
+        "maths" : "Maths",
+        "english" : "English",
+        "french" : "French",
+        "history" : "History",
+        "law" : "Law",
+        "physics" : "Physics"
+    },
+    "payment" : {
+        "add" : "Add a payment method",
+        "number" : "Card number",
+        "expiration" : "Expiration date",
+        "expiration_placeholder" : "MM/YY",
+        "cvv" : "Card verification value",
+        "add_card" : "Add card",
+        "error" : "An error has occured, retry later",
+        "delete" : {
+            "title" : "Do you want to remove this Payment method from your account ?"
+        }
+    },
+    "teacher" : {
+        "desc" : "Description",
+        "teached_subjects" : "Teached subjects",
+        "reviews" : "Reviews",
+        "no_reviews" :"No review",
+        "click_to_book" : "Click here to book lesson",
+        "locality" : "Locality"
+    },
+    "general" :{
+        "hour" : "heure",
+        "hours" : "heures"
+    }
+}
