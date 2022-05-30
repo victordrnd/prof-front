@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { interval, Observable, Subject, Subscription } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { NbToastrService } from '@nebular/theme';
@@ -9,6 +9,7 @@ import { AddressService } from 'src/app/core/services/address.service';
 import { cpuUsage } from 'process';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { TeacherService } from 'src/app/core/services/teacher.service';
+import { debounce, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -43,6 +44,7 @@ export class RegisterComponent implements OnInit {
   @ViewChild('placeInput') placeInput;
   avatarUrl: string | ArrayBuffer;
   avatar: any;
+  placeInputValue = new Subject(); 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -74,6 +76,11 @@ export class RegisterComponent implements OnInit {
       }
     });
     this.subjects = await this.subjectService.getAll().toPromise();
+
+    this.placeInputValue.pipe(map((word : any) => word.srcElement.value), debounceTime(400), distinctUntilChanged()).subscribe(async (keyword) => {
+      this.places = await this.addressService.findPlaces(keyword).toPromise();
+      this.selected = false;
+    })
   }
 
   select(type = 'student') {
@@ -108,30 +115,28 @@ export class RegisterComponent implements OnInit {
       })
   }
 
-
+ 
   async findPlaces(keyword) {
-    if (keyword.srcElement.value.length % 3 == 0) {
-      this.selected = false;
-      await this.addressService.findPlaces(keyword.srcElement.value).toPromise().then((res: any) => this.places = res.hits);
-    }
+      this.placeInputValue.next(keyword);
   }
+
 
   onSelectionChange(place) {
     this.selected = true;
     this.place = place;
-    this.placeInput.nativeElement.value = `${place.locale_names.default[0]} ${place.country?.default}, ${place.city?.default[0]}`
+    this.placeInput.nativeElement.value = `${place.place_name}`
     console.log(place);
   }
 
   async attachPlace() {
     const obj = {
-      address: this.place.locale_names.default[0],
-      lat: this.place._geoloc.lat,
-      lng: this.place._geoloc.lng,
-      country: this.place.country.default,
-      city: this.place.city.default[0],
-      local: this.place.country.en,
-      postcode: this.place.postcode[0],
+      address: this.place.place_name,
+      lat: this.place.center[0],
+      lng: this.place.center[1],
+      country: this.place.context.find(el => el.id.includes("country"))?.text,
+      city: this.place.context.find(el => el.id.includes("place"))?.text,
+      local: this.place.context.find(el => el.id.includes("region"))?.text,
+      postcode: this.place.context.find(el => el.id.includes("postcode"))?.text,
     }
     await this.addressService.attach(obj).toPromise().then(async (res: any) => {
       if (res.role.slug == 'student') {

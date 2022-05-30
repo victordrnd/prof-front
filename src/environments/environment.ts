@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: "http://localhost:8000/api",
-  assetsUrl : "https://prof.blob.core.windows.net/stockage/"
+  assetsUrl : "https://prof.blob.core.windows.net/stockage/",
+  mapboxAccessToken : "pk.eyJ1IjoidmljdG9yZHJuZCIsImEiOiJjanR3eHhhY3oxNDUwNDNsemE1aG5peGl2In0.YeRJsFQXOp8GFHBiQsoHEQ"
 };
 
 /*

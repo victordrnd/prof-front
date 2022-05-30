@@ -93,11 +93,8 @@
 
                                 <nb-option *ngFor="let option of places" [value]="option">
                                     <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon><span
-                                        [innerHtml]="option._highlightResult.locale_names.default[0].value"></span>
-                                    <span class="caption mt-1 ml-2">{{ option.country?.default }},
-                                        {{ option.city?.default[0] }}</span>
+                                        [innerHtml]="option.place_name"></span>
                                 </nb-option>
-
                             </nb-autocomplete>
 
 
