@@ -11,13 +11,21 @@ import { HeadbandComponent } from './home/headband/headband.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NzTagModule, NzUploadModule, NzIconModule, NzCheckboxModule, NzDividerModule, NzEmptyModule, NzListModule, NzTabsModule, NzModalModule,  NzSelectModule, NzMenuModule } from 'ng-zorro-antd';
 import { TeachersListComponent } from './teachers-list/teachers-list.component';
 import { TeacherProfileComponent } from './teachers-list/teacher-profile/teacher-profile.component';
 import { BookingModalComponent } from './teachers-list/teacher-profile/booking-modal/booking-modal.component';
 import {CalendarComponent as TeacherCalendar} from './teachers-list/teacher-profile/calendar/calendar.component';
-
-
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 @NgModule({
   declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent],
   imports: [

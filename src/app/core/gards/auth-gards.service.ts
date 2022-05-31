@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { NzNotificationService } from 'ng-zorro-antd';
 
 @Injectable({
   providedIn: 'root'

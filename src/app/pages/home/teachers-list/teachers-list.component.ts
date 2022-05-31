@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeacherService } from 'src/app/core/services/teacher.service';
 import { environment } from '../../../../environments/environment';

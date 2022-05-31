@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CalendarService } from 'src/app/core/services/calendar.service';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { BookingModalComponent } from '../booking-modal/booking-modal.component';
 
 @Component({

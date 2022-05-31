@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { LessonService } from '../../../../../core/services/lesson.service';
 import { Router } from '@angular/router';
 

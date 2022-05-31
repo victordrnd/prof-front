@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentService } from 'src/app/core/services/payment.service';
-import { NzModalService } from 'ng-zorro-antd';
 import { AddPaymentComponent } from './add-payment/add-payment.component';
 import { TranslateService } from '@ngx-translate/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-payment',
