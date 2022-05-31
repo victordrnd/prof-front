@@ -5,7 +5,8 @@
         "contact" : "Contact",
         "login" : "Login",
         "register" : "Register",
-        "dashboard" : "Dashboard"
+        "dashboard" : "Dashboard",
+        "logout" : "Log out"
     },
     "register" : {
         "title" : "Register",

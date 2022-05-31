@@ -31,8 +31,12 @@
                 *ngIf="!isConnected"><i nz-icon nzType="user" nzTheme="outline"></i> {{'header.register' | translate}}
                 !</button>
             <button nbButton hero status="primary" size="small" (click)="goToDashboard()" class=" ml-2 mr-4"
-                *ngIf="isConnected"><i nz-icon nzType="user" nzTheme="outline"></i>
+                *ngIf="isConnected && router.url != '/student/dashboard'"><i nz-icon nzType="user" nzTheme="outline"></i>
                 {{'header.dashboard' | translate}}</button>
+
+                <button nbButton hero status="primary" size="small" (click)="logout()" class=" ml-2 mr-4"
+                *ngIf="isConnected && router.url == '/student/dashboard'"><i nz-icon nzType="user" nzTheme="outline"></i>
+                {{'header.logout' | translate}}</button>
         </div>
     </div>
     <div class="float-right d-inline d-md-none mobile-menu">

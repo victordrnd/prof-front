@@ -14,12 +14,13 @@ export class HeaderComponent implements OnInit {
   constructor(private translationService : TranslateService,
     private authService: AuthService,
     private cdr : ChangeDetectorRef,
-    private router : Router) { }
+    public router : Router) { }
 
   ngOnInit() {
     this.isConnected = this.authService.getToken() ? true : false;
     console.log(this.isConnected)
     this.cdr.markForCheck();
+    console.log(this.router.url)
   }
 
   languageChange(language = 'en'){
@@ -35,6 +36,10 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['teacher/dashboard']);
       }
     })
+  }
+
+  logout(){
+    
   }
 
 }
