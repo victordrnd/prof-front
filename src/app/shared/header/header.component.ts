@@ -39,7 +39,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    
+    this.authService.purgeAuth();
+    this.router.navigate(['/']);
   }
 
 }

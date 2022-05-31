@@ -34,7 +34,11 @@ export class HomeComponent implements OnInit {
   }
 
   setSelected(ev){
-    this.keyword = this.translate.instant(ev.libelle)
-    this.subject = ev;
+    if(ev){
+      if(ev.libelle){
+        this.keyword = this.translate.instant(ev.libelle)
+        this.subject = ev;
+      }
+    }
   }
 }
