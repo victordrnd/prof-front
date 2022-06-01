@@ -1,30 +1,35 @@
-<h3 class="text-center mt-3">{{lesson?.subject?.libelle | translate}}</h3>
 
-<div class="row" *ngIf="lesson">
+<div class="row" >
     <div class="col-md-8">
-        <nb-card status="success" class="mx-4">
+        <h3 class="text-center mt-3">{{lesson?.subject?.libelle | translate}}</h3>
+        <nb-card status="success" [nbSpinner]="loading" nbSpinnerStatus="primary" class="mx-4">
             <nb-card-header [style.backgroundColor]="lesson?.subject?.color">{{lesson?.subject?.libelle | translate}}
                 {{'lesson.with' | translate}} {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}
             </nb-card-header>
             <nb-card-body>
                 <ul>
+                    <li><b>Description : </b> {{lesson?.teacher_subject?.description || "N/A"}}</li>
                     <li><b>Date :</b> {{lesson?.scheduled_at | date:'medium'}}</li>
-                    <li><b>{{'lesson.duration' | translate}} :</b> {{lesson?.duration}}</li>
+                    <li><b>{{'lesson.duration' | translate}} :</b> {{lesson?.duration}}h</li>
+                    <li><b>Type :</b> Visio</li>
                 </ul>
             </nb-card-body>
             <nb-card-footer>
-                <button nbButton size="tiny" (click)="openCancelModal()">{{'lesson.cancel.title' | translate}} </button>
+                <button nbButton size="small" (click)="openCancelModal()">{{'lesson.cancel.title' | translate}}
+                </button>
+                <button nbButton size="small" status="primary" class="float-right" (click)="joinCourse()">{{'lesson.join.title' | translate}}</button>
             </nb-card-footer>
         </nb-card>
     </div>
     <div class="col-md-4">
-        <nb-card>
-            <nb-card-header>{{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}</nb-card-header>
-            <nb-card-body class="px-4">
-             <img [src]="lesson?.teacher?.teacher_profil?.image" class="w-75 mx-auto d-block rounded">
-             <p class="text-center">{{lesson?.teacher?.teacher_profil?.description}}</p>
-             <button nbButton size="small" class="mx-auto d-block">Contacter {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}</button>
+        <nb-card class="mx-md-4">
+            <nb-card-body class="mx-md-4">
+                <img [src]="lesson?.teacher?.teacher_profil?.image" class="w-75 mx-auto d-block rounded">
+                <h5 class="text-center">{{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}</h5>
+                <p class="text-center">{{lesson?.teacher?.teacher_profil?.description}}</p>
+                <button nbButton size="small" class="mx-auto d-block">Contacter {{lesson?.teacher?.lastname}}
+                    {{lesson?.teacher?.firstname}}</button>
             </nb-card-body>
-          </nb-card>
+        </nb-card>
     </div>
 </div>

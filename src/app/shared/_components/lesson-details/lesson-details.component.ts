@@ -11,6 +11,7 @@ import { LessonService } from 'src/app/core/services/lesson.service';
 })
 export class LessonDetailsComponent implements OnInit {
   lesson
+  loading = true;
   constructor(private route : ActivatedRoute,
     private lessonService : LessonService,
     private modalService : NzModalService,
@@ -20,9 +21,13 @@ export class LessonDetailsComponent implements OnInit {
   async ngOnInit() {
     const lesson_id = this.route.snapshot.params.id;
     this.lesson = await this.lessonService.find(lesson_id).toPromise();
+    this.loading = false;
     console.log(this.lesson);
   }
 
+  joinCourse(){
+
+  }
 
   openCancelModal(){
     const modalRef = this.modalService.confirm({

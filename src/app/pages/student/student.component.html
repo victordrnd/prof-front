@@ -33,7 +33,11 @@
     <nz-layout>
         <nz-content>
             <div class="body pb-5" style="min-height : 100vh !important">
-                <router-outlet></router-outlet>
+                <nb-layout>
+                    <nb-layout-column>
+                        <router-outlet></router-outlet>
+                    </nb-layout-column>
+                </nb-layout>
             </div>
         </nz-content>
     </nz-layout>

@@ -88,10 +88,15 @@
         "detail" : "Détails du cours",
         "with" : "avec",
         "duration" : "Durée",
+        "join" : {
+            "title" : "Rejoindre le cours"
+        },
         "cancel" : {
             "title" : "Annuler le cours",
             "confirm" : "Voulez vous vraiment annuler ce cours ?",
-            "ok" : "Je confirme"
+            "ok" : "Je confirme",
+            "success" : "Succès",
+            "success_description" : "Le cours a correctement été annulé"
         }
     }
 }

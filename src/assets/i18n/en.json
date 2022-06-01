@@ -88,10 +88,15 @@
         "detail" : "Lesson details",
         "with" : "with",
         "duration" : "Duration",
+        "join" : {
+            "title" : "Join this course"
+        },
         "cancel" : {
             "title" : "Cancel this course",
             "confirm" : "Do you really want to cancel this course ?",
-            "ok" : "I confirm"
+            "ok" : "I confirm",
+            "success" : "Success",
+            "success_description" : "This course has successfully been cancelled"
         }
     }
 }

@@ -10,7 +10,7 @@
         </div>
         <div class="bg-white p-5 rounded-lg shadow-sm mt-5">
 
-            <nz-table>
+            <nz-table [nzData]="lessons" [nzShowPagination]="false">
                 <thead>
                     <tr>
                         <th>Student</th>
@@ -33,13 +33,16 @@
                             <button nz-button nz-dropdown [nzDropdownMenu]="menu">
                                 Action
                                 <i nz-icon nzType="down"></i>
-                              </button>
-                              <nz-dropdown-menu #menu="nzDropdownMenu">
+                            </button>
+                            <nz-dropdown-menu #menu="nzDropdownMenu">
                                 <ul nz-menu>
-                                  <li nz-menu-item>Afficher le cours</li>
-                                  <li nz-menu-item>Annuler le cours</li>
+                                    <li nz-menu-item (click)="goToCourse(lesson)">Afficher le cours</li>
+                                    <li nz-menu-item nz-popconfirm
+                                        nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}"
+                                        nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)" nzOkText="{{'lesson.cancel.ok' | translate}}">Annuler le
+                                        cours</li>
                                 </ul>
-                              </nz-dropdown-menu>
+                            </nz-dropdown-menu>
                         </td>
                     </tr>
                 </tbody>

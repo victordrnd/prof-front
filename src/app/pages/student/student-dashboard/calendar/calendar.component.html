@@ -19,11 +19,11 @@
                                 <p class="caption-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam, et?</p>
                             </div>
                             <div class="col-6">
-                                <div class="d-flex align-items-end flex-column">
+                                <div class="d-flex align-items-end flex-column h-100">
                                     <nb-user size="small" [name]="lesson.teacher.firstname + ' ' +lesson.teacher.lastname"  title="">
                                     </nb-user>
                                     <br/>
-                                    <button nbButton size="small" (click)="displayLesson(lesson)">{{'lesson.detail' | translate}}</button>
+                                    <button class="mt-auto" nbButton size="small" (click)="displayLesson(lesson)">{{'lesson.detail' | translate}}</button>
                                 </div>
                             </div>
                         </div>

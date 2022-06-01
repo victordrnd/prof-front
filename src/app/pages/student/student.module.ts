@@ -6,7 +6,7 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { StudentComponent } from './student.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CalendarComponent } from './student-dashboard/calendar/calendar.component';
-import { NbAlertModule, NbUserModule, NbCardModule, NbButtonModule, NbIconModule, NbInputModule, NbToastrModule, NbFormFieldModule } from '@nebular/theme';
+import { NbAlertModule, NbUserModule, NbCardModule, NbButtonModule, NbIconModule, NbInputModule, NbToastrModule, NbFormFieldModule, NbLayoutModule, NbSpinnerModule } from '@nebular/theme';
 import { PaymentComponent } from './settings/payment/payment.component';
 import { AddPaymentComponent } from './settings/payment/add-payment/add-payment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +21,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 @NgModule({
   declarations: [
     StudentDashboardComponent,
@@ -54,7 +55,9 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     NzEmptyModule,
     NzTableModule,
     NbFormFieldModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NbLayoutModule,
+    NzPopconfirmModule,
     ],
   bootstrap : [StudentComponent],
   exports : [CalendarComponent],
