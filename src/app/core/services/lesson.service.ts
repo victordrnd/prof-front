@@ -13,9 +13,18 @@ export class LessonService {
     return this.http.get(`${environment.apiUrl}/lessons`);
   }
 
+  find(lesson_id){
+    return this.http.get(`${environment.apiUrl}/lessons/${lesson_id}`);
+  }
+
   
-  public store(obj){
+  store(obj){
     return this.http.post(`${environment.apiUrl}/lessons`, {...obj});
+  }
+
+
+  cancel(lesson_id){
+    return this.http.delete(`${environment.apiUrl}/lessons/${lesson_id}`);
   }
 
 }

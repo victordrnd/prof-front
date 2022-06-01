@@ -12,15 +12,19 @@
                             <h6 class="caption margin-negative px-3">{{item.time}}</h6>
                         </nz-list-item-meta-title>
                     </nz-list-item-meta>
-                    <nb-alert *ngFor="let lesson of item.lessons" [style.backgroundColor]="lesson.subject.color" class="w-100 mx-4" [style.height]="'calc(110px *'+ lesson.duration +')'" [style.marginTop.px]="getLessonMarginTop(lesson)">
+                    <nb-alert *ngFor="let lesson of item.lessons" [style.backgroundColor]="lesson.subject.color" class="w-100 ml-5 mr-4" [style.height]="'calc(110px *'+ lesson.duration +')'" [style.marginTop.px]="getLessonMarginTop(lesson)">
                         <div class="row">
                             <div class="col-6">
                                 <h6 class="text-white">{{item.time}} - {{lesson.subject.libelle | translate}}</h6>
                                 <p class="caption-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam, et?</p>
                             </div>
                             <div class="col-6">
-                                <nb-user class="float-right" size="small" [name]="lesson.teacher.firstname + ' ' +lesson.teacher.lastname"  title="Teacher">
-                                </nb-user>
+                                <div class="d-flex align-items-end flex-column">
+                                    <nb-user size="small" [name]="lesson.teacher.firstname + ' ' +lesson.teacher.lastname"  title="">
+                                    </nb-user>
+                                    <br/>
+                                    <button nbButton size="small" (click)="displayLesson(lesson)">{{'lesson.detail' | translate}}</button>
+                                </div>
                             </div>
                         </div>
                     </nb-alert><br />

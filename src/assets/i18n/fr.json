@@ -83,5 +83,15 @@
     "general" :{
         "hour" : "heure",
         "hours" : "heures"
+    },
+    "lesson" : {
+        "detail" : "Détails du cours",
+        "with" : "avec",
+        "duration" : "Durée",
+        "cancel" : {
+            "title" : "Annuler le cours",
+            "confirm" : "Voulez vous vraiment annuler ce cours ?",
+            "ok" : "Je confirme"
+        }
     }
 }

@@ -10,7 +10,7 @@
                     <nz-list-item *ngFor="let item of date.hours;let i = index"
                         [class.pointer]="item?.lessons.length == 0" (click)="bookLesson(item, date, i )"
                         nbPopover="{{'teacher.click_to_book' | translate}}" nbPopoverTrigger="hint"
-                        nbPopoverPlacement="left">
+                        nbPopoverPlacement="left" [nbTooltipDisabled]="item?.lessons.length != 0">
                         <ng-container>
                             <nz-list-item-meta>
                                 <nz-list-item-meta-title>
@@ -18,7 +18,7 @@
                                 </nz-list-item-meta-title>
                             </nz-list-item-meta>
                             <nb-alert *ngFor="let lesson of item.lessons | slice:0:1"
-                                [style.backgroundColor]="lesson.subject.color" class="w-100 mx-4"
+                                [style.backgroundColor]="lesson.subject.color" class="w-100 ml-5 mr-4"
                                 [style.height]="'calc(90px *'+ lesson.duration +')'"
                                 [style.marginTop.px]="getLessonMarginTop(lesson)">
                                 <div class="row">

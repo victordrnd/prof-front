@@ -7,18 +7,18 @@
             <div class="col-md-6 mx-auto d-block">
                 <form [formGroup]="form">
                     <label>{{'register.email' | translate}} :</label>
-                    <nb-form-field class="w-100 my-2">
+                    <nb-form-field class="w-100 my-2 input-full-width">
                         <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
                         <input type="text" formControlName="email" nbInput class="input-full-width"
                             placeholder="{{'register.email' | translate}}">
                     </nb-form-field>
                     <label class="mt-4">{{'register.password' | translate}} :</label>
-                    <nb-form-field class="w-100 my-2">
+                    <nb-form-field class="w-100 my-2 input-full-width">
                         <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
-                        <input type="password" formControlName="password" nbInput class="input-full-width"
+                        <input type="password" formControlName="password" nbInput class="input-full-width w-100"
                             placeholder="{{'register.password' | translate}}">
                     </nb-form-field>
-                    <button nbButton status="primary" class="d-block ml-auto mt-4"
+                    <button nbButton status="primary" class="d-block mx-auto mt-4 w-100"
                         (click)="submit()">{{'login.submit' | translate}}
                         <nb-icon icon="arrow-forward-outline"></nb-icon></button>
                     <!-- <hr/> -->

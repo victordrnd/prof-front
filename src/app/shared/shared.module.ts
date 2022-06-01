@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule, NbIconModule, NbBadgeModule } from '@nebular/theme';
+import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule, NbIconModule, NbBadgeModule, NbCardModule } from '@nebular/theme';
 import { Platform } from '@angular/cdk/platform';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { OverlayModule, OverlayPositionBuilder, ViewportRuler, OverlayKeyboardDispatcher } from '@angular/cdk/overlay';
@@ -14,10 +14,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
+import { LessonDetailsComponent } from './_components/lesson-details/lesson-details.component';
+import { DefaultDashboardRedirectionComponent } from './_components/default-dashboard-redirection/default-dashboard-redirection.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, LessonDetailsComponent, DefaultDashboardRedirectionComponent],
   imports: [
     CommonModule,
     NzModalModule,
@@ -30,9 +32,10 @@ import { NzConfigService } from 'ng-zorro-antd/core/config';
     RouterModule,
     TranslateModule,
     NbIconModule,
-    NzBadgeModule
+    NzBadgeModule,
+    NbCardModule
   ],
-  exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule],
+  exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule, LessonDetailsComponent],
   providers: [
     Platform,
     OverlayPositionBuilder,

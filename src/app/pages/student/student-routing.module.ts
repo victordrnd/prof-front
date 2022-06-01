@@ -5,6 +5,7 @@ import { StudentComponent } from './student.component';
 import { AuthGuardService } from 'src/app/core/gards/auth-gards.service';
 import { PaymentComponent } from './settings/payment/payment.component';
 import { LessonListComponent } from './lesson-list/lesson-list.component';
+import { LessonDetailsComponent } from 'src/app/shared/_components/lesson-details/lesson-details.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path : 'lessons',
         component : LessonListComponent
+      },
+      {
+        path : 'lesson/:id',
+        component : LessonDetailsComponent
       }
     ]
   }

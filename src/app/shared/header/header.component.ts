@@ -18,9 +18,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.isConnected = this.authService.getToken() ? true : false;
-    console.log(this.isConnected)
     this.cdr.markForCheck();
-    console.log(this.router.url)
   }
 
   languageChange(language = 'en'){

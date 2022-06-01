@@ -11,6 +11,11 @@ export class AuthService {
 
   constructor(private http : HttpClient, private router : Router) { }
 
+  get currentUserValue(){
+    return this.currentUserSubject.value
+  }
+
+  
   private currentUserSubject = new BehaviorSubject<any>({});
   public currentUser = this.currentUserSubject
     .asObservable()

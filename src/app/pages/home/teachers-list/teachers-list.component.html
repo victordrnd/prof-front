@@ -37,7 +37,7 @@
 
                     <div class="profile pointer" (click)="openTeacherProfile(teacher.id)">
                         <div class="profil-img"
-                            [ngStyle]="{'background-image' : 'url(' + environement.assetsUrl + teacher.teacher_profil.avatar+ ')'}">
+                            [ngStyle]="{'background-image' : 'url('+teacher.teacher_profil.image+ ')'}">
                             <div class="d-flex h-100">
                                 <div class="inblock-profile">
                                     <h2 class="text-white m-2 d-inline-block">{{teacher.firstname | titlecase}}

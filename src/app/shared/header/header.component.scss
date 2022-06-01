@@ -5,14 +5,15 @@ a{
 .navbar-light .navbar-nav .nav-link {
     color: rgb(0, 0, 0);
 }
-.language-selector{
-    z-index:-1;
-}
 
 nb-icon{
     vertical-align: middle;
 }
 :host::ng-deep{
+    .language-selector{
+        z-index:-1;
+        // width:100px;
+    }
     .ant-scroll-number-only-unit{
         
         font-weight: normal;
