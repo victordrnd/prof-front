@@ -5,7 +5,7 @@
         <div class="col-6 px-5" *ngFor="let card of paymentMethods?.data">
             <nb-card accent="primary">
                 <nb-card-body>
-                    <nb-icon icon="edit-outline" pack="eva" class="float-right pointer" (click)="detach(card)"></nb-icon>
+                    <nb-icon icon="trash-outline" pack="eva" class="float-right pointer text-small" (click)="detach(card)"></nb-icon>
                     <p>**** **** **** {{card.card.last4}} </p>
                     <img src="../../../../../assets/payments/visa.svg" class="float-right mt-5" *ngIf="card.card.brand == 'visa'">
                     <p class="caption ml-2 mt-5 float-left">{{card.card.exp_month}}/{{card.card.exp_year}}</p>

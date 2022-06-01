@@ -65,6 +65,7 @@ export class RegisterComponent implements OnInit {
       repeat_password: [null, Validators.required],
       sexe: ["m", Validators.required],
       rate: [30],
+      currency : ["eur", Validators.required],
       description: [""]
 
     });

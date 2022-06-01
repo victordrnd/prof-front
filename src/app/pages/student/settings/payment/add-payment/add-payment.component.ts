@@ -36,7 +36,7 @@ export class AddPaymentComponent implements OnInit {
       this.paymentSerivce.createPaymentMethod(this.form.value).toPromise().then(res => {
         this.modalService.closeAll();
       }).catch(err => {
-        this.notificationService.danger(this.translate.instant('payment.error'));
+        this.notificationService.danger(err.error,this.translate.instant('payment.error'));
       })
     }
   }

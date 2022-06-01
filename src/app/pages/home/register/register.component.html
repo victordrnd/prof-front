@@ -109,8 +109,10 @@
                                     [nzShowUploadList]="false" [nzBeforeUpload]="beforeUpload"
                                     (nzChange)="getAvatarBlob($event)">
                                     <ng-container *ngIf="!avatarUrl">
-                                        <i class="upload-icon" nz-icon nzType="plus"></i>
-                                        <div class="ant-upload-text">Avatar</div>
+                                        <div class="text-center w-100">
+                                            <i class="upload-icon" nz-icon nzType="plus"></i>
+                                            <div class="ant-upload-text">Avatar</div>
+                                        </div>
                                     </ng-container>
                                     <img #avatarImg [src]="avatarUrl" style="width: 100%" />
                                 </nz-upload>
@@ -129,11 +131,22 @@
                                 </nb-card-body>
                             </nb-card>
                             <div class="mx-5 mt-5">
-                                <label>{{'register.rate' | translate}} :</label><br />
-                                <nb-form-field>
-                                    <nb-icon nbPrefix icon="credit-card-outline" pack="eva"></nb-icon>
-                                    <input type="text" formControlName="rate" placeholder="40" nbInput class="my-3"> €
-                                </nb-form-field>
+                                <label class="w-100">{{'register.rate' | translate}} :</label><br />
+                                <div class="d-flex">
+
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="credit-card-outline" pack="eva"></nb-icon>
+                                        <input type="text" formControlName="rate" placeholder="40" nbInput
+                                            class="my-3">
+                                    </nb-form-field>
+                                    <nb-form-field>
+                                        <nb-select formControlName="currency">
+                                            <nb-option value="eur">EUR</nb-option>
+                                            <nb-option value="usd">USD</nb-option>
+                                            <nb-option value="aed">AED</nb-option>
+                                        </nb-select>
+                                    </nb-form-field>
+                                </div>
                                 <label class="mt-5">{{'register.description.title' | translate}} :</label><br />
                                 <textarea nbInput fullWidth formControlName="description" placeholder=""
                                     class="my-3"></textarea>
@@ -143,7 +156,8 @@
                     <button nbButton status="primary" class="d-block mx-auto"
                         [disabled]="step==3 && !selected || step ==4 && taught_subject.length == 0"
                         (click)="nextStep()">{{'register.next' | translate}}
-                        <nb-icon icon="arrow-forward-outline"></nb-icon></button>
+                        <nb-icon icon="arrow-forward-outline"></nb-icon>
+                    </button>
 
                     <div class="row" *ngIf="step < 3">
                         <div class="col-8 mx-auto d-block">
