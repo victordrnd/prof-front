@@ -15,10 +15,19 @@ export class PaymentComponent implements OnInit {
     private modalService : NzModalService,
     private translate : TranslateService) { }
 
-  paymentMethods
+  paymentMethods;
   
   async ngOnInit() {
+   this.getCards()
+  }
+
+
+  async getCards(){
     this.paymentMethods = await this.paymentService.getAllPaymentMethods().toPromise();
+    const card = this.paymentMethods.data.find(el => el.id == this.paymentMethods.default_pm)
+    if(card){
+      card.default = true;
+    }
   }
 
   addPaymentMethod(){
@@ -28,10 +37,18 @@ export class PaymentComponent implements OnInit {
       nzFooter: null
     })
     modalRef.afterClose.subscribe(async () => {
-      this.paymentMethods = await this.paymentService.getAllPaymentMethods().toPromise();
+      this.getCards();
     })
   }
 
+  async toggleCardDefault(card, evt){
+    if(evt){
+      this.paymentMethods.data = this.paymentMethods.data.map(card => {card.default = false;return card})
+      card.default = true;
+      await this.paymentService.setDefaultPm({default_pm : card.id}).toPromise();
+    }
+
+  }
 
   detach(card){
     this.modalService.confirm({

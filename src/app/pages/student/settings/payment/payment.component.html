@@ -2,14 +2,18 @@
     <button nbButton class="float-right" size="small"
         (click)="addPaymentMethod()">{{'payment.add' | translate}}</button><br />
     <div class="row mt-5">
+        <div class="col-12">
+            <nz-spin nzSimple class="text-center" *ngIf="!paymentMethods"></nz-spin>
+        </div>
         <div class="col-6 px-5" *ngFor="let card of paymentMethods?.data">
             <nb-card accent="primary">
                 <nb-card-body>
                     <nb-icon icon="trash-outline" pack="eva" class="float-right pointer text-small" (click)="detach(card)"></nb-icon>
                     <p>**** **** **** {{card.card.last4}} </p>
                     <img src="../../../../../assets/payments/visa.svg" class="float-right mt-5" *ngIf="card.card.brand == 'visa'">
-                    <p class="caption ml-2 mt-5 float-left">{{card.card.exp_month}}/{{card.card.exp_year}}</p>
-
+                    <p class="caption mt-5">{{card.card.exp_month}}/{{card.card.exp_year}}</p>
+                    <p>{{card?.billing_details?.name}}</p>
+                    <nb-checkbox class="float-right" [checked]="card.default" (checkedChange)="toggleCardDefault(card, $event)">{{'payment.use_by_default' | translate}}</nb-checkbox>
                 </nb-card-body>
             </nb-card>
         </div>

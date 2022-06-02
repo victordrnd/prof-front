@@ -6,6 +6,7 @@ import { AuthGuardService } from 'src/app/core/gards/auth-gards.service';
 import { PaymentComponent } from './settings/payment/payment.component';
 import { LessonListComponent } from './lesson-list/lesson-list.component';
 import { LessonDetailsComponent } from 'src/app/shared/_components/lesson-details/lesson-details.component';
+import { ProfilComponent } from './settings/profil/profil.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path : 'settings',
         children : [
+          {
+            path : 'profile',
+            component : ProfilComponent
+          },
           {
             path : 'payments',
             component : PaymentComponent

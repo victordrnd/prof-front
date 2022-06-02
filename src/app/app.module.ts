@@ -16,7 +16,8 @@ import { registerLocaleData } from '@angular/common';
 import fr from "@angular/common/locales/fr";
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { fr_FR, NZ_I18N } from 'ng-zorro-antd/i18n';
-
+import { environment } from 'src/environments/environment';
+import { NgxStripeModule } from 'ngx-stripe';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -43,6 +44,7 @@ registerLocaleData(fr);
     NbToastrModule.forRoot(),
     NzSpinModule,
     NbAutocompleteModule,
+    NgxStripeModule.forRoot(environment.publicStripeKey)
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},

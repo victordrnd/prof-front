@@ -19,4 +19,8 @@ export class AddressService {
   attach(place){
     return this.http.post(`${environment.apiUrl}/places/attach`, place);
   }
+
+  getMyAddress(){
+    return this.http.get(`${environment.apiUrl}/address/my`);
+  }
 }

@@ -2,6 +2,10 @@
 
     <div class="row">
         <div class="col-12">
+            <label>{{'payment.fullname' | translate}}</label>
+            <input type="text" formControlName="fullname" nbInput status="basic" class="input-full-width">
+        </div>
+        <div class="col-12">
             <label>{{'payment.number' | translate}}</label>
             <input type="text" formControlName="number" nbInput (input)="cardRegex($event)" maxlength="19" status="basic" class="input-full-width">
         </div>
@@ -14,5 +18,8 @@
             <input type="text" formControlName="cvv" nbInput  maxlength="3" status="basic" class="input-full-width">
         </div>
     </div>
-    <button nbButton (click)="submit()" class="w-100 mt-4" status="primary">{{'payment.add_card' | translate}}</button>
+    <button nbButton (click)="submit()" class="w-100 mt-4" status="primary" [disabled]="loading">
+        {{'payment.add_card' | translate}} 
+        <ng-template #indicatorTemplate><i nz-icon nzType="loading"></i></ng-template>
+        <nz-spin *ngIf="loading" nzSimple [nzIndicator]="indicatorTemplate"></nz-spin></button>
 </form>

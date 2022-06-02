@@ -66,8 +66,10 @@
         "expiration" : "Expiration date",
         "expiration_placeholder" : "MM/YY",
         "cvv" : "Card verification value",
+        "fullname" : "Card holder",
         "add_card" : "Add card",
         "error" : "An error has occured, retry later",
+        "use_by_default" :"Use this card by default",
         "delete" : {
             "title" : "Do you want to remove this Payment method from your account ?"
         }
@@ -78,7 +80,8 @@
         "reviews" : "Reviews",
         "no_reviews" :"No review",
         "click_to_book" : "Click here to book lesson",
-        "locality" : "Locality"
+        "locality" : "Locality",
+        "not_found" : "No teacher have been found nearby"
     },
     "general" :{
         "hour" : "heure",
@@ -98,5 +101,9 @@
             "success" : "Success",
             "success_description" : "This course has successfully been cancelled"
         }
+    },
+    "settings" : {
+        "success_description" : "Your information have been updated",
+        "save" : "Save profile"
     }
 }

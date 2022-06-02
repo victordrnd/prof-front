@@ -9,6 +9,7 @@ import { AddressService } from 'src/app/core/services/address.service';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { TeacherService } from 'src/app/core/services/teacher.service';
 import { debounce, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -51,6 +52,7 @@ export class RegisterComponent implements OnInit {
     private notificationService: NbToastrService,
     private translate: TranslateService,
     private addressService: AddressService,
+    private userService : UserService,
     private subjectService: SubjectService,
     private teacherService: TeacherService) { }
 
@@ -77,7 +79,7 @@ export class RegisterComponent implements OnInit {
     });
     this.subjects = await this.subjectService.getAll().toPromise();
 
-    this.placeInputValue.pipe(map((word : any) => word.srcElement.value), debounceTime(400), distinctUntilChanged()).subscribe(async (keyword) => {
+    this.placeInputValue.pipe(map((word : any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
       this.places = await this.addressService.findPlaces(keyword).toPromise();
       this.selected = false;
     })
@@ -174,12 +176,13 @@ export class RegisterComponent implements OnInit {
     const obj = {
       subjects: this.taught_subject,
       description: this.form.controls.description.value,
-      rate: this.form.controls.rate.value
+      rate: this.form.controls.rate.value,
+      currency : this.form.controls.currency.value
     }
     this.teacherService.attachProfile(obj).toPromise().then(async res => {
       const formData = new FormData();
       formData.append('avatar', this.avatar);
-      await this.teacherService.uploadAvatar(formData).toPromise()
+      await this.userService.setAvatar(formData).toPromise()
       this.router.navigate(['teacher/dashboard']);
     }
     ).catch(err => console.log(err))

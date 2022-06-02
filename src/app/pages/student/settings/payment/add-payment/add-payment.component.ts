@@ -3,8 +3,9 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { PaymentService } from 'src/app/core/services/payment.service';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
-
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { StripeService } from 'ngx-stripe';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-payment',
   templateUrl: './add-payment.component.html',
@@ -13,27 +14,35 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class AddPaymentComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-    private paymentSerivce : PaymentService,
+    private paymentService : PaymentService,
     private notificationService : NbToastrService,
     private translate : TranslateService,
-    private modalService : NzModalService) { }
+    private modalService : NzModalService,
+    private stripeService : StripeService,
+    private router : Router) { }
 
   form: FormGroup;
   invalid = {
     expiration: false
   }
-  ngOnInit() {
+  client_secret;
+  loading = false;
+  async ngOnInit() {
     this.form = this.fb.group({
+      fullname :["", Validators.required],
       number: ["", [Validators.required]],
       expiration: [null, Validators.required],
       cvv: [null, Validators.required]
     })
+    this.client_secret = await this.paymentService.generateIntent().toPromise();
   }
 
 
-  submit(){
+  async submit(){
     if(this.form.valid){
-      this.paymentSerivce.createPaymentMethod(this.form.value).toPromise().then(res => {
+      this.loading = true;
+      this.paymentService.createPaymentMethod(this.form.value).toPromise().then( async (res:any) => {
+        await this.stripeService.confirmCardSetup(this.client_secret.client_secret, {payment_method : res.payment_method, return_url : this.router['location']._platformLocation.location.origin}).toPromise();
         this.modalService.closeAll();
       }).catch(err => {
         this.notificationService.danger(err.error,this.translate.instant('payment.error'));

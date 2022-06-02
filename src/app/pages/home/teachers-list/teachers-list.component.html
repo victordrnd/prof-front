@@ -74,7 +74,7 @@
 
             </div>
         </div>
-        <nz-empty *ngIf="data?.data?.length == 0" [nzNotFoundContent]="null"></nz-empty>
+        <nz-empty *ngIf="data?.data?.length == 0" nzNotFoundContent="{{'teacher.not_found' | translate}}"></nz-empty>
     </nb-layout-column>
 </nb-layout>
 

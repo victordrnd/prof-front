@@ -1,0 +1,18 @@
+:host::ng-deep {
+    .ant-upload-select {
+        
+    }
+    .ant-upload-select-picture-card {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .d-table {
+        min-width: 67% !important;
+    }
+
+    .avatar-uploader > .ant-upload, .avatar {
+        width: 190px;
+        height: 190px;
+      }
+}

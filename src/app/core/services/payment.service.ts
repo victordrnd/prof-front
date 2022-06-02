@@ -18,7 +18,14 @@ export class PaymentService {
   }
 
 
+  setDefaultPm(obj){
+    return this.http.post(`${environment.apiUrl}/payments/default`, obj);
+  }
   detachPaymentMethod(obj){
     return this.http.post(`${environment.apiUrl}/payments/detach`, obj);
+  }
+
+  generateIntent(){
+    return this.http.get(`${environment.apiUrl}/payments/generate_intent`);
   }
 }
