@@ -3,6 +3,7 @@ import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { SubjectService } from 'src/app/core/services/subject.service';
+import { TeacherService } from 'src/app/core/services/teacher.service';
 import { AddSubjectsModalComponent } from '../_components/add-subjects-modal/add-subjects-modal.component';
 
 @Component({
@@ -14,13 +15,23 @@ export class TeacherProfileComponent implements OnInit {
 
   constructor(private subjectService: SubjectService,
     private modalService: NzModalService,
-    private notificationService : NbToastrService,
-    private translate : TranslateService) { }
+    private teacherService : TeacherService,
+    private notificationService: NbToastrService,
+    private translate: TranslateService) { }
 
   teached_subjects: any[] = [];
   subjects;
-  async ngOnInit() {
 
+  profile;
+
+  async ngOnInit() {
+    this.getMySubjects();
+    this.profile = await this.teacherService.getMyProfile().toPromise();
+    console.log(this.profile);
+  }
+
+
+  async getMySubjects() {
     this.teached_subjects = await this.subjectService.getMyTeachedSubjects().toPromise() as any;
     this.subjects = await this.subjectService.getAll().toPromise();
     this.subjects = this.subjects.map(subject => {
@@ -33,6 +44,13 @@ export class TeacherProfileComponent implements OnInit {
     })
   }
 
+  async saveAdditionalInformations(){
+    this.teacherService.updateProfile(this.profile).toPromise().then(res => {
+      this.notificationService.success(this.translate.instant("settings.success_description"), this.translate.instant('shared.success'))
+    }).catch(err => {
+      this.notificationService.success(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
+    });
+  }
 
   openAddSubjectsModal() {
     const modalRef = this.modalService.create({
@@ -67,6 +85,14 @@ export class TeacherProfileComponent implements OnInit {
       this.notificationService.success(this.translate.instant("settings.success_description"), this.translate.instant('shared.success'))
     }).catch(err => {
       this.notificationService.success(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
-    }) ;
+    });
+  }
+
+
+  deleteSubject(subject) {
+    this.subjectService.deleteTeachedSubject(subject.id).toPromise().then(res => {
+      this.notificationService.success(this.translate.instant('settings.success_description'), this.translate.instant('shared.success'));
+      this.getMySubjects();
+    }).catch(err => this.notificationService.success(this.translate.instant("shared.error_description"), this.translate.instant('shared.error')));
   }
 }

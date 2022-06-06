@@ -106,8 +106,10 @@
     "settings" : {
         "success_description" : "Vos informations ont été mises à jour",
         "save" : "Sauvegarder",
+        "additional_info" : "Mes informations complémentaires",
         "subjects" : "Matières enseignées",
-        "add_subject" : "Ajouter une matière"
+        "add_subject" : "Ajouter une matière",
+        "confirm_delete_subject" : "Êtes-vous certains de vouloir supprimer cette matière de vos enseignements ?"
     },
     "shared" : {
         "success" : "Succès",

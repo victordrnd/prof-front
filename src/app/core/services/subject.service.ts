@@ -20,4 +20,8 @@ export class SubjectService {
   updateMyTeachedSubjects(subjects){
     return this.http.put(`${environment.apiUrl}/teacher/subjects/my`, {subjects});
   }
+
+  deleteTeachedSubject(subject_id){
+    return this.http.delete(`${environment.apiUrl}/teacher/subjects/${subject_id}`);
+  }
 }

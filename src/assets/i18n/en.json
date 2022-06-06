@@ -107,7 +107,9 @@
         "success_description" : "Your information have been updated",
         "save" : "Save profile",
         "subjects" : "Subjects",
-        "add_subject" : "Add subject"
+        "additional_info" : "Additional Information",
+        "add_subject" : "Add subject",
+        "confirm_delete_subject" : "Do you really want to remove this subject from your account ?"
     },
     "shared" : {
         "success" : "Success",

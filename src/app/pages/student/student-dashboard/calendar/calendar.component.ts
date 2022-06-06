@@ -32,7 +32,7 @@ export class CalendarComponent implements OnInit {
   }
 
   displayLesson(lesson){
-    this.router.navigate([`/student/lesson/${lesson.id}`]);
+    this.router.navigate([`lesson/${lesson.id}`]);
 
   }
 }
