@@ -28,7 +28,7 @@
                             <nz-tag [nzColor]="lesson.subject.color">
                                 {{lesson.subject.libelle | translate}}</nz-tag>
                         </td>
-                        <td>{{lesson.scheduled_at | date:'medium'}}</td>
+                        <td>{{lesson.scheduled_at | date:'EEEE, MMMM d, y, h:mm a'}}</td>
                         <td>
                             <button nz-button nz-dropdown [nzDropdownMenu]="menu">
                                 Action

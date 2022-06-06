@@ -16,7 +16,8 @@ export class TeachersListComponent implements OnInit {
   subscription;
   filters = {
     subject_id: null,
-    address: null
+    lat: null,
+    lng : null
   };
   data;
   environement = environment;
@@ -53,9 +54,12 @@ export class TeachersListComponent implements OnInit {
   }
 
 
-  onSelectionChange(place) {
+  async onSelectionChange(place) {
     this.place = place;
     this.placeInput.nativeElement.value = `${place.place_name}`
+    this.filters.lat = place.center[0];
+    this.filters.lng = place.center[1];
+    this.data = await this.teacherService.search(this.filters).toPromise();
   }
 
 
@@ -66,7 +70,6 @@ export class TeachersListComponent implements OnInit {
     subj.selected = value;
     this.filters.subject_id = subj.selected ? subj.id : null;
     this.data = await this.teacherService.search(this.filters).toPromise();
-    console.log(this.data);
   }
 
   openTeacherProfile(teacher_id) {
