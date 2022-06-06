@@ -19,7 +19,10 @@ li {
 [nz-menu] {
     height: 100%;
 }
-::ng-deep {
+:host::ng-deep {
+    .anticon{
+        transform: translateY(0px) !important;
+    }
     .ant-layout-sider-zero-width-trigger {
         background-color: #806BFF;
     }
