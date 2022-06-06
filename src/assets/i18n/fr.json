@@ -6,7 +6,8 @@
         "login" : "Connexion",
         "register" : "Inscription",
         "dashboard" : "Tableau de bord",
-        "logout" : "Déconnexion"
+        "logout" : "Déconnexion",
+        "bank_info" : "Informations bancaires"
     },
     "register" : {
         "title" : "Inscription",
@@ -104,6 +105,13 @@
     },
     "settings" : {
         "success_description" : "Vos informations ont été mises à jour",
-        "save" : "Sauvegarder"
+        "save" : "Sauvegarder",
+        "subjects" : "Matières enseignées",
+        "add_subject" : "Ajouter une matière"
+    },
+    "shared" : {
+        "success" : "Succès",
+        "error" : "Erreur",
+        "error_description" :"Une erreur est survenue"
     }
 }

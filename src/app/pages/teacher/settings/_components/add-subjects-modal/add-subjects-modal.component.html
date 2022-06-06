@@ -1,0 +1,4 @@
+<label>Selectionnez les matières enseignées</label><br/>
+<nb-select multiple class="w-100" [(selected)]="taught_subjects" placeholder="{{'settings.subjects' | translate}}">
+  <nb-option *ngFor="let subject of subjects" [value]="subject.id">{{subject.libelle | translate}}</nb-option>
+</nb-select>

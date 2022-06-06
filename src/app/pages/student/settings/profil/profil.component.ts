@@ -90,11 +90,13 @@ export class ProfilComponent implements OnInit {
   }
 
   getAvatarBlob(file): any {
-    var reader = new FileReader();
-    reader.onloadend = async () => {
-      this.avatarUrl = reader.result;
+    if(file instanceof File){
+      var reader = new FileReader();
+      reader.onloadend = async () => {
+        this.avatarUrl = reader.result;
+      }
+      reader.readAsDataURL(file)
     }
-    reader.readAsDataURL(file)
   }
 
 

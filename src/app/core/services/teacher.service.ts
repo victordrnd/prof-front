@@ -17,8 +17,8 @@ export class TeacherService {
   }
 
 
-  search(subject_id){
-    return this.http.post(`${environment.apiUrl}/teacher/search`, {subject_id});
+  search(filters){
+    return this.http.post(`${environment.apiUrl}/teacher/search`, filters);
   }
 
   get(teacher_id){

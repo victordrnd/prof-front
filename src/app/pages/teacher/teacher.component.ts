@@ -18,7 +18,7 @@ export class TeacherComponent implements OnInit {
       || navigator.userAgent.match(/iPad/i)
       || navigator.userAgent.match(/iPod/i)){
       this.mobile = true;
-    }
+    };
   }
 
   logout(){

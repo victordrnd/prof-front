@@ -6,7 +6,8 @@
         "login" : "Login",
         "register" : "Register",
         "dashboard" : "Dashboard",
-        "logout" : "Log out"
+        "logout" : "Log out",
+        "bank_info" : "Banking Information"
     },
     "register" : {
         "title" : "Register",
@@ -104,6 +105,13 @@
     },
     "settings" : {
         "success_description" : "Your information have been updated",
-        "save" : "Save profile"
+        "save" : "Save profile",
+        "subjects" : "Subjects",
+        "add_subject" : "Add subject"
+    },
+    "shared" : {
+        "success" : "Success",
+        "error" : "Error",
+        "error_description" :"An error has occured"
     }
 }

@@ -12,17 +12,14 @@
 
                 <nb-option *ngFor="let option of places" [value]="option">
                     <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon><span
-                        [innerHtml]="option._highlightResult.locale_names.default[0].value"></span> <span
-                        class="caption mt-1 ml-2">{{ option.country?.default }},
-                        {{ option.city?.default[0] }}</span>
+                        [innerHtml]="option.place_name"></span>
                 </nb-option>
-
             </nb-autocomplete>
             <h4 class="mt-4">Matières</h4>
             <nz-checkbox-wrapper style="width: 100%;">
                 <div nz-row>
                     <div *ngFor="let subj of subjects" nz-col nzSpan="24" class="mt-1"><label nz-checkbox nzValue="A"
-                        [ngModel]="subj.id == searchable.subject_id"
+                        [ngModel]="subj.id == filters.subject_id"
                             (ngModelChange)="selectedSubjectsChange($event, subj)">{{subj.libelle | translate}}</label>
                     </div>
                 </div>
@@ -37,7 +34,7 @@
 
                     <div class="profile pointer" (click)="openTeacherProfile(teacher.id)">
                         <div class="profil-img"
-                            [ngStyle]="{'background-image' : 'url('+teacher.teacher_profil.image+ ')'}">
+                            [ngStyle]="{'background-image' : 'url('+teacher.image+ ')'}">
                             <div class="d-flex h-100">
                                 <!-- <div class="inblock-profile">
                                     <h2 class="text-white m-2 d-inline-block">{{teacher.firstname | titlecase}}

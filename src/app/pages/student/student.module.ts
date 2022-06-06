@@ -72,7 +72,7 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NbAutocompleteModule
     ],
   bootstrap : [StudentComponent],
-  exports : [CalendarComponent],
+  exports : [CalendarComponent, LessonListComponent, ProfilComponent],
   entryComponents : [
     AddPaymentComponent
   ]

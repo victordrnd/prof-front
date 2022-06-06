@@ -12,4 +12,12 @@ export class SubjectService {
   getAll(){
     return this.http.get(`${environment.apiUrl}/subject/all`);
   }
+
+  getMyTeachedSubjects(){
+    return this.http.get(`${environment.apiUrl}/teacher/subjects/my`);
+  }
+
+  updateMyTeachedSubjects(subjects){
+    return this.http.put(`${environment.apiUrl}/teacher/subjects/my`, {subjects});
+  }
 }

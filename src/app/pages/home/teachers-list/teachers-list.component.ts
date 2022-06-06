@@ -4,6 +4,8 @@ import { TeacherService } from 'src/app/core/services/teacher.service';
 import { environment } from '../../../../environments/environment';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { AddressService } from 'src/app/core/services/address.service';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-teachers-list',
@@ -12,8 +14,9 @@ import { AddressService } from 'src/app/core/services/address.service';
 })
 export class TeachersListComponent implements OnInit {
   subscription;
-  searchable = {
-    subject_id : null
+  filters = {
+    subject_id : null,
+    address : null
   };
   data;
   environement = environment;
@@ -22,6 +25,9 @@ export class TeachersListComponent implements OnInit {
   place;
   @ViewChild('placeInput') placeInput;
 
+  placeInputValue = new Subject(); 
+
+  
   constructor(private route : ActivatedRoute,
     private teacherService : TeacherService,
     private subjectService : SubjectService,
@@ -31,27 +37,27 @@ export class TeachersListComponent implements OnInit {
   async ngOnInit() {
     this.subscription = this.route.params.subscribe(async (params: any) => {
       if (params.subject_id) {
-        this.searchable.subject_id = params.subject_id;
-        this.data = await this.teacherService.search(this.searchable.subject_id).toPromise();
+        this.filters.subject_id = params.subject_id;
       }
+      this.data = await this.teacherService.search(this.filters).toPromise();
     });
     this.subjects = await this.subjectService.getAll().toPromise();
-
+    this.placeInputValue.pipe(map((word : any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
+      this.places = await this.addressService.findPlaces(keyword).toPromise();
+    })
   }
 
 
   async findPlaces(keyword) {
-    if (keyword.srcElement.value.length % 3 == 0) {
-      // this.selected = false;
-      await this.addressService.findPlaces(keyword.srcElement.value).toPromise().then((res: any) => this.places = res.hits);
-    }
-  }
-  onSelectionChange(place) {
-    // this.selected = true;
-    this.place = place;
-    this.placeInput.nativeElement.value = `${place.locale_names.default[0]} ${place.country?.default}, ${place.city?.default[0]}`
-    console.log(place);
-  }
+    this.placeInputValue.next(keyword);
+}
+
+
+onSelectionChange(place) {
+  this.place = place;
+  this.placeInput.nativeElement.value = `${place.place_name}`
+}
+
 
 
 
@@ -63,8 +69,8 @@ export class TeachersListComponent implements OnInit {
         element.selected = false;
       }
     });
-    this.searchable.subject_id = subj.id;
-    this.data = await this.teacherService.search(this.searchable.subject_id).toPromise();
+    this.filters.subject_id = subj.id;
+    this.data = await this.teacherService.search(this.filters).toPromise();
   }
 
   openTeacherProfile(teacher_id){

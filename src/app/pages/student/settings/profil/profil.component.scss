@@ -1,6 +1,5 @@
 :host::ng-deep {
     .ant-upload-select {
-        
     }
     .ant-upload-select-picture-card {
         display: block;
@@ -11,8 +10,15 @@
         min-width: 67% !important;
     }
 
-    .avatar-uploader > .ant-upload, .avatar {
+    .avatar-uploader > .ant-upload,
+    .avatar {
         width: 190px;
         height: 190px;
-      }
+    }
+
+    .mx-custom {
+        padding-right: 2.1rem !important;
+        padding-left: 2.1rem !important;
+        
+    }
 }

@@ -45,6 +45,8 @@ export class RegisterComponent implements OnInit {
   avatarUrl: string | ArrayBuffer;
   avatar: any;
   placeInputValue = new Subject(); 
+
+  loading = false;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -103,11 +105,13 @@ export class RegisterComponent implements OnInit {
   }
 
   async submit() {
-    const user = this.form.value
+    const user = this.form.value;
+    this.loading = true;
     await this.authService.addUser(user).toPromise().then(success => {
       this.authService.setAuth(success);
       this.step++
       this.notificationService.success(this.translate.instant('register.success.desc'), this.translate.instant('register.success.title'))
+      this.loading = false;
       this.router.navigate([`.`, { step: this.step, type: this.type.value }], { relativeTo: this.route });
     })
       .catch(err => {
@@ -127,7 +131,7 @@ export class RegisterComponent implements OnInit {
     this.selected = true;
     this.place = place;
     this.placeInput.nativeElement.value = `${place.place_name}`
-    console.log(place);
+  
   }
 
   async attachPlace() {
@@ -140,6 +144,7 @@ export class RegisterComponent implements OnInit {
       local: this.place.context.find(el => el.id.includes("region"))?.text,
       postcode: this.place.context.find(el => el.id.includes("postcode"))?.text,
     }
+    this.loading = true;
     await this.addressService.attach(obj).toPromise().then(async (res: any) => {
       if (res.role.slug == 'student') {
         this.router.navigate(['student/dashboard']);
@@ -148,6 +153,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate([`.`, { step: this.step, type: this.type.value }], { relativeTo: this.route });
       }
     })
+    this.loading = false;
   }
 
   beforeUpload = (file) => {
@@ -172,24 +178,32 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  completeTeacherProfil() {
+  async completeTeacherProfil() {
     const obj = {
-      subjects: this.taught_subject,
+      subjects: this.subjects.filter(el => this.taught_subject.includes(el.id)),
       description: this.form.controls.description.value,
       rate: this.form.controls.rate.value,
       currency : this.form.controls.currency.value
     }
-    this.teacherService.attachProfile(obj).toPromise().then(async res => {
+    this.loading = true;
+    await this.teacherService.attachProfile(obj).toPromise().then(async res => {
       const formData = new FormData();
       formData.append('avatar', this.avatar);
       await this.userService.setAvatar(formData).toPromise()
       this.router.navigate(['teacher/dashboard']);
     }
-    ).catch(err => console.log(err))
+    ).catch(err => {
+      for (const [key, value] of Object.entries(err.error)) {
+        this.notificationService.danger(this.translate.instant('register.error.desc'), value)
+      }
+    });
+    this.loading = false;
+    
   }
 
   get type() {
     return this.form.get('type');
   }
+
 
 }

@@ -11,32 +11,32 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   language = localStorage.getItem('language') ?? 'en';
   isConnected: any;
-  constructor(private translationService : TranslateService,
+  constructor(private translationService: TranslateService,
     private authService: AuthService,
-    private cdr : ChangeDetectorRef,
-    public router : Router) { }
+    private cdr: ChangeDetectorRef,
+    public router: Router) { }
 
   ngOnInit() {
     this.isConnected = this.authService.getToken() ? true : false;
     this.cdr.markForCheck();
   }
 
-  languageChange(language = 'en'){
+  languageChange(language = 'en') {
     localStorage.setItem('language', language);
     this.translationService.use(language);
   }
-  async goToDashboard(){
+  async goToDashboard() {
     await this.authService.populate();
-    this.authService.currentUser.subscribe(user => {
-      if(user.role.slug == 'student'){
-        this.router.navigate(['student/dashboard']);
-      }else{
-        this.router.navigate(['teacher/dashboard']);
-      }
-    })
+    const user = this.authService.currentUserValue;
+    if (user.role.slug == 'student') {
+      this.router.navigate(['student/dashboard']);
+    } else {
+      this.router.navigate(['teacher/dashboard']);
+    }
+
   }
 
-  logout(){
+  logout() {
     this.authService.purgeAuth();
     this.router.navigate(['/']);
   }
