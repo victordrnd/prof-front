@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { CalendarService } from 'src/app/core/services/calendar.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class CalendarComponent implements OnInit {
     'primary'
   ]
   constructor(private calendarService : CalendarService,
+    private authService : AuthService,
     private router : Router) { }
 
   async ngOnInit() {
@@ -32,7 +34,12 @@ export class CalendarComponent implements OnInit {
   }
 
   displayLesson(lesson){
-    this.router.navigate([`/student/lesson/${lesson.id}`]);
+    console.log(this.authService.currentUserValue);
+    if(this.authService.currentUserValue.role.slug == "teacher"){
+      this.router.navigate([`/teacher/lesson/${lesson.id}`]);
+    }else{
+      this.router.navigate([`/student/lesson/${lesson.id}`]);
+    }
 
   }
 }

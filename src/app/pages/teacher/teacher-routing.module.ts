@@ -7,6 +7,7 @@ import { LessonListComponent } from '../student/lesson-list/lesson-list.componen
 import { PaymentComponent } from '../student/settings/payment/payment.component';
 import { ProfilComponent } from '../student/settings/profil/profil.component';
 import { TeacherProfileComponent } from './settings/teacher-profile/teacher-profile.component';
+import { LessonDetailsComponent } from 'src/app/shared/_components/lesson-details/lesson-details.component';
 
 
 
@@ -38,6 +39,10 @@ const routes: Routes = [
         path : 'lessons',
         component : LessonListComponent
       },
+      {
+        path : 'lesson/:id',
+        component : LessonDetailsComponent
+      }
     ]
   }
 ];
