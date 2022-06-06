@@ -15,8 +15,8 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 export class TeachersListComponent implements OnInit {
   subscription;
   filters = {
-    subject_id : null,
-    address : null
+    subject_id: null,
+    address: null
   };
   data;
   environement = environment;
@@ -25,14 +25,14 @@ export class TeachersListComponent implements OnInit {
   place;
   @ViewChild('placeInput') placeInput;
 
-  placeInputValue = new Subject(); 
+  placeInputValue = new Subject();
 
-  
-  constructor(private route : ActivatedRoute,
-    private teacherService : TeacherService,
-    private subjectService : SubjectService,
-    private addressService : AddressService,
-    private router : Router) { }
+
+  constructor(private route: ActivatedRoute,
+    private teacherService: TeacherService,
+    private subjectService: SubjectService,
+    private addressService: AddressService,
+    private router: Router) { }
 
   async ngOnInit() {
     this.subscription = this.route.params.subscribe(async (params: any) => {
@@ -42,7 +42,7 @@ export class TeachersListComponent implements OnInit {
       this.data = await this.teacherService.search(this.filters).toPromise();
     });
     this.subjects = await this.subjectService.getAll().toPromise();
-    this.placeInputValue.pipe(map((word : any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
+    this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
       this.places = await this.addressService.findPlaces(keyword).toPromise();
     })
   }
@@ -50,30 +50,26 @@ export class TeachersListComponent implements OnInit {
 
   async findPlaces(keyword) {
     this.placeInputValue.next(keyword);
-}
-
-
-onSelectionChange(place) {
-  this.place = place;
-  this.placeInput.nativeElement.value = `${place.place_name}`
-}
-
-
-
-
-  async selectedSubjectsChange(value, subj){
-    this.subjects.forEach(element => {
-      if(subj.id == element.id){
-        element.selected = true;
-      }else{
-        element.selected = false;
-      }
-    });
-    this.filters.subject_id = subj.id;
-    this.data = await this.teacherService.search(this.filters).toPromise();
   }
 
-  openTeacherProfile(teacher_id){
+
+  onSelectionChange(place) {
+    this.place = place;
+    this.placeInput.nativeElement.value = `${place.place_name}`
+  }
+
+
+
+
+  async selectedSubjectsChange(value, subj) {
+    this.subjects = this.subjects.map(sub => {sub.selected = false; return sub})
+    subj.selected = value;
+    this.filters.subject_id = subj.selected ? subj.id : null;
+    this.data = await this.teacherService.search(this.filters).toPromise();
+    console.log(this.data);
+  }
+
+  openTeacherProfile(teacher_id) {
     this.router.navigate([`teacher/profile/${teacher_id}`]);
   }
 }

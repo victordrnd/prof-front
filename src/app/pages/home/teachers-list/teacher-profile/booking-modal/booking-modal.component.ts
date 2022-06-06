@@ -20,8 +20,9 @@ export class BookingModalComponent implements OnInit {
     private router : Router) { }
 
   ngOnInit() {
-    this.selectedSubject = this.teacher.teacher_subject[0].subject.id;
-    console.log(this.date, this.item);
+    if(this.teacher.teacher_subjects.length){
+      this.selectedSubject = this.teacher.teacher_subjects[0].subject.id;
+    }
   }
 
 

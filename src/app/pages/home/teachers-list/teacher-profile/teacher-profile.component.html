@@ -10,7 +10,7 @@
             <h3 class="mt-3 text-center">{{teacher?.firstname | titlecase}} {{teacher?.lastname | titlecase}}</h3>
             <nz-divider></nz-divider>
             <h6>{{'teacher.teached_subjects' | translate}} :</h6>
-            <nz-tag *ngFor="let subject of teacher?.teacher_subject" [nzColor]="subject.subject.color">
+            <nz-tag *ngFor="let subject of teacher?.teacher_subjects" [nzColor]="subject.subject.color">
                 {{subject.subject.libelle | translate}}</nz-tag>
             <h6 class="mt-4">{{'teacher.locality' | translate}} :</h6>
             <p><nb-icon icon="pin-outline"></nb-icon> {{teacher?.address?.city}} <span class="text-hint" *ngIf="teacher?.address?.distance">({{teacher?.address?.distance | number : '1.1-1'}} km)</span></p>
