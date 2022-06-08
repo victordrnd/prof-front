@@ -16,7 +16,7 @@ export class PaymentComponent implements OnInit {
     private translate : TranslateService) { }
 
   paymentMethods;
-  
+  loading = true;
   async ngOnInit() {
    this.getCards()
   }
@@ -24,10 +24,11 @@ export class PaymentComponent implements OnInit {
 
   async getCards(){
     this.paymentMethods = await this.paymentService.getAllPaymentMethods().toPromise();
-    const card = this.paymentMethods.data.find(el => el.id == this.paymentMethods.default_pm)
+    const card = this.paymentMethods.data.find(el => el.id == this.paymentMethods.default_pm);
     if(card){
       card.default = true;
     }
+    this.loading = false;
   }
 
   addPaymentMethod(){
@@ -37,7 +38,7 @@ export class PaymentComponent implements OnInit {
       nzFooter: null
     })
     modalRef.afterClose.subscribe(async () => {
-      this.getCards();
+      await this.getCards();
     })
   }
 
@@ -55,8 +56,10 @@ export class PaymentComponent implements OnInit {
       nzTitle : this.translate.instant('payment.delete.title'),
       nzIconType : "exclamation-circle",
       nzOnOk : () => {
+        this.loading = true;
         this.paymentService.detachPaymentMethod({pm_id : card.id}).toPromise().then(async () => {
           this.paymentMethods = await this.paymentService.getAllPaymentMethods().toPromise();
+          this.loading = false;
         })
       }
     })

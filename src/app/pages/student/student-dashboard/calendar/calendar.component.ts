@@ -25,7 +25,6 @@ export class CalendarComponent implements OnInit {
   async ngOnInit() {
     this.dates = await this.calendarService.getTimeTable().toPromise();
     this.dates = Object.values(this.dates);
-    console.log(this.dates);
   }
 
 
@@ -34,7 +33,6 @@ export class CalendarComponent implements OnInit {
   }
 
   displayLesson(lesson){
-    console.log(this.authService.currentUserValue);
     if(this.authService.currentUserValue.role.slug == "teacher"){
       this.router.navigate([`/teacher/lesson/${lesson.id}`]);
     }else{

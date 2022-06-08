@@ -17,7 +17,7 @@
   font-family: OdudoLight !important;
 }
 .text-primary{
-  color : #806BFF !important;
+  color : #ffdc6b !important;
 }
 
 .pointer{
@@ -35,6 +35,12 @@
 .bg-white{
   background-color: white;
 } 
+
+.nb-theme-corporate nb-layout .layout{
+  background-color: transparent;
+}
+
+
 @font-face {
   font-family: "OdudoLight";
   src: url(assets/fonts/Odudo-Light.otf) format("truetype");

@@ -27,7 +27,6 @@ export class TeacherProfileComponent implements OnInit {
   async ngOnInit() {
     this.getMySubjects();
     this.profile = await this.teacherService.getMyProfile().toPromise();
-    console.log(this.profile);
   }
 
 
@@ -91,7 +90,6 @@ export class TeacherProfileComponent implements OnInit {
 
 
   deleteSubject(subject) {
-    console.log(this.teached_subjects);
     this.subjectService.deleteTeachedSubject(subject.id).toPromise().then(res => {
       this.notificationService.success(this.translate.instant('settings.success_description'), this.translate.instant('shared.success'));
       this.getMySubjects();

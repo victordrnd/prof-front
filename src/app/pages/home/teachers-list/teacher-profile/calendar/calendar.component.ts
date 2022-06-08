@@ -24,7 +24,6 @@ export class CalendarComponent implements OnInit {
   async ngOnInit() {
     this.dates = await this.calendarService.getTwoUsersTimeTable(this.teacher.id).toPromise();
     this.dates = Object.values(this.dates);
-    console.log(this.dates);
   }
 
 

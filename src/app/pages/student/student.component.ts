@@ -19,7 +19,6 @@ export class StudentComponent implements OnInit {
       || navigator.userAgent.match(/iPod/i)){
       this.mobile = true;
     }
-    console.log("student");
   }
 
 

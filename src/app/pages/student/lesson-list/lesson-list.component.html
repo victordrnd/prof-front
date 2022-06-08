@@ -13,7 +13,7 @@
             <nz-table [nzData]="lessons" [nzShowPagination]="false">
                 <thead>
                     <tr>
-                        <th>Student</th>
+                        <th>Students</th>
                         <th>Teacher</th>
                         <th>Subject</th>
                         <th>Scheduled at</th>
@@ -22,7 +22,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let lesson of lessons">
-                        <td>{{lesson.student.firstname}} {{lesson.student.lastname}}</td>
+                        <td>
+                            <div *ngIf="lesson.capacity == 1; else elseBlock">
+                                {{lesson.students[0].firstname}} {{lesson.students[0].lastname}}
+                            </div>
+                            <ng-template #elseBlock>
+                                {{lesson.students.length}} / {{lesson.capacity}}
+                            </ng-template>
+                        </td>
                         <td>{{lesson.teacher.firstname}} {{lesson.teacher.lastname}}</td>
                         <td>
                             <nz-tag [nzColor]="lesson.subject.color">
@@ -39,7 +46,8 @@
                                     <li nz-menu-item (click)="goToCourse(lesson)">Afficher le cours</li>
                                     <li nz-menu-item nz-popconfirm
                                         nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}"
-                                        nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)" nzOkText="{{'lesson.cancel.ok' | translate}}">Annuler le
+                                        nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)"
+                                        nzOkText="{{'lesson.cancel.ok' | translate}}">Annuler le
                                         cours</li>
                                 </ul>
                             </nz-dropdown-menu>

@@ -92,6 +92,15 @@
         "detail" : "Lesson details",
         "with" : "with",
         "duration" : "Duration",
+        "students" : "Students",
+        "date" : "Date",
+        "type" : "Type",
+        "status" : "Status",
+        "description" : "Description",
+        "student" : {
+            "lastname" : "Lastname",
+            "firstname" : "Firstname"
+        },
         "join" : {
             "title" : "Join this course"
         },
@@ -115,5 +124,11 @@
         "success" : "Success",
         "error" : "Error",
         "error_description" :"An error has occured"
+    },
+    "status" : {
+        "unconfirmed" : "Unconfirmed",
+        "confirmed" : "Confirmed",
+        "cancelled" : "Cancelled",
+        "done" : "Done"
     }
 }

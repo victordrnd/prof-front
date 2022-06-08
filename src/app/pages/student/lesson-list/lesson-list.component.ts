@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { LessonService } from 'src/app/core/services/lesson.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class LessonListComponent implements OnInit {
   constructor(private lessonService : LessonService, 
     private toastrService: NbToastrService,
     private translate : TranslateService,
+    private authService : AuthService,
     private router : Router) { }
 
   async ngOnInit() {
@@ -25,7 +27,11 @@ export class LessonListComponent implements OnInit {
   }
 
   goToCourse(lesson){
-    this.router.navigate([`/student/lesson/${lesson.id}`]);
+    if(this.authService.currentUserValue.role.slug == "teacher"){
+      this.router.navigate([`/teacher/lesson/${lesson.id}`]);
+    }else{
+      this.router.navigate([`/student/lesson/${lesson.id}`]);
+    }
   }
 
 

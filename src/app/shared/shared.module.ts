@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule, NbIconModule, NbBadgeModule, NbCardModule, NbSpinnerModule, NbInputModule } from '@nebular/theme';
+import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule, NbIconModule, NbBadgeModule, NbCardModule, NbSpinnerModule, NbInputModule, NbTagModule } from '@nebular/theme';
 import { Platform } from '@angular/cdk/platform';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { OverlayModule, OverlayPositionBuilder, ViewportRuler, OverlayKeyboardDispatcher } from '@angular/cdk/overlay';
@@ -16,6 +16,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
 import { LessonDetailsComponent } from './_components/lesson-details/lesson-details.component';
 import { DefaultDashboardRedirectionComponent } from './_components/default-dashboard-redirection/default-dashboard-redirection.component';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 
 @NgModule({
@@ -35,7 +40,13 @@ import { DefaultDashboardRedirectionComponent } from './_components/default-dash
     NzBadgeModule,
     NbCardModule,
     NbSpinnerModule,
-    NbInputModule
+    NbInputModule,
+    NzTableModule,
+    NzDividerModule,
+    NbTagModule,
+    NzDropDownModule,
+    NzButtonModule,
+    NzIconModule
   ],
   exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule, LessonDetailsComponent],
   providers: [

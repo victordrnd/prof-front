@@ -20,7 +20,9 @@ export class BankInfoComponent implements OnInit {
   loading = true;
   async ngOnInit() {
     this.account = await this.teacherService.getStripeAccount().toPromise();
-    this.iban = "**** **** **** **** "+ this.account.external_accounts.data[0].last4;
+    if(this.account.external_accounts.data.length){
+      this.iban = "**** **** **** **** "+ this.account.external_accounts.data[0].last4;
+    }
     this.loading = false;
   }
   

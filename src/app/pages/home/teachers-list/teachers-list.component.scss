@@ -16,8 +16,10 @@
     .locale{
         font-family: OdudoLight !important;
     }
-    :hover{
-        transform: scale(1.02);
-        transition: all 0.4s;
-    }
+    
+}
+
+.profile:hover{
+    transform: scale(1.02);
+    transition: all 0.4s;
 }

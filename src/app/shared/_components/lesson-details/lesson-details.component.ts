@@ -22,7 +22,6 @@ export class LessonDetailsComponent implements OnInit {
     const lesson_id = this.route.snapshot.params.id;
     this.lesson = await this.lessonService.find(lesson_id).toPromise();
     this.loading = false;
-    console.log(this.lesson);
   }
 
   joinCourse(){

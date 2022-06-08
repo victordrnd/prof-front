@@ -92,6 +92,15 @@
         "detail" : "Détails du cours",
         "with" : "avec",
         "duration" : "Durée",
+        "date" : "Date",
+        "type" : "Type",
+        "students" : "Etudiants",
+        "status" : "Statut",
+        "description" : "Description",
+        "student" : {
+            "lastname" : "Nom",
+            "firstname" : "Prénom"
+        },
         "join" : {
             "title" : "Rejoindre le cours"
         },
@@ -115,5 +124,11 @@
         "success" : "Succès",
         "error" : "Erreur",
         "error_description" :"Une erreur est survenue"
+    },
+    "status" : {
+        "unconfirmed" : "Non confirmé",
+        "confirmed" : "Confirmé",
+        "cancelled" : "Annulé",
+        "done" : "Terminé"
     }
 }

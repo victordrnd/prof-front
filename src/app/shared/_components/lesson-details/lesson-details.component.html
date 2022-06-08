@@ -7,25 +7,61 @@
                 {{'lesson.with' | translate}} {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}
             </nb-card-header>
             <nb-card-body>
-                <label>Description : </label>
+                <label>{{'lesson.description' | translate}} : </label>
                 <textarea class="mt-3" nbInput  fullWidth disabled>{{lesson?.teacher_subject?.description || "N/A"}}</textarea>
 
-                <label class="mt-4">Date :</label><br/>
+                <label class="mt-4">{{'lesson.date' | translate}} :</label><br/>
                 <input class="mt-3" nbInput fullWidth value="{{lesson?.scheduled_at | date:'EEEE, MMMM d, y, h:mm a'}}" disabled/>
                 
 
-                <label class="mt-4">Duration :</label><br/>
+                <label class="mt-4">{{'lesson.duration' | translate}} :</label><br/>
                 <input class="mt-3" nbInput fullWidth value="{{lesson?.duration | number}}h" disabled/>
                 
 
-                <label class="mt-4">Type :</label><br/>
+                <label class="mt-4">{{'lesson.type' | translate}} :</label><br/>
                 <input class="mt-3" nbInput fullWidth value="Video Zoom" disabled/>
-                <ul>
-                    <!-- <li><b>Description : </b> {{lesson?.teacher_subject?.description || "N/A"}}</li>
-                    <li><b>Date :</b> {{lesson?.scheduled_at | date:'medium'}}</li> -->
-                    <!-- <li><b>{{'lesson.duration' | translate}} :</b> {{lesson?.duration}}h</li> -->
-                    <!-- <li><b>Type :</b> Visio</li> -->
-                </ul>
+
+                <label class="mt-4">{{'lesson.students' | translate}}</label>
+                <nz-table #basicTable [nzData]="lesson?.students" class="mt-3" [nzShowPagination]="false">
+                    <thead>
+                      <tr>
+                        <th>{{'lesson.student.firstname' | translate}}</th>
+                        <th>{{'lesson.student.lastname' | translate}}</th>
+                        <th>{{'lesson.status' | translate}}</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let student of lesson?.students">
+                        <td>{{student.firstname}}</td>
+                        <td>{{student.lastname}}</td>
+                        <td >
+                            <div [ngSwitch]="student.pivot.status.code">
+
+                                <nb-tag status="basic"  size="small" *ngSwitchCase="'unconfirmed'" appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
+                                <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
+                                <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
+                                <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
+                            </div>
+                        </td>
+                        <td>
+                            <button nz-button nz-dropdown [nzDropdownMenu]="menu">
+                                Action
+                                <i nz-icon nzType="down"></i>
+                            </button>
+                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                                <ul nz-menu>
+                                    <li nz-menu-item (click)="goToCourse(lesson)">Afficher le cours</li>
+                                    <li nz-menu-item nz-popconfirm
+                                        nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}"
+                                        nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)"
+                                        nzOkText="{{'lesson.cancel.ok' | translate}}">Retirer l'étudiant </li>
+                                </ul>
+                            </nz-dropdown-menu>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </nz-table>
             </nb-card-body>
             <nb-card-footer>
                 <button nbButton size="small" (click)="openCancelModal()">{{'lesson.cancel.title' | translate}}
@@ -34,8 +70,8 @@
             </nb-card-footer>
         </nb-card>
     </div>
-    <div class="col-md-4">
-        <nb-card class="mx-md-4">
+    <div class="col-md-4 mt-5">
+        <nb-card class="mx-md-4 mt-4">
             <nb-card-body class="mx-md-4">
                 <img [src]="lesson?.teacher?.image" class="w-75 mx-auto d-block rounded">
                 <h5 class="text-center">{{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}</h5>

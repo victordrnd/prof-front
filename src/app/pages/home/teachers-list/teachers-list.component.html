@@ -19,7 +19,7 @@
             <nz-checkbox-wrapper style="width: 100%;">
                 <div nz-row>
                     <div *ngFor="let subj of subjects" nz-col nzSpan="24" class="mt-1"><label nz-checkbox nzValue="A"
-                        [ngModel]="subj.id == filters.subject_id"
+                            [ngModel]="subj.id == filters.subject_id"
                             (ngModelChange)="selectedSubjectsChange($event, subj)">{{subj.libelle | translate}}</label>
                     </div>
                 </div>
@@ -29,12 +29,11 @@
 
     <nb-layout-column>
         <div class="row mx-0 mt-4 px-5" *ngIf="data">
-            <div class="col-md-3 col-12 px-4 mt-5" *ngFor="let teacher of data?.data">
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 px-4 mt-5" *ngFor="let teacher of data?.data">
                 <div class="mt-5">
 
                     <div class="profile pointer" (click)="openTeacherProfile(teacher.id)">
-                        <div class="profil-img"
-                            [ngStyle]="{'background-image' : 'url('+teacher.image+ ')'}">
+                        <div class="profil-img" [ngStyle]="{'background-image' : 'url('+teacher.image+ ')'}">
                             <div class="d-flex h-100">
                                 <!-- <div class="inblock-profile">
                                     <h2 class="text-white m-2 d-inline-block">{{teacher.firstname | titlecase}}
@@ -42,12 +41,10 @@
                                 </div> -->
                             </div>
                         </div>
-                        <p class="text-bold justify-content-between mt-3">
-                            <span>
-                                {{teacher.firstname | titlecase}} {{teacher.lastname | titlecase}}
-                            </span>
-                        <!-- <p class="locale mb-0 mt-1 text-right"> -->
-                            <span class="locale mb-0 mt-1 text-right float-right">
+                        <p class="text-bold justify-content-between mt-3" style="overflow: hidden;white-space: nowrap;clear: both;display: inline-block;">
+                            {{teacher.firstname | titlecase}} {{teacher.lastname | titlecase}}
+                            <!-- <p class="locale mb-0 mt-1 text-right"> -->
+                            <span class="locale mb-0 mt-1 text-right">
                                 <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon> {{teacher.address.city}}
                             </span>
                         </p>
