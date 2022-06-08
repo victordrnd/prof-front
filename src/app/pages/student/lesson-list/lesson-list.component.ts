@@ -17,8 +17,11 @@ export class LessonListComponent implements OnInit {
     private router : Router) { }
 
   async ngOnInit() {
+    this.getLessons();
+  }
+
+  async getLessons(){
     this.lessons = await this.lessonService.getMyLessons().toPromise();
-    console.log(this.lessons);
   }
 
   goToCourse(lesson){
@@ -29,6 +32,7 @@ export class LessonListComponent implements OnInit {
   async cancelLesson(lesson){
     await this.lessonService.cancel(lesson.id).toPromise().then(res => {
       this.toastrService.success(this.translate.instant('lesson.cancel.success_description'), this.translate.instant('lesson.cancel.success'));
+      this.getLessons();
     }).catch(err => {
       this.toastrService.danger("Error", "An error has occured");
     });

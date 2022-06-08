@@ -1,0 +1,33 @@
+<h3 class="text-center mt-3">{{'header.bank_info' | translate}}</h3>
+
+<div *ngIf="!loading">
+
+    <nb-card class="p-3 mx-5">
+        <div *ngIf="account?.requirements.currently_due.length > 0">
+            <p class="text-center muted">Il semblerait que vous n'ayez pas encore complété vos informations pour recevoir les paiements de vos cours, merci de cliquer sur le lien suivant pour compléter votre profil</p>
+            <div class="mx-5">
+                <ul class="text-center list-unstyled">
+                    <li class="small" *ngFor="let error of account.requirements.errors" >{{error.reason}}</li>
+                </ul>
+                <!-- <nb-alert *ngFor="let error of account.requirements.errors" accent="danger">{{error.reason}}</nb-alert> -->
+            </div>
+            <button nbButton status="primary" class="mx-auto d-block" (click)="openStripeSetup()">Completer mon profil</button>
+        </div>
+    </nb-card>
+
+    <div class="m-5">
+        <label>Transfers : </label>
+        <div class="mt-3">
+            <nb-alert class="d-inline-block" status="danger" *ngIf="!account?.capabilities?.tranfers">Inactive yet</nb-alert>
+            <nb-alert class="d-inline-block" status="success" *ngIf="account?.capabilities?.tranfers">Active</nb-alert>
+        </div>
+    </div>
+    
+    <div class="mx-5">
+        <label>IBAN : </label>
+        <input class="mt-3" nbInput fullWidth (ngModelChange)="onIbanChange($event)" placeholder="AE07 0331 2345 6789 0123 456" [ngModel]="iban" maxlength="32">
+        <button nbButton status="primary" class="mt-5 float-right" [disabled]="iban?.length < 20" (click)="saveIban()">{{'settings.save' | translate}}</button>
+    </div>
+    
+</div>
+<nz-spin *ngIf="loading" class="text-center"></nz-spin>

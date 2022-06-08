@@ -15,8 +15,10 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { TeacherProfileComponent } from './settings/teacher-profile/teacher-profile.component';
 import { AddSubjectsModalComponent } from './settings/_components/add-subjects-modal/add-subjects-modal.component';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { BankInfoComponent } from './settings/bank-info/bank-info.component';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 @NgModule({
-  declarations: [TeacherDashboardComponent, TeacherComponent, TeacherProfileComponent, AddSubjectsModalComponent,],
+  declarations: [TeacherDashboardComponent, TeacherComponent, TeacherProfileComponent, AddSubjectsModalComponent, BankInfoComponent,],
   imports: [
     CommonModule,
     TeacherRoutingModule,
@@ -35,7 +37,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NbInputModule,
     NbSelectModule,
     NzPopconfirmModule,
-    NbFormFieldModule
+    NbFormFieldModule,
+    NzSpinModule
   ],
   bootstrap : [TeacherComponent],
  

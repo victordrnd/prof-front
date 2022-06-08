@@ -48,7 +48,7 @@ export class TeacherProfileComponent implements OnInit {
     this.teacherService.updateProfile(this.profile).toPromise().then(res => {
       this.notificationService.success(this.translate.instant("settings.success_description"), this.translate.instant('shared.success'))
     }).catch(err => {
-      this.notificationService.success(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
+      this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
     });
   }
 
@@ -82,17 +82,19 @@ export class TeacherProfileComponent implements OnInit {
     })
 
     this.subjectService.updateMyTeachedSubjects(subjects).toPromise().then(res => {
-      this.notificationService.success(this.translate.instant("settings.success_description"), this.translate.instant('shared.success'))
+      this.notificationService.success(this.translate.instant("settings.success_description"), this.translate.instant('shared.success'));
+      this.getMySubjects();
     }).catch(err => {
-      this.notificationService.success(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
+      this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
     });
   }
 
 
   deleteSubject(subject) {
+    console.log(this.teached_subjects);
     this.subjectService.deleteTeachedSubject(subject.id).toPromise().then(res => {
       this.notificationService.success(this.translate.instant('settings.success_description'), this.translate.instant('shared.success'));
       this.getMySubjects();
-    }).catch(err => this.notificationService.success(this.translate.instant("shared.error_description"), this.translate.instant('shared.error')));
+    }).catch(err => this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error')));
   }
 }

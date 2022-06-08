@@ -29,4 +29,17 @@ export class TeacherService {
   updateProfile(profile){
     return this.http.put(`${environment.apiUrl}/teacher/profile`, profile);
   }
+
+  getStripeAccount(){
+    return this.http.get(`${environment.apiUrl}/teacher/stripe`);
+  }
+
+
+  getStripeAccountLink(){
+    return this.http.get(`${environment.apiUrl}/teacher/stripe/account_link`);
+  }
+
+  createBankAccount(iban){
+    return this.http.post(`${environment.apiUrl}/teacher/stripe/iban`, {iban});
+  }
 }

@@ -4,10 +4,9 @@ import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard
 import { TeacherComponent } from './teacher.component';
 import { AuthGuardService } from 'src/app/core/gards/auth-gards.service';
 import { LessonListComponent } from '../student/lesson-list/lesson-list.component';
-import { PaymentComponent } from '../student/settings/payment/payment.component';
-import { ProfilComponent } from '../student/settings/profil/profil.component';
 import { TeacherProfileComponent } from './settings/teacher-profile/teacher-profile.component';
 import { LessonDetailsComponent } from 'src/app/shared/_components/lesson-details/lesson-details.component';
+import { BankInfoComponent } from './settings/bank-info/bank-info.component';
 
 
 
@@ -31,7 +30,7 @@ const routes: Routes = [
           },
           {
             path : 'payments',
-            component : PaymentComponent
+            component : BankInfoComponent
           }
         ]
       },
