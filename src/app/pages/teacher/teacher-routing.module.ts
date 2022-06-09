@@ -7,6 +7,7 @@ import { LessonListComponent } from '../student/lesson-list/lesson-list.componen
 import { TeacherProfileComponent } from './settings/teacher-profile/teacher-profile.component';
 import { LessonDetailsComponent } from 'src/app/shared/_components/lesson-details/lesson-details.component';
 import { BankInfoComponent } from './settings/bank-info/bank-info.component';
+import { DiplomaUploadComponent } from './settings/diploma-upload/diploma-upload.component';
 
 
 
@@ -31,6 +32,10 @@ const routes: Routes = [
           {
             path : 'payments',
             component : BankInfoComponent
+          },
+          {
+            path : "diploma",
+            component : DiplomaUploadComponent
           }
         ]
       },

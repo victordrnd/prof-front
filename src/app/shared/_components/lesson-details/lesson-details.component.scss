@@ -1,7 +1,14 @@
-:host::ng-deep{
+:host::ng-deep {
     [nbInput].status-basic:disabled {
         // background-color: inherit  !important;
         // border-color: inherit  !important;
-        color: inherit  !important;
+        color: inherit !important;
     }
+
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+    // background-color: #ccc;
 }

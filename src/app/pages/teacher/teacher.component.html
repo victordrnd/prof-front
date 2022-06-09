@@ -3,9 +3,9 @@
     <nz-sider nzCollapsible [nzCollapsed]="mobile ? true : false" [nzWidth]="290" [nzCollapsedWidth]="mobile ? 0 : 80">
         <ul nz-menu nzMode="inline" class="w-100">
             <li class="mt-0" nz-menu-item routerLink="dashboard">
-                <i nz-icon nzType="home"
-                    nzTheme="outline"></i>
-                    <span>Tableau de bord</span></li>
+                <i nz-icon nzType="home" nzTheme="outline"></i>
+                <span>Tableau de bord</span>
+            </li>
             <li nz-submenu nzTitle="Mes cours" nzIcon="shopping" nzOpen>
                 <ul>
                     <li nz-menu-item routerLink="lessons">Afficher tous mes cours</li>
@@ -24,7 +24,8 @@
                         Afficher mon profil</li>
                     <li nz-menu-item routerLink="settings/payments">
                         {{'header.bank_info' | translate}}</li>
-                    <li nz-menu-item [nzDisabled]="true">Réinitialiser mon mot de passe</li>
+                    <li nz-menu-item routerLink="settings/diploma">
+                        {{'header.diploma' | translate}}</li>
                     <li nz-menu-item (click)="logout()">Déconnexion
                     </li>
                 </ul>
@@ -35,7 +36,7 @@
     <nz-layout>
         <nz-content>
             <div class="body pb-5" style="min-height : 100vh !important">
-                <nb-layout> 
+                <nb-layout>
                     <nb-layout-column>
                         <router-outlet></router-outlet>
                     </nb-layout-column>

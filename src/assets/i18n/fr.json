@@ -7,7 +7,8 @@
         "register" : "Inscription",
         "dashboard" : "Tableau de bord",
         "logout" : "Déconnexion",
-        "bank_info" : "Informations bancaires"
+        "bank_info" : "Informations bancaires",
+        "diploma" : "Gestion des diplômes"
     },
     "register" : {
         "title" : "Inscription",
@@ -101,6 +102,11 @@
             "lastname" : "Nom",
             "firstname" : "Prénom"
         },
+        "settings" :{
+            "accept_text" : "Accepter l'étudiant",
+            "accept_confirm" : "Êtes-vous certains d'accepter cet élève ?",
+            "accept_success" : "L'étudiant est désormais confirmé pour ce cours" 
+        },
         "join" : {
             "title" : "Rejoindre le cours"
         },
@@ -129,6 +135,9 @@
         "unconfirmed" : "Non confirmé",
         "confirmed" : "Confirmé",
         "cancelled" : "Annulé",
-        "done" : "Terminé"
+        "done" : "Terminé",
+        "waiting" :"En attente",
+        "approved" : "Approuvé",
+        "refused" :"Refusé"
     }
 }

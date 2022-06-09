@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TeacherRoutingModule } from './teacher-routing.module';
 import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
 import { TeacherComponent } from './teacher.component';
-import { NbAlertModule,  NbButtonModule,  NbCardModule,  NbFormFieldModule,  NbIconModule,  NbInputModule,  NbLayoutModule, NbSelectModule } from '@nebular/theme';
+import { NbAlertModule,  NbButtonModule,  NbCardModule,  NbFormFieldModule,  NbIconModule,  NbInputModule,  NbLayoutModule, NbSelectModule, NbTagModule } from '@nebular/theme';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StudentModule } from '../student/student.module';
 import { NzModalModule } from 'ng-zorro-antd/modal';
@@ -17,8 +17,12 @@ import { AddSubjectsModalComponent } from './settings/_components/add-subjects-m
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { BankInfoComponent } from './settings/bank-info/bank-info.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { DiplomaUploadComponent } from './settings/diploma-upload/diploma-upload.component';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzTableModule } from 'ng-zorro-antd/table';
 @NgModule({
-  declarations: [TeacherDashboardComponent, TeacherComponent, TeacherProfileComponent, AddSubjectsModalComponent, BankInfoComponent,],
+  declarations: [TeacherDashboardComponent, TeacherComponent, TeacherProfileComponent, AddSubjectsModalComponent, BankInfoComponent, DiplomaUploadComponent,],
   imports: [
     CommonModule,
     TeacherRoutingModule,
@@ -38,7 +42,11 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NbSelectModule,
     NzPopconfirmModule,
     NbFormFieldModule,
-    NzSpinModule
+    NzSpinModule,
+    NzUploadModule,
+    NzIconModule,
+    NzTableModule,
+    NbTagModule
   ],
   bootstrap : [TeacherComponent],
  

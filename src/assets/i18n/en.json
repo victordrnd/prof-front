@@ -7,7 +7,8 @@
         "register" : "Register",
         "dashboard" : "Dashboard",
         "logout" : "Log out",
-        "bank_info" : "Banking Information"
+        "bank_info" : "Banking Information",
+        "diploma" : "Upload your diploma"
     },
     "register" : {
         "title" : "Register",
@@ -101,6 +102,11 @@
             "lastname" : "Lastname",
             "firstname" : "Firstname"
         },
+        "settings" :{
+            "accept_text" : "Accept student",
+            "accept_confirm" : "Do you really want to accept this student ?",
+            "accept_success" : "Student has been added to this lesson" 
+        },
         "join" : {
             "title" : "Join this course"
         },
@@ -129,6 +135,9 @@
         "unconfirmed" : "Unconfirmed",
         "confirmed" : "Confirmed",
         "cancelled" : "Cancelled",
-        "done" : "Done"
+        "done" : "Done",
+        "waiting" :"Waiting",
+        "approved" : "Approved",
+        "refused" :"Refused"
     }
 }

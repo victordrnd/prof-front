@@ -12,7 +12,7 @@
                             <h6 class="caption margin-negative px-3">{{item.time}}</h6>
                         </nz-list-item-meta-title>
                     </nz-list-item-meta>
-                    <nb-alert *ngFor="let lesson of item.lessons" [style.backgroundColor]="lesson.subject.color" class="w-100 ml-5 mr-4" [style.height]="'calc(110px *'+ lesson.duration +')'" [style.marginTop.px]="getLessonMarginTop(lesson)">
+                    <nb-alert *ngFor="let lesson of item.lessons" [style.backgroundColor]="lesson.subject.color" class="w-100 ml-5 mr-4" [style.height]="getHeight(lesson)+'px'" [style.marginTop.px]="getLessonMarginTop(lesson)">
                         <div class="row">
                             <div class="col-6">
                                 <h6 class="text-white">{{item.time}} - {{lesson.subject.libelle | translate}}</h6>

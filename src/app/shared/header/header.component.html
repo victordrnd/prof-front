@@ -26,10 +26,9 @@
                 <nb-option value="fr">🇫🇷</nb-option>
             </nb-select>
             <button nbButton hero size="small" routerLink="/login" class="mx-2" *ngIf="!isConnected"><i nz-icon
-                    nzType="user" nzTheme="outline"></i> {{'header.login' | translate}}</button>
+                    nzType="user" class="mr-2" nzTheme="outline"></i> {{'header.login' | translate}}</button>
             <button nbButton hero status="primary" size="small" routerLink="/register" class=" ml-2 mr-4"
-                *ngIf="!isConnected"><i nz-icon nzType="user" nzTheme="outline"></i> {{'header.register' | translate}}
-                !</button>
+                *ngIf="!isConnected"><i nz-icon nzType="user" class="mr-2" nzTheme="outline"></i> {{'header.register' | translate}}</button>
             <button nbButton hero status="primary" size="small" (click)="goToDashboard()" class=" ml-2 mr-4"
                 *ngIf="isConnected && (router.url != '/student/dashboard' && router.url != '/teacher/dashboard')"><i nz-icon nzType="user" nzTheme="outline"></i>
                 {{'header.dashboard' | translate}}</button>
@@ -42,9 +41,9 @@
     <div class="float-right d-inline d-md-none mobile-menu">
         <div class="d-inline">
             <button nbButton hero size="small" routerLink="/login" class="mx-2" *ngIf="!isConnected"><i nz-icon
-                    nzType="user" nzTheme="outline"></i> {{'header.login' | translate}}</button>
+                    nzType="user" class="mx-2" nzTheme="outline"></i> {{'header.login' | translate}}</button>
             <button nbButton hero status="primary" size="small" routerLink="/register" class=" ml-2 mr-4"
-                *ngIf="!isConnected"><i nz-icon nzType="user" nzTheme="outline"></i> {{'header.register' | translate}}
+                *ngIf="!isConnected"><i nz-icon nzType="user" class="mx-2" nzTheme="outline"></i> {{'header.register' | translate}}
                 !</button>
         </div>
     </div>

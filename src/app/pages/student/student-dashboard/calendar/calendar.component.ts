@@ -29,7 +29,11 @@ export class CalendarComponent implements OnInit {
 
 
   getLessonMarginTop(lesson){
-    return (lesson.duration - 1) * 110
+    return (lesson.duration - 1) * 115 
+  }
+
+  getHeight(lesson){
+    return lesson.duration * 110 + ((lesson.duration-1) * 5)
   }
 
   displayLesson(lesson){

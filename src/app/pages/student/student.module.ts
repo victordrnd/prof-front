@@ -6,7 +6,7 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { StudentComponent } from './student.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CalendarComponent } from './student-dashboard/calendar/calendar.component';
-import { NbAlertModule, NbUserModule, NbCardModule, NbButtonModule, NbIconModule, NbInputModule, NbToastrModule, NbFormFieldModule, NbLayoutModule, NbSpinnerModule, NbCheckboxModule, NbRadioModule, NbAutocompleteModule } from '@nebular/theme';
+import { NbAlertModule, NbUserModule, NbCardModule, NbButtonModule, NbIconModule, NbInputModule, NbToastrModule, NbFormFieldModule, NbLayoutModule, NbSpinnerModule, NbCheckboxModule, NbRadioModule, NbAutocompleteModule, NbTagModule } from '@nebular/theme';
 import { PaymentComponent } from './settings/payment/payment.component';
 import { AddPaymentComponent } from './settings/payment/add-payment/add-payment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -69,7 +69,8 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NbCheckboxModule,
     NbRadioModule,
     NzUploadModule,
-    NbAutocompleteModule
+    NbAutocompleteModule,
+    NbTagModule
     ],
   bootstrap : [StudentComponent],
   exports : [CalendarComponent, LessonListComponent, ProfilComponent],

@@ -42,4 +42,8 @@ export class TeacherService {
   createBankAccount(iban){
     return this.http.post(`${environment.apiUrl}/teacher/stripe/iban`, {iban});
   }
+
+  acceptStudentLesson(student_id, lesson_id){
+    return this.http.put(`${environment.apiUrl}/teacher/lesson/confirm/student`,{student_id, lesson_id});
+  };
 }

@@ -12,6 +12,7 @@ import { LessonService } from 'src/app/core/services/lesson.service';
 })
 export class LessonListComponent implements OnInit {
   lessons;
+  loading = true;
   constructor(private lessonService : LessonService, 
     private toastrService: NbToastrService,
     private translate : TranslateService,
@@ -24,6 +25,7 @@ export class LessonListComponent implements OnInit {
 
   async getLessons(){
     this.lessons = await this.lessonService.getMyLessons().toPromise();
+    this.loading = false;
   }
 
   goToCourse(lesson){

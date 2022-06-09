@@ -26,6 +26,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "@stripe/stripe-js": "^1.31.0",
     "@types/stripe-v3": "^3.1.26",
+    "@videosdk.live/rtc-js-prebuilt": "^0.3.6",
     "eva-icons": "^1.1.3",
     "ng-zorro-antd": "13.2.2",
     "ngx-stripe": "^13.2.1",

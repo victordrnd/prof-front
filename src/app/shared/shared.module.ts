@@ -21,6 +21,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NbTagModule,
     NzDropDownModule,
     NzButtonModule,
-    NzIconModule
+    NzIconModule,
+    NzPopconfirmModule
   ],
   exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule, LessonDetailsComponent],
   providers: [

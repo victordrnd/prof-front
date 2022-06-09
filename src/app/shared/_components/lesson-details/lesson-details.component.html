@@ -5,6 +5,13 @@
         <nb-card status="success" [nbSpinner]="loading" nbSpinnerStatus="primary" class="mx-4">
             <nb-card-header [style.backgroundColor]="lesson?.subject?.color">{{lesson?.subject?.libelle | translate}}
                 {{'lesson.with' | translate}} {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}
+
+                <div [ngSwitch]="lesson?.status?.code" class="float-right">
+                    <nb-tag status="basic"  size="small" *ngSwitchCase="'unconfirmed'" appearance="filled" text="{{lesson.status.label | translate}}"></nb-tag>
+                    <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
+                    <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
+                    <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
+                </div>
             </nb-card-header>
             <nb-card-body>
                 <label>{{'lesson.description' | translate}} : </label>
@@ -28,7 +35,7 @@
                         <th>{{'lesson.student.firstname' | translate}}</th>
                         <th>{{'lesson.student.lastname' | translate}}</th>
                         <th>{{'lesson.status' | translate}}</th>
-                        <th>Action</th>
+                        <th *ngIf="isTeacher">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -44,18 +51,18 @@
                                 <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
                             </div>
                         </td>
-                        <td>
+                        <td *ngIf="isTeacher">
                             <button nz-button nz-dropdown [nzDropdownMenu]="menu">
                                 Action
                                 <i nz-icon nzType="down"></i>
                             </button>
                             <nz-dropdown-menu #menu="nzDropdownMenu">
                                 <ul nz-menu>
-                                    <li nz-menu-item (click)="goToCourse(lesson)">Afficher le cours</li>
-                                    <li nz-menu-item nz-popconfirm
-                                        nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}"
-                                        nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)"
-                                        nzOkText="{{'lesson.cancel.ok' | translate}}">Retirer l'étudiant </li>
+                                    <li [class.disabled]="lesson?.students.length == 1" *ngIf="student.pivot.status.code == 'confirmed'" nz-menu-item (click)="removeStudent(student)"><nb-icon nbPrefix icon="close-outline" pack="eva"></nb-icon>  Retirer du cours</li>
+                                    <li *ngIf="student.pivot.status.code == 'unconfirmed'" nz-menu-item nz-popconfirm
+                                        nzPopconfirmTitle="{{'lesson.settings.accept_confirm' | translate}}"
+                                        nzPopconfirmPlacement="bottom" (nzOnConfirm)="acceptStudent(student)"
+                                        nzOkText="{{'lesson.cancel.ok' | translate}}"><nb-icon nbPrefix icon="checkmark-outline" pack="eva"></nb-icon>  {{'lesson.settings.accept_text' | translate}}</li>
                                 </ul>
                             </nz-dropdown-menu>
                         </td>
@@ -63,7 +70,7 @@
                     </tbody>
                   </nz-table>
             </nb-card-body>
-            <nb-card-footer>
+            <nb-card-footer *ngIf="lesson?.status?.code != 'cancelled'">
                 <button nbButton size="small" (click)="openCancelModal()">{{'lesson.cancel.title' | translate}}
                 </button>
                 <button nbButton size="small" status="primary" class="float-right" (click)="joinCourse()">{{'lesson.join.title' | translate}}</button>
@@ -76,8 +83,8 @@
                 <img [src]="lesson?.teacher?.image" class="w-75 mx-auto d-block rounded">
                 <h5 class="text-center">{{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}</h5>
                 <p class="text-center">{{lesson?.teacher?.teacher_profil?.description}}</p>
-                <button nbButton size="small" class="mx-auto d-block">Contacter {{lesson?.teacher?.lastname}}
-                    {{lesson?.teacher?.firstname}}</button>
+                <button nbButton size="small" class="mx-auto d-block" *ngIf="!isTeacher"><nb-icon nbPrefix icon="email-outline" pack="eva"></nb-icon> Contacter {{lesson?.teacher?.lastname}}
+                    {{lesson?.teacher?.firstname}} </button>
             </nb-card-body>
         </nb-card>
     </div>

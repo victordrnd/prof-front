@@ -1,5 +1,5 @@
 <div class="row mx-5 mt-5">
-    <div class="col-md-8">
+    <div class="col-md-10">
         <div class="mb-4">
             <h2 class="float-left">Vos cours</h2>
             <nb-form-field class="float-right">
@@ -10,13 +10,14 @@
         </div>
         <div class="bg-white p-5 rounded-lg shadow-sm mt-5">
 
-            <nz-table [nzData]="lessons" [nzShowPagination]="false">
+            <nz-table [nzData]="lessons" [nzLoading]="loading" [nzShowPagination]="false">
                 <thead>
                     <tr>
                         <th>Students</th>
                         <th>Teacher</th>
                         <th>Subject</th>
                         <th>Scheduled at</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -35,7 +36,15 @@
                             <nz-tag [nzColor]="lesson.subject.color">
                                 {{lesson.subject.libelle | translate}}</nz-tag>
                         </td>
-                        <td>{{lesson.scheduled_at | date:'EEEE, MMMM d, y, h:mm a'}}</td>
+                        <td>{{lesson.scheduled_at | date:'MMMM d, y, h:mm a'}}</td>
+                        <td>
+                            <div [ngSwitch]="lesson?.status?.code" class="float-right">
+                                <nb-tag status="basic"  size="small" *ngSwitchCase="'unconfirmed'" appearance="filled" text="{{lesson.status.label | translate}}"></nb-tag>
+                                <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
+                                <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
+                                <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
+                            </div>
+                        </td>
                         <td>
                             <button nz-button nz-dropdown [nzDropdownMenu]="menu">
                                 Action
@@ -57,7 +66,7 @@
             </nz-table>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2 d-none">
         <div class="row px-5">
             <div class="col-12">
                 <div class="fade-pink rounded-lg p-3 flex">

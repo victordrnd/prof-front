@@ -1,0 +1,58 @@
+<h3 class="text-center mt-3">{{'header.diploma' | translate}}</h3>
+
+
+<p class="text-center mx-5">Afin de valider votre profil de professeur, nous aurions besoin de vérifier vos diplômes
+    d'enseignants,
+    cette étape est nécessaire afin de nous assurer que l'ensemble des professeurs propose un contenu de qualité aux
+    étudiants de la plateforme</p>
+
+
+<div class="row mx-5">
+    <div class="col-12">
+        <nz-upload nzType="drag" [nzCustomRequest]="customRequest" [nzMultiple]="true" [nzAction]="url">
+            <p class="ant-upload-drag-icon">
+                <nb-icon nbPrefix icon="cloud-upload-outline" pack="eva" class="h1 text-primary"></nb-icon>
+            </p>
+            <p class="ant-upload-text">Click or drag diploma to this area to upload</p>
+            <p class="ant-upload-hint">
+                Support for a single or bulk upload. Supported format are PDF, PNG, JPG, JPEG (max : 5 Mo / file)
+            </p>
+        </nz-upload>
+    </div>
+</div>
+
+
+<div class="mx-5">
+
+    <h5 class="text-center mt-5">Mes diplômes enregistrés</h5>
+    
+    <nz-table #basicTable [nzData]="diplomas" [nzLoading]="loading" [nzShowPagination]="false">
+        <thead>
+            <tr>
+                <th>File</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let diploma of diplomas">
+                <td>{{diploma.name}}</td>
+                <td> 
+                    <div [ngSwitch]="diploma?.status?.code">
+                        <nb-tag status="basic"  size="small" *ngSwitchCase="'waiting'" appearance="filled" text="{{diploma.status.label | translate}}"></nb-tag>
+                        <nb-tag status="success" size="small" *ngSwitchCase="'approved'" appearance="filled" text="{{diploma.status.label  | translate}}"></nb-tag>
+                        <nb-tag status="danger" size="small" *ngSwitchCase="'refused'" appearance="filled" text="{{diploma.status.label  | translate}}"></nb-tag>
+                    </div>
+
+                </td>
+                <td>
+                    <div>
+                        <!-- <nb-icon nbPrefix icon="cloud-upload-outline" pack="eva" class="text-primary mx-1"></nb-icon> -->
+                        <nb-icon nbPrefix (click)="openFile(diploma)" icon="eye-outline" pack="eva" class="text-primary mx-1 pointer"></nb-icon>
+                        <nb-icon *ngIf="diploma.status.code != 'approved' " nbPrefix (click)="deleteFile(diploma)" icon="trash-outline" pack="eva" class="text-danger mx-1 pointer"></nb-icon>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
