@@ -22,10 +22,12 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
-
-
+import { LessonSettingsModalComponent } from './_components/lesson-settings-modal/lesson-settings-modal.component';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, LessonDetailsComponent, DefaultDashboardRedirectionComponent],
+  declarations: [HeaderComponent, FooterComponent, LessonDetailsComponent, DefaultDashboardRedirectionComponent, LessonSettingsModalComponent],
   imports: [
     CommonModule,
     NzModalModule,
@@ -48,7 +50,10 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NzDropDownModule,
     NzButtonModule,
     NzIconModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzSwitchModule,
+    NzSliderModule,
+    NzToolTipModule
   ],
   exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule, LessonDetailsComponent],
   providers: [

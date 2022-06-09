@@ -27,4 +27,9 @@ export class LessonService {
     return this.http.delete(`${environment.apiUrl}/lessons/${lesson_id}`);
   }
 
+
+  confirm(lesson_id){
+    return this.http.put(`${environment.apiUrl}/teacher/lesson/confirm/${lesson_id}`, {});
+  }
+
 }

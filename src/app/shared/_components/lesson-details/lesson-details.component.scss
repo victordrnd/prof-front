@@ -1,3 +1,4 @@
+@use '../../../../themes.scss' as *;
 :host::ng-deep {
     [nbInput].status-basic:disabled {
         // background-color: inherit  !important;
@@ -11,4 +12,11 @@
     opacity: 0.6;
     cursor: not-allowed;
     // background-color: #ccc;
+}
+
+:host::ng-deep{
+    nb-tag.appearance-filled.status-primary {
+        background-color: nb-theme(tag-filled-primary-hover-background-color) !important;
+        border-color: nb-theme(tag-filled-primary-hover-border-color) !important;
+    }
 }

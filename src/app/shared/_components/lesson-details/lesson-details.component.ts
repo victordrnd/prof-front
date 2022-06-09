@@ -8,6 +8,7 @@ import { LessonService } from 'src/app/core/services/lesson.service';
 import { TeacherService } from 'src/app/core/services/teacher.service';
 import { VideoSDKMeeting } from '@videosdk.live/rtc-js-prebuilt';
 import { environment } from 'src/environments/environment';
+import { LessonSettingsModalComponent } from '../lesson-settings-modal/lesson-settings-modal.component';
 @Component({
   selector: 'app-lesson-details',
   templateUrl: './lesson-details.component.html',
@@ -40,6 +41,15 @@ export class LessonDetailsComponent implements OnInit {
     }).catch(err => {
       this.notificationService.danger(err.error, this.translate.instant('shared.error'))
     });
+  }
+
+  confirmLesson(){
+    this.lessonService.confirm(this.lesson.id).toPromise().then(res => {
+      this.lesson = res;
+      this.notificationService.success(this.translate.instant('lesson.settings.accept_success'),this.translate.instant('shared.success'))
+    }).catch(err => {
+      this.notificationService.danger(err.error, this.translate.instant('shared.error'))
+    }) 
   }
 
 
@@ -119,6 +129,14 @@ export class LessonDetailsComponent implements OnInit {
     };
     const meeting = new VideoSDKMeeting();
     meeting.init(config);
+  }
+
+  openSettingsModal(){
+    const modalRef= this.modalService.create({
+      nzContent : LessonSettingsModalComponent,
+      nzComponentParams : {lesson : this.lesson},
+      nzTitle : "Réglage du cours"
+    })
   }
 
   openCancelModal(){

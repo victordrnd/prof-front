@@ -6,6 +6,7 @@
             <nb-card-header [style.backgroundColor]="lesson?.subject?.color">{{lesson?.subject?.libelle | translate}}
                 {{'lesson.with' | translate}} {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}
 
+                <nb-icon nbPrefix icon="settings-2-outline" class="mx-3 mt-1 float-right pointer" (click)="openSettingsModal()" pack="eva"></nb-icon>
                 <div [ngSwitch]="lesson?.status?.code" class="float-right">
                     <nb-tag status="basic"  size="small" *ngSwitchCase="'unconfirmed'" appearance="filled" text="{{lesson.status.label | translate}}"></nb-tag>
                     <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
@@ -85,6 +86,7 @@
                 <p class="text-center">{{lesson?.teacher?.teacher_profil?.description}}</p>
                 <button nbButton size="small" class="mx-auto d-block" *ngIf="!isTeacher"><nb-icon nbPrefix icon="email-outline" pack="eva"></nb-icon> Contacter {{lesson?.teacher?.lastname}}
                     {{lesson?.teacher?.firstname}} </button>
+                    <button nbButton size="small" status="primary" class="mx-auto d-block" (click)="confirmLesson()" *ngIf="isTeacher && lesson.status.code == 'unconfirmed'"><nb-icon nbPrefix icon="checkmark-outline" pack="eva"></nb-icon> Confirm this lesson </button>
             </nb-card-body>
         </nb-card>
     </div>

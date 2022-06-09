@@ -39,10 +39,14 @@
                         <td>{{lesson.scheduled_at | date:'MMMM d, y, h:mm a'}}</td>
                         <td>
                             <div [ngSwitch]="lesson?.status?.code" class="float-right">
-                                <nb-tag status="basic"  size="small" *ngSwitchCase="'unconfirmed'" appearance="filled" text="{{lesson.status.label | translate}}"></nb-tag>
-                                <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
-                                <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
-                                <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled" text="{{lesson.status.label  | translate}}"></nb-tag>
+                                <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
+                                    text="{{lesson.status.label | translate}}"></nb-tag>
+                                <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled"
+                                    text="{{lesson.status.label  | translate}}"></nb-tag>
+                                <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled"
+                                    text="{{lesson.status.label  | translate}}"></nb-tag>
+                                <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
+                                    text="{{lesson.status.label  | translate}}"></nb-tag>
                             </div>
                         </td>
                         <td>
@@ -53,7 +57,7 @@
                             <nz-dropdown-menu #menu="nzDropdownMenu">
                                 <ul nz-menu>
                                     <li nz-menu-item (click)="goToCourse(lesson)">Afficher le cours</li>
-                                    <li nz-menu-item nz-popconfirm
+                                    <li *ngIf="lesson?.status?.code !='cancelled'" nz-menu-item nz-popconfirm
                                         nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}"
                                         nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)"
                                         nzOkText="{{'lesson.cancel.ok' | translate}}">Annuler le
