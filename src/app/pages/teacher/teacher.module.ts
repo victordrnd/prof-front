@@ -21,6 +21,9 @@ import { DiplomaUploadComponent } from './settings/diploma-upload/diploma-upload
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'] } };
 @NgModule({
   declarations: [TeacherDashboardComponent, TeacherComponent, TeacherProfileComponent, AddSubjectsModalComponent, BankInfoComponent, DiplomaUploadComponent,],
   imports: [
@@ -46,7 +49,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     NzUploadModule,
     NzIconModule,
     NzTableModule,
-    NbTagModule
+    NbTagModule,
+    // SocketIoModule.forRoot(config)
   ],
   bootstrap : [TeacherComponent],
  

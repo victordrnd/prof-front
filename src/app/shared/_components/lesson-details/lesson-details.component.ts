@@ -135,7 +135,15 @@ export class LessonDetailsComponent implements OnInit {
     const modalRef= this.modalService.create({
       nzContent : LessonSettingsModalComponent,
       nzComponentParams : {lesson : this.lesson},
-      nzTitle : "Réglage du cours"
+      nzTitle : "Réglage du cours",
+      nzOnOk : (component) => {
+        this.lessonService.update(component.lesson).toPromise().then(res => {
+          this.lesson = res;
+          this.notificationService.success(this.translate.instant('lesson.settings.accept_success'),this.translate.instant('shared.success'))
+        }).catch(err => {
+          this.notificationService.danger(this.translate.instant("lesson.settings.updated_success"), this.translate.instant('shared.error'));
+        })
+      }
     })
   }
 

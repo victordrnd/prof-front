@@ -96,8 +96,11 @@
         "date" : "Date",
         "type" : "Type",
         "students" : "Etudiants",
+        "teacher" : "Professeur",
+        "subject" : "Matière",
         "status" : "Statut",
         "description" : "Description",
+        
         "student" : {
             "lastname" : "Nom",
             "firstname" : "Prénom"
@@ -105,7 +108,8 @@
         "settings" :{
             "accept_text" : "Accepter l'étudiant",
             "accept_confirm" : "Êtes-vous certains d'accepter cet élève ?",
-            "accept_success" : "L'étudiant est désormais confirmé pour ce cours" 
+            "accept_success" : "L'étudiant est désormais confirmé pour ce cours",
+            "updated_success" : "Le cours a correctement été mis à jour" 
         },
         "join" : {
             "title" : "Rejoindre le cours"

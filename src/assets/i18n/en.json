@@ -94,6 +94,8 @@
         "with" : "with",
         "duration" : "Duration",
         "students" : "Students",
+        "teacher" : "Teacher",
+        "subject" : "Subject",
         "date" : "Date",
         "type" : "Type",
         "status" : "Status",
@@ -105,7 +107,8 @@
         "settings" :{
             "accept_text" : "Accept student",
             "accept_confirm" : "Do you really want to accept this student ?",
-            "accept_success" : "Student has been added to this lesson" 
+            "accept_success" : "Student has been added to this lesson",
+            "updated_success" : "Lesson have correctly been updated" 
         },
         "join" : {
             "title" : "Join this course"

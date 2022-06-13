@@ -13,9 +13,9 @@
             <nz-table [nzData]="lessons" [nzLoading]="loading" [nzShowPagination]="false">
                 <thead>
                     <tr>
-                        <th>Students</th>
-                        <th>Teacher</th>
-                        <th>Subject</th>
+                        <th>{{'lesson.students' | translate}}</th>
+                        <th>{{'lesson.teacher'  | translate}}</th>
+                        <th>{{'lesson.subject' | translate}}</th>
                         <th>Scheduled at</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -28,7 +28,7 @@
                                 {{lesson.students[0].firstname}} {{lesson.students[0].lastname}}
                             </div>
                             <ng-template #elseBlock>
-                                {{lesson.students.length}} / {{lesson.capacity}}
+                                {{lesson.students.length}} / {{lesson.capacity}} {{'lesson.students' | translate | lowercase}}
                             </ng-template>
                         </td>
                         <td>{{lesson.teacher.firstname}} {{lesson.teacher.lastname}}</td>

@@ -19,6 +19,10 @@ export class TeacherComponent implements OnInit {
       || navigator.userAgent.match(/iPod/i)){
       this.mobile = true;
     };
+
+    // this.socket.connect();
+    
+    // this.socket.emit("new_message", {test : "hello"});
   }
 
   logout(){

@@ -1,9 +1,13 @@
 <label>Cours collectif  : </label><br/>
 
 
-<nz-switch [(ngModel)]="isCollectif"></nz-switch>
+<nz-switch [(ngModel)]="isCollectif"></nz-switch><br/>
 
 <div class="mt-4" *ngIf="isCollectif">
     <label>Nombre d'étudiants maximum <span nz-tooltip nzTooltipTitle="Nombre d'étudiant pouvant rejoindre le cours "><nb-icon nbPrefix icon="question-mark-circle-outline" class="mx-2 pointer text-primary" pack="eva"></nb-icon></span> </label>
     <nz-slider [(ngModel)]="lesson.capacity" [nzMax]="10" [nzMin]="2" [nzTipFormatter]="formatToolTip"></nz-slider>
 </div>
+
+<label class="mt-4">Lien de la visio :</label>
+
+<input nbInput fullWidth [(ngModel)]="lesson.video_link">

@@ -27,6 +27,8 @@ import { environment } from 'src/environments/environment';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { ProfilComponent } from './settings/profil/profil.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'] } };
 @NgModule({
   declarations: [
     StudentDashboardComponent,
@@ -70,7 +72,8 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NbRadioModule,
     NzUploadModule,
     NbAutocompleteModule,
-    NbTagModule
+    NbTagModule,
+    // SocketIoModule.forRoot(config)
     ],
   bootstrap : [StudentComponent],
   exports : [CalendarComponent, LessonListComponent, ProfilComponent],

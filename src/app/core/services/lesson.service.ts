@@ -32,4 +32,9 @@ export class LessonService {
     return this.http.put(`${environment.apiUrl}/teacher/lesson/confirm/${lesson_id}`, {});
   }
 
+
+  update(lesson){
+    return this.http.put(`${environment.apiUrl}/lessons/${lesson.id}`, lesson);
+  }
+
 }
