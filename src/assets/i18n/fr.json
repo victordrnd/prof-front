@@ -80,6 +80,7 @@
         "desc" : "Description",
         "teached_subjects" : "Matières enseignées",
         "reviews" : "Avis",
+        "grade" :"Note",
         "no_reviews" :"Aucun avis publié",
         "click_to_book" : "Cliquez pour réserver le cours",
         "locality" : "Localité",

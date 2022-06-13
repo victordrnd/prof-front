@@ -82,6 +82,7 @@
         "reviews" : "Reviews",
         "no_reviews" :"No review",
         "click_to_book" : "Click here to book lesson",
+        "grade" :"Grade",
         "locality" : "Locality",
         "not_found" : "No teacher have been found nearby"
     },

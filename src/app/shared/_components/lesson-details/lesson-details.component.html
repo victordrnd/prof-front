@@ -74,7 +74,7 @@
             <nb-card-footer *ngIf="lesson?.status?.code != 'cancelled'">
                 <button nbButton size="small" (click)="openCancelModal()">{{'lesson.cancel.title' | translate}}
                 </button>
-                <button nbButton size="small" status="primary" class="float-right" (click)="joinCourse()">{{'lesson.join.title' | translate}}</button>
+                <button nbButton size="small" status="primary" class="float-right" *ngIf="lesson?.status?.code =='confirmed' " (click)="joinCourse()">{{'lesson.join.title' | translate}}</button>
             </nb-card-footer>
         </nb-card>
     </div>

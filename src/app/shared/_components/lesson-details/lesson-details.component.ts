@@ -58,6 +58,10 @@ export class LessonDetailsComponent implements OnInit {
   }
 
   joinCourse(){
+    if(this.lesson.video_link){
+      window.open(this.lesson.video_link, "_blank");
+      return;
+    }
     const user = this.authService.currentUserValue;
     const config = {
       name: user.lastname + " " + user.firstname,

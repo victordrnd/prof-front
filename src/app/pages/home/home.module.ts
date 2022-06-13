@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from '../../shared/header/header.component';
-import { AppModule } from '../../app.module';
 import { SharedModule } from '../../shared/shared.module';
 import { NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule, NbButtonComponent, NbButtonModule, NbCheckboxModule, NbRadioModule, NbToastrModule, NbAutocompleteModule, NbUserModule, NbLayoutModule, NbSidebarModule, NbAlertModule, NbDialogModule, NbPopoverModule, NbSelectModule } from '@nebular/theme';
 import { HeadbandComponent } from './home/headband/headband.component';
@@ -26,6 +24,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzCommentModule } from 'ng-zorro-antd/comment';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzRateModule } from 'ng-zorro-antd/rate';
 @NgModule({
   declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent],
   imports: [
@@ -58,7 +59,10 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NbAlertModule,
     NbUserModule,
     NzModalModule,
-    NbSelectModule
+    NbSelectModule,
+    NzCommentModule,
+    NzAvatarModule,
+    NzRateModule
 
   ],
   entryComponents : [BookingModalComponent]

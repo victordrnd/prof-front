@@ -3,8 +3,7 @@
     <div class="row">
         <div class="col-md-3 col-12">
             <div class="profile">
-                <div class="profile-img"
-                    [ngStyle]="{'background-image' : 'url(' + teacher?.image+ ')'}">
+                <div class="profile-img" [ngStyle]="{'background-image' : 'url(' + teacher?.image+ ')'}">
                 </div>
             </div>
             <h3 class="mt-3 text-center">{{teacher?.firstname | titlecase}} {{teacher?.lastname | titlecase}}</h3>
@@ -13,7 +12,14 @@
             <nz-tag *ngFor="let subject of teacher?.teacher_subjects" [nzColor]="subject.subject.color">
                 {{subject.subject.libelle | translate}}</nz-tag>
             <h6 class="mt-4">{{'teacher.locality' | translate}} :</h6>
-            <p><nb-icon icon="pin-outline"></nb-icon> {{teacher?.address?.city}} <span class="text-hint" *ngIf="teacher?.address?.distance">({{teacher?.address?.distance | number : '1.1-1'}} km)</span></p>
+            <p>
+                <nb-icon icon="pin-outline"></nb-icon> {{teacher?.address?.city}} <span class="text-hint"
+                    *ngIf="teacher?.address?.distance">({{teacher?.address?.distance | number : '1.1-1'}} km)</span>
+            </p>
+            <h6 class="mt-4">{{'teacher.grade' | translate}} :</h6>
+            <p>
+                <nz-rate nzAllowHalf [ngModel]="teacher?.note" nzDisabled></nz-rate>
+            </p>
         </div>
         <div class="col-md-9 col-12" *ngIf="teacher">
             <h3>{{'teacher.desc' | translate}}</h3>
@@ -24,8 +30,31 @@
             </nb-card>
             <h3>Calendrier</h3>
             <teacher-calendar [teacher]="teacher"></teacher-calendar>
-            <h3 class="mt-5">{{'teacher.reviews' | translate}} </h3>
-            <nz-empty nzNotFoundImage="simple" nzNotFoundContent="{{'teacher.no_reviews' | translate}}"></nz-empty>
+            <h3 class="mt-5">{{'teacher.reviews' | translate}} </h3>  
+            <div *ngIf="canWriteReview">    
+                <label class="mt-3">Note : </label><br/>
+                <nz-rate  class="mt-3" nzAllowHalf [(ngModel)]="new_comment.note"></nz-rate><br/>
+                <label class="mt-3">Commentaire : </label>
+                <textarea class="mt-2" maxlength="1000" nbInput fullWidth [(ngModel)]="new_comment.comment" placeholder="Laisser un avis sur {{teacher.firstname}} {{teacher.lastname}}"></textarea>
+                <span>{{new_comment?.comment?.length || 0}} / 1000</span>
+                <div class="d-flex flex-row-reverse">
+                    <button nbButton (click)="sendReview()" [disabled]="!new_comment.comment" class="mt-4" status="primary">Envoyer</button>
+                </div>
+            </div>
+            <nz-comment [nzAuthor]="comment.author.firstname + ' ' + comment.author.lastname" [nzDatetime]="comment.date" *ngFor="let comment of teacher?.reviews">
+                <nz-avatar nz-comment-avatar *ngIf="comment.author.image" nzIcon="user"
+                    [nzSrc]="comment.author.image"></nz-avatar>
+                    <nz-avatar nz-comment-avatar *ngIf="!comment.author.image" nzIcon="user"></nz-avatar>
+                <nz-comment-content>
+                    <p>
+                        {{comment.comment}}
+                    </p>
+                </nz-comment-content>
+                <nz-comment-action>
+                    <nz-rate [ngModel]="comment.note" nzAllowHalf nzDisabled></nz-rate>
+                </nz-comment-action>
+            </nz-comment>
+            <nz-empty nzNotFoundImage="simple" *ngIf="teacher?.comments?.length == 0" nzNotFoundContent="{{'teacher.no_reviews' | translate}}"></nz-empty>
         </div>
     </div>
 </div>
