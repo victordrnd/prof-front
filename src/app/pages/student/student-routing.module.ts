@@ -11,34 +11,51 @@ import { ProfilComponent } from './settings/profil/profil.component';
 
 const routes: Routes = [
   {
-    path : "",
-    component : StudentComponent,
+    path: "",
+    component: StudentComponent,
     canActivate: [AuthGuardService],
-    children : [
+    children: [
       {
-        path : "dashboard",
-        component : StudentDashboardComponent
+        path: "dashboard",
+        component: StudentDashboardComponent
       },
       {
-        path : 'settings',
-        children : [
+        path: 'settings',
+        children: [
           {
-            path : 'profile',
-            component : ProfilComponent
+            path: 'profile',
+            component: ProfilComponent
           },
           {
-            path : 'payments',
-            component : PaymentComponent
+            path: 'payments',
+            component: PaymentComponent
           }
         ]
       },
       {
-        path : 'lessons',
-        component : LessonListComponent
-      },
-      {
-        path : 'lesson/:id',
-        component : LessonDetailsComponent
+        path: "lessons",
+        children: [
+          {
+            path: '',
+            component: LessonListComponent,
+            data: {
+              type: "coming",
+              title: "lesson.coming"
+            }
+          },
+          {
+            path: "history",
+            component: LessonListComponent,
+            data: {
+              type: "history",
+              title: "lesson.history"
+            }
+          },
+          {
+            path: ':id',
+            component: LessonDetailsComponent
+          },
+        ]
       }
     ]
   }

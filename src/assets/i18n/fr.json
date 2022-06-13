@@ -101,7 +101,8 @@
         "subject" : "Matière",
         "status" : "Statut",
         "description" : "Description",
-        
+        "coming" :"Cours à venir",
+        "history" : "Historique de mes cours",
         "student" : {
             "lastname" : "Nom",
             "firstname" : "Prénom"

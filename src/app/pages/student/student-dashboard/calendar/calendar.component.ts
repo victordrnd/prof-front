@@ -38,9 +38,9 @@ export class CalendarComponent implements OnInit {
 
   displayLesson(lesson){
     if(this.authService.currentUserValue.role.slug == "teacher"){
-      this.router.navigate([`/teacher/lesson/${lesson.id}`]);
+      this.router.navigate([`/teacher/lessons/${lesson.id}`]);
     }else{
-      this.router.navigate([`/student/lesson/${lesson.id}`]);
+      this.router.navigate([`/student/lessons/${lesson.id}`]);
     }
 
   }

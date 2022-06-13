@@ -39,13 +39,31 @@ const routes: Routes = [
           }
         ]
       },
+      
       {
-        path : 'lessons',
-        component : LessonListComponent
-      },
-      {
-        path : 'lesson/:id',
-        component : LessonDetailsComponent
+        path : "lessons",
+        children : [
+          {
+            path : '',
+            component : LessonListComponent,
+            data : {
+              type : "coming",
+              title : "lesson.coming"
+            }
+          },
+          {
+            path : "history",
+            component : LessonListComponent,
+            data : {
+              type : "history",
+              title : "lesson.history"
+            } 
+          },
+          {
+            path : ':id',
+            component : LessonDetailsComponent
+          },
+        ]
       }
     ]
   }

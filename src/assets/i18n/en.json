@@ -101,6 +101,8 @@
         "type" : "Type",
         "status" : "Status",
         "description" : "Description",
+        "coming" :"Upcoming Courses",
+        "history" : "History of my courses",
         "student" : {
             "lastname" : "Lastname",
             "firstname" : "Firstname"

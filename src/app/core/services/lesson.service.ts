@@ -13,6 +13,10 @@ export class LessonService {
     return this.http.get(`${environment.apiUrl}/lessons`);
   }
 
+  getHistory(){
+    return this.http.get(`${environment.apiUrl}/lessons/history`);
+  }
+
   find(lesson_id){
     return this.http.get(`${environment.apiUrl}/lessons/${lesson_id}`);
   }
