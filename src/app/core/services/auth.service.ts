@@ -82,6 +82,9 @@ export class AuthService {
     return throwError(error.error);
   }
 
+  setCurrentUser(user){
+    this.currentUserSubject.next(user);
+  }
   getToken(): string {
     return localStorage.getItem("token");
   }

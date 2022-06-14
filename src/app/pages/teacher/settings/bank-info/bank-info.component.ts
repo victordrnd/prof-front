@@ -31,7 +31,6 @@ export class BankInfoComponent implements OnInit {
   
   async getTransfers(){
     this.transfers = await this.teacherService.getTransfers().toPromise();
-    console.log(this.transfers);
     this.loading = false;
 
   }
@@ -56,6 +55,5 @@ export class BankInfoComponent implements OnInit {
 
   async getReceipt(charge_id){
     const charge = await this.paymentService.getReceipt(charge_id).toPromise();
-    console.log(charge);
   }
 }

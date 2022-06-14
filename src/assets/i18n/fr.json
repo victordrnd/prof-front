@@ -142,7 +142,7 @@
         "unconfirmed" : "Non confirmé",
         "confirmed" : "Confirmé",
         "cancelled" : "Annulé",
-        "done" : "Terminé",
+        "done" : "Payé",
         "waiting" :"En attente",
         "approved" : "Approuvé",
         "refused" :"Refusé"

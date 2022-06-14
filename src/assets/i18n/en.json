@@ -141,7 +141,7 @@
         "unconfirmed" : "Unconfirmed",
         "confirmed" : "Confirmed",
         "cancelled" : "Cancelled",
-        "done" : "Done",
+        "done" : "Paid",
         "waiting" :"Waiting",
         "approved" : "Approved",
         "refused" :"Refused"

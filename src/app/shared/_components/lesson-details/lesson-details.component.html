@@ -86,7 +86,7 @@
                 <p class="text-center">{{lesson?.teacher?.teacher_profil?.description}}</p>
                 <button nbButton size="small" class="mx-auto d-block" *ngIf="!isTeacher"><nb-icon nbPrefix icon="email-outline" pack="eva"></nb-icon> Contacter {{lesson?.teacher?.lastname}}
                     {{lesson?.teacher?.firstname}} </button>
-                    <button nbButton size="small" status="primary" class="mx-auto d-block" (click)="confirmLesson()" *ngIf="isTeacher && lesson.status.code == 'unconfirmed'"><nb-icon nbPrefix icon="checkmark-outline" pack="eva"></nb-icon> Confirm this lesson </button>
+                    <button nbButton size="small" status="primary" class="mx-auto d-block" (click)="confirmLesson()" *ngIf="isTeacher && lesson.status.code == 'unconfirmed'"><nb-icon nbPrefix icon="checkmark-outline" *ngIf="!paymentLoading" pack="eva"></nb-icon> <nz-spin *ngIf="paymentLoading"></nz-spin> Confirm this lesson </button>
                 <button nbButton size="small" class="mx-auto d-block" *ngIf="!isTeacher && isPast" (click)="goToTeacherProfil()"><nb-icon nbPrefix icon="email-outline" pack="eva"></nb-icon> Laisser un avis</button>
             </nb-card-body>
         </nb-card>

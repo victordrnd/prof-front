@@ -1,3 +1,4 @@
+@use '../../../../../themes.scss' as *;
 :host::ng-deep{
     .ant-tabs-tab {
         position: relative;
@@ -40,5 +41,12 @@
     }
     .color-hover{
         color :#a894ff
+    }
+}
+
+:host::ng-deep{
+    nb-tag.appearance-filled.status-primary {
+        background-color: nb-theme(tag-filled-primary-hover-background-color) !important;
+        border-color: nb-theme(tag-filled-primary-hover-border-color) !important;
     }
 }

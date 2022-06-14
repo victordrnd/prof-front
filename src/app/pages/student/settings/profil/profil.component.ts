@@ -34,6 +34,7 @@ export class ProfilComponent implements OnInit {
 
   async ngOnInit() {
     const user = this.authService.currentUserValue;
+    console.log(user);
     this.avatarUrl = user.image;
     this.form = this.fb.group({
       firstname: [user.firstname, Validators.required],
@@ -85,7 +86,8 @@ export class ProfilComponent implements OnInit {
     this.getAvatarBlob(file)
     const formData = new FormData();
     formData.append('avatar', this.avatar);
-    await this.userService.setAvatar(formData).toPromise()
+    const user = await this.userService.setAvatar(formData).toPromise();
+    this.authService.setCurrentUser(user);
     return false;
   }
 

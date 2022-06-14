@@ -20,6 +20,8 @@ export class LessonDetailsComponent implements OnInit {
   isTeacher;
   date = new Date();
   isPast=false;
+
+  paymentLoading = false;
   constructor(private route : ActivatedRoute,
     private lessonService : LessonService,
     private modalService : NzModalService,
@@ -47,12 +49,13 @@ export class LessonDetailsComponent implements OnInit {
   }
 
   confirmLesson(){
+    this.paymentLoading = true
     this.lessonService.confirm(this.lesson.id).toPromise().then(res => {
       this.lesson = res;
       this.notificationService.success(this.translate.instant('lesson.settings.accept_success'),this.translate.instant('shared.success'))
     }).catch(err => {
       this.notificationService.danger(err.error, this.translate.instant('shared.error'))
-    }) 
+    }).finally(() => this.paymentLoading = false);
   }
 
 

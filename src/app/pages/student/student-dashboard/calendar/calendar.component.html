@@ -15,7 +15,18 @@
                     <nb-alert *ngFor="let lesson of item.lessons" [style.backgroundColor]="lesson.subject.color" class="w-100 ml-5 mr-4" [style.height]="getHeight(lesson)+'px'" [style.marginTop.px]="getLessonMarginTop(lesson)">
                         <div class="row">
                             <div class="col-6">
-                                <h6 class="text-white">{{item.time}} - {{lesson.subject.libelle | translate}}</h6>
+                                <h6 class="text-white">{{item.time}} - {{lesson.subject.libelle | translate}} 
+                                    <div [ngSwitch]="lesson?.relative_status?.code" class="d-inline-block">
+                                        <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
+                                            text="{{lesson.relative_status.label | translate}}"></nb-tag>
+                                        <nb-tag status="primary" size="small" class="color-hover" *ngSwitchCase="'confirmed'" appearance="filled"
+                                            text="{{lesson.relative_status.label  | translate}}"></nb-tag>
+                                        <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled"
+                                            text="{{lesson.relative_status.label  | translate}}"></nb-tag>
+                                        <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
+                                            text="{{lesson.relative_status.label  | translate}}"></nb-tag>
+                                    </div>
+                                </h6>
                                 <p class="caption-2">{{lesson?.teacher_subject?.description}}</p>
                             </div>
                             <div class="col-6">
