@@ -30,7 +30,6 @@ export class LessonListComponent implements OnInit {
   }
 
   async getLessons(){
-    console.log(this.type);
     if(this.type == "coming"){
       this.lessons = await this.lessonService.getMyLessons().toPromise();
     }else{

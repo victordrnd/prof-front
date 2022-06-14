@@ -37,7 +37,6 @@ export class PaymentComponent implements OnInit {
   
   async getCharges() {
     this.charges = await this.paymentService.getMyCharges().toPromise();
-    console.log(this.charges)
     this.loading = false;
   }
 
