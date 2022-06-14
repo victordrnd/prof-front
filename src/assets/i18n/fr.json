@@ -107,6 +107,7 @@
             "lastname" : "Nom",
             "firstname" : "Prénom"
         },
+        "success_description" : "Votre demande de cours a correctment été enregistré",
         "settings" :{
             "accept_text" : "Accepter l'étudiant",
             "accept_confirm" : "Êtes-vous certains d'accepter cet élève ?",

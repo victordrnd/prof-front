@@ -15,6 +15,7 @@ export class LessonListComponent implements OnInit {
   loading = true;
   title;
   type;
+  date = new Date();
   constructor(private activatedRoute : ActivatedRoute,
     private lessonService : LessonService, 
     private toastrService: NbToastrService,

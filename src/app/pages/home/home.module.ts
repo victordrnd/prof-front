@@ -27,6 +27,8 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzRateModule } from 'ng-zorro-antd/rate';
+import { TranslateModule } from '@ngx-translate/core';
+import { StudentModule } from '../student/student.module';
 @NgModule({
   declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent],
   imports: [
@@ -62,7 +64,8 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
     NbSelectModule,
     NzCommentModule,
     NzAvatarModule,
-    NzRateModule
+    NzRateModule,
+    StudentModule
 
   ],
   entryComponents : [BookingModalComponent]

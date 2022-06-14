@@ -18,6 +18,7 @@ export class AddPaymentComponent implements OnInit {
     private notificationService : NbToastrService,
     private translate : TranslateService,
     private modalService : NzModalService,
+    private modalRef : NzModalRef,
     private stripeService : StripeService,
     private router : Router) { }
 
@@ -27,6 +28,7 @@ export class AddPaymentComponent implements OnInit {
   }
   client_secret;
   loading = false;
+  success = false;
   async ngOnInit() {
     this.form = this.fb.group({
       fullname :["", Validators.required],
@@ -41,10 +43,12 @@ export class AddPaymentComponent implements OnInit {
   async submit(){
     if(this.form.valid){
       this.loading = true;
-      this.paymentService.createPaymentMethod(this.form.value).toPromise().then( async (res:any) => {
+      await this.paymentService.createPaymentMethod(this.form.value).toPromise().then( async (res:any) => {
         await this.stripeService.confirmCardSetup(this.client_secret.client_secret, {payment_method : res.payment_method, return_url : this.router['location']._platformLocation.location.origin}).toPromise();
-        this.modalService.closeAll();
+        this.success = true;
+        this.modalRef.close();
       }).catch(err => {
+        this.loading = false;
         this.notificationService.danger(err.error,this.translate.instant('payment.error'));
       })
     }

@@ -1,6 +1,6 @@
 <nb-layout>
     <nb-layout-column>
-        <nz-tabset nzSelectedIndex="0">
+        <nz-tabset nzSelectedIndex="0" [nzAnimated]="false">
             <nz-tab *ngFor="let date of dates;let i =index" [nzTitle]="title">
                 <ng-template #title>
                     <h2 class="text-center ant-tabs-tab" [class.color-hover]="i==0">{{date.date.day}}</h2>

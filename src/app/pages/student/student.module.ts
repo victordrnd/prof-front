@@ -28,6 +28,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { ProfilComponent } from './settings/profil/profil.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { TranslateModule } from '@ngx-translate/core';
 const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'] } };
 @NgModule({
   declarations: [
@@ -73,10 +74,11 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     NzUploadModule,
     NbAutocompleteModule,
     NbTagModule,
+    TranslateModule
     // SocketIoModule.forRoot(config)
     ],
   bootstrap : [StudentComponent],
-  exports : [CalendarComponent, LessonListComponent, ProfilComponent],
+  exports : [CalendarComponent, LessonListComponent, ProfilComponent, AddPaymentComponent],
   entryComponents : [
     AddPaymentComponent
   ]

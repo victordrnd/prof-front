@@ -33,11 +33,11 @@ export class TeacherProfileComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(async value => {
       this.teacher = await this.teacherService.get(value.id).toPromise()
-      try{
-        this.canWriteReview = await this.reviewService.can(this.teacher.id).toPromise() == "1";
-      }catch(e){
-        this.canWriteReview = false;
-      }
+        this.reviewService.can(this.teacher.id).toPromise().then(res => {
+          this.canWriteReview = res == "1"
+        }).catch(err => {
+          this.canWriteReview = false;
+        });
     });
   }
 

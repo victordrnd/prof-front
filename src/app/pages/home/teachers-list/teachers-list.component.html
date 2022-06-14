@@ -41,7 +41,8 @@
                                 </div> -->
                             </div>
                         </div>
-                        <p class="text-bold justify-content-between mt-3" style="overflow: hidden;white-space: nowrap;clear: both;display: inline-block;">
+                        <p class="text-bold justify-content-between mt-3"
+                            style="overflow: hidden;white-space: nowrap;clear: both;display: inline-block;">
                             {{teacher.firstname | titlecase}} {{teacher.lastname | titlecase}}
                             <!-- <p class="locale mb-0 mt-1 text-right"> -->
                             <span class="locale mb-0 mt-1 text-right">
@@ -50,7 +51,7 @@
                         </p>
                         <div class="row">
 
-                            <div class="col-7">
+                            <div class="col-6">
                                 <div class="mt-2">
                                     <nz-tag *ngFor="let subject of teacher.teacher_subjects"
                                         [nzColor]="subject.subject.color">
@@ -58,11 +59,14 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="float-right">{{teacher.note || ""}} <nb-icon icon="star" class="mt-1"></nb-icon>
+                                <div class="float-right">
+                                    {{teacher.note || ""}} <nb-icon icon="star" class="mt-1"></nb-icon>
                                 </div>
-                            </div>
-
+                            </div>   
                         </div>
+                        <button nbButton size="small" class="w-100 mt-2">
+                            {{teacher?.teacher_profil?.currency | uppercase}} {{teacher?.teacher_profil?.rate}}  / h
+                        </button>
                     </div>
                 </div>
 

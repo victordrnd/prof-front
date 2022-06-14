@@ -28,4 +28,14 @@ export class PaymentService {
   generateIntent(){
     return this.http.get(`${environment.apiUrl}/payments/generate_intent`);
   }
+
+
+  hasPaymentMethods(){
+    return this.http.get(`${environment.apiUrl}/payments/can`);
+  }
+
+
+  getReceipt(charge_id){
+    return this.http.get(`${environment.apiUrl}/payments/receipt/${charge_id}`)
+  }
 }

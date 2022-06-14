@@ -18,6 +18,8 @@ export class LessonDetailsComponent implements OnInit {
   lesson
   loading = true;
   isTeacher;
+  date = new Date();
+  isPast=false;
   constructor(private route : ActivatedRoute,
     private lessonService : LessonService,
     private modalService : NzModalService,
@@ -32,6 +34,7 @@ export class LessonDetailsComponent implements OnInit {
     this.lesson = await this.lessonService.find(lesson_id).toPromise();
     this.loading = false;
     this.isTeacher = this.authService.currentUserValue.role.slug == "teacher";
+    this.isPast = new Date() >= new Date(this.lesson.scheduled_at);
   }
 
   async acceptStudent(student){
@@ -54,6 +57,11 @@ export class LessonDetailsComponent implements OnInit {
 
 
   async removeStudent(){
+
+  }
+
+  goToTeacherProfil(){
+    this.router.navigate(['/teacher/profile/'+this.lesson.teacher_id]);
 
   }
 

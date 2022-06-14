@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let lesson of lessons">
+                    <tr *ngFor="let lesson of lessons" class="pointer" (click)="goToCourse(lesson)">
                         <td>
                             <div *ngIf="lesson.capacity == 1; else elseBlock">
                                 {{lesson.students[0].firstname}} {{lesson.students[0].lastname}}
@@ -50,14 +50,14 @@
                             </div>
                         </td>
                         <td>
-                            <button nz-button nz-dropdown [nzDropdownMenu]="menu">
+                            <button nz-button nz-dropdown (click)="$event.stopPropagation()" [nzDropdownMenu]="menu">
                                 Action
                                 <i nz-icon nzType="down"></i>
                             </button>
                             <nz-dropdown-menu #menu="nzDropdownMenu">
                                 <ul nz-menu>
                                     <li nz-menu-item (click)="goToCourse(lesson)">Afficher le cours</li>
-                                    <li *ngIf="lesson?.status?.code !='cancelled'" nz-menu-item nz-popconfirm
+                                    <li *ngIf="lesson?.status?.code !='cancelled' && lesson.scheduled_at > date" nz-menu-item nz-popconfirm
                                         nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}"
                                         nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)"
                                         nzOkText="{{'lesson.cancel.ok' | translate}}">Annuler le
