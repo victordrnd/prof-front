@@ -26,6 +26,7 @@ import { LessonSettingsModalComponent } from './_components/lesson-settings-moda
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, LessonDetailsComponent, DefaultDashboardRedirectionComponent, LessonSettingsModalComponent],
   imports: [
@@ -53,7 +54,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     NzPopconfirmModule,
     NzSwitchModule,
     NzSliderModule,
-    NzToolTipModule
+    NzToolTipModule,
+    NzSpinModule
   ],
   exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule, LessonDetailsComponent],
   providers: [

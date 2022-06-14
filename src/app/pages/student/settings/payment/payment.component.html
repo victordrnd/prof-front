@@ -32,7 +32,7 @@
             <nz-table #basicTable [nzLoading]="loading" [nzFrontPagination]="false" [nzData]="charges">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Description</th>
                         <th>Montant</th>
                         <th>Date</th>
                         <th>Status</th>
@@ -41,7 +41,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let charge of charges">
-                        <td><b>#{{charge.receipt_number }}</b></td>
+                        <td>{{charge.description }}</td>
                         <td>{{charge.currency | uppercase}} {{charge.amount / 100 | number}}</td>
                         <td>{{charge.created * 1000 | date:'medium'}}</td>
                         <td>

@@ -42,6 +42,10 @@ export class BankInfoComponent implements OnInit {
   }
 
   saveIban(){
+    if(this.iban.includes("****")){
+      this.notificationService.danger(this.translate.instant('settings.invalid_iban'), this.translate.instant('shared.error'));
+      return;
+    }
     this.teacherService.createBankAccount(this.iban).toPromise().then(res => {
       this.notificationService.success(this.translate.instant("settings.success_description"), this.translate.instant('shared.success'));
     }).catch(err => {

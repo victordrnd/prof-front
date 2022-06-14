@@ -55,7 +55,7 @@
                     <label>{{'register.email' | translate}} :</label><br />
                     <nb-form-field>
                         <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
-                        <input type="email" formControlName="email" nbInput class="w-100 input-full-width"
+                        <input autocomplete="username" type="email" formControlName="email" nbInput class="w-100 input-full-width"
                             placeholder="{{'register.email' | translate}}">
                     </nb-form-field>
                 </div>
@@ -66,7 +66,7 @@
                     <label>{{'register.password' | translate}} : </label>
                     <nb-form-field>
                         <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
-                        <input type="password" formControlName="password" nbInput class="w-100 input-full-width"
+                        <input type="password" autocomplete="new-password" formControlName="password" nbInput class="w-100 input-full-width"
                             placeholder="{{'register.password' | translate}}">
                     </nb-form-field>
                 </div>
@@ -77,7 +77,7 @@
                     <label>{{'register.repeat-password' | translate}} :</label><br />
                     <nb-form-field>
                         <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
-                        <input type="password" formControlName="repeat_password" nbInput class="w-100 input-full-width"
+                        <input autocomplete="new-password" type="password" formControlName="repeat_password" nbInput class="w-100 input-full-width"
                             placeholder="{{'register.repeat-password' | translate}}">
                     </nb-form-field>
                 </div>

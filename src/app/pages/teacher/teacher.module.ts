@@ -50,6 +50,7 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     NzIconModule,
     NzTableModule,
     NbTagModule,
+    NzSpinModule
     // SocketIoModule.forRoot(config)
   ],
   bootstrap : [TeacherComponent],

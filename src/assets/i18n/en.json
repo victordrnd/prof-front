@@ -129,6 +129,7 @@
         "save" : "Save profile",
         "subjects" : "Subjects",
         "additional_info" : "Additional Information",
+        "invalid_iban" : "Invalid IBAN",
         "add_subject" : "Add subject",
         "confirm_delete_subject" : "Do you really want to remove this subject from your account ?"
     },

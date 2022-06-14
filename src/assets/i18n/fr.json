@@ -130,6 +130,7 @@
         "save" : "Sauvegarder",
         "additional_info" : "Mes informations complémentaires",
         "subjects" : "Matières enseignées",
+        "invalid_iban" :"IBAN invalide",
         "add_subject" : "Ajouter une matière",
         "confirm_delete_subject" : "Êtes-vous certains de vouloir supprimer cette matière de vos enseignements ?"
     },
