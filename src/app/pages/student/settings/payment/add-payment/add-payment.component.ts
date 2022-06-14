@@ -50,7 +50,7 @@ export class AddPaymentComponent implements OnInit {
       }).catch(err => {
         this.loading = false;
         this.notificationService.danger(err.error,this.translate.instant('payment.error'));
-      })
+      });
     }
   }
   cardRegex(e) {

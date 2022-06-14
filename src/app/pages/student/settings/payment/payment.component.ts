@@ -68,8 +68,7 @@ export class PaymentComponent implements OnInit {
         this.loading = true;
         this.paymentService.detachPaymentMethod({ pm_id: card.id }).toPromise().then(async () => {
           this.paymentMethods = await this.paymentService.getAllPaymentMethods().toPromise();
-          this.loading = false;
-        })
+        }).finally(() => {this.loading = false;});
       }
     })
   }
