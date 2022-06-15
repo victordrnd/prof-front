@@ -22,8 +22,8 @@ export class BookingModalComponent implements OnInit {
   constructor(private modalService: NzModalService,
     private lessonService: LessonService,
     private paymentService: PaymentService,
-    private translate : TranslateService,
-    private notificationService : NbToastrService,
+    private translate: TranslateService,
+    private notificationService: NbToastrService,
     private router: Router) { }
 
   ngOnInit() {
@@ -50,23 +50,24 @@ export class BookingModalComponent implements OnInit {
       scheduled_at: this.date.detail + " " + this.item.time + ":00"
     }
     try {
-      await this.paymentService.hasPaymentMethods().toPromise().then(async res => {
-        await this.lessonService.store(obj).toPromise().then(res => {
-          this.modalService.closeAll();
-          this.notificationService.success(this.translate.instant('lesson.success_description'), this.translate.instant('shared.success'));
-          this.router.navigate(['student/dashboard']);
-        }).catch(err => {
-          this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
-        });
+      await this.lessonService.store(obj).toPromise().then(res => {
+        this.modalService.closeAll();
+        this.notificationService.success(this.translate.instant('lesson.success_description'), this.translate.instant('shared.success'));
+        this.router.navigate(['student/dashboard']);
       }).catch(err => {
-        const modalref = this.modalService.create({
-          nzContent : AddPaymentComponent,
-          nzTitle : this.translate.instant('payment.add'),
-          nzFooter: null
-        });
-        modalref.afterClose.subscribe(() => {
-          this.confirm();
-        })
+        this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'));
+        if (err.status == 401) {
+          const modalref = this.modalService.create({
+            nzContent: AddPaymentComponent,
+            nzTitle: this.translate.instant('payment.add'),
+            nzFooter: null
+          });
+          modalref.afterClose.subscribe(() => {
+            if(modalref.componentInstance.success){
+              this.confirm();
+            }
+          })
+        }
       });
     } catch (e) {
       console.error(e)
