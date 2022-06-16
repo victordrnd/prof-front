@@ -19,4 +19,7 @@
         background-color: nb-theme(tag-filled-primary-hover-background-color) !important;
         border-color: nb-theme(tag-filled-primary-hover-border-color) !important;
     }
+    nb-icon{
+        transform: translateY(2px);
+    }
 }

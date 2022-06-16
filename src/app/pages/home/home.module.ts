@@ -29,8 +29,9 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { TranslateModule } from '@ngx-translate/core';
 import { StudentModule } from '../student/student.module';
+import { DisputeFormComponent } from './disputes/dispute-form/dispute-form.component';
 @NgModule({
-  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent],
+  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent],
   imports: [
     CommonModule,
     FormsModule,

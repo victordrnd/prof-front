@@ -55,7 +55,6 @@ export class BookingModalComponent implements OnInit {
         this.notificationService.success(this.translate.instant('lesson.success_description'), this.translate.instant('shared.success'));
         this.router.navigate(['student/dashboard']);
       }).catch(err => {
-        this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'));
         if (err.status == 401) {
           const modalref = this.modalService.create({
             nzContent: AddPaymentComponent,
@@ -67,6 +66,8 @@ export class BookingModalComponent implements OnInit {
               this.confirm();
             }
           })
+        }else{
+          this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'));
         }
       });
     } catch (e) {

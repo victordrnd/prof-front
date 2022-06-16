@@ -8,9 +8,9 @@
             </nb-form-field>
             <p>&nbsp;</p>
         </div>
-        <div class="bg-white p-5 rounded-lg shadow-sm mt-5">
+        <div class="bg-white p-5 rounded-lg shadow-sm mt-5" *ngIf="lessons">
 
-            <nz-table [nzData]="lessons" [nzLoading]="loading" [nzShowPagination]="false">
+            <nz-table [nzData]="lessons?.data" [nzLoading]="loading" [nzShowPagination]="true" [nzFrontPagination]="false" [nzPageIndex]="lessons?.current_page" [nzPageSize]="lessons?.per_page"  [nzTotal]="lessons?.total" (nzPageIndexChange)="onPageIndexChange($event)">
                 <thead>
                     <tr>
                         <th>{{'lesson.students' | translate}}</th>
@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let lesson of lessons" class="pointer" (click)="goToCourse(lesson)">
+                    <tr *ngFor="let lesson of lessons?.data" class="pointer" (click)="goToCourse(lesson)">
                         <td>
                             <div *ngIf="lesson.capacity == 1; else elseBlock">
                                 {{lesson.students[0].firstname}} {{lesson.students[0].lastname}}

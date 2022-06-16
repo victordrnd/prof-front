@@ -19,17 +19,17 @@ export class LessonDetailsComponent implements OnInit {
   loading = true;
   isTeacher;
   date = new Date();
-  isPast=false;
+  isPast = false;
 
   paymentLoading = false;
-  constructor(private route : ActivatedRoute,
-    private lessonService : LessonService,
-    private modalService : NzModalService,
-    private translate : TranslateService,
-    private teacherService : TeacherService,
-    private authService : AuthService,
-    private notificationService:  NbToastrService,
-    private router : Router) { }
+  constructor(private route: ActivatedRoute,
+    private lessonService: LessonService,
+    private modalService: NzModalService,
+    private translate: TranslateService,
+    private teacherService: TeacherService,
+    private authService: AuthService,
+    private notificationService: NbToastrService,
+    private router: Router) { }
 
   async ngOnInit() {
     const lesson_id = this.route.snapshot.params.id;
@@ -39,37 +39,41 @@ export class LessonDetailsComponent implements OnInit {
     this.isPast = new Date() >= new Date(this.lesson.scheduled_at);
   }
 
-  async acceptStudent(student){
+  async acceptStudent(student) {
     await this.teacherService.acceptStudentLesson(student.id, this.lesson.id).toPromise().then(res => {
       this.lesson = res;
-      this.notificationService.success(this.translate.instant('lesson.settings.accept_success'),this.translate.instant('shared.success'))
+      this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
     }).catch(err => {
       this.notificationService.danger(err.error, this.translate.instant('shared.error'))
     });
   }
 
-  confirmLesson(){
+  confirmLesson() {
     this.paymentLoading = true
     this.lessonService.confirm(this.lesson.id).toPromise().then(res => {
       this.lesson = res;
-      this.notificationService.success(this.translate.instant('lesson.settings.accept_success'),this.translate.instant('shared.success'))
+      this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
     }).catch(err => {
       this.notificationService.danger(err.error, this.translate.instant('shared.error'))
     }).finally(() => this.paymentLoading = false);
   }
 
 
-  async removeStudent(){
+  async removeStudent() {
 
   }
 
-  goToTeacherProfil(){
-    this.router.navigate(['/teacher/profile/'+this.lesson.teacher_id]);
+  startDispute() {
+    this.router.navigate(['/dispute/new/' + this.lesson.id]);
+  }
+
+  goToTeacherProfil() {
+    this.router.navigate(['/teacher/profile/' + this.lesson.teacher_id]);
 
   }
 
-  joinCourse(){
-    if(this.lesson.video_link){
+  joinCourse() {
+    if (this.lesson.video_link) {
       window.open(this.lesson.video_link, "_blank");
       return;
     }
@@ -103,8 +107,8 @@ export class LessonDetailsComponent implements OnInit {
       brandName: 'ClassMath',
 
       participantCanLeave: true, // if false, leave button won't be visible
-      joinScreen : {
-        title : this.translate.instant("this.lesson.subject.libelle"),
+      joinScreen: {
+        title: this.translate.instant("this.lesson.subject.libelle"),
       },
       livestream: {
         autoStart: true,
@@ -140,21 +144,21 @@ export class LessonDetailsComponent implements OnInit {
           href: 'http://192.168.0.146:4200', // action button href
         },
       },
-      maxResolution : "hd"
+      maxResolution: "hd"
     };
     const meeting = new VideoSDKMeeting();
     meeting.init(config);
   }
 
-  openSettingsModal(){
-    const modalRef= this.modalService.create({
-      nzContent : LessonSettingsModalComponent,
-      nzComponentParams : {lesson : this.lesson},
-      nzTitle : "Réglage du cours",
-      nzOnOk : (component) => {
+  openSettingsModal() {
+    const modalRef = this.modalService.create({
+      nzContent: LessonSettingsModalComponent,
+      nzComponentParams: { lesson: this.lesson },
+      nzTitle: "Réglage du cours",
+      nzOnOk: (component) => {
         this.lessonService.update(component.lesson).toPromise().then(res => {
           this.lesson = res;
-          this.notificationService.success(this.translate.instant('lesson.settings.accept_success'),this.translate.instant('shared.success'))
+          this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
         }).catch(err => {
           this.notificationService.danger(this.translate.instant("lesson.settings.updated_success"), this.translate.instant('shared.error'));
         })
@@ -162,21 +166,21 @@ export class LessonDetailsComponent implements OnInit {
     })
   }
 
-  openCancelModal(){
+  openCancelModal() {
     const modalRef = this.modalService.confirm({
-      nzContent : this.translate.instant('lesson.cancel.confirm'),
-      nzTitle : this.translate.instant('lesson.cancel.title'),
-      nzOkText : this.translate.instant('lesson.cancel.ok'),
-      nzOnOk : async () => {
+      nzContent: this.translate.instant('lesson.cancel.confirm'),
+      nzTitle: this.translate.instant('lesson.cancel.title'),
+      nzOkText: this.translate.instant('lesson.cancel.ok'),
+      nzOnOk: async () => {
         modalRef.updateConfig({
-          nzOkLoading : true
+          nzOkLoading: true
         });
         await this.lessonService.cancel(this.lesson.id).toPromise().then(res => {
           this.router.navigate(["/dashboard"]);
           this.modalService.closeAll()
         }).catch(err => {
           modalRef.updateConfig({
-            nzOkLoading : false
+            nzOkLoading: false
           });
         });
       }

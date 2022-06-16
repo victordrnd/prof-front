@@ -1,0 +1,45 @@
+<nb-layout>
+    <nb-layout-column>
+
+        <app-header></app-header>
+        <div class="headband"></div>
+
+        <div class="container margin-negative">
+            <nb-card class="p-3">
+                <h2 class="text-center">Ouverture d'un litige</h2>
+
+                <div class="px-4">
+                    <label>Titre du litige</label>
+                    <input type="text" class="mt-3" nbInput fullWidth fieldSize="medium" placeholder="Titre du litige">
+
+                    <label class="mt-5">Selection du problème</label><br/>
+                    <nb-select placeholder="Custom label" [(selected)]="selectedItem" class="mt-3 w-75">
+                        <nb-option-group title="Problème avec le professeur">
+                            <nb-option value="1">Le professeur n'est pas venu pour faire le cours</nb-option>
+                            <nb-option value="2">Le professeur n'est pas au niveau de mes attentes</nb-option>
+                            <nb-option value="3">Le professeur n'a pas été respectueux envers un des élèves</nb-option>
+                        </nb-option-group>
+
+                        <nb-option-group title="Problème avec un élève">
+                            <nb-option value="21">L'étudiant n'est pas venu assister au cours</nb-option>
+                            <nb-option value="22">L'étudiant n'a pas été respectueux envers le professeur</nb-option>
+                        </nb-option-group>
+
+                        <nb-option value="34">Autres</nb-option>
+
+                    </nb-select><br/>
+
+
+                    <label class="mt-5">Description</label>
+                    <textarea nbInput fullWidth placeholder="Description détaillée du litige"
+                        class="text-area mt-3"></textarea>
+
+                        <div class="d-flex flex-row-reverse">
+                            <button nbButton status="primary" class="mt-3">Envoyer</button>
+                        </div>
+                </div>
+            </nb-card>
+        </div>
+    </nb-layout-column>
+
+</nb-layout>

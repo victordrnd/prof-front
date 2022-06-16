@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultDashboardRedirectionComponent } from 'src/app/shared/_components/default-dashboard-redirection/default-dashboard-redirection.component';
+import { DisputeFormComponent } from './disputes/dispute-form/dispute-form.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -35,6 +36,15 @@ const routes: Routes = [
       {
         path : 'dashboard',
         component : DefaultDashboardRedirectionComponent
+      },
+      {
+        path : 'dispute',
+        children : [
+          {
+            path : "new/:id",
+            component : DisputeFormComponent
+          }
+        ]
       }
     ]
   }

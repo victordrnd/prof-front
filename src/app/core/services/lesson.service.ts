@@ -9,12 +9,12 @@ export class LessonService {
 
   constructor(private http : HttpClient) { }
 
-  public getMyLessons(){
+  public getMyLessons(page = 1){
     return this.http.get(`${environment.apiUrl}/lessons`);
   }
 
-  getHistory(){
-    return this.http.get(`${environment.apiUrl}/lessons/history`);
+  getHistory(page=1){
+    return this.http.get(`${environment.apiUrl}/lessons/history?page=${page}`);
   }
 
   find(lesson_id){

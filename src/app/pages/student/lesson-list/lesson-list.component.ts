@@ -16,12 +16,13 @@ export class LessonListComponent implements OnInit {
   title;
   type;
   date = new Date();
-  constructor(private activatedRoute : ActivatedRoute,
-    private lessonService : LessonService, 
+
+  constructor(private activatedRoute: ActivatedRoute,
+    private lessonService: LessonService,
     private toastrService: NbToastrService,
-    private translate : TranslateService,
-    private authService : AuthService,
-    private router : Router) { }
+    private translate: TranslateService,
+    private authService: AuthService,
+    private router: Router) { }
 
   async ngOnInit() {
     this.title = (this.activatedRoute.snapshot.data as any).title;
@@ -29,30 +30,35 @@ export class LessonListComponent implements OnInit {
     this.getLessons();
   }
 
-  async getLessons(){
-    if(this.type == "coming"){
-      this.lessons = await this.lessonService.getMyLessons().toPromise();
-    }else{
-      this.lessons = await this.lessonService.getHistory().toPromise()
+  async getLessons(page = 1) {
+    if (this.type == "coming") {
+      this.lessons = await this.lessonService.getMyLessons(page).toPromise();
+    } else {
+      this.lessons = await this.lessonService.getHistory(page).toPromise();
     }
     this.loading = false;
   }
 
-  goToCourse(lesson){
-    if(this.authService.currentUserValue.role.slug == "teacher"){
+  goToCourse(lesson) {
+    if (this.authService.currentUserValue.role.slug == "teacher") {
       this.router.navigate([`/teacher/lessons/${lesson.id}`]);
-    }else{
+    } else {
       this.router.navigate([`/student/lessons/${lesson.id}`]);
     }
   }
 
 
-  async cancelLesson(lesson){
+  async cancelLesson(lesson) {
     await this.lessonService.cancel(lesson.id).toPromise().then(res => {
       this.toastrService.success(this.translate.instant('lesson.cancel.success_description'), this.translate.instant('lesson.cancel.success'));
       this.getLessons();
     }).catch(err => {
       this.toastrService.danger("Error", "An error has occured");
     });
+  }
+
+
+  async onPageIndexChange(page) {
+    this.getLessons(page);
   }
 }
