@@ -28,22 +28,13 @@ export class CalendarComponent implements OnInit {
 
 
   getLessonMarginTop(lesson){
-    return (lesson.duration - 1) * 100
+    return (lesson.duration - 1) * 100 + 10
   }
 
   bookLesson(item, date, index){
-    for(let j=index-1; j>=0; j--){
-      for(let x=0; x <= date.hours[j].lessons.length; x++){
-        if(date.hours[j].lessons[x]){
-          if(date.hours[j].lessons[x].duration > index - j){
-            return;
-          }
-        }
-      }
-    }
-    if(date.hours[index].lessons.length == 0){
+    if(!date.hours[index].disabled){
       let maxDuration =0;
-      while(maxDuration < date.hours.length - index && date.hours[index+maxDuration].lessons.length == 0){
+      while(maxDuration < date.hours.length - index && !date.hours[index+maxDuration].disabled){
         maxDuration++;
       }
       this.modalService.create({

@@ -43,4 +43,12 @@
     .color-hover {
         color: #a894ff;
     }
+
+    .ant-divider-horizontal.ant-divider-with-text::before, .ant-divider-horizontal.ant-divider-with-text::after{
+        border-top: 0px !important;
+    }
+
+    .disabled{
+        background-color: #f6f9fc;
+    }
 }

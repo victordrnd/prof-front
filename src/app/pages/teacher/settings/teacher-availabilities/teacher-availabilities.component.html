@@ -1,1 +1,18 @@
-<p>teacher-availabilities works!</p>
+<h3 class="text-center mt-3">{{'header.availabilities' | translate}}</h3>
+
+
+<div nz-row class="px-5">
+    <div class="col" nz-col nz-resizable (nzResize)="onResize($event)" [nzMinColumn]="3" [nzMaxColumn]="20"
+        [nzGridColumnCount]="24" [nzSpan]="col">
+        <nz-resize-handles [nzDirections]="['right']"></nz-resize-handles>
+        col-{{ col }}
+    </div>
+
+    <div class="col middle" nz-col nz-resizable (nzResize)="onResize2($event)" [nzMinColumn]="3" [nzMaxColumn]="20"
+        [nzGridColumnCount]="24" [nzSpan]="col2">
+        <nz-resize-handles [nzDirections]="['left']"></nz-resize-handles>
+        col-{{ col2 }}
+    </div>
+
+
+</div>
