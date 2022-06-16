@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
+import { TranslateService } from '@ngx-translate/core';
+import { DisputeService } from 'src/app/core/services/dispute.service';
 import { LessonService } from 'src/app/core/services/lesson.service';
 
 @Component({
@@ -10,13 +13,42 @@ import { LessonService } from 'src/app/core/services/lesson.service';
 export class DisputeFormComponent implements OnInit {
   lesson
   constructor(private activatedRoute: ActivatedRoute,
-    private lessonService: LessonService) { }
+    private lessonService: LessonService,
+    private disputeService : DisputeService,
+    private notificationService : NbToastrService,
+    private translate : TranslateService) { }
+
+  dispute = {
+    title : null,
+    reason : null,
+    description : null,
+    lesson_id : null
+  };
 
   async ngOnInit() {
     const lesson_id = this.activatedRoute.snapshot.params.id;
-
+    this.initDispute(lesson_id);
     this.lesson = await this.lessonService.find(lesson_id).toPromise();
-    console.log(this.lesson);
+  }
+
+
+  async createDispute(){
+    await this.disputeService.create(this.dispute).toPromise().then(res => {
+      this.notificationService.success(this.translate.instant("dispute.submitted_success"), this.translate.instant('shared.success'));
+      this.initDispute(this.lesson.id);
+    }).catch(err => {
+      this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
+    });
+  }
+
+
+  initDispute(lesson_id){
+    this.dispute = {
+      title : null,
+      reason : null,
+      description : null,
+      lesson_id : lesson_id
+    };
   }
 
 }

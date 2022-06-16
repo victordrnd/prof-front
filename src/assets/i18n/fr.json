@@ -8,6 +8,7 @@
         "dashboard" : "Tableau de bord",
         "logout" : "Déconnexion",
         "bank_info" : "Informations bancaires",
+        "availabilities" : "Gestion des disponibilités",
         "diploma" : "Gestion des diplômes"
     },
     "register" : {
@@ -147,5 +148,9 @@
         "waiting" :"En attente",
         "approved" : "Approuvé",
         "refused" :"Refusé"
+    },
+    "dispute" : {
+        "title" : "Ouverture d'un litige",
+        "submitted_success" : "Le litige a été correctement transmis et sera traité dans les plus bref délais"
     }
 }

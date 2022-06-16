@@ -8,6 +8,7 @@
         "dashboard" : "Dashboard",
         "logout" : "Log out",
         "bank_info" : "Banking Information",
+        "availabilities" : "Availabilities management",
         "diploma" : "Upload your diploma"
     },
     "register" : {
@@ -146,5 +147,9 @@
         "waiting" :"Waiting",
         "approved" : "Approved",
         "refused" :"Refused"
+    },
+    "dispute" : {
+        "title" : "Open a dispute",
+        "submitted_success" : "Dispute has correctly been saved and will be traited very soon by our staff"
     }
 }

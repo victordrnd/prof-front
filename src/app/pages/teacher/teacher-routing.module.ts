@@ -8,6 +8,7 @@ import { TeacherProfileComponent } from './settings/teacher-profile/teacher-prof
 import { LessonDetailsComponent } from 'src/app/shared/_components/lesson-details/lesson-details.component';
 import { BankInfoComponent } from './settings/bank-info/bank-info.component';
 import { DiplomaUploadComponent } from './settings/diploma-upload/diploma-upload.component';
+import { TeacherAvailabilitiesComponent } from './settings/teacher-availabilities/teacher-availabilities.component';
 
 
 
@@ -36,6 +37,10 @@ const routes: Routes = [
           {
             path : "diploma",
             component : DiplomaUploadComponent
+          },
+          {
+            path :"availabilities",
+            component : TeacherAvailabilitiesComponent
           }
         ]
       },
