@@ -135,6 +135,7 @@
         "confirm_delete_subject" : "Do you really want to remove this subject from your account ?"
     },
     "shared" : {
+        "save" :"Save",
         "success" : "Success",
         "error" : "Error",
         "error_description" :"An error has occured"

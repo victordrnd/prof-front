@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NbToastrService } from '@nebular/theme';
+import { TranslateService } from '@ngx-translate/core';
 import { NzResizeEvent } from 'ng-zorro-antd/resizable';
+import { CalendarService } from 'src/app/core/services/calendar.service';
 
 @Component({
   selector: 'app-teacher-availabilities',
@@ -8,26 +11,29 @@ import { NzResizeEvent } from 'ng-zorro-antd/resizable';
 })
 export class TeacherAvailabilitiesComponent implements OnInit {
 
-  col=10
-  col2 = 2
-  id = -1;
-  constructor() { }
+  constructor(private calendarService : CalendarService,
+    private translate : TranslateService,
+    private notificationService : NbToastrService) { }
 
-  ngOnInit(): void {
+  availabilities;
+  async ngOnInit() {
+    this.availabilities = await this.calendarService.getMyAvailabilities().toPromise();
+    // this.availabilities = 
   }
 
 
-  onResize({ col }: NzResizeEvent): void {
-    cancelAnimationFrame(this.id);
-    this.id = requestAnimationFrame(() => {
-      this.col = col!;
-    });
+  toggleEnabled(schedule){
+    schedule.disabled = !schedule.disabled;
   }
 
-  onResize2({ col }: NzResizeEvent): void {
-    cancelAnimationFrame(this.id);
-    this.id = requestAnimationFrame(() => {
-      this.col = col!;
+
+
+  saveAvailabilities(){
+    console.log(this.availabilities.days);
+    this.calendarService.saveAvailabilities(this.availabilities.days).toPromise().then(res => {
+      this.notificationService.success(this.translate.instant("settings.success_description"), this.translate.instant('shared.success'))
+    }).catch(err => {
+      this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
     });
   }
 }

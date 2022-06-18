@@ -136,6 +136,7 @@
         "confirm_delete_subject" : "Êtes-vous certains de vouloir supprimer cette matière de vos enseignements ?"
     },
     "shared" : {
+        "save" :"Sauvegarder",
         "success" : "Succès",
         "error" : "Erreur",
         "error_description" :"Une erreur est survenue"
