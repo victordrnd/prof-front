@@ -1,151 +1,168 @@
 {
-    "header" : {
-        "home" : "Accueil",
-        "about" : "A propos",
-        "contact" : "Contact",
-        "login" : "Connexion",
-        "register" : "Inscription",
-        "dashboard" : "Tableau de bord",
-        "logout" : "Déconnexion",
-        "bank_info" : "Informations bancaires",
-        "diploma" : "Gestion des diplômes"
+  "header": {
+    "home": "Accueil",
+    "about": "A propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "register": "Inscription",
+    "dashboard": "Tableau de bord",
+    "logout": "Déconnexion",
+    "bank_info": "Informations bancaires",
+    "diploma": "Gestion des diplômes"
+  },
+  "register": {
+    "title": "Inscription",
+    "profil": "Vos informations",
+    "location": "Votre adresse",
+    "student": {
+      "title": "Je suis un élève",
+      "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
     },
-    "register" : {
-        "title" : "Inscription",
-        "profil" : "Vos informations",
-        "location" : "Votre adresse",
-        "student" : {
-            "title" : "Je suis un élève",
-            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
-        },
-        "teacher" : {
-            "title" : "Je suis professeur",
-            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
-        },
-        "next" : "Suivant",
-        "lastname" : "Nom",
-        "firstname" : "Prénom",
-        "email" : "Email",
-        "password" : "Mot de passe",
-        "repeat-password" : "Répétez votre mot de passe",
-        "gender" : "Genre",
-        "male" : "Homme",
-        "female" : "Femme",
-        "success" : {
-            "title" : "Succès",
-            "desc" : "Votre compte a correctement été créé"   
-        },
-        "error" : {
-            "title" : "Erreur",
-            "desc" : "Une erreur est survenue"   
-        },
-        "no_account" : "Pas encore de compte ?",
-        "register_now" : "Inscrivez vous",
-        "avatar" : "Ma photo de profil",
-        "rate" : "Taux horraire",
-        "description" : {
-            "title" : "Ma description"
-        },
-        "subjects" : {
-            "title" : "Matières enseignées"
-        }
+    "teacher": {
+      "title": "Je suis professeur",
+      "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
     },
-    "login" : {
-        "title" : "Connexion",
-        "submit" : "Se connecter"
+    "next": "Suivant",
+    "lastname": "Nom",
+    "firstname": "Prénom",
+    "email": "Email",
+    "password": "Mot de passe",
+    "repeat-password": "Répétez votre mot de passe",
+    "gender": "Genre",
+    "male": "Homme",
+    "female": "Femme",
+    "success": {
+      "title": "Succès",
+      "desc": "Votre compte a correctement été créé"
     },
-    "subject" : {
-        "maths" : "Mathématiques",
-        "english" : "Anglais",
-        "french" : "Français",
-        "history" : "Histoire",
-        "law" : "Droit",
-        "physics" : "Physique"
+    "error": {
+      "title": "Erreur",
+      "desc": "Une erreur est survenue"
     },
-    "payment" : {
-        "add" : "Ajouter un moyen de paiement",
-        "number" : "Numéro de carte",
-        "expiration" : "Date d'expiration",
-        "expiration_placeholder" : "MM/AA",
-        "cvv" : "Code de sécurité",
-        "fullname" : "Nom du propriétaire de la carte",
-        "add_card" :"Ajouter une carte",
-        "error" : "Une erreur est survenue, veuillez réessayer plus tard",
-        "use_by_default" :"Utiliser cette carte par défaut",
-        "delete" : {
-            "title" : "Etes vous certains de vouloir supprimer cette carte de votre compte ?"
-        }
+    "no_account": "Pas encore de compte ?",
+    "register_now": "Inscrivez vous",
+    "avatar": "Ma photo de profil",
+    "rate": "Taux horraire",
+    "description": {
+      "title": "Ma description"
     },
-    "teacher" : {
-        "desc" : "Description",
-        "teached_subjects" : "Matières enseignées",
-        "reviews" : "Avis",
-        "grade" :"Note",
-        "no_reviews" :"Aucun avis publié",
-        "click_to_book" : "Cliquez pour réserver le cours",
-        "locality" : "Localité",
-        "not_found" : "Aucun professeur n'a été trouvé à proximité"
-    },
-    "general" :{
-        "hour" : "heure",
-        "hours" : "heures"
-    },
-    "lesson" : {
-        "detail" : "Détails du cours",
-        "with" : "avec",
-        "duration" : "Durée",
-        "date" : "Date",
-        "type" : "Type",
-        "students" : "Etudiants",
-        "teacher" : "Professeur",
-        "subject" : "Matière",
-        "status" : "Statut",
-        "description" : "Description",
-        "coming" :"Cours à venir",
-        "history" : "Historique de mes cours",
-        "student" : {
-            "lastname" : "Nom",
-            "firstname" : "Prénom"
-        },
-        "success_description" : "Votre demande de cours a correctment été enregistré",
-        "settings" :{
-            "accept_text" : "Accepter l'étudiant",
-            "accept_confirm" : "Êtes-vous certains d'accepter cet élève ?",
-            "accept_success" : "L'étudiant est désormais confirmé pour ce cours",
-            "updated_success" : "Le cours a correctement été mis à jour" 
-        },
-        "join" : {
-            "title" : "Rejoindre le cours"
-        },
-        "cancel" : {
-            "title" : "Annuler le cours",
-            "confirm" : "Voulez vous vraiment annuler ce cours ?",
-            "ok" : "Je confirme",
-            "success" : "Succès",
-            "success_description" : "Le cours a correctement été annulé"
-        }
-    },
-    "settings" : {
-        "success_description" : "Vos informations ont été mises à jour",
-        "save" : "Sauvegarder",
-        "additional_info" : "Mes informations complémentaires",
-        "subjects" : "Matières enseignées",
-        "invalid_iban" :"IBAN invalide",
-        "add_subject" : "Ajouter une matière",
-        "confirm_delete_subject" : "Êtes-vous certains de vouloir supprimer cette matière de vos enseignements ?"
-    },
-    "shared" : {
-        "success" : "Succès",
-        "error" : "Erreur",
-        "error_description" :"Une erreur est survenue"
-    },
-    "status" : {
-        "unconfirmed" : "Non confirmé",
-        "confirmed" : "Confirmé",
-        "cancelled" : "Annulé",
-        "done" : "Payé",
-        "waiting" :"En attente",
-        "approved" : "Approuvé",
-        "refused" :"Refusé"
+    "subjects": {
+      "title": "Matières enseignées"
     }
+  },
+  "login": {
+    "title": "Connexion",
+    "submit": "Se connecter"
+  },
+  "reset_pass": {
+    "email": "Email",
+    "mdp": "Nouveau mot de passe",
+    "repeat-password": "Répétez votre mot de passe",
+    "forgot": "Mot de passe oublié?",
+    "reset": "Réinitialisez votre mot de passe",
+    "click_to_change_password": "Cliquez ici",
+    "success": {
+      "descMail": "Nous venons de vous envoyer un email",
+      "title": "Succès",
+      "desc": "Votre mot de passe a été changé"
+    },
+    "error": {
+      "title": "Erreur",
+      "desc": "Une erreur est survenue"
+    }
+  },
+  "subject": {
+    "maths": "Mathématiques",
+    "english": "Anglais",
+    "french": "Français",
+    "history": "Histoire",
+    "law": "Droit",
+    "physics": "Physique"
+  },
+  "payment": {
+    "add": "Ajouter un moyen de paiement",
+    "number": "Numéro de carte",
+    "expiration": "Date d'expiration",
+    "expiration_placeholder": "MM/AA",
+    "cvv": "Code de sécurité",
+    "fullname": "Nom du propriétaire de la carte",
+    "add_card": "Ajouter une carte",
+    "error": "Une erreur est survenue, veuillez réessayer plus tard",
+    "use_by_default": "Utiliser cette carte par défaut",
+    "delete": {
+      "title": "Etes vous certains de vouloir supprimer cette carte de votre compte ?"
+    }
+  },
+  "teacher": {
+    "desc": "Description",
+    "teached_subjects": "Matières enseignées",
+    "reviews": "Avis",
+    "grade": "Note",
+    "no_reviews": "Aucun avis publié",
+    "click_to_book": "Cliquez pour réserver le cours",
+    "locality": "Localité",
+    "not_found": "Aucun professeur n'a été trouvé à proximité"
+  },
+  "general": {
+    "hour": "heure",
+    "hours": "heures"
+  },
+  "lesson": {
+    "detail": "Détails du cours",
+    "with": "avec",
+    "duration": "Durée",
+    "date": "Date",
+    "type": "Type",
+    "students": "Etudiants",
+    "teacher": "Professeur",
+    "subject": "Matière",
+    "status": "Statut",
+    "description": "Description",
+    "coming": "Cours à venir",
+    "history": "Historique de mes cours",
+    "student": {
+      "lastname": "Nom",
+      "firstname": "Prénom"
+    },
+    "success_description": "Votre demande de cours a correctment été enregistré",
+    "settings": {
+      "accept_text": "Accepter l'étudiant",
+      "accept_confirm": "Êtes-vous certains d'accepter cet élève ?",
+      "accept_success": "L'étudiant est désormais confirmé pour ce cours",
+      "updated_success": "Le cours a correctement été mis à jour"
+    },
+    "join": {
+      "title": "Rejoindre le cours"
+    },
+    "cancel": {
+      "title": "Annuler le cours",
+      "confirm": "Voulez vous vraiment annuler ce cours ?",
+      "ok": "Je confirme",
+      "success": "Succès",
+      "success_description": "Le cours a correctement été annulé"
+    }
+  },
+  "settings": {
+    "success_description": "Vos informations ont été mises à jour",
+    "save": "Sauvegarder",
+    "additional_info": "Mes informations complémentaires",
+    "subjects": "Matières enseignées",
+    "invalid_iban": "IBAN invalide",
+    "add_subject": "Ajouter une matière",
+    "confirm_delete_subject": "Êtes-vous certains de vouloir supprimer cette matière de vos enseignements ?"
+  },
+  "shared": {
+    "success": "Succès",
+    "error": "Erreur",
+    "error_description": "Une erreur est survenue"
+  },
+  "status": {
+    "unconfirmed": "Non confirmé",
+    "confirmed": "Confirmé",
+    "cancelled": "Annulé",
+    "done": "Payé",
+    "waiting": "En attente",
+    "approved": "Approuvé",
+    "refused": "Refusé"
+  }
 }

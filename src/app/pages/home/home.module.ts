@@ -30,8 +30,10 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 import { TranslateModule } from '@ngx-translate/core';
 import { StudentModule } from '../student/student.module';
 import { DisputeFormComponent } from './disputes/dispute-form/dispute-form.component';
+import { ForgotPasswordMailComponent } from './forgot-password-mail/forgot-password-mail.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 @NgModule({
-  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent],
+  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, ForgotPasswordMailComponent, ResetPasswordComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -15,7 +15,7 @@ export class AuthService {
     return this.currentUserSubject.value
   }
 
-  
+
   private currentUserSubject = new BehaviorSubject<any>({});
   public currentUser = this.currentUserSubject
     .asObservable()
@@ -66,6 +66,14 @@ export class AuthService {
       }),
       catchError(this.formatErrors)
     );
+  }
+
+  sendMailForgotPassword(email) : any{
+    return this.http.put(`${environment.apiUrl}/auth/password/ask-for-reset`, email)
+  }
+
+  changePassword(passwords, token) : any{
+    return this.http.put(`${environment.apiUrl}/auth/password/reset?token=`+token, passwords)
   }
 
   addUser(user: any): any {
