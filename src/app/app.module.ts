@@ -24,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 registerLocaleData(fr);
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +48,7 @@ registerLocaleData(fr);
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},
-    { provide: NZ_I18N, useValue: fr_FR } 
+    { provide: NZ_I18N, useValue: fr_FR }
   ],
   bootstrap: [AppComponent]
 })

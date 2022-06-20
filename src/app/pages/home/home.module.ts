@@ -32,8 +32,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StudentModule } from '../student/student.module';
 import { DisputeFormComponent } from './disputes/dispute-form/dispute-form.component';
 import { CollabLessonDetailsComponent } from './collab-lesson-details/collab-lesson-details.component';
+import { ForgotPasswordMailComponent } from './forgot-password-mail/forgot-password-mail.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 @NgModule({
-  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome, CollabLessonDetailsComponent],
+  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome, CollabLessonDetailsComponent,ForgotPasswordMailComponent, ResetPasswordComponent],
   imports: [
     CommonModule,
     FormsModule,
