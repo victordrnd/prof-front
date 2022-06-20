@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TeacherProfileComponent } from './teachers-list/teacher-profile/teacher-profile.component';
 import { TeachersListComponent } from './teachers-list/teachers-list.component';
+import { WaitingValidationMailComponent } from './waiting-validation-mail/waiting-validation-mail.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
       {
         path : 'reset_password',
         component : ResetPasswordComponent
+      },
+      {
+        path : 'email_verified',
+        component : WaitingValidationMailComponent
       },
       {
         path : 'dashboard',
