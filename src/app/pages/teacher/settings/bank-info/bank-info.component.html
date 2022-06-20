@@ -51,15 +51,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let transfer of transfers">
-                        <td>{{transfer.object | titlecase}}</td>
-                        <td>{{transfer.currency | uppercase}} {{transfer.amount / 100 | number}}</td>
-                        <td>{{transfer.created * 1000 | date:'medium'}}</td>
-                        <td>
-                            <nb-tag *ngIf="!transfer.reversed" size="small" status="basic" appearance="filled"
-                                text="En cours"></nb-tag>
-                        </td>
-                    </tr>
+                    <ng-container *ngFor="let transfer of transfers">
+
+                        <tr *ngIf="!transfer.reversed">
+                            <td>{{transfer.object | titlecase}}</td>
+                            <td>{{transfer.currency | uppercase}} {{transfer.amount / 100 | number}}</td>
+                            <td>{{transfer.created * 1000 | date:'medium'}}</td>
+                            <td>
+                                <nb-tag *ngIf="!transfer.reversed" size="small" status="basic" appearance="filled"
+                                    text="En cours"></nb-tag>
+                            </td>
+                        </tr>
+                    </ng-container>
                 </tbody>
             </nz-table>
         </div>

@@ -45,7 +45,7 @@ export class AuthService {
       }
     } else {
       this.purgeAuth();
-      this.router.navigate(['/login']);
+      // this.router.navigate(['/login']);
       return false;
     }
   }

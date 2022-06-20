@@ -17,7 +17,7 @@
                                     <h6 class="caption px-3">{{item.time}}</h6>
                                 </nz-list-item-meta-title>
                             </nz-list-item-meta>
-                            <div class="row" *ngIf="item.disabled">
+                            <div class="row" *ngIf="item.disabled && !item.lesson">
                                 <div class="col-12 px-0">
                                     <div class="d-flex align-items-center h-100">
                                         <nz-divider nzText="Non disponible"></nz-divider>
@@ -25,15 +25,35 @@
                                 </div>
                             </div>
 
-                            <!-- <nb-alert *ngIf="item.details" class="w-100 ml-5 mr-4"
-                                [style.height]="'calc(90px *'+ item.details.duration +')'"
-                                [style.marginTop.px]="getLessonMarginTop(item.details)">
-                                      <h6 class="text-white">{{item.time}} - {{lesson.subject.libelle | translate}}
+                            <nb-alert *ngIf="item.lesson" class="w-100 ml-5 mr-1"
+                                [style.backgroundColor]="item.lesson.subject.color"
+                                [style.height]="'calc(90px *'+ item.lesson.duration +')'"
+                                [style.marginTop.px]="getLessonMarginTop(item.lesson)"
+                                [style.zIndex]="4">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="text-white">{{item.time}} - {{item.lesson.subject.libelle |
+                                            translate}}
                                         </h6>
-                                        <p class="caption-2">{{lesson?.teacher_subject?.description}}</p> -->
-                            <!-- </div>
+                                        <p class="caption-2">{{item.lesson?.teacher_subject?.description}}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-flex align-items-end flex-column h-100">
+                                            
+                                            <nb-tag size="small" status="basic"
+                                                appearance="filled"
+                                                text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves">
+                                            </nb-tag>
+                                            <br />
+                                            <button class="mt-auto button-small" nbButton size="small"
+                                                (click)="displayLesson(item.lesson)">Réserver ma place {{item.lesson.currency | uppercase}} {{item.lesson.amount}} </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </nb-alert><br /> -->
+
+                            </nb-alert><br />
+
+
                         </ng-container>
                     </nz-list-item>
                 </nz-list>

@@ -1,0 +1,46 @@
+<h5>Proposer un cours collectif</h5>
+<p>Pour proposer un cours collectif le <b>{{date.date.day}} {{date.date.month}}</b>
+    à <b>{{item.time}}</b> vous devez préalablement choisir la matière ainsi que la durée du cours.</p>
+<div class="row">
+    <div class="col-md-6">
+        <nz-select [(ngModel)]="selectedSubject" class="w-100">
+            <nz-option *ngFor="let subject of teacher?.teacher_subjects" [nzValue]="subject.subject.id"
+                nzLabel="{{subject.subject.libelle | translate}}"></nz-option>
+        </nz-select>
+    </div>
+    <div class="col-md-6">
+        <nz-select [(ngModel)]="selectedDuration" class="w-100">
+            <nz-option *ngFor="let number of counter(maxDuration)" [nzValue]="number"
+                nzLabel="{{number}} {{(number ==1 ? 'general.hour' : 'general.hours') | translate}}"></nz-option>
+        </nz-select>
+    </div>
+</div>
+
+<div class="mt-4">
+    <label>Nombre d'étudiants maximum : ({{capacity}} élèves)<span nz-tooltip nzTooltipTitle="Nombre d'étudiant pouvant rejoindre le cours ">
+        <nb-icon nbPrefix icon="question-mark-circle-outline" class="mx-2 pointer text-primary" pack="eva"></nb-icon>
+    </span> </label>
+    <nz-slider [(ngModel)]="capacity" [nzMax]="10" [nzMin]="2" [nzTipFormatter]="formatToolTip"></nz-slider>
+</div>
+
+<label class="w-100">Prix par élève :</label><br />
+    <div class="d-flex">
+
+        <nb-form-field>
+            <nb-icon nbPrefix icon="credit-card-outline" pack="eva"></nb-icon>
+            <input type="text" [(ngModel)]="rate" placeholder="40" nbInput class="my-3">
+        </nb-form-field>
+        <nb-form-field>
+            <nb-select [(ngModel)]="currency">
+                <nb-option value="eur">EUR</nb-option>
+                <nb-option value="usd">USD</nb-option>
+                <nb-option value="aed">AED</nb-option>
+            </nb-select>
+        </nb-form-field>
+    </div>
+<nz-divider></nz-divider>
+<div class="">
+    <button nbButton size="small" status="primary" class="mx-2 float-right" (click)="confirm()">Confirm</button>
+    <button nbButton size="small" status="basic" class="float-right" (click)="cancel()">Cancel</button>
+    <p class="mb-0">&nbsp;</p>
+</div>

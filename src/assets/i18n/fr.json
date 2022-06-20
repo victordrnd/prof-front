@@ -85,7 +85,10 @@
         "no_reviews" :"Aucun avis publié",
         "click_to_book" : "Cliquez pour réserver le cours",
         "locality" : "Localité",
-        "not_found" : "Aucun professeur n'a été trouvé à proximité"
+        "not_found" : "Aucun professeur n'a été trouvé à proximité",
+        "private_tutoring" : {
+            "tooltip" : "Proposer un cours collectif"
+        }
     },
     "general" :{
         "hour" : "heure",

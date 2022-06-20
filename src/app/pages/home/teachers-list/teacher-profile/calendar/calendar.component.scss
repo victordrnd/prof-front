@@ -51,4 +51,15 @@
     .disabled{
         background-color: #f6f9fc;
     }
+
+    nb-tag.size-small {
+        font-size: 8px !important;
+        line-height: 12px !important;
+    }
+    .button-small{
+        line-height: 10px;
+    }
+    // .zindex{
+        // z-index: 30;
+    // }
 }

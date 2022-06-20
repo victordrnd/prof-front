@@ -36,7 +36,7 @@
                         <th>Montant</th>
                         <th>Date</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>Receipt</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,7 @@
                         <td>{{charge.currency | uppercase}} {{charge.amount / 100 | number}}</td>
                         <td>{{charge.created * 1000 | date:'medium'}}</td>
                         <td>
-                            <nb-tag *ngIf="charge.paid" size="small" status="primary" appearance="filled"
+                            <nb-tag *ngIf="charge.paid && !charge.refunded" size="small" status="primary" appearance="filled"
                                 text="Terminé"></nb-tag>
                             <nb-tag *ngIf="charge.disputed" size="small" status="warning" appearance="filled"
                                 text="Litige en cours"></nb-tag>

@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TeacherProfileComponent } from './teachers-list/teacher-profile/teacher-profile.component';
 import { TeachersListComponent } from './teachers-list/teachers-list.component';
+import { CollabLessonDetailsComponent } from './collab-lesson-details/collab-lesson-details.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path : 'dashboard',
         component : DefaultDashboardRedirectionComponent
+      },
+      {
+        path : 'lesson/collab/:id',
+        component : CollabLessonDetailsComponent
       },
       {
         path : 'dispute',
