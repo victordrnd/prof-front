@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CalendarService } from 'src/app/core/services/calendar.service';
+import { CreateCollabLessonModalComponent } from 'src/app/shared/_components/create-collab-lesson-modal/create-collab-lesson-modal.component';
 
 @Component({
   selector: 'app-calendar',
@@ -9,7 +11,7 @@ import { CalendarService } from 'src/app/core/services/calendar.service';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-
+  @Input() isTeacher = false;
   dates;
   color = [
     'warning',
@@ -20,7 +22,8 @@ export class CalendarComponent implements OnInit {
   ]
   constructor(private calendarService : CalendarService,
     private authService : AuthService,
-    private router : Router) { }
+    private router : Router,
+    private modalService : NzModalService) { }
 
   async ngOnInit() {
     this.dates = await this.calendarService.getTimeTable().toPromise();
@@ -43,5 +46,22 @@ export class CalendarComponent implements OnInit {
       this.router.navigate([`/student/lessons/${lesson.id}`]);
     }
 
+  }
+
+
+  bookCollabLesson(item, date, index){
+    if(!date.hours[index].disabled){
+      let maxDuration =0;
+      while(maxDuration < date.hours.length - index && !date.hours[index+maxDuration].disabled){
+        maxDuration++;
+      }
+      this.modalService.create({
+        nzTitle : null,
+        nzContent : CreateCollabLessonModalComponent,
+        nzComponentParams : {item : item, date:date, maxDuration : maxDuration},
+        nzOkText : "Confirmer",
+        nzFooter : null,
+      });
+    }
   }
 }

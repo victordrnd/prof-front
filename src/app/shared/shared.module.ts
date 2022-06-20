@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule, NbIconModule, NbBadgeModule, NbCardModule, NbSpinnerModule, NbInputModule, NbTagModule } from '@nebular/theme';
+import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule, NbIconModule, NbBadgeModule, NbCardModule, NbSpinnerModule, NbInputModule, NbTagModule, NbFormFieldModule } from '@nebular/theme';
 import { Platform } from '@angular/cdk/platform';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { OverlayModule, OverlayPositionBuilder, ViewportRuler, OverlayKeyboardDispatcher } from '@angular/cdk/overlay';
@@ -27,8 +27,10 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { CreateCollabLessonModalComponent } from './_components/create-collab-lesson-modal/create-collab-lesson-modal.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, LessonDetailsComponent, DefaultDashboardRedirectionComponent, LessonSettingsModalComponent],
+  declarations: [HeaderComponent, FooterComponent, LessonDetailsComponent, DefaultDashboardRedirectionComponent, LessonSettingsModalComponent, CreateCollabLessonModalComponent],
   imports: [
     CommonModule,
     NzModalModule,
@@ -55,7 +57,9 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzSwitchModule,
     NzSliderModule,
     NzToolTipModule,
-    NzSpinModule
+    NzSpinModule,
+    NzSelectModule,
+    NbFormFieldModule
   ],
   exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule, LessonDetailsComponent],
   providers: [

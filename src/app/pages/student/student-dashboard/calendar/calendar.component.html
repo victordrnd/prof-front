@@ -5,52 +5,52 @@
             <p class="caption text-center">{{date.date.month}}</p>
         </ng-template>
         <nz-list class="list-virtual">
-            <nz-list-item *ngFor="let item of date.hours;let i = index">
+            <nz-list-item *ngFor="let item of date.hours;let i = index" [class.pointer]="!item?.disabled && isTeacher"
+             nbPopover="{{'teacher.private_tutoring.tooltip' | translate}}" (click)="bookCollabLesson(item, date, i )"
+            nbPopoverTrigger="hint" nbPopoverPlacement="left" [nbTooltipDisabled]="item?.disabled || !isTeacher"
+            [class.disabled]="item.disabled && isTeacher">
                 <ng-container>
                     <nz-list-item-meta>
                         <nz-list-item-meta-title>
                             <h6 class="caption margin-negative px-3">{{item.time}}</h6>
                         </nz-list-item-meta-title>
                     </nz-list-item-meta>
-                    <nb-alert *ngFor="let lesson of item.lessons" [style.backgroundColor]="lesson.subject.color" class="w-100 ml-5 mr-4" [style.height]="getHeight(lesson)+'px'" [style.marginTop.px]="getLessonMarginTop(lesson)">
+                    <nb-alert *ngIf="item.lesson" [style.backgroundColor]="item.lesson.subject.color" class="w-100 ml-5 mr-4" [style.height]="getHeight(item.lesson)+'px'" [style.marginTop.px]="getLessonMarginTop(item.lesson)">
                         <div class="row">
                             <div class="col-6">
-                                <h6 class="text-white">{{item.time}} - {{lesson.subject.libelle | translate}} 
-                                    <div [ngSwitch]="lesson?.relative_status?.code" class="d-inline-block">
+                                <h6 class="text-white">{{item.time}} - {{item?.lesson?.subject.libelle | translate}} 
+                                    <div [ngSwitch]="item?.lesson?.relative_status?.code" class="d-inline-block">
                                         <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
-                                            text="{{lesson.relative_status.label | translate}}"></nb-tag>
+                                            text="{{item?.lesson?.relative_status.label | translate}}"></nb-tag>
                                         <nb-tag status="primary" size="small" class="color-hover" *ngSwitchCase="'confirmed'" appearance="filled"
-                                            text="{{lesson.relative_status.label  | translate}}"></nb-tag>
+                                            text="{{item?.lesson?.relative_status.label  | translate}}"></nb-tag>
                                         <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled"
-                                            text="{{lesson.relative_status.label  | translate}}"></nb-tag>
+                                            text="{{item?.lesson?.relative_status.label  | translate}}"></nb-tag>
                                         <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
-                                            text="{{lesson.relative_status.label  | translate}}"></nb-tag>
+                                            text="{{item?.lesson?.relative_status.label  | translate}}"></nb-tag>
                                     </div>
                                 </h6>
-                                <p class="caption-2">{{lesson?.teacher_subject?.description}}</p>
+                                <p class="caption-2">{{item.lesson?.teacher_subject?.description}}</p>
                             </div>
                             <div class="col-6">
                                 <div class="d-flex align-items-end flex-column h-100">
-                                    <nb-user size="small" [name]="lesson.teacher.firstname + ' ' +lesson.teacher.lastname"  title="">
-                                    </nb-user>
-                                    <br/>
-                                    <button class="mt-auto" nbButton size="small" (click)="displayLesson(lesson)">{{'lesson.detail' | translate}}</button>
+                                    <ng-container *ngIf="!isTeacher">
+                                        <nb-user size="small" [name]="item.lesson.teacher.firstname + ' ' +item.lesson.teacher.lastname"  title="">
+                                        </nb-user>
+                                    </ng-container>
+                                    <ng-container *ngIf="isTeacher">
+                                        <nb-user *ngIf="item.lesson.capacity == 1 && item.lesson.students.length" size="small" [name]="item.lesson.students[0].firstname + ' ' +item.lesson.students[0].lastname"  title="">
+                                        </nb-user>
+                                        <nb-tag *ngIf="item.lesson.capacity != 1" size="small"  class="small-tag" status="basic" appearance="filled" text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves"></nb-tag>
+                                    </ng-container>
+                                    <button class="mt-auto" nbButton size="small" (click)="displayLesson(item.lesson)">{{'lesson.detail' | translate}}</button>
                                 </div>
                             </div>
                         </div>
                     </nb-alert><br />
-                    <!-- <nb-alert *ngIf="i % 4 != 0"> </nb-alert> -->
-                    <!-- <ul nz-list-item-actions>
-                        <nz-list-item-action><a (click)="edit(item)">edit</a></nz-list-item-action>
-                        <nz-list-item-action><a (click)="edit(item)">more</a></nz-list-item-action>
-                    </ul> -->
+                    
                 </ng-container>
             </nz-list-item>
         </nz-list>
     </nz-tab>
-    <!-- <nz-tab [nzTitle]="nextIcon">
-        <ng-template #nextIcon>
-            <nb-icon  class="text-center h4" style="transform: translateY(-22px);" icon="arrow-ios-forward-outline" pack="eva"></nb-icon>
-        </ng-template>
-    </nz-tab> -->
 </nz-tabset>

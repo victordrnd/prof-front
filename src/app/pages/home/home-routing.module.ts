@@ -11,6 +11,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { TeacherProfileComponent } from './teachers-list/teacher-profile/teacher-profile.component';
 import { TeachersListComponent } from './teachers-list/teachers-list.component';
 import { WaitingValidationMailComponent } from './waiting-validation-mail/waiting-validation-mail.component';
+import { CollabLessonDetailsComponent } from './collab-lesson-details/collab-lesson-details.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path : 'dashboard',
         component : DefaultDashboardRedirectionComponent
+      },
+      {
+        path : 'lesson/collab/:id',
+        component : CollabLessonDetailsComponent
       },
       {
         path : 'dispute',

@@ -26,6 +26,13 @@ export class LessonService {
     return this.http.post(`${environment.apiUrl}/lessons`, {...obj});
   }
 
+  createCollabLesson(obj){
+    return this.http.post(`${environment.apiUrl}/teacher/lesson/create`, obj);
+  }
+
+  joinCollaborationLesson(lesson_id){
+    return this.http.post(`${environment.apiUrl}/lessons/join/${lesson_id}`, {});
+  }
 
   cancel(lesson_id){
     return this.http.delete(`${environment.apiUrl}/lessons/${lesson_id}`);
