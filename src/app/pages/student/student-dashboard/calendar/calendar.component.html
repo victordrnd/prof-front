@@ -41,7 +41,7 @@
                                     <ng-container *ngIf="isTeacher">
                                         <nb-user *ngIf="item.lesson.capacity == 1 && item.lesson.students.length" size="small" [name]="item.lesson.students[0].firstname + ' ' +item.lesson.students[0].lastname"  title="">
                                         </nb-user>
-                                        <nb-tag *ngIf="item.lesson.capacity != 1" size="small" status="basic" appearance="filled" text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves"></nb-tag>
+                                        <nb-tag *ngIf="item.lesson.capacity != 1" size="small"  class="small-tag" status="basic" appearance="filled" text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves"></nb-tag>
                                     </ng-container>
                                     <button class="mt-auto" nbButton size="small" (click)="displayLesson(item.lesson)">{{'lesson.detail' | translate}}</button>
                                 </div>
