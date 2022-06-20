@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent as CustomHome } from './home.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../../shared/shared.module';
 import { NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule, NbButtonComponent, NbButtonModule, NbCheckboxModule, NbRadioModule, NbToastrModule, NbAutocompleteModule, NbUserModule, NbLayoutModule, NbSidebarModule, NbAlertModule, NbDialogModule, NbPopoverModule, NbSelectModule } from '@nebular/theme';
@@ -31,7 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StudentModule } from '../student/student.module';
 import { DisputeFormComponent } from './disputes/dispute-form/dispute-form.component';
 @NgModule({
-  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent],
+  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome],
   imports: [
     CommonModule,
     FormsModule,
@@ -69,6 +70,7 @@ import { DisputeFormComponent } from './disputes/dispute-form/dispute-form.compo
     StudentModule
 
   ],
-  entryComponents : [BookingModalComponent]
+  entryComponents : [BookingModalComponent],
+  bootstrap : [CustomHome]
 })
 export class HomeModule { }

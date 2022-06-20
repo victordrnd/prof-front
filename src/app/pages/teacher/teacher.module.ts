@@ -54,7 +54,6 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     NzTableModule,
     NbTagModule,
     NzSpinModule,
-    NzResizableModule,
     NzGridModule
     // SocketIoModule.forRoot(config)
   ],

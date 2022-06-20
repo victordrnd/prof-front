@@ -10,6 +10,7 @@ import { BookingModalComponent } from '../booking-modal/booking-modal.component'
 })
 export class CalendarComponent implements OnInit {
   @Input() teacher;
+  @Input() subject_id;
   dates;
   color = [
     'warning',
@@ -24,6 +25,7 @@ export class CalendarComponent implements OnInit {
   async ngOnInit() {
     this.dates = await this.calendarService.getTwoUsersTimeTable(this.teacher.id).toPromise();
     this.dates = Object.values(this.dates);
+    console.log(this.subject_id);
   }
 
 
@@ -40,7 +42,7 @@ export class CalendarComponent implements OnInit {
       this.modalService.create({
         nzTitle : null,
         nzContent : BookingModalComponent,
-        nzComponentParams : {item : item,date:date, teacher : this.teacher, maxDuration : maxDuration},
+        nzComponentParams : {item : item,date:date, teacher : this.teacher, maxDuration : maxDuration, subject_id : this.subject_id},
         nzOkText : "Confirmer",
         nzFooter : null,
       });

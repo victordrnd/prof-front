@@ -1,44 +1,51 @@
-@import 'themes';
+@import "themes";
 
-@import '~@nebular/theme/styles/globals';
+@import "~@nebular/theme/styles/globals";
 
 @include nb-install() {
   @include nb-theme-global();
-};
+}
 /* You can add global styles to this file, and also import other style files */
 
 .nb-theme-corporate nb-layout .layout {
-  background-color:#fff;
+  background-color: #fff;
+  // max-height: 100vh;
+  overflow: hidden;
+  min-height: auto;
+}
+.nb-theme-corporate{
+  background : #f8f9fb;
 }
 .anticon {
-  transform: translateY(-5px); 
+  transform: translateY(-5px);
 }
 .light {
   font-family: OdudoLight !important;
 }
-.text-primary{
-  color : #ffdc6b !important;
+.text-primary {
+  color: #ffdc6b !important;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }
 
 ::-webkit-scrollbar {
-  width: 5px; 
+  width: 5px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #B5A6FF;
+  background: #b5a6ff;
   border-radius: 10px;
 }
 
-.bg-white{
+.bg-white {
   background-color: white;
-} 
+}
 
-.nb-theme-corporate nb-layout .layout{
+.nb-theme-corporate nb-layout .layout {
   background-color: transparent;
 }
+
 
 
 @font-face {

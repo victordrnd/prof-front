@@ -1,5 +1,7 @@
 <app-header></app-header>
+
 <nz-layout class="layout">
+
     <nz-sider nzCollapsible [nzCollapsed]="mobile ? true : false" [nzWidth]="290" [nzCollapsedWidth]="mobile ? 0 : 80">
         <ul nz-menu nzMode="inline" class="w-100">
             <li class="mt-0" nz-menu-item routerLink="dashboard">
@@ -28,15 +30,13 @@
             </li>
         </ul>
     </nz-sider>
-
-    <nz-layout>
-        <nz-content>
-            <div class="body pb-5" style="min-height : 100vh !important">
-                <nb-layout>
-                    <nb-layout-column>
-                        <router-outlet></router-outlet>
-                    </nb-layout-column>
-                </nb-layout>
-            </div>
-        </nz-content>
-    </nz-layout>
+    <nz-content style="overflow: auto; max-height: calc(100vh - 74px);">
+        <div class="body pb-3">
+            <nb-layout>
+                <nb-layout-column>
+                    <router-outlet></router-outlet>
+                </nb-layout-column>
+            </nb-layout>
+        </div>
+    </nz-content>
+</nz-layout>

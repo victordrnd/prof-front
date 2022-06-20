@@ -17,7 +17,7 @@ export class TeachersListComponent implements OnInit {
   filters = {
     subject_id: null,
     lat: null,
-    lng : null
+    lng: null
   };
   data;
   environement = environment;
@@ -66,13 +66,13 @@ export class TeachersListComponent implements OnInit {
 
 
   async selectedSubjectsChange(value, subj) {
-    this.subjects = this.subjects.map(sub => {sub.selected = false; return sub})
+    this.subjects = this.subjects.map(sub => { sub.selected = false; return sub })
     subj.selected = value;
     this.filters.subject_id = subj.selected ? subj.id : null;
     this.data = await this.teacherService.search(this.filters).toPromise();
   }
 
   openTeacherProfile(teacher_id) {
-    this.router.navigate([`teacher/profile/${teacher_id}`]);
+    this.router.navigate([`teacher/profile/${teacher_id}`, { subject_id: this.filters.subject_id }]);
   }
 }

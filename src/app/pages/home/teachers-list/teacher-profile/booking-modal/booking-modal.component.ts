@@ -19,6 +19,7 @@ export class BookingModalComponent implements OnInit {
   selectedSubject;
   selectedDuration = 1
   maxDuration;
+  subject_id = null;
   constructor(private modalService: NzModalService,
     private lessonService: LessonService,
     private paymentService: PaymentService,
@@ -28,7 +29,11 @@ export class BookingModalComponent implements OnInit {
 
   ngOnInit() {
     if (this.teacher.teacher_subjects.length) {
-      this.selectedSubject = this.teacher.teacher_subjects[0].subject.id;
+      if(this.subject_id){
+        this.selectedSubject = this.teacher.teacher_subjects.find(el => el.subject.id == this.subject_id).id;
+      }else{
+        this.selectedSubject = this.teacher.teacher_subjects[0].subject.id;
+      }
     }
   }
 

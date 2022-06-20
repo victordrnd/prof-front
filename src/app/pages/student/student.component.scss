@@ -38,4 +38,11 @@ li {
     .ant-table-thead th {
         padding: 12px 11px !important;
     }
+    .ant-layout-content{
+        background-color : #f8f9fb;
+    }
+    .ant-layout-sider{
+        background: white !important;
+        min-height: calc(100vh - 74px);
+    }
 }
