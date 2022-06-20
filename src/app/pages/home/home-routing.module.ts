@@ -4,6 +4,7 @@ import { DefaultDashboardRedirectionComponent } from 'src/app/shared/_components
 import { DisputeFormComponent } from './disputes/dispute-form/dispute-form.component';
 import { ForgotPasswordMailComponent } from './forgot-password-mail/forgot-password-mail.component';
 import { HomeComponent } from './home/home.component';
+import { HomeComponent as CustomHome} from './home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -14,6 +15,7 @@ import { TeachersListComponent } from './teachers-list/teachers-list.component';
 const routes: Routes = [
   {
     path : "",
+    component : CustomHome,
     children : [
       {
         path : '',

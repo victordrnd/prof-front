@@ -1,0 +1,27 @@
+@use '../../../../../themes.scss' as *;
+.col {
+    padding: 16px 0;
+    text-align: center;
+    border-radius: 0;
+    min-height: 30px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    // background: rgba(0, 160, 233, 0.7);
+  }
+
+  .middle {
+    background: #fff;
+    cursor : pointer;
+    &:hover{
+      background-color: #9d8cff73;
+    }
+    &.active{
+      background-color: nb-theme(tag-filled-primary-hover-background-color) !important;;
+    }
+  }
+
+
+  .border-custom{
+    border-left:1px solid #f6f9fc;
+
+  }

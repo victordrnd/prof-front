@@ -1,8 +1,9 @@
 .body {
     background-color: #f8f9fb;
-    overflow: auto;
+    // overflow: auto;
+    // max-height: calc(100vh - 74px);
 }
-html{
+html {
     overflow-y: hidden;
 }
 .mx-05 {
@@ -20,17 +21,29 @@ li {
     height: 100%;
 }
 :host::ng-deep {
-    .anticon{
+
+    .anticon {
         transform: translateY(0px) !important;
     }
     .ant-layout-sider-zero-width-trigger {
-        background-color: #806BFF;
+        background-color: #806bff;
     }
     .ant-layout-sider-zero-width-trigger:hover {
-        background: #E7E1FF;
+        background: #e7e1ff;
     }
     .ant-layout-sider-trigger {
-        background-color: #806BFF;
+        background-color: #806bff;
+    }
+    .ant-layout-header {
+        padding: 0px !important;
+        height: 74px;
+    }
+    .ant-layout-content{
+        background-color : #f8f9fb;
+    }
+    .ant-layout-sider{
+        background: white !important;
+        min-height: calc(100vh - 74px);
     }
     .anticon-bars {
         transform: translateY(-6px);
@@ -41,5 +54,4 @@ li {
     .ant-table-thead th {
         padding: 12px 11px !important;
     }
- 
 }

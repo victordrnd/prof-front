@@ -23,9 +23,12 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
+import { TeacherAvailabilitiesComponent } from './settings/teacher-availabilities/teacher-availabilities.component';
+import { NzResizableModule } from 'ng-zorro-antd/resizable';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'] } };
 @NgModule({
-  declarations: [TeacherDashboardComponent, TeacherComponent, TeacherProfileComponent, AddSubjectsModalComponent, BankInfoComponent, DiplomaUploadComponent,],
+  declarations: [TeacherDashboardComponent, TeacherComponent, TeacherProfileComponent, AddSubjectsModalComponent, BankInfoComponent, DiplomaUploadComponent, TeacherAvailabilitiesComponent,],
   imports: [
     CommonModule,
     TeacherRoutingModule,
@@ -50,7 +53,8 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     NzIconModule,
     NzTableModule,
     NbTagModule,
-    NzSpinModule
+    NzSpinModule,
+    NzGridModule
     // SocketIoModule.forRoot(config)
   ],
   bootstrap : [TeacherComponent],

@@ -19,6 +19,7 @@ export class BookingModalComponent implements OnInit {
   selectedSubject;
   selectedDuration = 1
   maxDuration;
+  subject_id = null;
   constructor(private modalService: NzModalService,
     private lessonService: LessonService,
     private paymentService: PaymentService,
@@ -28,7 +29,11 @@ export class BookingModalComponent implements OnInit {
 
   ngOnInit() {
     if (this.teacher.teacher_subjects.length) {
-      this.selectedSubject = this.teacher.teacher_subjects[0].subject.id;
+      if(this.subject_id){
+        this.selectedSubject = this.teacher.teacher_subjects.find(el => el.subject.id == this.subject_id).id;
+      }else{
+        this.selectedSubject = this.teacher.teacher_subjects[0].subject.id;
+      }
     }
   }
 
@@ -55,19 +60,22 @@ export class BookingModalComponent implements OnInit {
         this.notificationService.success(this.translate.instant('lesson.success_description'), this.translate.instant('shared.success'));
         this.router.navigate(['student/dashboard']);
       }).catch(err => {
-        if (err.status == 401) {
+        if (err.status == 409) {
           const modalref = this.modalService.create({
             nzContent: AddPaymentComponent,
             nzTitle: this.translate.instant('payment.add'),
             nzFooter: null
           });
           modalref.afterClose.subscribe(() => {
-            if(modalref.componentInstance.success){
+            if (modalref.componentInstance.success) {
               this.confirm();
             }
           })
-        }else{
-          this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'));
+        } else if (err.status == 401) {
+          this.router.navigate(['/login']);
+        } else {
+          console.log(err);
+          this.notificationService.danger(err.error.error, this.translate.instant('shared.error'));
         }
       });
     } catch (e) {

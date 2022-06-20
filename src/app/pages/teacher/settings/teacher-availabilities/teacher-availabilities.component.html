@@ -1,0 +1,39 @@
+<h3 class="text-center mt-3">{{'header.availabilities' | translate}}</h3>
+
+<div class="row" *ngIf="availabilities">
+    <div class="offset-1 col-11">
+        <div nz-row class="px-2">
+            <ng-container *ngFor="let schedule of availabilities['schedule']">
+                <div nz-col nzFlex="auto">
+                    <p class="text-center">{{schedule.hour}}</p>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<div class="row mt-3" *ngFor="let day of availabilities?.days">
+    <div class="col">
+        {{day.key | titlecase}}
+    </div>
+    <div class="col-11">
+        <div nz-row class="px-2 rounded">
+            <ng-container *ngFor="let schedule of day.schedule">
+                <div nz-col nzFlex="auto" class="border-custom text-center col middle text-white" [class.active]="!schedule.disabled" (click)="toggleEnabled(schedule)">
+                     <p> </p>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-row-reverse">
+    <button nbButton status="primary" class="m-4" (click)="saveAvailabilities()">{{'shared.save' | translate}}</button>
+</div>
+
+<h6 class="mx-5">Légende</h6>
+<div class="row mx-5">
+    <div class="col col-1 middle active text-white">Disponible</div>
+    <div class="col col-1 middle bg-white offset-1">
+        Non Disponible
+    </div>
+</div>
