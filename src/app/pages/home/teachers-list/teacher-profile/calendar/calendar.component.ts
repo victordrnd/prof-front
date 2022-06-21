@@ -37,7 +37,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
 
   getLessonMarginTop(lesson){
-    return (lesson.duration - 1) * 100 + 10
+    return (lesson.duration - 1) * 100 + 20
   }
 
   bookLesson(item, date, index){

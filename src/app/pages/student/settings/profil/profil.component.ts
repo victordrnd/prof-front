@@ -33,6 +33,7 @@ export class ProfilComponent implements OnInit {
   oldAddress: any;
 
   async ngOnInit() {
+    await this.authService.populate();
     const user = this.authService.currentUserValue;
     this.avatarUrl = user.image;
     this.form = this.fb.group({

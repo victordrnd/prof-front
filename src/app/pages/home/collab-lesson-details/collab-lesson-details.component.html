@@ -1,67 +1,73 @@
-<app-header></app-header>
-<div class="container">
+<nb-layout>
+    <nb-layout-column>
+        <app-header></app-header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 class="text-center mt-3">{{lesson?.subject?.libelle | translate}}</h3>
+                    <nb-card [nbSpinner]="cardLoading" nbSpinnerStatus="primary"  status="success" class="mx-4">
+                        <nb-card-header [style.backgroundColor]="lesson?.subject?.color">{{lesson?.subject?.libelle |
+                            translate}}
+                            {{'lesson.with' | translate}} {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}
 
-    <div class="row">
-        <div class="col-md-8">
-            <h3 class="text-center mt-3">{{lesson?.subject?.libelle | translate}}</h3>
-            <nb-card status="success" [nbSpinner]="loading" nbSpinnerStatus="primary" class="mx-4">
-                <nb-card-header [style.backgroundColor]="lesson?.subject?.color">{{lesson?.subject?.libelle | translate}}
-                    {{'lesson.with' | translate}} {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}
-    
-                    <div [ngSwitch]="lesson?.status?.code" class="float-right">
-                        <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
-                            text="{{lesson.status.label | translate}}"></nb-tag>
-                        <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled"
-                            text="{{lesson.status.label  | translate}}"></nb-tag>
-                        <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
-                            text="{{lesson.status.label  | translate}}"></nb-tag>
-                    </div>
-                </nb-card-header>
-                <nb-card-body>
-                    <label>{{'lesson.description' | translate}} : </label>
-                    <textarea class="mt-3" nbInput fullWidth
-                        disabled>{{lesson?.teacher_subject?.description || "N/A"}}</textarea>
-    
-                    <label class="mt-4">{{'lesson.date' | translate}} :</label><br />
-                    <input class="mt-3" nbInput fullWidth value="{{lesson?.scheduled_at | date:'EEEE, MMMM d, y, h:mm a'}}"
-                        disabled />
-    
-    
-                    <label class="mt-4">{{'lesson.duration' | translate}} :</label><br />
-                    <input class="mt-3" nbInput fullWidth value="{{lesson?.duration | number}}h" disabled />
-    
-    
-                    <label class="mt-4">{{'lesson.type' | translate}} :</label><br />
-                    <input class="mt-3" nbInput fullWidth value="Video Zoom" disabled />
-    
-                    <label class="mt-4">{{'lesson.students' | translate}} : </label>
-                    <p>{{lesson?.students.length}} / {{lesson?.capacity}} {{'lesson.students' | translate}}</p>
-                </nb-card-body>
-                <nb-card-footer>
-                    <div class="d-flex justify-content-between">
-                        <div><b>Total : {{lesson.currency | uppercase}} {{lesson.amount}}</b></div>
-                        <button nbButton status="primary" size="small" (click)="joinLesson()">{{'lesson.join.title' | translate}}</button>
-                    </div>
-                </nb-card-footer>
-            </nb-card>
-        </div>
-        <div class="col-md-4 mt-5">
-            <nb-card class="mx-md-4 mt-4">
-                <nb-card-body class="mx-md-4">
-                    <img [src]="lesson?.teacher?.image" class="w-75 mx-auto d-block rounded">
-                    <h5 class="text-center">{{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}</h5>
-                    <p class="text-center">{{lesson?.teacher?.teacher_profil?.description}}</p>
-                    <button nbButton size="small" class="mx-auto d-block" *ngIf="!isTeacher">
-                        <nb-icon nbPrefix icon="email-outline" pack="eva"></nb-icon> Contacter {{lesson?.teacher?.lastname}}
-                        {{lesson?.teacher?.firstname}}
-                    </button>
-                    
-                    
-                    
-                </nb-card-body>
-            </nb-card>
-        </div>
-    </div>
-</div>
+                            <div [ngSwitch]="lesson?.status?.code" class="float-right">
+                                <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
+                                    text="{{lesson.status.label | translate}}"></nb-tag>
+                                <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled"
+                                    text="{{lesson.status.label  | translate}}"></nb-tag>
+                                <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
+                                    text="{{lesson.status.label  | translate}}"></nb-tag>
+                            </div>
+                        </nb-card-header>
+                        <nb-card-body>
+                            <label>{{'lesson.description' | translate}} : </label>
+                            <textarea class="mt-3" nbInput fullWidth
+                                disabled>{{lesson?.teacher_subject?.description || "N/A"}}</textarea>
 
-<app-footer></app-footer>
+                            <label class="mt-4">{{'lesson.date' | translate}} :</label><br />
+                            <input class="mt-3" nbInput fullWidth
+                                value="{{lesson?.scheduled_at | date:'EEEE, MMMM d, y, h:mm a'}}" disabled />
+
+
+                            <label class="mt-4">{{'lesson.duration' | translate}} :</label><br />
+                            <input class="mt-3" nbInput fullWidth value="{{lesson?.duration | number}}h" disabled />
+
+
+                            <label class="mt-4">{{'lesson.type' | translate}} :</label><br />
+                            <input class="mt-3" nbInput fullWidth value="Video Zoom" disabled />
+
+                            <label class="mt-4">{{'lesson.students' | translate}} : </label>
+                            <p>{{lesson?.students.length}} / {{lesson?.capacity}} {{'lesson.students' | translate}}</p>
+                        </nb-card-body>
+                        <nb-card-footer>
+                            <div class="d-flex justify-content-between">
+                                <div><b>Total : {{lesson?.currency | uppercase}} {{lesson?.amount}}</b></div>
+                                <button [nbSpinner]="loading" nbSpinnerStatus="basic"  nbButton status="primary" size="small"
+                                    (click)="joinLesson()">{{'lesson.join.title' | translate}}</button>
+                            </div>
+                        </nb-card-footer>
+                    </nb-card>
+                </div>
+                <div class="col-md-4 mt-5">
+                    <nb-card class="mx-md-4 mt-4">
+                        <nb-card-body class="mx-md-4">
+                            <img [src]="lesson?.teacher?.image" class="w-75 mx-auto d-block rounded">
+                            <h5 class="text-center">{{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}</h5>
+                            <p class="text-center">{{lesson?.teacher?.teacher_profil?.description}}</p>
+                            <button nbButton size="small" class="mx-auto d-block" *ngIf="!isTeacher">
+                                <nb-icon nbPrefix icon="email-outline" pack="eva"></nb-icon> Contacter
+                                {{lesson?.teacher?.lastname}}
+                                {{lesson?.teacher?.firstname}}
+                            </button>
+
+
+
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+            </div>
+        </div>
+
+        <app-footer></app-footer>
+    </nb-layout-column>
+</nb-layout>

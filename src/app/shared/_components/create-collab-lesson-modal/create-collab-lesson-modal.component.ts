@@ -21,6 +21,7 @@ export class CreateCollabLessonModalComponent implements OnInit {
   capacity = 4;
   rate = 30;
   currency = 'aed';
+  success = false;
   constructor(private teacherService: TeacherService,
     private authService: AuthService,
     private lessonService : LessonService,
@@ -56,6 +57,7 @@ export class CreateCollabLessonModalComponent implements OnInit {
       scheduled_at : this.date.date.full + " " + this.item.time + ":00",
       capacity : this.capacity
     }).toPromise().then(res => {
+      this.success = true;
       this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
       this.modalRef.close();
     }).catch(err => {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -50,18 +50,28 @@ export class CalendarComponent implements OnInit {
 
 
   bookCollabLesson(item, date, index){
+    if(item?.disabled || !this.isTeacher){
+      return;
+    }
     if(!date.hours[index].disabled){
       let maxDuration =0;
       while(maxDuration < date.hours.length - index && !date.hours[index+maxDuration].disabled){
         maxDuration++;
       }
-      this.modalService.create({
+      const modalRef = this.modalService.create({
         nzTitle : null,
         nzContent : CreateCollabLessonModalComponent,
         nzComponentParams : {item : item, date:date, maxDuration : maxDuration},
         nzOkText : "Confirmer",
         nzFooter : null,
       });
+      const sb = modalRef.afterClose.subscribe(async evt => {
+        if(modalRef.componentInstance.success){
+          this.dates = await this.calendarService.getTimeTable().toPromise();
+          this.dates = Object.values(this.dates);
+          sb.unsubscribe();
+        }
+      }) 
     }
   }
 }

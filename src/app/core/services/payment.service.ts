@@ -18,6 +18,9 @@ export class PaymentService {
     return this.http.post(`${environment.apiUrl}/payments`, values);
   }
 
+  getActionsRequired(){
+    return this.http.get(`${environment.apiUrl}/payments/actions`);
+  }
 
   setDefaultPm(obj){
     return this.http.post(`${environment.apiUrl}/payments/default`, obj);
@@ -38,6 +41,14 @@ export class PaymentService {
 
   getReceipt(charge_id){
     return this.http.get(`${environment.apiUrl}/payments/receipt/${charge_id}`)
+  }
+
+  getIntent(pi_id){
+    return this.http.get(`${environment.apiUrl}/payments/intent/${pi_id}`);
+  }
+
+  confirmIntent(user_lesson_id){
+    return this.http.get(`${environment.apiUrl}/payments/intent/confirm/${user_lesson_id}`);
   }
 
   getMyCharges(){

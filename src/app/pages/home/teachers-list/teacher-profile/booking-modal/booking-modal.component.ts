@@ -29,9 +29,9 @@ export class BookingModalComponent implements OnInit {
 
   ngOnInit() {
     if (this.teacher.teacher_subjects.length) {
-      if(this.subject_id){
+      if (this.subject_id) {
         this.selectedSubject = this.teacher.teacher_subjects.find(el => el.subject.id == this.subject_id).id;
-      }else{
+      } else {
         this.selectedSubject = this.teacher.teacher_subjects[0].subject.id;
       }
     }
@@ -52,35 +52,30 @@ export class BookingModalComponent implements OnInit {
       subject_id: this.selectedSubject,
       duration: this.selectedDuration,
       teacher_id: this.teacher.id,
-      scheduled_at: this.date.detail + " " + this.item.time + ":00"
+      scheduled_at: this.date.date.full + " " + this.item.time + ":00"
     }
-    try {
-      await this.lessonService.store(obj).toPromise().then(res => {
-        this.modalService.closeAll();
-        this.notificationService.success(this.translate.instant('lesson.success_description'), this.translate.instant('shared.success'));
-        this.router.navigate(['student/dashboard']);
-      }).catch(err => {
-        if (err.status == 409) {
-          const modalref = this.modalService.create({
-            nzContent: AddPaymentComponent,
-            nzTitle: this.translate.instant('payment.add'),
-            nzFooter: null
-          });
-          modalref.afterClose.subscribe(() => {
-            if (modalref.componentInstance.success) {
-              this.confirm();
-            }
-          })
-        } else if (err.status == 401) {
-          this.router.navigate(['/login']);
-        } else {
-          console.log(err);
-          this.notificationService.danger(err.error.error, this.translate.instant('shared.error'));
-        }
-      });
-    } catch (e) {
-      console.error(e)
-    }
+    await this.lessonService.store(obj).toPromise().then(res => {
+      this.modalService.closeAll();
+      this.notificationService.success(this.translate.instant('lesson.success_description'), this.translate.instant('shared.success'));
+      this.router.navigate(['student/dashboard']);
+    }).catch(err => {
+      if (err.status == 409) {
+        const modalref = this.modalService.create({
+          nzContent: AddPaymentComponent,
+          nzTitle: this.translate.instant('payment.add'),
+          nzFooter: null
+        });
+        modalref.afterClose.subscribe(() => {
+          if (modalref.componentInstance.success) {
+            this.confirm();
+          }
+        })
+      } else if (err.status == 401) {
+        this.router.navigate(['/login']);
+      } else {
+        this.notificationService.danger(err.error.error, this.translate.instant('shared.error'));
+      }
+    });
   }
 
 

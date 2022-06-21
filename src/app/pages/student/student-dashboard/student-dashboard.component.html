@@ -1,19 +1,29 @@
 <div class="row mx-0">
     <div class="col-8 px-0">
+
         <div class="m-2">
             <app-calendar></app-calendar>
         </div>
     </div>
-    <div class="col mt-5">
+    <div class="col-4 mt-5">
         <nb-card status="primary">
             <nb-card-header>Réserver un cours</nb-card-header>
             <nb-card-body>
                 <img src="../../../../assets/home/idea.png" width="100" class="mx-auto d-block m-3">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quos porro voluptatum non laboriosam, ut
-                quam ea tenetur, expedita obcaecati nam, vero harum. Expedita enim</p>
-                <button nbButton status="basic" size="small" class="float-right">Afficher les professeurs disponibles</button>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quos porro voluptatum non laboriosam,
+                    ut
+                    quam ea tenetur, expedita obcaecati nam, vero harum. Expedita enim</p>
+                <button nbButton status="basic" size="small" class="float-right">Afficher les professeurs
+                    disponibles</button>
             </nb-card-body>
         </nb-card>
+        <br />
+        <nb-alert *ngFor="let action of actions" class="mt-2" status="danger"><span>
+                <nb-icon icon="alert-triangle-outline" pack="eva"></nb-icon> Une erreur de paiement est survenue sur le
+                cours avec {{action.lesson.teacher.firstname}} {{action.lesson.teacher.lastname}}
+            </span>
+            <button [nbSpinner]="loading" nbSpinnerStatus="primary" (click)="confirmIntent(action)" nbButton status="basic" class="mt-2">Procéder au paiement</button>
+        </nb-alert>
 
     </div>
 </div>

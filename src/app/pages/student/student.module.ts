@@ -38,7 +38,7 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     PaymentComponent,
     AddPaymentComponent,
     LessonListComponent,
-    ProfilComponent
+    ProfilComponent,
     ],
   imports: [
     CommonModule,
@@ -76,7 +76,8 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     NbTagModule,
     TranslateModule,
     NbTooltipModule,
-    NbPopoverModule
+    NbPopoverModule,
+    NbSpinnerModule
     // SocketIoModule.forRoot(config)
     ],
   bootstrap : [StudentComponent],
