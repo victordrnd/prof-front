@@ -51,9 +51,11 @@
                                 text="Litige en cours"></nb-tag>
                             <nb-tag *ngIf="charge.refunded" size="small" status="danger" appearance="filled"
                                 text="Remboursé"></nb-tag>
+                                <p *ngIf="charge.failure_message">{{charge.failure_message}}</p>
                         </td>
                         <td>
-                            <nb-icon icon="file-text-outline" pack="eva" class="pointer text-primary"
+
+                            <nb-icon *ngIf="charge.receipt_url" icon="file-text-outline" pack="eva" class="pointer text-primary"
                                 (click)="showReceipt(charge.receipt_url)"></nb-icon>
                         </td>
                     </tr>
