@@ -34,8 +34,9 @@ import { DisputeFormComponent } from './disputes/dispute-form/dispute-form.compo
 import { CollabLessonDetailsComponent } from './collab-lesson-details/collab-lesson-details.component';
 import { ForgotPasswordMailComponent } from './forgot-password-mail/forgot-password-mail.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { MailValidatedComponent } from './mail-validated/mail-validated.component';
 @NgModule({
-  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome, CollabLessonDetailsComponent,ForgotPasswordMailComponent, ResetPasswordComponent],
+  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome, CollabLessonDetailsComponent,ForgotPasswordMailComponent, ResetPasswordComponent, MailValidatedComponent],
   imports: [
     CommonModule,
     FormsModule,

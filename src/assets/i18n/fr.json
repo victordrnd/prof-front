@@ -49,6 +49,10 @@
         },
         "subjects": {
             "title": "Matières enseignées"
+        },
+        "validation_email" : {
+          "title" : "Votre mail a été validé",
+          "back" : "Retour à l'acceuil"
         }
     },
     "reset_pass": {

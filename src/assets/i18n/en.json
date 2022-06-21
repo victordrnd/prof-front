@@ -48,6 +48,10 @@
     },
     "subjects": {
       "title": "Taught Subjects"
+    },
+    "validation_email" : {
+      "title" : "Your email has been validated",
+      "back" : "Back to home"
     }
   },
   "login": {
