@@ -63,6 +63,7 @@ export class CalendarComponent implements OnInit {
         nzContent : CreateCollabLessonModalComponent,
         nzComponentParams : {item : item, date:date, maxDuration : maxDuration},
         nzOkText : "Confirmer",
+        nzMaskClosable : false,
         nzFooter : null,
       });
       const sb = modalRef.afterClose.subscribe(async evt => {
