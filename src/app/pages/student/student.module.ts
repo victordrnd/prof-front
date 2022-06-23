@@ -6,7 +6,7 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { StudentComponent } from './student.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CalendarComponent } from './student-dashboard/calendar/calendar.component';
-import { NbAlertModule, NbUserModule, NbCardModule, NbButtonModule, NbIconModule, NbInputModule, NbToastrModule, NbFormFieldModule, NbLayoutModule, NbSpinnerModule, NbCheckboxModule, NbRadioModule, NbAutocompleteModule, NbTagModule, NbTooltipModule, NbPopoverModule } from '@nebular/theme';
+import { NbAlertModule, NbUserModule, NbCardModule, NbButtonModule, NbIconModule, NbInputModule, NbToastrModule, NbFormFieldModule, NbLayoutModule, NbSpinnerModule, NbCheckboxModule, NbRadioModule, NbAutocompleteModule, NbTagModule, NbTooltipModule, NbPopoverModule, NbSelectModule, NbDatepickerModule } from '@nebular/theme';
 import { PaymentComponent } from './settings/payment/payment.component';
 import { AddPaymentComponent } from './settings/payment/add-payment/add-payment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +29,8 @@ import { ProfilComponent } from './settings/profil/profil.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { TranslateModule } from '@ngx-translate/core';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'] } };
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     TranslateModule,
     NbTooltipModule,
     NbPopoverModule,
-    NbSpinnerModule
+    NbSpinnerModule,
+    NzDatePickerModule,
+    NzSelectModule
     // SocketIoModule.forRoot(config)
     ],
   bootstrap : [StudentComponent],

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,12 +9,19 @@ export class LessonService {
 
   constructor(private http : HttpClient) { }
 
-  public getMyLessons(page = 1){
-    return this.http.get(`${environment.apiUrl}/lessons`);
+  public getMyLessons(filters){
+    const params = new HttpParams({
+      fromObject: filters
+    });
+
+    return this.http.get(`${environment.apiUrl}/lessons`, {params});
   }
 
-  getHistory(page=1){
-    return this.http.get(`${environment.apiUrl}/lessons/history?page=${page}`);
+  getHistory(filters){
+    const params = new HttpParams({
+      fromObject: filters
+    });
+    return this.http.get(`${environment.apiUrl}/lessons/history`, {params});
   }
 
   find(lesson_id){

@@ -1,20 +1,45 @@
 <div class="row mx-5 mt-5">
     <div class="col-md-10">
+
         <div class="mb-4">
-            <h2 class="float-left">{{title | translate}}</h2>
-            <nb-form-field class="float-right">
-                <nb-icon nbSuffix icon="search-outline" pack="eva"></nb-icon>
-                <input type="text" nbInput>
-            </nb-form-field>
-            <p>&nbsp;</p>
+            <h2>{{title | translate}}</h2>
+        </div>
+        <div class="row mt-1">
+            <div class="col-3 pr-4">
+                <label>{{'lesson.status' | translate}}</label>
+                <nz-select class="w-100" nzShowSearch nzAllowClear nzPlaceHolder="Select status"
+                    (ngModelChange)="getLessons('status_id', $event)" [(ngModel)]="filters.status_id">
+                    <nz-option *ngFor="let status of statuses" nzLabel="{{status.label | translate}}"
+                        [nzValue]="status.id"></nz-option>
+                </nz-select>
+            </div>
+            <div class="col-3 px-4">
+                <label>{{'lesson.date' | translate}}</label><br />
+                <nz-date-picker class="w-100" [(ngModel)]="filters.date" (ngModelChange)="getLessons('date', $event)">
+                </nz-date-picker>
+            </div>
+            <div class="col-3 px-4">
+                <label>{{'lesson.subject' | translate}}</label><br />
+                <nz-select class="w-100" nzShowSearch nzAllowClear nzPlaceHolder="Select a subject" (ngModelChange)="getLessons('subject_id', $event)" [(ngModel)]="filters.subject_id">
+                    <nz-option *ngFor="let subject of subjects" nzLabel="{{subject.libelle | translate}}" [nzValue]="subject.id"></nz-option>
+                </nz-select>
+            </div>
+            <div class="col-3 pl-4">
+                <!-- <nb-form-field class="w-100">
+                    <nb-icon nbSuffix icon="search-outline" pack="eva"></nb-icon>
+                    <input class="w-100" size="small" type="text" nbInput>
+                </nb-form-field> -->
+            </div>
         </div>
         <div class="bg-white p-5 rounded-lg shadow-sm mt-5" *ngIf="lessons">
 
-            <nz-table [nzData]="lessons?.data" [nzLoading]="loading" [nzShowPagination]="true" [nzFrontPagination]="false" [nzPageIndex]="lessons?.current_page" [nzPageSize]="lessons?.per_page"  [nzTotal]="lessons?.total" (nzPageIndexChange)="onPageIndexChange($event)">
+            <nz-table [nzData]="lessons?.data" [nzLoading]="loading" [nzShowPagination]="true"
+                [nzFrontPagination]="false" [nzPageIndex]="lessons?.current_page" [nzPageSize]="lessons?.per_page"
+                [nzTotal]="lessons?.total" (nzPageIndexChange)="onPageIndexChange($event)">
                 <thead>
                     <tr>
                         <th>{{'lesson.students' | translate}}</th>
-                        <th>{{'lesson.teacher'  | translate}}</th>
+                        <th>{{'lesson.teacher' | translate}}</th>
                         <th>{{'lesson.subject' | translate}}</th>
                         <th>Scheduled at</th>
                         <th>Status</th>
@@ -28,7 +53,8 @@
                                 {{lesson.students[0].firstname}} {{lesson.students[0].lastname}}
                             </div>
                             <ng-template #elseBlock>
-                                {{lesson.students.length}} / {{lesson.capacity}} {{'lesson.students' | translate | lowercase}}
+                                {{lesson.students.length}} / {{lesson.capacity}} {{'lesson.students' | translate |
+                                lowercase}}
                             </ng-template>
                         </td>
                         <td>{{lesson.teacher.firstname}} {{lesson.teacher.lastname}}</td>
@@ -57,7 +83,8 @@
                             <nz-dropdown-menu #menu="nzDropdownMenu">
                                 <ul nz-menu>
                                     <li nz-menu-item (click)="goToCourse(lesson)">Afficher le cours</li>
-                                    <li *ngIf="lesson?.relative_status?.code !='cancelled' && lesson.scheduled_at > date" nz-menu-item nz-popconfirm
+                                    <li *ngIf="lesson?.relative_status?.code !='cancelled' && lesson.scheduled_at > date"
+                                        nz-menu-item nz-popconfirm
                                         nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}"
                                         nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)"
                                         nzOkText="{{'lesson.cancel.ok' | translate}}">Annuler le
