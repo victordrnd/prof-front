@@ -1,0 +1,85 @@
+<h3 class="text-center mt-3">{{dispute?.title}}</h3>
+
+<div class="row m-5">
+    <div class="col-md-6 px-5">
+        <nb-card status="primary">
+            <nb-card-header>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        Titre : {{dispute?.title}}
+                    </div>
+                    <div>
+                        <nb-tag *ngIf="dispute?.status?.code == 'open'" size="small" status="primary"
+                            appearance="filled" text="{{dispute?.status?.code}}"></nb-tag>
+                        <nb-tag *ngIf="dispute?.status?.code == 'closed'" size="small" status="danger"
+                            appearance="filled" text="{{dispute?.status?.code}}"></nb-tag>
+                    </div>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+
+                <label><b>From :</b> {{dispute?.user?.lastname}} {{dispute?.user?.firstname}} <nb-icon
+                        icon="external-link-outline" pack="eva" class="text-primary mx-1 pointer text-small"></nb-icon>
+                </label><br />
+                <label><b>Teacher :</b> {{dispute?.lesson?.teacher?.lastname}}
+                    {{dispute?.lesson?.teacher?.firstname}} <nb-icon icon="external-link-outline" pack="eva"
+                        class="text-primary mx-1 pointer text-small"></nb-icon>
+                </label><br />
+
+                <label><b>Lesson :</b> {{dispute?.lesson?.scheduled_at | date:'medium'}} -
+                    <nb-tag size="small" [style.backgroundColor]="dispute?.lesson?.subject?.color" class="text-white"
+                        appearance="filled" text="{{dispute?.lesson?.subject?.libelle | translate}}"></nb-tag>
+                </label><br />
+                <label><b>Lesson status :</b> {{dispute?.lesson?.status?.label | translate}}</label><br />
+
+                <label class="mt-3"><b>Description :</b></label><br />
+                <p>{{dispute?.description}}</p>
+                <nz-table #basicTable [nzData]="dispute?.lesson?.students" class="mt-3" [nzShowPagination]="false">
+                    <thead>
+                        <tr>
+                            <th>{{'lesson.student.firstname' | translate}}</th>
+                            <th>{{'lesson.student.lastname' | translate}}</th>
+                            <th>{{'lesson.status' | translate}}</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let student of dispute?.lesson?.students">
+                            <td>{{student.firstname}}</td>
+                            <td>{{student.lastname}}</td>
+                            <td>
+                                <div [ngSwitch]="student.pivot.status.code">
+
+                                    <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'"
+                                        appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
+                                    <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'"
+                                        appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
+                                    <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'"
+                                        appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
+                                    <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
+                                        text="{{student.pivot.status.label | translate}}"></nb-tag>
+                                </div>
+                            </td>
+                            <td>
+                                <nb-icon *ngIf="student.pivot.status.code == 'done'" icon="flip-2-outline" pack="eva" class="text-primary mx-1 pointer" nz-tooltip
+                                    nzTooltipTitle="Rembourser" nz-popconfirm
+                                    nzPopconfirmTitle="Etes vous certain de vouloir procéder au remboursement de cet étudiant" nzPopconfirmPlacement="bottom"
+                                    (nzOnConfirm)="confirmRefund(student)"></nb-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-md-6 px-5">
+        <nb-chat [title]="dispute?.title" size="large">
+            <nb-chat-message *ngFor="let msg of messages" [type]="msg.type" [message]="msg.text" [reply]="msg.reply"
+                [sender]="msg.user.name" [date]="msg.date" [files]="msg.files" [quote]="msg.quote"
+                [latitude]="msg.latitude" [longitude]="msg.longitude" [avatar]="msg.user.avatar">
+            </nb-chat-message>
+            <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true">
+            </nb-chat-form>
+        </nb-chat>
+    </div>
+</div>

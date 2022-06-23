@@ -28,21 +28,21 @@ export class LoginComponent implements OnInit {
 
   submit(){
     this.authService.attemptAuth(this.form.value).toPromise().then(res => {
-      //TODO : redirect to dashboard
       if(!res.user.address){
         this.router.navigate([`/register`, { step: 3}]);
       }else{
         if(res.user.role.slug == 'student'){
           this.router.navigate(['student/dashboard']);
-        }else{
+        }else if (res.user.role.slug == 'teacher'){
           this.router.navigate(['teacher/dashboard']);
+        }else if (res.user.role.slug == 'admin'){
+          this.router.navigate(['admin']);
         }
       }
     }).catch(err => {
       for (const [key, value] of Object.entries(err)) {
         this.notificationService.danger(this.translate.instant('register.error.desc'), value)
       }
-        // this.notificationService.danger(this.translate.instant('register.error.desc'), err.error)
     })
   }
 

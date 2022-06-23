@@ -15,6 +15,7 @@
         </nz-select>
     </div>
 </div>
+<p class="text-right mt-4 mx-3"><b>Total : {{selectedDuration  * teacher.teacher_profil.rate | currency:teacher.teacher_profil.currency}}</b></p>
 <nz-divider></nz-divider>
 <div class="">
     <button nbButton size="small" status="primary" class="mx-2 float-right" (click)="confirm()">Confirm</button>

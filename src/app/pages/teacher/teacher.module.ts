@@ -58,6 +58,9 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     // SocketIoModule.forRoot(config)
   ],
   bootstrap : [TeacherComponent],
+  exports : [
+    TeacherAvailabilitiesComponent
+  ]
  
 })
 export class TeacherModule { }

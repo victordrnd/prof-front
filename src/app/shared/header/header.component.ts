@@ -30,8 +30,10 @@ export class HeaderComponent implements OnInit {
     const user = this.authService.currentUserValue;
     if (user.role.slug == 'student') {
       this.router.navigate(['student/dashboard']);
-    } else {
+    } else if (user.role.slug == 'teacher'){
       this.router.navigate(['teacher/dashboard']);
+    }else if (user.role.slug == 'admin'){
+      this.router.navigate(['admin']);
     }
 
   }

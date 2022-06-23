@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TeacherService } from 'src/app/core/services/teacher.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TeacherProfileComponent implements OnInit {
 
+  @Input() framed = false;
   constructor(private teacherService: TeacherService,
     private route: ActivatedRoute,
     private reviewService: ReviewService,
@@ -34,7 +35,8 @@ export class TeacherProfileComponent implements OnInit {
     console.log(this.route);
     const teacher_id = this.route.snapshot.params.id;
     this.subject_id = this.route.snapshot.params.subject_id || null;
-    this.teacher = await this.teacherService.get(teacher_id).toPromise()
+    this.teacher = await this.teacherService.get(teacher_id).toPromise();
+    this.teacher.teacher_profil.currency = this.teacher.teacher_profil.currency.toUpperCase();
     this.reviewService.can(this.teacher.id).toPromise().then(res => {
       this.canWriteReview = res == "1"
     }).catch(err => {

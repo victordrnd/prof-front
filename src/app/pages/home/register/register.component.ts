@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
   @ViewChild('placeInput') placeInput;
   avatarUrl: string | ArrayBuffer;
   avatar: any;
-  placeInputValue = new Subject(); 
+  placeInputValue = new Subject();
 
   loading = false;
   constructor(private route: ActivatedRoute,
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
     private notificationService: NbToastrService,
     private translate: TranslateService,
     private addressService: AddressService,
-    private userService : UserService,
+    private userService: UserService,
     private subjectService: SubjectService,
     private teacherService: TeacherService) { }
 
@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
       repeat_password: [null, Validators.required],
       sexe: ["m", Validators.required],
       rate: [30],
-      currency : ["eur", Validators.required],
+      currency: ["eur", Validators.required],
       description: [""]
 
     });
@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
     });
     this.subjects = await this.subjectService.getAll().toPromise();
 
-    this.placeInputValue.pipe(map((word : any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
+    this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
       this.places = await this.addressService.findPlaces(keyword).toPromise();
       this.selected = false;
     })
@@ -111,7 +111,6 @@ export class RegisterComponent implements OnInit {
       this.authService.setAuth(success);
       this.step++
       this.notificationService.success(this.translate.instant('register.success.desc'), this.translate.instant('register.success.title'))
-      this.loading = false;
       this.router.navigate([`.`, { step: this.step, type: this.type.value }], { relativeTo: this.route });
     })
       .catch(err => {
@@ -119,11 +118,12 @@ export class RegisterComponent implements OnInit {
           this.notificationService.danger(this.translate.instant('register.error.desc'), value)
         }
       })
+    this.loading = false;
   }
 
- 
+
   async findPlaces(keyword) {
-      this.placeInputValue.next(keyword);
+    this.placeInputValue.next(keyword);
   }
 
 
@@ -131,7 +131,7 @@ export class RegisterComponent implements OnInit {
     this.selected = true;
     this.place = place;
     this.placeInput.nativeElement.value = `${place.place_name}`
-  
+
   }
 
   async attachPlace() {
@@ -183,7 +183,7 @@ export class RegisterComponent implements OnInit {
       subjects: this.subjects.filter(el => this.taught_subject.includes(el.id)),
       description: this.form.controls.description.value,
       rate: this.form.controls.rate.value,
-      currency : this.form.controls.currency.value
+      currency: this.form.controls.currency.value
     }
     this.loading = true;
     await this.teacherService.attachProfile(obj).toPromise().then(async res => {
@@ -198,7 +198,7 @@ export class RegisterComponent implements OnInit {
       }
     });
     this.loading = false;
-    
+
   }
 
   get type() {

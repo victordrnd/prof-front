@@ -105,7 +105,8 @@
         "not_found": "Aucun professeur n'a été trouvé à proximité",
         "private_tutoring": {
             "tooltip": "Proposer un cours collectif"
-        }
+        },
+        "rate" :"Taux horraire"
     },
     "general": {
         "hour": "heure",

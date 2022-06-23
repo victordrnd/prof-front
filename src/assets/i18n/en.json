@@ -101,7 +101,11 @@
     "click_to_book": "Click here to book lesson",
     "grade": "Grade",
     "locality": "Locality",
-    "not_found": "No teacher have been found nearby"
+    "not_found": "No teacher have been found nearby",
+    "private_tutoring": {
+      "tooltip": "Propose a group lesson"
+  },
+    "rate" :"Hourly rate"
   },
   "general": {
     "hour": "heure",

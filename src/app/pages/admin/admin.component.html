@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<nz-layout class="layout">
+
+    <nz-sider nzCollapsible [nzCollapsed]="mobile ? true : false" [nzWidth]="290" [nzCollapsedWidth]="mobile ? 0 : 80">
+        <ul nz-menu nzMode="inline" class="w-100">
+            <!-- <li class="mt-0" nz-menu-item routerLink="dashboard">
+                <i nz-icon nzType="home" nzTheme="outline"></i>
+                <span>Tableau de bord</span>
+            </li> -->
+            <li nz-submenu nzTitle="Professeurs" nzIcon="book" nzOpen>
+                <ul>
+                    <li nz-menu-item routerLink="teachers">Liste des professeurs</li>
+                </ul>
+
+            <li nz-submenu nzTitle="Etudiants" nzIcon="user" nzOpen>
+                <ul>
+                    <li nz-menu-item routerLink="settings/profil">
+                        Liste des étudiants</li>
+                </ul>
+            </li>
+            <li nz-submenu nzTitle="Litiges" nzIcon="exception" nzOpen>
+                <ul>
+                    <li nz-menu-item routerLink="disputes">
+                        Afficher les litiges</li>
+                </ul>
+            </li>
+            <li nz-submenu nzTitle="Réglages" nzIcon="dashboard" nzOpen>
+                <ul>
+                    <li nz-menu-item routerLink="settings/profile">
+                        Mon Profil</li>
+                </ul>
+            </li>
+            <li nz-menu-item (click)="logout()">
+                <i nz-icon nzType="api" nzTheme="outline"></i>
+                <span>Déconnexion</span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-content style="overflow: auto; max-height: calc(100vh - 74px);">
+        <div class="body pb-3">
+            <nb-layout>
+                <nb-layout-column>
+                    <router-outlet></router-outlet>
+                </nb-layout-column>
+            </nb-layout>
+        </div>
+    </nz-content>
+</nz-layout>

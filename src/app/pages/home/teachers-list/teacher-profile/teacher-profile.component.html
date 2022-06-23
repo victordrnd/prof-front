@@ -1,5 +1,5 @@
-<app-header></app-header>
-<div class="bg-white">
+<app-header *ngIf="!framed"></app-header>
+<div  class="bg-white">
     <div class="container-lg ">
         <div class="row">
             <div class="col-md-3 col-12">
@@ -17,6 +17,8 @@
                     <nb-icon icon="pin-outline"></nb-icon> {{teacher?.address?.city}} <span class="text-hint"
                         *ngIf="teacher?.address?.distance">({{teacher?.address?.distance | number : '1.1-1'}} km)</span>
                 </p>
+                <h6 class="mt-4">{{'teacher.rate' | translate}}</h6>
+                <p><b>{{teacher?.teacher_profil?.rate | currency:teacher?.teacher_profil?.currency}}</b></p>
                 <h6 class="mt-4">{{'teacher.grade' | translate}} :</h6>
                 <p>
                     <nz-rate nzAllowHalf [ngModel]="teacher?.note" nzDisabled></nz-rate>
@@ -64,6 +66,6 @@
         </div>
     </div>
 </div>
-<div class="bg-white">
+<div *ngIf="!framed" class="bg-white">
     <app-footer></app-footer>
 </div>
