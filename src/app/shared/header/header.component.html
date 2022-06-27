@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white px-4 py-0">
+<nav class="navbar navbar-expand-sm navbar-light bg-white px-4 py-0">
     <a class="navbar-brand" routerLink="/"><img src="../../../assets/logo2.svg" class="logo" width="60" /></a>
     <div class="collapse navbar-collapse d-none d-md-block" id="navbarNav">
         <ul class="navbar-nav mr-auto">
@@ -14,7 +14,7 @@
         </ul>
         <div class="d-inline">
             <div class="d-inline">
-                <nz-badge class="mx-3 pointer" [nzCount]="5">
+                <nz-badge class="mx-3 pointer" (click)="goToMessages()" [nzCount]="unreadMessageCount">
                     <nb-icon class="d-inline-block" icon="inbox-outline" pack="eva"></nb-icon>
                   </nz-badge>
 

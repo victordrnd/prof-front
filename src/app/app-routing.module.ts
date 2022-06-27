@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path : "admin",
     loadChildren : () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+  },
+  {
+    path : "messages",
+    loadChildren : () => import('./pages/tchat/tchat.module').then(m => m.TchatModule)
   }
 ];
 

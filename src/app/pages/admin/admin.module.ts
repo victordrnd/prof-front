@@ -23,6 +23,10 @@ import { DisputesListComponent } from './disputes/disputes-list/disputes-list.co
 import { DisputeDetailsComponent } from './disputes/dispute-details/dispute-details.component';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+const config: SocketIoConfig = { url: environment.chatServer, options: { transports: ['websocket'] } };
+
 
 @NgModule({
   declarations: [
@@ -58,7 +62,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NbCardModule,
     NbChatModule,
     NzToolTipModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    SocketIoModule.forRoot(config)
   ],
   bootstrap : [AdminComponent]
 })

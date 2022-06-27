@@ -31,7 +31,7 @@ import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { TranslateModule } from '@ngx-translate/core';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'] } };
+const config: SocketIoConfig = { url: environment.chatServer, options: { transports: ['websocket'] } };
 @NgModule({
   declarations: [
     StudentDashboardComponent,

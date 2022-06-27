@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
+import { ChatService } from 'src/app/core/services/chat.service';
 import { DisputeService } from 'src/app/core/services/dispute.service';
 import { LessonService } from 'src/app/core/services/lesson.service';
 
@@ -16,13 +17,15 @@ export class DisputeFormComponent implements OnInit {
     private lessonService: LessonService,
     private disputeService : DisputeService,
     private notificationService : NbToastrService,
+    private chatService:  ChatService,
     private translate : TranslateService) { }
 
   dispute = {
     title : null,
     reason : null,
     description : null,
-    lesson_id : null
+    lesson_id : null,
+    room_id :null
   };
 
   async ngOnInit() {
@@ -33,12 +36,15 @@ export class DisputeFormComponent implements OnInit {
 
 
   async createDispute(){
-    await this.disputeService.create(this.dispute).toPromise().then(res => {
-      this.notificationService.success(this.translate.instant("dispute.submitted_success"), this.translate.instant('shared.success'));
-      this.initDispute(this.lesson.id);
-    }).catch(err => {
-      this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
-    });
+    this.chatService.createRoom({name : "Dispute : "+this.dispute.title, withAdmin : true}).toPromise().then(async(res:any) => {
+      this.dispute.room_id = res.id;
+      await this.disputeService.create(this.dispute).toPromise().then(res => {
+        this.notificationService.success(this.translate.instant("dispute.submitted_success"), this.translate.instant('shared.success'));
+        this.initDispute(this.lesson.id);
+      }).catch(err => {
+        this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))
+      });
+    })
   }
 
 
@@ -47,7 +53,8 @@ export class DisputeFormComponent implements OnInit {
       title : null,
       reason : null,
       description : null,
-      lesson_id : lesson_id
+      lesson_id : lesson_id,
+      room_id : null
     };
   }
 

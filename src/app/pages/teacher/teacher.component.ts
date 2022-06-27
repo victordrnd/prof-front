@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class TeacherComponent implements OnInit {
   mobile: boolean;
 
-  constructor(private userService : AuthService) { }
+  constructor(private userService : AuthService,
+    private socket : Socket) { }
 
   ngOnInit() {
     if (navigator.userAgent.match(/Android/i)
@@ -21,8 +23,7 @@ export class TeacherComponent implements OnInit {
     };
 
     // this.socket.connect();
-    
-    // this.socket.emit("new_message", {test : "hello"});
+    // this.socket.emit("register", {userId : this.userService.currentUserValue.id});
   }
 
   logout(){

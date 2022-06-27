@@ -1,0 +1,57 @@
+.body {
+    background-color: #f8f9fb;
+    // overflow: auto;
+    // max-height: calc(100vh - 74px);
+}
+html {
+    overflow-y: hidden;
+}
+.mx-05 {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+}
+.pb-05 {
+    padding-bottom: 0.5rem;
+}
+li {
+    outline: 0;
+}
+
+[nz-menu] {
+    height: 100%;
+}
+:host::ng-deep {
+
+    .anticon {
+        transform: translateY(0px) !important;
+    }
+    .ant-layout-sider-zero-width-trigger {
+        background-color: #806bff;
+    }
+    .ant-layout-sider-zero-width-trigger:hover {
+        background: #e7e1ff;
+    }
+    .ant-layout-sider-trigger {
+        background-color: #806bff;
+    }
+    .ant-layout-header {
+        padding: 0px !important;
+        height: 74px;
+    }
+    .ant-layout-content{
+        background-color : #f8f9fb;
+    }
+    .ant-layout-sider{
+        background: white !important;
+        min-height: calc(100vh - 74px);
+    }
+    .anticon-bars {
+        transform: translateY(-6px);
+    }
+    .ant-table-tbody td {
+        padding: 12px 11px !important;
+    }
+    .ant-table-thead th {
+        padding: 12px 11px !important;
+    }
+}

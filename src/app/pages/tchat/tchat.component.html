@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<nz-layout class="layout">
+
+    <nz-sider nzCollapsible [nzCollapsed]="mobile ? true : false" [nzWidth]="290" [nzCollapsedWidth]="mobile ? 0 : 80">
+        <ul nz-menu nzMode="inline" class="w-100 ">
+            <li class="mt-0 py-4" *ngFor="let room of rooms" nz-menu-item routerLink="room/{{room.id}}">
+                <nb-user shape="semi-round" name="{{room.name}}" [title]="room.last_message?.content || ''"></nb-user>
+                <span></span>
+            </li>
+            <nz-divider></nz-divider>
+
+
+            
+
+        </ul>
+    </nz-sider>
+    <nz-content style="overflow: auto; max-height: calc(100vh - 74px);">
+        <div class="body">
+            <nb-layout>
+                <nb-layout-column>
+                    <router-outlet></router-outlet>
+                </nb-layout-column>
+            </nb-layout>
+        </div>
+    </nz-content>
+</nz-layout>

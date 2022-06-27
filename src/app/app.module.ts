@@ -18,10 +18,12 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { fr_FR, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { environment } from 'src/environments/environment';
 import { NgxStripeModule } from 'ngx-stripe';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 registerLocaleData(fr);
+const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'] } };
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ registerLocaleData(fr);
     NbToastrModule.forRoot(),
     NzSpinModule,
     NbAutocompleteModule,
-    NgxStripeModule.forRoot(environment.publicStripeKey)
+    NgxStripeModule.forRoot(environment.publicStripeKey),
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ChatService } from 'src/app/core/services/chat.service';
 
 @Component({
   selector: 'app-student',
@@ -9,7 +10,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class StudentComponent implements OnInit {
   mobile: boolean;
 
-  constructor(private userService : AuthService) { }
+  constructor(private userService : AuthService,
+    private chatService : ChatService) { }
 
   ngOnInit() {
     if (navigator.userAgent.match(/Android/i)
