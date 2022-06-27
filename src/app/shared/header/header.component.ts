@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.isConnected = this.authService.getToken() ? true : false;
     this.chatService.unreadMessageCount.subscribe(count => {
-      console.log("increment");
       this.unreadMessageCount = count
     });
     this.cdr.markForCheck();

@@ -69,17 +69,13 @@
                         </tr>
                     </tbody>
                 </nz-table>
+                <button nbButton class="w-100 mt-4" nz-popconfirm
+                nzPopconfirmTitle="Etes vous certain de vouloir fermer ce ticket" nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="closeDispute()">Marquer comme résolu</button>
             </nb-card-body>
         </nb-card>
     </div>
-    <div class="col-md-6 px-5">
-        <nb-chat [title]="dispute?.title" size="large">
-            <nb-chat-message *ngFor="let msg of messages" [type]="msg.type" [message]="msg.text" [reply]="msg.reply"
-                [sender]="msg.user.name" [date]="msg.date" [files]="msg.files" [quote]="msg.quote"
-                [latitude]="msg.latitude" [longitude]="msg.longitude" [avatar]="msg.user.avatar">
-            </nb-chat-message>
-            <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true">
-            </nb-chat-form>
-        </nb-chat>
+    <div class="col-md-6 px-5" *ngIf="dispute">
+       <app-room-details [roomId]="dispute.room_id"></app-room-details>
     </div>
 </div>

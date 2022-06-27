@@ -34,6 +34,9 @@ export class AdminService {
     return this.http.get(`${environment.apiUrl}/admin/disputes/${dispute_id}`);
   }
 
+  closeDispute(dispute_id){
+    return this.http.delete(`${environment.apiUrl}/admin/disputes/${dispute_id}`);
+  }
 
   proceedRefund(user_id, lesson_id){
     return this.http.post(`${environment.apiUrl}/admin/disputes/refund/${user_id}/${lesson_id}`, {});

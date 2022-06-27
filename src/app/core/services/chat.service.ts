@@ -12,25 +12,27 @@ export class ChatService {
   isRegistred = false;
   currentRoomId = null;
 
+  rooms = new BehaviorSubject([]);
   unreadMessageCount = new BehaviorSubject(0);
 
   audioService = new Audio();
-  constructor(private http : HttpClient, private socket : Socket,
-    private userService : AuthService) { }
+  constructor(private http: HttpClient, private socket: Socket,
+    private userService: AuthService) { }
 
 
-  connect(){
-    console.log(this.isRegistred);
-    if(!this.isRegistred){
-      this.socket.emit("register", {userId : this.userService.currentUserValue.id});
+  async connect() {
+    if (!this.isRegistred) {
+      await this.getMyRooms();
+      this.socket.emit("register", { userId: this.userService.currentUserValue.id });
       this.isRegistred = true;
-     this.clearUnReadMessage();
-      this.socket.fromEvent('new_message').subscribe((message:any) => {
-        if(message.userId != this.userService.currentUserValue.id){
+      this.clearUnReadMessage();
+      this.socket.fromEvent('new_message').subscribe((message: any) => {
+        this.setNewMessage(message);
+        if (message.userId != this.userService.currentUserValue.id) {
           this.audioService.src = "../../../assets/mp3/message.mp3"
           this.audioService.load();
           this.audioService.play();
-          if(message.roomId != this.currentRoomId){
+          if (message.roomId != this.currentRoomId) {
             this.unreadMessageCount.next(this.unreadMessageCount.value + 1);
           }
         }
@@ -38,53 +40,74 @@ export class ChatService {
     }
   }
 
-  clearUnReadMessage(){
+  clearUnReadMessage() {
     this.unreadMessageCount.next(0);
   }
 
 
-  getMyRooms(){
-    return this.http.get(`${environment.chatServer}/rooms/my`);
+  clearUnReadMessageForRoom(room_id) {
+    const rooms = this.rooms.value;
+    const room = rooms.find(room => room.id == room_id);
+    room.new_message = false;
+    this.rooms.next(rooms);
+  }
+
+  private setNewMessage(message) {
+    const rooms = this.rooms.value;
+    const room = rooms.find(room => room.id == message.roomId);
+    if(message.userId != this.userService.currentUserValue.id && message.roomId != this.currentRoomId){
+      room.new_message = true;
+    }
+    room.updated_at = new Date().toISOString();
+    room.last_message = message;
+    const sorted = rooms.sort((a, b)=> new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+    this.rooms.next(sorted);
   }
 
 
-  getRoomMessages(room_id ){
+
+  async getMyRooms() {
+    const rooms: any[] = await this.http.get(`${environment.chatServer}/rooms/my`).toPromise() as any;
+    this.rooms.next(rooms);
+  }
+
+
+  getRoomMessages(room_id) {
     return this.http.get(`${environment.chatServer}/rooms/${room_id}/messages`);
   }
 
 
-  createRoom(obj : CreateRoomDto){
+  createRoom(obj: CreateRoomDto) {
     return this.http.post(`${environment.chatServer}/rooms`, obj);
   }
 
 
-  getRoom(room_id){
+  getRoom(room_id) {
     return this.http.get(`${environment.chatServer}/rooms/${room_id}`);
   }
 
 
-  sendMessage(content : CreateMessageDto){
+  sendMessage(content: CreateMessageDto) {
     this.socket.emit('new_message', content)
   }
 
   public onNewMessage(): Observable<any> {
 
-    this.socket.on('new_message', (MESSAGE) => console.log(MESSAGE));
     return this.socket.fromEvent<any>('new_message');
   }
 }
 
-class CreateMessageDto{
-  type : string;
-  content : string;
-  files? : any[];
-  userId:number;
-  roomId : number; 
+class CreateMessageDto {
+  type: string;
+  content: string;
+  files?: any[];
+  userId: number;
+  roomId: number;
 }
 
-class CreateRoomDto  {
+class CreateRoomDto {
   name = "";
-  users? = [];
+  users?= [];
   withAdmin = false;
 
 }

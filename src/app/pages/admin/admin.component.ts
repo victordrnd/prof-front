@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ChatService } from 'src/app/core/services/chat.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,6 +11,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class AdminComponent implements OnInit {
   mobile = false;
   constructor(private authService : AuthService,
+    private chatService :  ChatService,
     private router : Router) { }
 
   ngOnInit(): void {
@@ -20,6 +22,7 @@ export class AdminComponent implements OnInit {
       || navigator.userAgent.match(/iPod/i)) {
       this.mobile = true;
     };
+    this.chatService.connect();
   }
 
   logout() {

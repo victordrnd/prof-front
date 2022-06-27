@@ -4,6 +4,6 @@
         [longitude]="msg.longitude" [avatar]="msg.user?.avatar" dateFormat="shortTime">
     </nb-chat-message>
 
-    <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true">
+    <nb-chat-form [showButton]="true" (send)="sendMessage($event)" [dropFiles]="true">
     </nb-chat-form>
 </nb-chat>

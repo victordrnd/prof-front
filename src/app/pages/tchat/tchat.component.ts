@@ -12,10 +12,7 @@ import { ChatService } from 'src/app/core/services/chat.service';
 export class TchatComponent implements OnInit {
 
   constructor(private chatService: ChatService,
-    private socket : Socket,
-    private router : Router,
-    private route : ActivatedRoute,
-    private userService : AuthService) { }
+    private router : Router) { }
 
   rooms;
   mobile = false;
@@ -29,8 +26,12 @@ export class TchatComponent implements OnInit {
     };
 
     this.chatService.clearUnReadMessage();
-    this.chatService.connect();
-    this.rooms = await this.chatService.getMyRooms().toPromise();
+    await this.chatService.connect();
+    await this.chatService.getMyRooms();
+    this.rooms = this.chatService.rooms.value;
+    this.chatService.rooms.subscribe(rooms => {
+      this.rooms = rooms;
+    });
     if(this.rooms.length){
       this.goToRoom(this.rooms[0].id);
     }

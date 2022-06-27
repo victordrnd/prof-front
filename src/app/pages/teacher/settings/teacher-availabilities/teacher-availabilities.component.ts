@@ -29,7 +29,6 @@ export class TeacherAvailabilitiesComponent implements OnInit {
 
 
   saveAvailabilities(){
-    console.log(this.availabilities.days);
     this.calendarService.saveAvailabilities(this.availabilities.days).toPromise().then(res => {
       this.notificationService.success(this.translate.instant("settings.success_description"), this.translate.instant('shared.success'))
     }).catch(err => {

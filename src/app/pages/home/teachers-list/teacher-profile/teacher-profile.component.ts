@@ -32,7 +32,6 @@ export class TeacherProfileComponent implements OnInit {
   subject_id = null;
 
   async ngOnInit() {
-    console.log(this.route);
     const teacher_id = this.route.snapshot.params.id;
     this.subject_id = this.route.snapshot.params.subject_id || null;
     this.teacher = await this.teacherService.get(teacher_id).toPromise();

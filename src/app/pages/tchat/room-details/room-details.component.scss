@@ -2,8 +2,16 @@
     time {
         font-size: 9px;
     }
-    .scrollable{
-        min-height:80vh;
-        max-height:80vh
+    .scrollable {
+        min-height: 80vh;
+        max-height: 80vh;
     }
+
+    // nb-chat-form {
+    //     > ::before {
+    //         // width: 20px;
+    //         content: "Upload files";
+    //         // background: red;
+    //     }
+    // }
 }

@@ -34,7 +34,6 @@ export class CreateCollabLessonModalComponent implements OnInit {
     if (this.teacher.teacher_subjects.length) {
       this.selectedSubject = this.teacher.teacher_subjects[0].subject.id;
     }
-    console.log(this.date)
   }
 
 

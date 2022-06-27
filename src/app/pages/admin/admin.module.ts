@@ -25,6 +25,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
+import { TchatModule } from '../tchat/tchat.module';
 const config: SocketIoConfig = { url: environment.chatServer, options: { transports: ['websocket'] } };
 
 
@@ -63,7 +64,8 @@ const config: SocketIoConfig = { url: environment.chatServer, options: { transpo
     NbChatModule,
     NzToolTipModule,
     NzPopconfirmModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    TchatModule
   ],
   bootstrap : [AdminComponent]
 })

@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NbChatFormComponent } from '@nebular/theme';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ChatService } from 'src/app/core/services/chat.service';
@@ -14,39 +15,63 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private chatService: ChatService,
     private authService: AuthService) { }
-  
 
+  @Input() roomId;
   room;
   messages;
   currentUser;
 
-  subscriptions  = [];
+  subscriptions = [];
   async ngOnInit() {
     this.currentUser = this.authService.currentUserValue;
-    const sb = this.route.params.subscribe(params => {
-      this.fetchRoom(params.id);
-      this.chatService.currentRoomId = params.id;
-    });
+    if (!this.roomId) {
+      const sb = this.route.params.subscribe(params => {
+        this.fetchRoom(params.id);
+        this.chatService.currentRoomId = params.id;
+      });
+      this.subscriptions.push(sb);
+    } else {
+      this.fetchRoom(this.roomId);
+      this.chatService.currentRoomId = this.roomId;
+    }
+
     const sb1 = this.chatService.onNewMessage().subscribe(message => {
-      if(message.roomId == this.room.id){
+      if (message.roomId == this.room.id) {
         message = this.formatMessage(message);
+        console.log(message);
         this.messages.push(message);
-      } 
+      }
     })
-    this.subscriptions.push(sb, sb1);
+
+    // NbChatFormComponent
+    this.subscriptions.push(sb1);
   }
 
 
-  async fetchRoom(room_id){
+  async fetchRoom(room_id) {
     this.room = await this.chatService.getRoom(room_id).toPromise();
-    console.log(this.room);
     this.messages = await this.chatService.getRoomMessages(room_id).toPromise();
     this.messages = this.messages.map(message => this.formatMessage(message));
+    this.chatService.clearUnReadMessageForRoom(this.room.id);
+
   }
 
   sendMessage(event) {
+    console.log(event);
+    let files = [];
+    if (event.files.length) {
+      files = !event.files ? [] : event.files.map((file) => {
+        return {
+          data: file,
+          type: file.type,
+          name : file.name,
+        };
+      });
+    }
+
     this.chatService.sendMessage({
-      type: "text",
+      type: files.length ? "file" : "text",
+      files : files,
       userId: this.currentUser.id,
       roomId: this.room.id,
       content: event.message

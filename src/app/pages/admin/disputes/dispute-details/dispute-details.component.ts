@@ -33,7 +33,6 @@ export class DisputeDetailsComponent implements OnInit {
         avatar: this.dispute.user.image,
       },
     })
-    console.log(this.dispute);
   }
 
 
@@ -41,36 +40,21 @@ export class DisputeDetailsComponent implements OnInit {
     this.dispute = await this.adminService.getDispute(dispute_id).toPromise();
   }
 
-  sendMessage(event: any) {
-    const files = !event.files ? [] : event.files.map((file) => {
-      return {
-        url: file.src,
-        type: file.type,
-        icon: 'file-text-outline',
-      };
-    });
-
-    this.messages.push({
-      text: event.message,
-      date: new Date(),
-      reply: true,
-      type: files.length ? 'file' : 'text',
-      files: files,
-      user: {
-        name: this.user.lastname + ' '+ this.user.firstname,
-        avatar: 'https://i.gifer.com/no.gif',
-      },
-    });
-  }
-
 
   confirmRefund(student){
-    console.log(student);
     this.adminService.proceedRefund(student.id, this.dispute.lesson.id).toPromise().then(res => {
       this.notificationService.success("Le remboursement a correctement été effectué", "Succès");
       this.getDispute(this.dispute.id);
     }).catch(err => {
       this.notificationService.danger("Impossible de procéder au remboursement de cet étudiant", "Error");
     });
+  }
+
+
+  closeDispute(){
+    this.adminService.closeDispute(this.dispute.id).toPromise().then(res => {
+      this.notificationService.success("Le litige a été marqué comme résolu", "Succès");
+      this.dispute = res;
+    })
   }
 }

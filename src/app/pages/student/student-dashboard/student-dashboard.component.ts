@@ -30,7 +30,6 @@ export class StudentDashboardComponent implements OnInit {
   async confirmIntent(action) {
     this.loading = true;
     const intent: any = await this.paymentService.getIntent(action.payment_id).toPromise();
-    console.log(intent);
     this.stripe.handleCardAction(intent.client_secret).toPromise().then(async res => {
       await this.paymentService.confirmIntent(action.id).toPromise();
       this.getActions();

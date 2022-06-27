@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { NbChatModule, NbLayoutModule, NbUserModule } from '@nebular/theme';
+import { NbBadgeModule, NbChatModule, NbIconModule, NbLayoutModule, NbUserModule } from '@nebular/theme';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { RoomDetailsComponent } from './room-details/room-details.component';
 
@@ -28,8 +28,11 @@ import { RoomDetailsComponent } from './room-details/room-details.component';
     NbLayoutModule,
     NbUserModule,
     NzDividerModule,
-    NbChatModule
+    NbChatModule,
+    NbBadgeModule,
+    NbIconModule
   ],
+  exports : [RoomDetailsComponent],
   bootstrap : [TchatComponent]
 })
 export class TchatModule { }
