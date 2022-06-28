@@ -15,17 +15,17 @@ export class DisputeFormComponent implements OnInit {
   lesson
   constructor(private activatedRoute: ActivatedRoute,
     private lessonService: LessonService,
-    private disputeService : DisputeService,
-    private notificationService : NbToastrService,
-    private chatService:  ChatService,
-    private translate : TranslateService) { }
+    private disputeService: DisputeService,
+    private notificationService: NbToastrService,
+    private chatService: ChatService,
+    private translate: TranslateService) { }
 
   dispute = {
-    title : null,
-    reason : null,
-    description : null,
-    lesson_id : null,
-    room_id :null
+    title: null,
+    reason: null,
+    description: null,
+    lesson_id: null,
+    room_id: null
   };
 
   async ngOnInit() {
@@ -35,10 +35,16 @@ export class DisputeFormComponent implements OnInit {
   }
 
 
-  async createDispute(){
-    this.chatService.createRoom({name : "Dispute : "+this.dispute.title, withAdmin : true}).toPromise().then(async(res:any) => {
+  async createDispute() {
+    this.chatService.createRoom({ name: "Dispute : " + this.dispute.title, withAdmin: true }).toPromise().then(async (res: any) => {
       this.dispute.room_id = res.id;
-      await this.disputeService.create(this.dispute).toPromise().then(res => {
+      await this.disputeService.create(this.dispute).toPromise().then((res: any) => {
+        this.chatService.sendMessage({
+          type: "text",
+          userId: res.user_id,
+          roomId: this.dispute.room_id,
+          content: res.description
+        })
         this.notificationService.success(this.translate.instant("dispute.submitted_success"), this.translate.instant('shared.success'));
         this.initDispute(this.lesson.id);
       }).catch(err => {
@@ -48,13 +54,13 @@ export class DisputeFormComponent implements OnInit {
   }
 
 
-  initDispute(lesson_id){
+  initDispute(lesson_id) {
     this.dispute = {
-      title : null,
-      reason : null,
-      description : null,
-      lesson_id : lesson_id,
-      room_id : null
+      title: null,
+      reason: null,
+      description: null,
+      lesson_id: lesson_id,
+      room_id: null
     };
   }
 

@@ -5,18 +5,21 @@
     <nz-sider nzCollapsible [nzCollapsed]="mobile ? true : false" [nzWidth]="290" [nzCollapsedWidth]="mobile ? 0 : 80">
         <ul nz-menu nzMode="inline" class="w-100 ">
             <li class="mt-0 py-4" *ngFor="let room of rooms" nz-menu-item routerLink="room/{{room.id}}">
-                <div class="d-inline mx-3">
-                    <div class="d-flex">
-                        <nb-badge *ngIf="room.new_message" class=" ml-3 mt-3" dotMode status="primary" position="top left"></nb-badge>
-                    </div>
-                    <nb-user shape="semi-round" name="{{room.name}}" [title]="room.last_message?.content || ''"></nb-user>
+                <div class="d-flex">
+                    <!-- <nb-badge *ngIf="room.new_message" class="mx-3 mt-3" dotMode status="primary" position="top left">
+                    </nb-badge> -->
+                    <!-- <time class="mx-3">{{room.updated_at | date:'shortTime'}}</time> -->
+                    <nb-user *ngIf="room.new_message" badgeText="1" badgeStatus="primary" badgePosition="bottom right" class="mx-2" shape="semi-round" name="{{room.name}}" title="{{room.last_message?.content}} · {{room.updated_at | date:'shortTime'}}">
+                    </nb-user>
+                    <nb-user *ngIf="!room.new_message" class="mx-2" shape="semi-round" name="{{room.name}}" title="{{room.last_message?.content}} · {{room.updated_at | date:'shortTime'}}">
+                    </nb-user>
                 </div>
                 <span></span>
             </li>
             <nz-divider></nz-divider>
 
 
-            
+
 
         </ul>
     </nz-sider>

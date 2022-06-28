@@ -9,6 +9,7 @@ import { TeacherService } from 'src/app/core/services/teacher.service';
 import { VideoSDKMeeting } from '@videosdk.live/rtc-js-prebuilt';
 import { environment } from 'src/environments/environment';
 import { LessonSettingsModalComponent } from '../lesson-settings-modal/lesson-settings-modal.component';
+import { ChatService } from 'src/app/core/services/chat.service';
 @Component({
   selector: 'app-lesson-details',
   templateUrl: './lesson-details.component.html',
@@ -29,6 +30,7 @@ export class LessonDetailsComponent implements OnInit {
     private teacherService: TeacherService,
     private authService: AuthService,
     private notificationService: NbToastrService,
+    private chatService : ChatService,
     private router: Router) { }
 
   async ngOnInit() {
@@ -50,9 +52,12 @@ export class LessonDetailsComponent implements OnInit {
 
   confirmLesson() {
     this.paymentLoading = true
-    this.lessonService.confirm(this.lesson.id).toPromise().then(res => {
-      this.lesson = res;
-      this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
+    this.lessonService.confirm(this.lesson.id).toPromise().then((res:any) => {
+      this.chatService.createRoom({name : `Lesson ${res.scheduled_at}`, users : res.students, lessonId : res.id}).toPromise().then(room => {
+        this.chatService.emitNewRoomCreate(room);
+        this.lesson = res;
+        this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
+      });
     }).catch(err => {
       this.notificationService.danger(err.error, this.translate.instant('shared.error'))
     }).finally(() => this.paymentLoading = false);

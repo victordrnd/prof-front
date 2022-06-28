@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NbChatFormComponent } from '@nebular/theme';
+import { NbChatComponent, NbChatFormComponent } from '@nebular/theme';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ChatService } from 'src/app/core/services/chat.service';
@@ -17,6 +17,7 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
     private authService: AuthService) { }
 
   @Input() roomId;
+  
   room;
   messages;
   currentUser;
@@ -38,12 +39,9 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
     const sb1 = this.chatService.onNewMessage().subscribe(message => {
       if (message.roomId == this.room.id) {
         message = this.formatMessage(message);
-        console.log(message);
         this.messages.push(message);
       }
-    })
-
-    // NbChatFormComponent
+    });
     this.subscriptions.push(sb1);
   }
 
@@ -64,14 +62,14 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
         return {
           data: file,
           type: file.type,
-          name : file.name,
+          name: file.name,
         };
       });
     }
 
     this.chatService.sendMessage({
       type: files.length ? "file" : "text",
-      files : files,
+      files: files,
       userId: this.currentUser.id,
       roomId: this.room.id,
       content: event.message
@@ -80,15 +78,26 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
 
 
   formatMessage(message) {
+    const type = message.type;
+    message.type = message.type != "text" ? "file" : "text";
+    if (message.type == "file") {
+      message.files = [{
+        url: message.content,
+        type: type,
+        icon: 'file-text-outline'
+      }];
+    } else {
+      message.text = message.content;
+    }
     message.user = this.room.users.find(user => user.id == message.userId);
     message.reply = message.userId == this.currentUser.id;
-    message.text = message.content;
     message.date = message.created_at;
     return message;
   }
 
 
   ngOnDestroy(): void {
+    this.chatService.currentRoomId = null;
     this.subscriptions.map(sb => sb.unsubscribe());
   }
 }

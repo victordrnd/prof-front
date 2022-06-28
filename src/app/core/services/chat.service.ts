@@ -16,27 +16,18 @@ export class ChatService {
   unreadMessageCount = new BehaviorSubject(0);
 
   audioService = new Audio();
-  constructor(private http: HttpClient, private socket: Socket,
+  constructor(private http: HttpClient, public socket: Socket,
     private userService: AuthService) { }
 
-
-  async connect() {
-    if (!this.isRegistred) {
+  private subscriptions = [];
+  async connect(forceReconnect = false) {
+    if (!this.isRegistred || forceReconnect) {
       await this.getMyRooms();
       this.socket.emit("register", { userId: this.userService.currentUserValue.id });
       this.isRegistred = true;
+      this.clearSubscriptions();
       this.clearUnReadMessage();
-      this.socket.fromEvent('new_message').subscribe((message: any) => {
-        this.setNewMessage(message);
-        if (message.userId != this.userService.currentUserValue.id) {
-          this.audioService.src = "../../../assets/mp3/message.mp3"
-          this.audioService.load();
-          this.audioService.play();
-          if (message.roomId != this.currentRoomId) {
-            this.unreadMessageCount.next(this.unreadMessageCount.value + 1);
-          }
-        }
-      })
+      this.subscribeToNewMessages();
     }
   }
 
@@ -48,26 +39,36 @@ export class ChatService {
   clearUnReadMessageForRoom(room_id) {
     const rooms = this.rooms.value;
     const room = rooms.find(room => room.id == room_id);
-    room.new_message = false;
+    if (room) {
+      room.new_message = false;
+    }
     this.rooms.next(rooms);
   }
 
   private setNewMessage(message) {
     const rooms = this.rooms.value;
     const room = rooms.find(room => room.id == message.roomId);
-    if(message.userId != this.userService.currentUserValue.id && message.roomId != this.currentRoomId){
+    if (message.userId != this.userService.currentUserValue.id && message.roomId != this.currentRoomId) {
       room.new_message = true;
     }
     room.updated_at = new Date().toISOString();
     room.last_message = message;
-    const sorted = rooms.sort((a, b)=> new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+    const sorted = rooms.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
     this.rooms.next(sorted);
   }
 
 
 
   async getMyRooms() {
-    const rooms: any[] = await this.http.get(`${environment.chatServer}/rooms/my`).toPromise() as any;
+    let rooms: any[] = await this.http.get(`${environment.chatServer}/rooms/my`).toPromise() as any;
+    const currentUserId = this.userService.currentUserValue.id;
+    rooms.map(room => {
+      if (room.users.length == 2 && !room.name.includes("Dispute")) {
+        const otherUser = room.users.find(user => user.id != currentUserId);
+        room.name = otherUser.firstname + " " + otherUser.lastname;
+      }
+      return room;
+    })
     this.rooms.next(rooms);
   }
 
@@ -78,6 +79,7 @@ export class ChatService {
 
 
   createRoom(obj: CreateRoomDto) {
+    obj.users = obj.users.map(u => u.id);
     return this.http.post(`${environment.chatServer}/rooms`, obj);
   }
 
@@ -92,8 +94,32 @@ export class ChatService {
   }
 
   public onNewMessage(): Observable<any> {
-
     return this.socket.fromEvent<any>('new_message');
+  }
+
+  public clearSubscriptions(){
+    this.subscriptions.map(sb => sb.unsubscribe());
+  }
+
+
+  subscribeToNewMessages() {
+    const sb = this.onNewMessage().subscribe((message: any) => {
+      this.setNewMessage(message);
+      if (message.userId != this.userService.currentUserValue.id) {
+        this.audioService.src = "../../../assets/mp3/message.mp3"
+        this.audioService.load();
+        this.audioService.play();
+        if (message.roomId != this.currentRoomId) {
+          this.unreadMessageCount.next(this.unreadMessageCount.value + 1);
+        }
+      }
+    })
+    this.subscriptions.push(sb);
+  }
+
+
+  emitNewRoomCreate(room) {
+    this.socket.emit('new_room', room);
   }
 }
 
@@ -108,6 +134,7 @@ class CreateMessageDto {
 class CreateRoomDto {
   name = "";
   users?= [];
-  withAdmin = false;
+  withAdmin?= false;
+  lessonId?= null;
 
 }

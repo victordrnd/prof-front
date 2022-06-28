@@ -1,7 +1,17 @@
-<nb-chat [title]="room?.name" [scrollBottom]="true">
+<nb-chat [scrollBottom]="true">
+    <ng-template nbChatTitle>
+        <div class="d-flex justify-content-between">
+            <div>{{ room?.name | titlecase }}
+            </div>
+            <div>
+                <button *ngIf="room?.lessonId" nbButton size="small" class="mx-3">Afficher le cours</button>
+                <nb-icon icon="phone-call" class="text-primary pointer font-bold"></nb-icon>
+            </div>
+        </div>
+    </ng-template>
     <nb-chat-message *ngFor="let msg of messages" [type]="msg.type" [message]="msg.text" [reply]="msg.reply"
-        sender="{{msg.user?.firstname}}" [date]="msg.date" [files]="msg.files" [quote]="msg.quote" [latitude]="msg.latitude"
-        [longitude]="msg.longitude" [avatar]="msg.user?.avatar" dateFormat="shortTime">
+        sender="{{msg.user?.firstname}}" [date]="msg.date" [files]="msg.files" [quote]="msg.quote"
+        [latitude]="msg.latitude" [longitude]="msg.longitude" [avatar]="msg.user?.avatar" dateFormat="shortTime">
     </nb-chat-message>
 
     <nb-chat-form [showButton]="true" (send)="sendMessage($event)" [dropFiles]="true">

@@ -21,7 +21,9 @@ li {
     height: 100%;
 }
 :host::ng-deep {
-
+    .user-title{
+        font-size: 10px !important;
+    }
     .anticon {
         transform: translateY(0px) !important;
     }
