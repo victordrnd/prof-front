@@ -10,6 +10,8 @@ import { VideoSDKMeeting } from '@videosdk.live/rtc-js-prebuilt';
 import { environment } from 'src/environments/environment';
 import { LessonSettingsModalComponent } from '../lesson-settings-modal/lesson-settings-modal.component';
 import { ChatService } from 'src/app/core/services/chat.service';
+import ZoomVideo from '@zoom/videosdk'
+import { ZoomService } from 'src/app/core/services/zoom.service';
 @Component({
   selector: 'app-lesson-details',
   templateUrl: './lesson-details.component.html',
@@ -77,82 +79,85 @@ export class LessonDetailsComponent implements OnInit {
 
   }
 
-  joinCourse() {
+  async joinCourse() {
+
     if (this.lesson.video_link) {
       window.open(this.lesson.video_link, "_blank");
       return;
     }
-    const user = this.authService.currentUserValue;
-    const config = {
-      name: user.lastname + " " + user.firstname,
-      meetingId: this.lesson.id,
-      apiKey: environment.videoApiKey,
 
-      containerId: null,
-      // redirectOnLeave: 'http://192.168.146:4200',
+    this.router.navigate([`/classroom/${this.lesson.id}`]);
+    // const user = this.authService.currentUserValue;
+    // const config = {
+    //   name: user.lastname + " " + user.firstname,
+    //   meetingId: this.lesson.id,
+    //   apiKey: environment.videoApiKey,
 
-      micEnabled: true,
-      webcamEnabled: true,
-      participantCanToggleSelfWebcam: true,
-      participantCanToggleSelfMic: true,
+    //   containerId: null,
+    //   // redirectOnLeave: 'http://192.168.146:4200',
 
-      chatEnabled: true,
-      screenShareEnabled: true,
-      pollEnabled: true,
-      whiteboardEnabled: true,
-      raiseHandEnabled: true,
+    //   micEnabled: true,
+    //   webcamEnabled: true,
+    //   participantCanToggleSelfWebcam: true,
+    //   participantCanToggleSelfMic: true,
 
-      recordingEnabled: true,
-      recordingEnabledByDefault: false,
-      recordingWebhookUrl: 'https://www.videosdk.live/callback',
-      // recordingAWSDirPath: `/meeting-recordings/${meetingId}/`, // automatically save recording in this s3 path
+    //   chatEnabled: true,
+    //   screenShareEnabled: true,
+    //   pollEnabled: true,
+    //   whiteboardEnabled: true,
+    //   raiseHandEnabled: true,
 
-      brandingEnabled: true,
-      brandLogoURL: 'https://picsum.photos/200',
-      brandName: 'ClassMath',
+    //   recordingEnabled: true,
+    //   recordingEnabledByDefault: false,
+    //   recordingWebhookUrl: 'https://www.videosdk.live/callback',
+    //   // recordingAWSDirPath: `/meeting-recordings/${meetingId}/`, // automatically save recording in this s3 path
 
-      participantCanLeave: true, // if false, leave button won't be visible
-      joinScreen: {
-        title: this.translate.instant("this.lesson.subject.libelle"),
-      },
-      livestream: {
-        autoStart: true,
-        outputs: [
-          // {
-          //   url: "rtmp://x.rtmp.youtube.com/live2",
-          //   streamKey: "<STREAM KEY FROM YOUTUBE>",
-          // },
-        ],
-      },
+    //   brandingEnabled: true,
+    //   brandLogoURL: 'https://picsum.photos/200',
+    //   brandName: 'ClassMath',
 
-      permissions: {
-        askToJoin: this.authService.currentUserValue.role.slug != "teacher", // Ask joined participants for entry in meeting
-        toggleParticipantMic: true, // Can toggle other participant's mic
-        toggleParticipantWebcam: true, // Can toggle other participant's webcam
-        removeParticipant: true, // Remove other participant from meeting
-        endMeeting: true, // End meeting for all participant
-        drawOnWhiteboard: true, // Can Draw on whiteboard
-        toggleWhiteboard: true, // Can toggle whiteboard
-        toggleRecording: true, // Can toggle recording
-      },
+    //   participantCanLeave: true, // if false, leave button won't be visible
+    //   joinScreen: {
+    //     title: this.translate.instant("this.lesson.subject.libelle"),
+    //   },
+    //   livestream: {
+    //     autoStart: true,
+    //     outputs: [
+    //       // {
+    //       //   url: "rtmp://x.rtmp.youtube.com/live2",
+    //       //   streamKey: "<STREAM KEY FROM YOUTUBE>",
+    //       // },
+    //     ],
+    //   },
 
-      pin: {
-        allowed: true, // participant can pin any participant in meeting
-        layout: 'SPOTLIGHT', // meeting layout - GRID | SPOTLIGHT | SIDEBAR
-      },
+    //   permissions: {
+    //     askToJoin: this.authService.currentUserValue.role.slug != "teacher", // Ask joined participants for entry in meeting
+    //     toggleParticipantMic: true, // Can toggle other participant's mic
+    //     toggleParticipantWebcam: true, // Can toggle other participant's webcam
+    //     removeParticipant: true, // Remove other participant from meeting
+    //     endMeeting: true, // End meeting for all participant
+    //     drawOnWhiteboard: true, // Can Draw on whiteboard
+    //     toggleWhiteboard: true, // Can toggle whiteboard
+    //     toggleRecording: true, // Can toggle recording
+    //   },
 
-      leftScreen: {
-        // visible when redirect on leave not provieded
-        actionButton: {
-          // optional action button
-          label: 'Go to ClassMath', // action button label
-          href: 'http://192.168.0.146:4200', // action button href
-        },
-      },
-      maxResolution: "hd"
-    };
-    const meeting = new VideoSDKMeeting();
-    meeting.init(config);
+    //   pin: {
+    //     allowed: true, // participant can pin any participant in meeting
+    //     layout: 'SPOTLIGHT', // meeting layout - GRID | SPOTLIGHT | SIDEBAR
+    //   },
+
+    //   leftScreen: {
+    //     // visible when redirect on leave not provieded
+    //     actionButton: {
+    //       // optional action button
+    //       label: 'Go to ClassMath', // action button label
+    //       href: 'http://192.168.0.146:4200', // action button href
+    //     },
+    //   },
+    //   maxResolution: "hd"
+    // };
+    // const meeting = new VideoSDKMeeting();
+    // meeting.init(config);
   }
 
   openSettingsModal() {

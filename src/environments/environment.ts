@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://192.168.0.146:8000/api",
+  apiUrl: " https://5824-91-74-26-54.in.ngrok.io/api",
   assetsUrl : "https://prof.blob.core.windows.net/stockage/",
   mapboxAccessToken : "pk.eyJ1IjoidmljdG9yZHJuZCIsImEiOiJjanR3eHhhY3oxNDUwNDNsemE1aG5peGl2In0.YeRJsFQXOp8GFHBiQsoHEQ",
   publicStripeKey : "pk_test_EgijVNj7OVzXPr5onG0G31Zo",

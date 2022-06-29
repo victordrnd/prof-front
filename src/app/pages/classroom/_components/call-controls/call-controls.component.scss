@@ -1,0 +1,41 @@
+:host::ng-deep {
+    .ant-card-body {
+        display: none;
+    }
+
+    ul {
+        li:last-child {
+            background-color: red;
+            color: white;
+        }
+    }
+    .ant-card-actions > li {
+        float: left;
+        padding: 12px 0 !important;
+        margin: 0px !important;
+    }
+
+    .text-grey {
+        color: #8f9bb3;
+    }
+
+    nb-actions {
+        background: white;
+        padding: 12px;
+        border-radius: 7px;
+    }
+
+    .active{
+        nb-icon{
+            color : #806BFF
+        }
+    }
+}
+
+.call-controls {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    // transform: translateX(calc(-50% + 125px));
+}

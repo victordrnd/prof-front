@@ -1,0 +1,46 @@
+<!-- <video id="video"></video>
+<canvas id="canvas"></canvas> -->
+<nb-layout>
+
+    <nb-layout-column>
+
+        <div [class.d-none]="!connected">
+            <div style="height:93vh" [nbSpinner]="!started && connected" nbSpinnerStatus="primary">
+                <!-- <video autoplay playsinline id="participants-video" class="w-100 h-100"></video> -->
+                <canvas id="participants-canvas" width="1920" height="1080" class="mx-auto d-block" style="width: 800px;"></canvas>
+            </div>
+
+            <video autoplay playsinline id="video" class="video-fallback"></video>
+            <!-- <canvas id="video-fallback"></canvas> -->
+            <app-call-controls *ngIf="started" [(unReadMessage)]="unReadMessage" [(screenSharing)]="inputs.screenShare" (onOpenChat)="openChat()"
+                (screenSharingChange)="onScreenSharingChange($event)" (onLeave)="leaveSession()"
+                (onMicrophoneChange)="onMicrophoneChange($event)" (onCameraChange)="toogleCamera($event)">
+            </app-call-controls>
+        </div>
+        <div *ngIf="!connected">
+            <button nbButton (click)="initConnection()" status="primary">Connect</button>
+        </div>
+
+
+        <nz-drawer [nzClosable]="true" [nzVisible]="inputs.chat" nzPlacement="left" nzSize="large" [nzTitle]="null"
+            (nzOnClose)="inputs.chat = false">
+            <ng-container *nzDrawerContent>
+                <nb-chat title="Conversation">
+                    <nb-chat-message *ngFor="let msg of messages" type="text" [message]="msg.message"
+                        [reply]="msg.reply" [sender]="msg.sender.senderName" [date]="msg.timestamp" 
+                        dateFormat="shortTime"
+                        [avatar]="msg.sender.avatar">
+                    </nb-chat-message>
+
+                    <nb-chat-form (send)="sendMessage($event)" [dropFiles]="false">
+                    </nb-chat-form>
+                </nb-chat>
+
+
+
+            </ng-container>
+        </nz-drawer>
+
+
+    </nb-layout-column>
+</nb-layout>

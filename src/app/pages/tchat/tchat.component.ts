@@ -36,7 +36,6 @@ export class TchatComponent implements OnInit, OnDestroy {
     });
     
     const sb = this.chatService.socket.fromEvent('new_room').subscribe(async room => {
-      console.log("New room created", room);
       await this.chatService.connect(true);
       this.chatService.getMyRooms();
     });

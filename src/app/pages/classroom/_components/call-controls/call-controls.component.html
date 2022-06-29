@@ -1,0 +1,52 @@
+<!-- <div class="call-controls">
+    <h5 nz-typography class="text-center">10 : 43</h5>
+    <nz-card style="width: 300px;margin-top: 16px"
+        [nzActions]="[actionMicrophone, actionCamera,actionChat, actionEllipsis, actionHangUp]">
+    </nz-card>
+    <ng-template #actionMicrophone>
+        <i nz-icon [nzType]="isMic ? 'audio' : 'audio-muted'" (click)="callService.toggleMicrophone();isMuted=!isMuted"
+            [nzTheme]="isMic ? 'fill' : 'outline'" [class.text-primary]="isMic"></i>
+    </ng-template>
+    <ng-template #actionCamera>
+        <i nz-icon nzType="video-camera" (click)="callService.toggleCamera();onCameraToggled.emit()" nzTheme="fill"></i>
+    </ng-template>
+    <ng-template #actionChat>
+        <i nz-icon nzType="message" nzTheme="fill"></i>
+    </ng-template>
+    <ng-template #actionHangUp>
+        <i nz-icon nzType="api" class="text-white" (click)="leave()" nzTheme="fill"></i>
+    </ng-template>
+    <ng-template #actionEllipsis>
+        <i nz-icon nzType="ellipsis" nz-dropdown [nzDropdownMenu]="menu" nzPlacement="topLeft"></i>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+                <li nz-menu-item (click)="toggleScreenSharing()">{{isScreenSharing ? "Couper le partage" : 'Partager mon
+                    écran'}}</li>
+                <li nz-menu-item>2nd menu item length</li>
+                <li nz-menu-item>3rd menu item length</li>
+            </ul>
+        </nz-dropdown-menu>
+    </ng-template>
+</div> -->
+<div class="call-controls">
+
+    <p class="text-center text-grey">{{startDate}}</p>
+    <nb-actions size="small">
+        <nb-action (click)="microphoneChange()" [class.active]="isMic" [icon]="isMic ? 'mic-outline' : 'mic-off-outline'"
+            class="text-primary pointer">
+        </nb-action>
+        <nb-action (click)="cameraChange()" [class.active]="isCamera" [icon]="isCamera ? 'video-outline' : 'video-off-outline'"
+            class="text-primary pointer">
+        </nb-action>
+        <nb-action (click)="onScreenSharingChange()" [class.active]="screenSharing" [icon]="screenSharing ? 'monitor-outline' : 'monitor-outline'"
+            class="text-primary pointer">
+        </nb-action>
+        <nb-action icon="people-outline" [nbContextMenu]="users" nbContextMenuTrigger="hover">
+        </nb-action>
+        <nb-action (click)="onOpenChatFn()" [badgeDot]="unReadMessage > 0" badgePosition="top left" badgeStatus="primary"
+            icon="message-square-outline">
+        </nb-action>
+        <nb-action icon="phone-off-outline" (click)="leave()">
+        </nb-action>
+    </nb-actions>
+</div>

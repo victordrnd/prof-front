@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path : "messages",
     loadChildren : () => import('./pages/tchat/tchat.module').then(m => m.TchatModule)
+  },
+  {
+    path : "classroom",
+    loadChildren : () => import('./pages/classroom/classroom.module').then(m => m.ClassroomModule)
   }
 ];
 
