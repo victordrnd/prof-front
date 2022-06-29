@@ -17,6 +17,13 @@ export class LessonService {
     return this.http.get(`${environment.apiUrl}/lessons`, {params});
   }
 
+  public getAllStudentsLessons(filters, student_id){
+    const params = new HttpParams({
+      fromObject: filters
+    });
+    return this.http.get(`${environment.apiUrl}/admin/students/${student_id}/all-lessons`, {params});
+  }
+
   getHistory(filters){
     const params = new HttpParams({
       fromObject: filters
@@ -28,7 +35,7 @@ export class LessonService {
     return this.http.get(`${environment.apiUrl}/lessons/${lesson_id}`);
   }
 
-  
+
   store(obj){
     return this.http.post(`${environment.apiUrl}/lessons`, {...obj});
   }

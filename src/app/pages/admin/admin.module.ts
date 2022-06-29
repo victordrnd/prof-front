@@ -23,6 +23,12 @@ import { DisputesListComponent } from './disputes/disputes-list/disputes-list.co
 import { DisputeDetailsComponent } from './disputes/dispute-details/dispute-details.component';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { StudentsListComponent } from './students/students-list/students-list.component';
+import { StudentProfileComponent } from './students/student-profile/student-profile.component';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @NgModule({
   declarations: [
@@ -31,6 +37,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     TeacherProfileComponent,
     DisputesListComponent,
     DisputeDetailsComponent,
+    StudentsListComponent,
+    StudentProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -58,7 +66,12 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NbCardModule,
     NbChatModule,
     NzToolTipModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzDropDownModule,
+    NzMenuModule,
+    NzTagModule,
+    NzButtonModule,
+    NzDatePickerModule
   ],
   bootstrap : [AdminComponent]
 })

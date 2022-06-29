@@ -22,7 +22,7 @@ export class TeachersListComponent implements OnInit {
   async ngOnInit() {
     this.getTeachers();
   }
-  
+
   async getTeachers(key = null, value = null){
     if(key){
       this.filters[key] = value;
