@@ -1,0 +1,93 @@
+<div class="row mx-5 mt-5">
+  <div class="col-md-10">
+
+      <div class="mb-4">
+          <h2>{{'admin.student.list-lessons' | translate}}</h2>
+      </div>
+      <div class="row mt-1">
+          <div class="col-3 pr-4">
+              <label>{{'lesson.status' | translate}}</label>
+              <nz-select class="w-100" nzShowSearch nzAllowClear nzPlaceHolder="{{'admin.student.select-status'|translate}}"
+                  (ngModelChange)="getLessons('status_id', $event)" [(ngModel)]="filters.status_id">
+                  <nz-option *ngFor="let status of statuses" nzLabel="{{status.label | translate}}"
+                      [nzValue]="status.id"></nz-option>
+              </nz-select>
+          </div>
+          <div class="col-3 px-4">
+              <label>{{'lesson.date' | translate}}</label><br />
+              <nz-date-picker class="w-100" [(ngModel)]="filters.date" (ngModelChange)="getLessons('date', $event)">
+              </nz-date-picker>
+          </div>
+          <div class="col-3 px-4">
+              <label>{{'lesson.subject' | translate}}</label><br />
+              <nz-select class="w-100" nzShowSearch nzAllowClear nzPlaceHolder="{{'admin.student.select-subject'|translate}}" (ngModelChange)="getLessons('subject_id', $event)" [(ngModel)]="filters.subject_id">
+                  <nz-option *ngFor="let subject of subjects" nzLabel="{{subject.libelle | translate}}" [nzValue]="subject.id"></nz-option>
+              </nz-select>
+          </div>
+      </div>
+      <div class="bg-white p-5 rounded-lg shadow-sm mt-5" *ngIf="lessons">
+
+          <nz-table [nzData]="lessons?.data" [nzLoading]="loading" [nzShowPagination]="true"
+              [nzFrontPagination]="false" [nzPageIndex]="lessons?.current_page" [nzPageSize]="lessons?.per_page"
+              [nzTotal]="lessons?.total" (nzPageIndexChange)="onPageIndexChange($event)">
+              <thead>
+                  <tr>
+                      <th>{{'lesson.students' | translate}}</th>
+                      <th>{{'lesson.teacher' | translate}}</th>
+                      <th>{{'lesson.subject' | translate}}</th>
+                      <th>{{'lesson.scheduled' | translate}}</th>
+                      <th>{{'lesson.status' | translate}}</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let lesson of lessons?.data" class="pointer" (click)="goToCourse(lesson)">
+                      <td>
+                          <div *ngIf="lesson.capacity == 1; else elseBlock">
+                              {{lesson.students[0].firstname}} {{lesson.students[0].lastname}}
+                          </div>
+                          <ng-template #elseBlock>
+                              {{lesson.students.length}} / {{lesson.capacity}} {{'lesson.students' | translate |
+                              lowercase}}
+                          </ng-template>
+                      </td>
+                      <td>{{lesson.teacher.firstname}} {{lesson.teacher.lastname}}</td>
+                      <td>
+                          <nz-tag [nzColor]="lesson.subject.color">
+                              {{lesson.subject.libelle | translate}}</nz-tag>
+                      </td>
+                      <td>{{lesson.scheduled_at | date:'MMMM d, y, h:mm a'}}</td>
+                      <td>
+                          <div [ngSwitch]="lesson?.relative_status?.code" class="float-right">
+                              <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
+                                  text="{{lesson.relative_status.label | translate}}"></nb-tag>
+                              <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled"
+                                  text="{{lesson.relative_status.label  | translate}}"></nb-tag>
+                              <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled"
+                                  text="{{lesson.relative_status.label  | translate}}"></nb-tag>
+                              <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
+                                  text="{{lesson.relative_status.label  | translate}}"></nb-tag>
+                          </div>
+                      </td>
+                      <td>
+                          <button nz-button nz-dropdown (click)="$event.stopPropagation()" [nzDropdownMenu]="menu">
+                              Action
+                              <i nz-icon nzType="down"></i>
+                          </button>
+
+                      </td>
+                      <nz-dropdown-menu #menu="nzDropdownMenu">
+                        <ul nz-menu>
+                            <li *ngIf="lesson?.relative_status?.code !='cancelled'; else noAction"
+                                nz-menu-item nz-popconfirm
+                                nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}"
+                                nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)"
+                                nzOkText="{{'lesson.cancel.ok' | translate}}">{{'lesson.cancel.title' | translate}}</li>
+                            <ng-template #noAction><li nz-menu-item>No action possible  </li></ng-template>
+                        </ul>
+                    </nz-dropdown-menu>
+                  </tr>
+              </tbody>
+          </nz-table>
+      </div>
+  </div>
