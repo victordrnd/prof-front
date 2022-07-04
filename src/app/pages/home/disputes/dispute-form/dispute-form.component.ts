@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { ChatService } from 'src/app/core/services/chat.service';
 import { DisputeService } from 'src/app/core/services/dispute.service';
 import { LessonService } from 'src/app/core/services/lesson.service';
@@ -18,6 +19,7 @@ export class DisputeFormComponent implements OnInit {
     private disputeService: DisputeService,
     private notificationService: NbToastrService,
     private chatService: ChatService,
+    private userSerivce: AuthService,
     private translate: TranslateService) { }
 
   dispute = {
@@ -36,7 +38,7 @@ export class DisputeFormComponent implements OnInit {
 
 
   async createDispute() {
-    this.chatService.createRoom({ name: "Dispute : " + this.dispute.title, withAdmin: true }).toPromise().then(async (res: any) => {
+    this.chatService.createRoom({ name: "Dispute : " + this.dispute.title, withAdmin: true, users: [] }).toPromise().then(async (res: any) => {
       this.dispute.room_id = res.id;
       await this.disputeService.create(this.dispute).toPromise().then((res: any) => {
         this.chatService.sendMessage({
@@ -44,7 +46,7 @@ export class DisputeFormComponent implements OnInit {
           userId: res.user_id,
           roomId: this.dispute.room_id,
           content: res.description
-        })
+        }, true);
         this.notificationService.success(this.translate.instant("dispute.submitted_success"), this.translate.instant('shared.success'));
         this.initDispute(this.lesson.id);
       }).catch(err => {

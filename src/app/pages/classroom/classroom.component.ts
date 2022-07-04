@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import ZoomVideo, { Participant, VideoQuality } from '@zoom/videosdk';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { CallService } from 'src/app/core/services/call.service';
+import { LessonService } from 'src/app/core/services/lesson.service';
 import { ZoomService } from 'src/app/core/services/zoom.service';
 
 @Component({
@@ -9,11 +11,14 @@ import { ZoomService } from 'src/app/core/services/zoom.service';
   templateUrl: './classroom.component.html',
   styleUrls: ['./classroom.component.scss']
 })
-export class ClassroomComponent implements OnInit {
-
+export class ClassroomComponent implements OnInit, OnDestroy {
+  @ViewChild('participantVideo') participantVideo!: ElementRef;
+  @ViewChild('videoFallBack') videoFallBack!: ElementRef;
   constructor(private route: ActivatedRoute,
     private userService: AuthService,
-    private zoomService: ZoomService) { }
+    private callService: CallService,
+    private lessonService: LessonService) { }
+
 
   participants = 0;
   lesson_id;
@@ -31,122 +36,84 @@ export class ClassroomComponent implements OnInit {
   name = this.userService.currentUserValue.firstname + " " + this.userService.currentUserValue.lastname;
   unReadMessage = 0;
   started = false;
+  connectedUser;
+  lesson = null;
   async ngOnInit() {
     this.lesson_id = this.route.snapshot.params.id;
-    this.client = this.zoomService.createClient();
-    this.client.init('fr-FR', 'CDN');
+    this.callService.currentRoomId = this.lesson_id;
+    this.lesson = await this.lessonService.find(this.lesson_id).toPromise();
+    this.getConnectedUser();
   }
 
   async initConnection() {
     if (!this.connected) {
       this.connected = true;
-      this.jwt = await this.zoomService.generateSignature(this.lesson_id).toPromise();
-      await this.client.join("Lesson " + this.lesson_id, this.jwt.token, this.name, "")
-      this.stream = this.client.getMediaStream();
-      this.stream.enableHardwareAcceleration(true)
-      // if((window as any).chrome && !(typeof SharedArrayBuffer === 'function')) {
-      this.stream.startVideo({ videoElement: document.querySelector('#video') });
-      this.startAudio();
-      // } else {
-      //   this.stream.startVideo(() => {
-      //     this.stream.renderVideo(document.querySelector('#video-fallback'), this.client.getCurrentUserInfo().userId, 1920, 1080, 0, 0, 3)
-      //   })
-      // }
-
-      this.chat = this.client.getChatClient();
-      setTimeout(() => {
-        this.renderVideos();
+      await this.callService.joinRoom({
+        room_id: this.lesson_id,
+        user_id: this.userService.currentUserValue.id,
+        sessionDescription: await this.callService.createOffer(this.inputs.camera, this.inputs.mic)
+      });
+      this.startVideoFallback();
+      this.callService.peerConnection.ontrack = (ev: any) => {
         this.started = true;
-      }, 5000)
-      this.client.on('peer-video-state-change', (payload) => {
-        if (payload.action === 'Start') {
-          this.participants++
-          this.renderVideos(payload);
-          console.log('new participant');
-        } else if (payload.action === 'Stop') {
-          this.stream.stopRenderVideo(document.querySelector('#participants-canvas'), payload.userId);
-        }
-      })
+        this.participantVideo.nativeElement.srcObject = ev.streams[0];
+      };
 
-      this.client.on('media-sdk-change', (payload) => {
-        if (payload.type === 'audio' && payload.result === 'success') {
-          if (payload.action === 'encode') {
-            this.audioEncode = true
-          } else if (payload.action === 'decode') {
-            this.audioDecode = true
-          }
+      this.callService.onNewParticipant.subscribe(participant => {
+        this.started = true;
+      });
+
+      this.callService.onNewMessage.subscribe((message) => {
+        message.reply = this.userService.currentUserValue.id == message.user_id;
+        if (!message.reply) {
+          message.user = this.connectedUser
+        } else {
+          message.user = this.userService.currentUserValue;
+        }
+        this.messages.push(message);
+        if (!this.inputs.chat) {
+          this.unReadMessage++;
         }
       });
 
-
-      this.client.on('active-share-change', (payload) => {
-        if (payload.state === 'active') {
-          this.stream.clearVideoCanvas(document.querySelector('#participants-canvas'));
-          this.stream.startShareView(document.querySelector('#participants-canvas'), payload.userId)
-        } else if (payload.state === 'inactive') {
-          this.stream.stopShareView()
-        }
+      this.callService.onRemoteCameraChange.subscribe(event => {
+        this.connectedUser.camera = event.active;
+        // console.log(event, this.connectedUser);;
       });
-    }
 
+    }
   }
 
 
-  renderVideos(payload = null) {
-    let participants: Participant[] = this.client.getAllUser();
-    const userId = this.client.getCurrentUserInfo().userId
-    const size = Math.floor(Math.sqrt(participants.length - 1));
-    let row = -1
-    console.log("rerendering participants", participants, "size : " + size);
-    if (payload) {
-      console.log(payload);
-      this.stream.renderVideo(document.querySelector('#participants-canvas'), payload.userId, 300, 100, 0, 0, 2);
-    }
-    else {
-      const participant = participants.find(participant => participant.userId != userId);
-      console.log(participant);
-      if (participant) {
-        this.stream.renderVideo(document.querySelector('#participants-canvas'), participant.userId, 300, 100, 0, 0, 2);
-      }
-    }
-
-  }
 
   toogleCamera(evt) {
+    this.inputs.camera = evt;
     if (evt) {
-      this.stream.startVideo({ videoElement: document.querySelector('#video') })
+      this.callService.startVideo();
     } else {
-      this.stream.stopVideo();
+      this.callService.stopVideo();
     }
   }
 
   onMicrophoneChange(activated) {
-    console.log(this.client, this.stream);
-
+    this.inputs.mic = activated;
     if (activated)
-      this.stream.unmuteAudio();
+      this.callService.stopAudio();
     else
-      this.stream.muteAudio()
-
-
-    // this.client.on('active-speaker', (payload) => {
-    //   console.log('Active speaker', payload)
-    // })
+      this.callService.startAudio()
   }
 
 
+
   onScreenSharingChange(activated) {
-    if (this.inputs.camera) {
-      this.toogleCamera(false);
-    }
+    this.inputs.screenShare = activated;
+    // if (this.inputs.camera) {
+    //   this.toogleCamera(false);
+    // }
     if (activated) {
-      if (!!(window as any).chrome) {
-        this.stream.startShareScreen(document.querySelector('#video'))
-      } else {
-        this.stream.startShareScreen(document.querySelector('#video-fallback'))
-      }
+      this.callService.startScreenShare()
     } else {
-      this.stream.stopShareScreen();
+      this.callService.stopScreenShare();
       if (this.inputs.camera) {
         this.toogleCamera(true);
       }
@@ -154,46 +121,47 @@ export class ClassroomComponent implements OnInit {
   }
 
 
-  startAudio() {
-    var isSafari = (window as any).safari !== undefined
-    if (isSafari) {
-      if (this.audioEncode && this.audioDecode) {
-        this.stream.startAudio()
-      }
-    } else {
-      this.stream.startAudio()
-    }
-  }
-
-
   openChat() {
     this.unReadMessage = 0
     this.inputs.chat = true;
-    const userId = this.client.getCurrentUserInfo().userId;
-    if (this.messages.length == 0) {
-      this.messages = this.chat.getHistory().map(message => {
-        message.date = new Date(message.timestamp * 1000);
-        message.reply = userId == message.sender.userId;
-        return message;
-      });
-      this.client.on('chat-on-message', (message) => {
-        message.date = new Date(message.timestamp * 1000);
-        message.reply = userId == message.sender.userId;
-        this.messages.push(message);
-        if (!this.inputs.chat) {
-          this.unReadMessage++;
-        }
-      })
-    }
   }
 
 
   sendMessage(message) {
-    this.chat.sendToAll(message.message);
+    delete message.files;
+    message.date = new Date().getTime();
+    message.room_id = this.lesson_id;
+    message.user_id = this.userService.currentUserValue.id;
+    this.callService.sendMessage(message);
   }
 
+  getConnectedUser() {
+    if (this.userService.currentUserValue.id == this.lesson.teacher_id) {
+      this.connectedUser = this.lesson.students[0] || null;
+    } else {
+      this.connectedUser = this.lesson.teacher;
+    }
+    this.connectedUser.camera = true;
+    console.log(this.connectedUser);
+  }
+
+  startVideoFallback() {
+    if (this.callService.stream) {
+      this.videoFallBack.nativeElement.srcObject = this.callService.stream;
+    }
+  }
   leaveSession() {
-    this.client.leave();
+    this.callService.sendDisconnect();
+    this.callService.clearSubscription();
   }
 
+  getInitial() {
+    return this.connectedUser.firstname.charAt(0) + this.connectedUser.lastname.charAt(0)
+  }
+
+
+  ngOnDestroy(): void {
+    this.callService.sendDisconnect();
+    this.callService.clearSubscription();
+  }
 }

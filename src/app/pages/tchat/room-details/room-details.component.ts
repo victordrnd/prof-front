@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbChatComponent, NbChatFormComponent } from '@nebular/theme';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -14,6 +14,7 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
     private chatService: ChatService,
+    private router : Router,
     private authService: AuthService) { }
 
   @Input() roomId;
@@ -25,6 +26,7 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
   subscriptions = [];
   async ngOnInit() {
     this.currentUser = this.authService.currentUserValue;
+    console.log(this.currentUser);
     if (!this.roomId) {
       const sb = this.route.params.subscribe(params => {
         this.fetchRoom(params.id);
@@ -95,6 +97,14 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
     return message;
   }
 
+
+  goToLesson(){
+    if(this.currentUser.role.slug == "teacher"){
+      this.router.navigate([`/teacher/lessons/${this.room.lessonId}`]);
+    }else if (this.currentUser.role.slug == "student"){
+      this.router.navigate([`/student/lessons/${this.room.lessonId}`]);
+    }
+  }
 
   ngOnDestroy(): void {
     this.chatService.currentRoomId = null;

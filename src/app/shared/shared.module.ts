@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule, NbIconModule, NbBadgeModule, NbCardModule, NbSpinnerModule, NbInputModule, NbTagModule, NbFormFieldModule } from '@nebular/theme';
+import { NbLayoutModule, NbThemeModule, NbButtonModule, NbSelectModule, NbIconModule, NbBadgeModule, NbCardModule, NbSpinnerModule, NbInputModule, NbTagModule, NbFormFieldModule, NbAlertModule } from '@nebular/theme';
 import { Platform } from '@angular/cdk/platform';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {  OverlayPositionBuilder, ViewportRuler, OverlayKeyboardDispatcher } from '@angular/cdk/overlay';
@@ -59,7 +59,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzToolTipModule,
     NzSpinModule,
     NzSelectModule,
-    NbFormFieldModule
+    NbFormFieldModule,
+    NbAlertModule
   ],
   exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule, LessonDetailsComponent],
   providers: [

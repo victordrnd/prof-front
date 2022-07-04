@@ -5,13 +5,19 @@
     <nb-layout-column>
 
         <div [class.d-none]="!connected">
-            <div style="height:93vh" [nbSpinner]="!started && connected" nbSpinnerStatus="primary">
-                <!-- <video autoplay playsinline id="participants-video" class="w-100 h-100"></video> -->
-                <canvas id="participants-canvas" width="1920" height="1080" class="mx-auto d-block" style="width: 800px;"></canvas>
+            <div [nbSpinner]="!started && connected" nbSpinnerStatus="primary" nbSpinnerMessage="Waiting for remote to connect">
+                <video autoplay [class.d-none]="!connectedUser?.camera" #participantVideo playsinline id="participants-video" class="w-100 h-100"></video>
+                <div [class.d-none]="connectedUser?.camera">
+                    <div class="cover">
+                        <div class="center">
+                            <nz-avatar [nzSize]="150" [nzText]="getInitial()" class="bg-primary"></nz-avatar>
+                            <p class="text-center mt-3 text-grey">{{connectedUser?.firstname}} {{connectedUser?.lastname}}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <video autoplay playsinline id="video" class="video-fallback"></video>
-            <!-- <canvas id="video-fallback"></canvas> -->
+            <video [class.invisible]="!inputs.camera" #videoFallBack autoplay playsinline id="video" class="video-fallback"></video>
             <app-call-controls *ngIf="started" [(unReadMessage)]="unReadMessage" [(screenSharing)]="inputs.screenShare" (onOpenChat)="openChat()"
                 (screenSharingChange)="onScreenSharingChange($event)" (onLeave)="leaveSession()"
                 (onMicrophoneChange)="onMicrophoneChange($event)" (onCameraChange)="toogleCamera($event)">
@@ -27,9 +33,9 @@
             <ng-container *nzDrawerContent>
                 <nb-chat title="Conversation">
                     <nb-chat-message *ngFor="let msg of messages" type="text" [message]="msg.message"
-                        [reply]="msg.reply" [sender]="msg.sender.senderName" [date]="msg.timestamp" 
+                        [reply]="msg.reply" [sender]="msg.user.firstname" [date]="msg.date" 
                         dateFormat="shortTime"
-                        [avatar]="msg.sender.avatar">
+                        [avatar]="msg.user.image">
                     </nb-chat-message>
 
                     <nb-chat-form (send)="sendMessage($event)" [dropFiles]="false">

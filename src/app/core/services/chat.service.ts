@@ -17,13 +17,18 @@ export class ChatService {
 
   audioService = new Audio();
   constructor(private http: HttpClient, public socket: Socket,
-    private userService: AuthService) { }
+    private userService: AuthService) {
+    socket.on('connect', function () {
+      socket.emit("register", { userId: userService.currentUserValue.id });
+    });
+    socket.on('disconnect', () => this.isRegistred = false);
+  }
 
   private subscriptions = [];
   async connect(forceReconnect = false) {
+    console.log(forceReconnect)
     if (!this.isRegistred || forceReconnect) {
       await this.getMyRooms();
-      this.socket.emit("register", { userId: this.userService.currentUserValue.id });
       this.isRegistred = true;
       this.clearSubscriptions();
       this.clearUnReadMessage();
@@ -61,14 +66,14 @@ export class ChatService {
 
   async getMyRooms() {
     let rooms: any[] = await this.http.get(`${environment.chatServer}/rooms/my`).toPromise() as any;
-    const currentUserId = this.userService.currentUserValue.id;
-    rooms.map(room => {
-      if (room.users.length == 2 && !room.name.includes("Dispute")) {
-        const otherUser = room.users.find(user => user.id != currentUserId);
-        room.name = otherUser.firstname + " " + otherUser.lastname;
-      }
-      return room;
-    })
+    // const currentUserId = this.userService.currentUserValue.id;
+    // rooms.map(room => {
+    //   // if (room.users.length == 2 && !room.name.includes("Dispute")) {
+    //   //   const otherUser = room.users.find(user => user.id != currentUserId);
+    //   //   room.name = otherUser.firstname + " " + otherUser.lastname;
+    //   // }
+    //   return room;
+    // })
     this.rooms.next(rooms);
   }
 
@@ -89,15 +94,21 @@ export class ChatService {
   }
 
 
-  sendMessage(content: CreateMessageDto) {
-    this.socket.emit('new_message', content)
+  sendMessage(content: CreateMessageDto, http = false) {
+    if (http) {
+      this.http.post(`${environment.chatServer}/messages`, content);
+    } else {
+      this.socket.emit('new_message', content)
+    }
   }
+
+
 
   public onNewMessage(): Observable<any> {
     return this.socket.fromEvent<any>('new_message');
   }
 
-  public clearSubscriptions(){
+  public clearSubscriptions() {
     this.subscriptions.map(sb => sb.unsubscribe());
   }
 

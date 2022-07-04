@@ -24,7 +24,7 @@ export class CallControlsComponent implements OnInit {
   startDate = null;
   timeElapsed = 0;
 
-  users = [{title : "Mohamed Benzaoui"}];
+  // users = [{title : "Mohamed Benzaoui"}];
 
   constructor() { }
 

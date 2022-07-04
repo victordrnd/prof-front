@@ -4,7 +4,7 @@
             <div>{{ room?.name | titlecase }}
             </div>
             <div>
-                <button *ngIf="room?.lessonId" nbButton size="small" class="mx-3">Afficher le cours</button>
+                <button *ngIf="room?.lessonId" (click)="goToLesson()" nbButton size="small" class="mx-3">Afficher le cours</button>
                 <nb-icon icon="phone-call" class="text-primary pointer font-bold"></nb-icon>
             </div>
         </div>
