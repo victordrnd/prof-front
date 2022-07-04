@@ -104,7 +104,7 @@
     "not_found": "No teacher have been found nearby",
     "private_tutoring": {
       "tooltip": "Propose a group lesson"
-  },
+    },
     "rate" :"Hourly rate"
   },
   "admin": {
@@ -120,7 +120,8 @@
       "list-lessons": "Lessons list of the student",
       "select-status": "Select a status",
       "select-subject": "Select a subject"
-    }
+    },
+    "action": "No action possible"
   },
   "general": {
     "hour": "heure",

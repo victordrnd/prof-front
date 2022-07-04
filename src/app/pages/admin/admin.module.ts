@@ -32,6 +32,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { ChartsModule } from 'ng2-charts';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 const config: SocketIoConfig = { url: environment.chatServer, options: { transports: ['websocket'] } };
 
@@ -44,6 +46,7 @@ const config: SocketIoConfig = { url: environment.chatServer, options: { transpo
     DisputeDetailsComponent,
     StudentsListComponent,
     StudentProfileComponent,
+    StatisticsComponent,
   ],
   imports: [
     CommonModule,
@@ -78,7 +81,8 @@ const config: SocketIoConfig = { url: environment.chatServer, options: { transpo
     NzMenuModule,
     NzTagModule,
     NzButtonModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    ChartsModule
   ],
   bootstrap : [AdminComponent]
 })

@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { LessonService } from 'src/app/core/services/lesson.service';
 import { StatusService } from 'src/app/core/services/status.service';
 import { SubjectService } from 'src/app/core/services/subject.service';
+import { ChatService } from 'src/app/core/services/chat.service';
+
 
 @Component({
   selector: 'app-student-profile',
@@ -32,9 +34,11 @@ export class StudentProfileComponent implements OnInit {
     private translate: TranslateService,
     private authService: AuthService,
     private statusService: StatusService,
+    private chatService: ChatService,
     private subjectService: SubjectService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    ) {}
 
   async ngOnInit() {
     this.student_id = this.route.snapshot.params.id;
@@ -67,4 +71,14 @@ export class StudentProfileComponent implements OnInit {
       this.toastrService.danger("Error", "An error has occured");
     });
   }
+
+  async chatWithStudent() {
+    //en attente serveur chat
+    // await this.chatService.createRoom().toPromise().then(res => {
+
+    // }).catch(err => {
+    //   this.toastrService.danger("Error", "An error has occured");
+    // });
+  }
 }
+

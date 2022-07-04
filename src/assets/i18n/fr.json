@@ -121,7 +121,8 @@
         "list-lessons": "Liste des lessons de l'étudiant",
         "select-status": "Selectionner un statut",
         "select-subject": "Selectionner un sujet"
-      }
+      },
+      "action": "Aucune action n'est possible"
     },
     "general": {
         "hour": "heure",

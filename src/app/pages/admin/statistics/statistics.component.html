@@ -1,0 +1,59 @@
+<h3 class="text-center mt-3">Take a look to the statistics</h3>
+<div class="container-lg mt-5 bg-white" *ngIf="loading==false">
+  <div class="row">
+    <div class="col-6">
+      <h5 class="text-center">Kind of users</h5>
+      <canvas baseChart [data]="kindUserData" [labels]="kindUserLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      </canvas>
+    </div>
+    <div class="col-6">
+      <h5 class="text-center">Teacher's status</h5>
+      <canvas baseChart [data]="isTeacherValidatedData" [labels]="isTeacherValidatedLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6">
+      <h5 class="text-center">Teacher's subjects</h5>
+      <canvas baseChart [data]="TeacherSubjectsData" [labels]="TeacherSubjectsLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      </canvas>
+    </div>
+    <div class="col-6">
+      <h5 class="text-center">Work in progress</h5>
+      <canvas baseChart [data]="TeacherSubjectsData" [labels]="TeacherSubjectsLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6">
+      <h5 class="text-center">Age of student</h5>
+      <canvas baseChart [data]="TeacherSubjectsData" [labels]="TeacherSubjectsLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      </canvas>
+    </div>
+    <div class="col-6">
+      <h5 class="text-center">Age of teachers</h5>
+      <canvas baseChart [data]="TeacherSubjectsData" [labels]="TeacherSubjectsLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6">
+      <h5 class="text-center">Status disputes</h5>
+      <canvas baseChart [data]="disputesStatusData" [labels]="disputesStatusLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      </canvas>
+    </div>
+    <div class="col-6">
+      <h5 class="text-center">Work in progress</h5>
+      <canvas baseChart [data]="TeacherSubjectsData" [labels]="TeacherSubjectsLabels" [chartType]="pieChartType"
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+</div>
