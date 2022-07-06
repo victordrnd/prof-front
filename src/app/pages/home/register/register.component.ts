@@ -45,6 +45,8 @@ export class RegisterComponent implements OnInit {
   avatarUrl: string | ArrayBuffer;
   avatar: any;
   placeInputValue = new Subject();
+  currentDate = new Date();
+
 
   loading = false;
   constructor(private route: ActivatedRoute,
@@ -60,11 +62,13 @@ export class RegisterComponent implements OnInit {
 
 
   async ngOnInit() {
+
     this.form = this.fb.group({
       type: ["student", Validators.required],
       firstname: [null, Validators.required],
       lastname: [null, Validators.required],
       email: [null, [Validators.email, Validators.required]],
+      birth: [null, Validators.required],
       password: [null, Validators.required],
       repeat_password: [null, Validators.required],
       sexe: ["m", Validators.required],
@@ -105,6 +109,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async submit() {
+
     const user = this.form.value;
     this.loading = true;
     await this.authService.addUser(user).toPromise().then(success => {
@@ -120,7 +125,6 @@ export class RegisterComponent implements OnInit {
       })
     this.loading = false;
   }
-
 
   async findPlaces(keyword) {
     this.placeInputValue.next(keyword);

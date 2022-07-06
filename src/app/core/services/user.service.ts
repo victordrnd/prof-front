@@ -18,4 +18,8 @@ export class UserService {
   updateUser(user){
     return this.http.put(`${environment.apiUrl}/users`, user)
   }
+
+  getStats(){
+    return this.http.get(`${environment.apiUrl}/admin/stats`)
+  }
 }

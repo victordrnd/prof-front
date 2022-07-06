@@ -105,8 +105,24 @@
     "not_found": "No teacher have been found nearby",
     "private_tutoring": {
       "tooltip": "Propose a group lesson"
-  },
+    },
     "rate" :"Hourly rate"
+  },
+  "admin": {
+    "student" : {
+      "list": "List of students",
+      "search": "Search",
+      "search-student": "Search a student",
+      "lastname": "Lastname",
+      "firstname": "Firstname",
+      "email": "Email",
+      "phone": "Phone",
+      "sexe": "Sexe",
+      "list-lessons": "Lessons list of the student",
+      "select-status": "Select a status",
+      "select-subject": "Select a subject"
+    },
+    "action": "No action possible"
   },
   "general": {
     "hour": "heure",
@@ -125,6 +141,7 @@
     "description": "Description",
     "coming": "Upcoming Courses",
     "history": "History of my courses",
+    "scheduled": "Scheduled at",
     "student": {
       "lastname": "Lastname",
       "firstname": "Firstname"

@@ -26,8 +26,16 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { TchatModule } from '../tchat/tchat.module';
-const config: SocketIoConfig = { url: environment.chatServer, options: { transports: ['websocket'] } };
+import { StudentsListComponent } from './students/students-list/students-list.component';
+import { StudentProfileComponent } from './students/student-profile/student-profile.component';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { ChartsModule } from 'ng2-charts';
+import { StatisticsComponent } from './statistics/statistics.component';
 
+const config: SocketIoConfig = { url: environment.chatServer, options: { transports: ['websocket'] } };
 
 @NgModule({
   declarations: [
@@ -36,6 +44,9 @@ const config: SocketIoConfig = { url: environment.chatServer, options: { transpo
     TeacherProfileComponent,
     DisputesListComponent,
     DisputeDetailsComponent,
+    StudentsListComponent,
+    StudentProfileComponent,
+    StatisticsComponent,
   ],
   imports: [
     CommonModule,
@@ -65,7 +76,13 @@ const config: SocketIoConfig = { url: environment.chatServer, options: { transpo
     NzToolTipModule,
     NzPopconfirmModule,
     SocketIoModule.forRoot(config),
-    TchatModule
+    TchatModule,
+    NzDropDownModule,
+    NzMenuModule,
+    NzTagModule,
+    NzButtonModule,
+    NzDatePickerModule,
+    ChartsModule
   ],
   bootstrap : [AdminComponent]
 })
