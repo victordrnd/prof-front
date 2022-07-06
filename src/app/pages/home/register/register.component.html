@@ -62,6 +62,14 @@
                                     placeholder="{{'register.email' | translate}}">
                             </nb-form-field>
                         </div>
+                        <div class="offset-md-6 col-md-4">
+                          <label>Date of birth :</label><br />
+                          <nb-form-field>
+                              <nb-icon nbPrefix icon="gift-outline" pack="eva"></nb-icon>
+                              <input type="date" formControlName="birth" nbInput max="{{currentDate | date:'yyyy-MM-dd'}}" class="w-100 input-full-width"
+                                  placeholder="Date of birth">
+                          </nb-form-field>
+                      </div>
                         <div class="offset-md-2 col-md-4 mt-4">
                             <label>{{'register.password' | translate}} : </label>
                             <nb-form-field>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartType, ChartOptions } from 'chart.js';
-import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+import { ChartType, ChartOptions, ChartConfiguration, ChartData } from 'chart.js';
+import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, BaseChartDirective } from 'ng2-charts';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -32,6 +32,8 @@ export class StatisticsComponent implements OnInit {
   public pieChartLegend = true;
   public pieChartPlugins = [];
 
+  ageAvairage;
+
   constructor(private userService :  UserService) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
@@ -41,11 +43,13 @@ export class StatisticsComponent implements OnInit {
     this.loading = true;
     this.stats = await this.userService.getStats().toPromise();
 
-    this.kindUserData=[this.stats['teacherCount'], this.stats['studentCount']];
-    this.isTeacherValidatedData=[this.stats['teacherCount'], this.stats['unvalidatedTeacherCount']];
+    this.kindUserData=[this.stats['usersCount']['validatedTeachersCount'], this.stats['usersCount']['studentsCount']];
+    this.isTeacherValidatedData=[this.stats['usersCount']['validatedTeachersCount'], this.stats['usersCount']['unvalidatedTeacherCount']];
     this.TeacherSubjectsLabels=this.stats['allSubject'];
     this.TeacherSubjectsData=this.stats['subjectStudiedCount'];
-    this.disputesStatusData=[this.stats['DisputesStatusCount']['opened'], this.stats['DisputesStatusCount']['closed']];
+    this.disputesStatusData=[this.stats['disputesStatusCount']['opened'], this.stats['disputesStatusCount']['closed']];
+
+    this.ageAvairage = this.stats['averageAge'];
 
     this.loading = false;
   }
