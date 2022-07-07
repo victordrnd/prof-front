@@ -35,6 +35,9 @@ import { CollabLessonDetailsComponent } from './collab-lesson-details/collab-les
 import { ForgotPasswordMailComponent } from './forgot-password-mail/forgot-password-mail.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TeacherModule } from '../teacher/teacher.module';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 @NgModule({
   declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome, CollabLessonDetailsComponent,ForgotPasswordMailComponent, ResetPasswordComponent],
   imports: [
@@ -75,7 +78,10 @@ import { TeacherModule } from '../teacher/teacher.module';
     NbTagModule,
     NbCardModule,
     NbSpinnerModule,
-    TeacherModule
+    TeacherModule,
+    NzSwitchModule,
+    NzInputModule,
+    NzAutocompleteModule
 
   ],
   exports : [TeacherProfileComponent],

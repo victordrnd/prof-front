@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { LessonService } from '../../../../../core/services/lesson.service';
 import { Router } from '@angular/router';
@@ -6,6 +6,9 @@ import { PaymentService } from 'src/app/core/services/payment.service';
 import { AddPaymentComponent } from 'src/app/pages/student/settings/payment/add-payment/add-payment.component';
 import { TranslateService } from '@ngx-translate/core';
 import { NbToastrService } from '@nebular/theme';
+import { AddressService } from 'src/app/core/services/address.service';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'teacher-booking-modal',
@@ -20,9 +23,17 @@ export class BookingModalComponent implements OnInit {
   selectedDuration = 1
   maxDuration;
   subject_id = null;
+
+  at_home = false;
+  places: any = [];
+  place = null;
+  @ViewChild('placeInput') placeInput;
+  placeInputValue = new Subject();
+
+  address = null;
   constructor(private modalService: NzModalService,
     private lessonService: LessonService,
-    private paymentService: PaymentService,
+    private addressService: AddressService,
     private translate: TranslateService,
     private notificationService: NbToastrService,
     private router: Router) { }
@@ -35,6 +46,16 @@ export class BookingModalComponent implements OnInit {
         this.selectedSubject = this.teacher.teacher_subjects[0].subject.id;
       }
     }
+    this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
+      this.places = await this.addressService.findPlaces(keyword).toPromise();
+      console.log(this.place);
+    })
+  }
+
+
+
+  async findPlaces(keyword) {
+    this.placeInputValue.next(keyword);
   }
 
 
@@ -48,11 +69,25 @@ export class BookingModalComponent implements OnInit {
 
 
   async confirm() {
-    const obj = {
+    const place = this.places.find(el => el.place_name == this.place)
+    let obj = {
       subject_id: this.selectedSubject,
       duration: this.selectedDuration,
       teacher_id: this.teacher.id,
-      scheduled_at: this.date.date.full + " " + this.item.time + ":00"
+      scheduled_at: this.date.date.full + " " + this.item.time + ":00",
+      at_home: this.at_home,
+    }
+    if (place) {
+      let address = {
+        address: place.place_name,
+        lat: place.center[0],
+        lng: place.center[1],
+        country: place.context.find(el => el.id.includes("country"))?.text,
+        city: place.context.find(el => el.id.includes("place"))?.text,
+        local: place.context.find(el => el.id.includes("region"))?.text,
+        postcode: place.context.find(el => el.id.includes("postcode"))?.text,
+      }
+      obj = { ...obj, ...address };
     }
     await this.lessonService.store(obj).toPromise().then(res => {
       this.modalService.closeAll();
@@ -81,5 +116,10 @@ export class BookingModalComponent implements OnInit {
 
   cancel() {
     this.modalService.closeAll();
+  }
+
+
+  checkDisabled() {
+    return this.at_home && !this.places.find(el => el.place_name == this.place);
   }
 }

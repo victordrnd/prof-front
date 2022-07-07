@@ -11,6 +11,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NbBadgeModule, NbButtonModule, NbChatModule, NbIconModule, NbLayoutModule, NbUserModule } from '@nebular/theme';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { RoomDetailsComponent } from './room-details/room-details.component';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { LottieModule } from 'ngx-lottie';
 
 
 @NgModule({
@@ -31,9 +33,11 @@ import { RoomDetailsComponent } from './room-details/room-details.component';
     NbChatModule,
     NbBadgeModule,
     NbIconModule,
-    NbButtonModule
+    NbButtonModule,
+    NzEmptyModule,
+    LottieModule
   ],
-  exports : [RoomDetailsComponent],
-  bootstrap : [TchatComponent]
+  exports: [RoomDetailsComponent],
+  bootstrap: [TchatComponent]
 })
 export class TchatModule { }

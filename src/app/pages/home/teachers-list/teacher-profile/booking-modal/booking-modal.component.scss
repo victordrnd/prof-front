@@ -1,3 +1,9 @@
 .bottom{
     height:100px;
 }
+
+:host::ng-deep{
+    i{
+        transform: translateY(2px);
+    }
+}

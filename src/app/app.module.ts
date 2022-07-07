@@ -19,6 +19,8 @@ import { fr_FR, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { environment } from 'src/environments/environment';
 import { NgxStripeModule } from 'ngx-stripe';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -47,7 +49,8 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     NzSpinModule,
     NbAutocompleteModule,
     NgxStripeModule.forRoot(environment.publicStripeKey),
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    LottieModule.forRoot({ player : playerFactory })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},
@@ -56,3 +59,8 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+export function playerFactory() {
+  return player;
+}

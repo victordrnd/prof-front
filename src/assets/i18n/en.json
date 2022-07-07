@@ -125,6 +125,7 @@
     "description": "Description",
     "coming": "Upcoming Courses",
     "history": "History of my courses",
+    "address" : "Address",
     "student": {
       "lastname": "Lastname",
       "firstname": "Firstname"

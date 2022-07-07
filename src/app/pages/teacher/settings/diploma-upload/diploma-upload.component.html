@@ -40,7 +40,7 @@
                 <td> 
                     <div [ngSwitch]="diploma?.status?.code">
                         <nb-tag status="basic"  size="small" *ngSwitchCase="'waiting'" appearance="filled" text="{{diploma.status.label | translate}}"></nb-tag>
-                        <nb-tag status="success" size="small" *ngSwitchCase="'approved'" appearance="filled" text="{{diploma.status.label  | translate}}"></nb-tag>
+                        <nb-tag status="primary" size="small" *ngSwitchCase="'approved'" appearance="filled" text="{{diploma.status.label  | translate}}"></nb-tag>
                         <nb-tag status="danger" size="small" *ngSwitchCase="'refused'" appearance="filled" text="{{diploma.status.label  | translate}}"></nb-tag>
                     </div>
 

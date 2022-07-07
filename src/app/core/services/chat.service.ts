@@ -28,7 +28,7 @@ export class ChatService {
   async connect(forceReconnect = false) {
     console.log(forceReconnect)
     if (!this.isRegistred || forceReconnect) {
-      await this.getMyRooms();
+      //await this.getMyRooms();
       this.isRegistred = true;
       this.clearSubscriptions();
       this.clearUnReadMessage();
@@ -96,7 +96,7 @@ export class ChatService {
 
   sendMessage(content: CreateMessageDto, http = false) {
     if (http) {
-      this.http.post(`${environment.chatServer}/messages`, content);
+      this.http.post(`${environment.chatServer}/messages`, content).toPromise();
     } else {
       this.socket.emit('new_message', content)
     }

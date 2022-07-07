@@ -1,7 +1,10 @@
 <nb-chat [scrollBottom]="true">
     <ng-template nbChatTitle>
         <div class="d-flex justify-content-between">
-            <div>{{ room?.name | titlecase }}
+            <div>{{ room?.name }}
+                <span class="text-grey ml-2 text-small">
+                    <ng-container *ngFor="let user of room?.users">{{user.firstname}} {{user.lastname}}, </ng-container>
+                </span>
             </div>
             <div>
                 <button *ngIf="room?.lessonId" (click)="goToLesson()" nbButton size="small" class="mx-3">Afficher le cours</button>

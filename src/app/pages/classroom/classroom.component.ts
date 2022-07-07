@@ -156,7 +156,7 @@ export class ClassroomComponent implements OnInit, OnDestroy {
   }
 
   getInitial() {
-    return this.connectedUser.firstname.charAt(0) + this.connectedUser.lastname.charAt(0)
+    return this.connectedUser?.firstname?.charAt(0) + this.connectedUser?.lastname?.charAt(0)
   }
 
 

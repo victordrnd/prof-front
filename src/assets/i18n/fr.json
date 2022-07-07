@@ -125,6 +125,7 @@
         "description": "Description",
         "coming": "Cours à venir",
         "history": "Historique de mes cours",
+        "address" : "Adresse",
         "student": {
             "lastname": "Nom",
             "firstname": "Prénom"

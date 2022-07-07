@@ -23,7 +23,7 @@
         <div class="mt-3" *ngIf="account">
             <nb-alert class="d-inline-block" status="danger" *ngIf="account.capabilities.transfers !='active'">Inactive
                 yet</nb-alert>
-            <nb-alert class="d-inline-block" status="success" *ngIf="account.capabilities.transfers =='active'">Active
+            <nb-alert class="d-inline-block" status="primary" *ngIf="account.capabilities.transfers =='active'">Active
             </nb-alert>
         </div>
     </div>

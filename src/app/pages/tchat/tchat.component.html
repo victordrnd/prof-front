@@ -2,16 +2,21 @@
 
 <nz-layout class="layout">
 
-    <nz-sider nzCollapsible [nzCollapsed]="mobile ? true : false" [nzWidth]="290" [nzCollapsedWidth]="mobile ? 0 : 80">
-        <ul nz-menu nzMode="inline" class="w-100 ">
+    <nz-sider  [nzCollapsed]="mobile ? true : false" [nzWidth]="390" [nzCollapsedWidth]="mobile ? 0 : 80">
+        <ul nz-menu nzMode="inline" class="w-100 max-dimension">
+            <nz-empty *ngIf="rooms?.length == 0"></nz-empty>
             <li class="mt-0 py-4" *ngFor="let room of rooms" nz-menu-item routerLink="room/{{room.id}}">
-                <div class="d-flex">
+                <div class="d-flex py-3">
                     <!-- <nb-badge *ngIf="room.new_message" class="mx-3 mt-3" dotMode status="primary" position="top left">
                     </nb-badge> -->
                     <!-- <time class="mx-3">{{room.updated_at | date:'shortTime'}}</time> -->
-                    <nb-user *ngIf="room.new_message" [picture]="room.image" badgeText="1" badgeStatus="primary" badgePosition="bottom right" class="mx-2" shape="semi-round" name="{{room.name}}" title="{{room.last_message?.content}} · {{room.updated_at | date:'shortTime'}}">
+                    <nb-user *ngIf="room.new_message" [picture]="room.image" badgeText="1" badgeStatus="primary"
+                        badgePosition="bottom right" class="mx-2" shape="semi-round" name="{{room.name}}"
+                        title="{{room.last_message?.content}} · {{room.updated_at | date:'shortTime'}}">
                     </nb-user>
-                    <nb-user *ngIf="!room.new_message" [picture]="room.image"  class="mx-2" shape="semi-round" name="{{room.name}}" title="{{room.last_message?.content}} · {{room.updated_at | date:'shortTime'}}">
+                    <nb-user *ngIf="!room.new_message" [picture]="room.image" class="mx-2" shape="semi-round"
+                        name="{{room.name}}"
+                        title="{{room.last_message?.content}} · {{room.updated_at | date:'shortTime'}}">
                     </nb-user>
                 </div>
                 <span></span>
@@ -27,6 +32,10 @@
         <div class="body">
             <nb-layout>
                 <nb-layout-column>
+                    <div *ngIf="home" class="w-50 d-block mx-auto">
+                        <ng-lottie [options]="options"></ng-lottie>
+                        <h2 class="text-center text-grey">Messagerie instantanée</h2>
+                    </div>
                     <router-outlet></router-outlet>
                 </nb-layout-column>
             </nb-layout>

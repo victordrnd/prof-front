@@ -34,7 +34,7 @@ export class LessonDetailsComponent implements OnInit {
     private teacherService: TeacherService,
     private authService: AuthService,
     private notificationService: NbToastrService,
-    private chatService : ChatService,
+    private chatService: ChatService,
     private router: Router) { }
 
   async ngOnInit() {
@@ -56,8 +56,8 @@ export class LessonDetailsComponent implements OnInit {
 
   confirmLesson() {
     this.paymentLoading = true
-    this.lessonService.confirm(this.lesson.id).toPromise().then((res:any) => {
-      this.chatService.createRoom({name : `Lesson ${formatDate(res.scheduled_at, "MMM d, y h:mm a", this.locale)}`, users : res.students, lessonId : res.id}).toPromise().then(room => {
+    this.lessonService.confirm(this.lesson.id).toPromise().then((res: any) => {
+      this.chatService.createRoom({ name: `Lesson ${formatDate(res.scheduled_at, "MMM d, y h:mm a", this.locale)}`, users: res.students, lessonId: res.id }).toPromise().then(room => {
         this.chatService.emitNewRoomCreate(room);
         this.lesson = res;
         this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
@@ -83,11 +83,16 @@ export class LessonDetailsComponent implements OnInit {
 
   async joinCourse() {
 
+
+    if (this.lesson.address) {
+      window.open("https://www.google.com/maps/search/?api=1&query=" + this.lesson.address.address);
+      return;
+    }
     if (this.lesson.video_link) {
       window.open(this.lesson.video_link, "_blank");
       return;
     }
-    if(this.lesson.capacity == 1 || this.lesson.students.length == 1){
+    if (this.lesson.capacity == 1 || this.lesson.students.length == 1) {
       this.router.navigate([`/classroom/${this.lesson.id}`]);
     }
   }
