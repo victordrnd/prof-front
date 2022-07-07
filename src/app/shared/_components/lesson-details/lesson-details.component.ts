@@ -48,7 +48,7 @@ export class LessonDetailsComponent implements OnInit {
   async acceptStudent(student) {
     await this.teacherService.acceptStudentLesson(student.id, this.lesson.id).toPromise().then(res => {
       this.lesson = res;
-      this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
+      this.notificationService.primary(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
     }).catch(err => {
       this.notificationService.danger(err.error, this.translate.instant('shared.error'))
     });
@@ -57,10 +57,10 @@ export class LessonDetailsComponent implements OnInit {
   confirmLesson() {
     this.paymentLoading = true
     this.lessonService.confirm(this.lesson.id).toPromise().then((res: any) => {
-      this.chatService.createRoom({ name: `Lesson ${formatDate(res.scheduled_at, "MMM d, y h:mm a", this.locale)}`, users: res.students, lessonId: res.id }).toPromise().then(room => {
+      this.chatService.createRoom({ name: `Lesson ${formatDate(res.scheduled_at, "MMM d, h:mm a", this.locale)}`, users: res.students, lessonId: res.id }).toPromise().then(room => {
         this.chatService.emitNewRoomCreate(room);
         this.lesson = res;
-        this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
+        this.notificationService.primary(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
       });
     }).catch(err => {
       this.notificationService.danger(err.error, this.translate.instant('shared.error'))
@@ -105,7 +105,7 @@ export class LessonDetailsComponent implements OnInit {
       nzOnOk: (component) => {
         this.lessonService.update(component.lesson).toPromise().then(res => {
           this.lesson = res;
-          this.notificationService.success(this.translate.instant('lesson.settings.updated_success'), this.translate.instant('shared.success'))
+          this.notificationService.primary(this.translate.instant('lesson.settings.updated_success'), this.translate.instant('shared.success'))
         }).catch(err => {
           console.log(err);
           this.notificationService.danger(this.translate.instant("lesson.settings.updated_success"), this.translate.instant('shared.error'));

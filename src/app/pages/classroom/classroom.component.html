@@ -17,14 +17,19 @@
                 </div>
             </div>
 
-            <video [class.invisible]="!inputs.camera" #videoFallBack autoplay playsinline id="video" class="video-fallback"></video>
+            <video [muted]="true" [class.invisible]="!inputs.camera" #videoFallBack autoplay playsinline id="video" class="video-fallback max-index"></video>
             <app-call-controls *ngIf="started" [(unReadMessage)]="unReadMessage" [(screenSharing)]="inputs.screenShare" (onOpenChat)="openChat()"
                 (screenSharingChange)="onScreenSharingChange($event)" (onLeave)="leaveSession()"
                 (onMicrophoneChange)="onMicrophoneChange($event)" (onCameraChange)="toogleCamera($event)">
             </app-call-controls>
         </div>
         <div *ngIf="!connected">
-            <button nbButton (click)="initConnection()" status="primary">Connect</button>
+            <app-header></app-header>
+            <h4 class="text-grey text-center mt-4">Lesson {{lesson?.scheduled_at | date:'MMM d, y, h:mm a'}}</h4>
+            <div class="d-block mx-auto" style="width:40%">
+                <ng-lottie [options]="options"></ng-lottie>
+            </div>
+            <button nbButton hero class="d-block mx-auto" (click)="initConnection()" size="large" status="primary">Connect to classroom</button>
         </div>
 
 

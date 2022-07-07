@@ -57,7 +57,7 @@ export class CreateCollabLessonModalComponent implements OnInit {
       capacity : this.capacity
     }).toPromise().then(res => {
       this.success = true;
-      this.notificationService.success(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
+      this.notificationService.primary(this.translate.instant('lesson.settings.accept_success'), this.translate.instant('shared.success'))
       this.modalRef.close();
     }).catch(err => {
       for (const [key, value] of Object.entries(err.error)) {

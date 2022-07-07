@@ -48,7 +48,7 @@ export class TeacherProfileComponent implements OnInit {
     this.reviewService.create({ ...this.new_comment, to: this.teacher.id }).toPromise().then(async res => {
       this.new_comment.note = 5;
       this.new_comment.comment = null;
-      this.notificationService.success(this.translate.instant('settings.success_description'), this.translate.instant('shared.success'));
+      this.notificationService.primary(this.translate.instant('settings.success_description'), this.translate.instant('shared.success'));
       this.teacher = await this.teacherService.get(this.teacher.id).toPromise();
     }).catch(err => {
       this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))

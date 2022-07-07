@@ -214,7 +214,9 @@ export class CallService {
   }
 
   clearSubscription() {
-    this.stream.getTracks().map(track => track.stop());
+    if(this.stream){
+      this.stream.getTracks().map(track => track.stop());
+    }
     this.peerConnection.ontrack = null;
     this.peerConnection.onicecandidate = null;
     this.peerConnection.oniceconnectionstatechange = null;

@@ -110,7 +110,7 @@ export class RegisterComponent implements OnInit {
     await this.authService.addUser(user).toPromise().then(success => {
       this.authService.setAuth(success);
       this.step++
-      this.notificationService.success(this.translate.instant('register.success.desc'), this.translate.instant('register.success.title'))
+      this.notificationService.primary(this.translate.instant('register.success.desc'), this.translate.instant('register.success.title'))
       this.router.navigate([`.`, { step: this.step, type: this.type.value }], { relativeTo: this.route });
     })
       .catch(err => {

@@ -47,7 +47,7 @@ export class DisputeFormComponent implements OnInit {
           roomId: this.dispute.room_id,
           content: res.description
         }, true);
-        this.notificationService.success(this.translate.instant("dispute.submitted_success"), this.translate.instant('shared.success'));
+        this.notificationService.primary(this.translate.instant("dispute.submitted_success"), this.translate.instant('shared.success'));
         this.initDispute(this.lesson.id);
       }).catch(err => {
         this.notificationService.danger(this.translate.instant("shared.error_description"), this.translate.instant('shared.error'))

@@ -70,7 +70,7 @@ export class LessonListComponent implements OnInit {
 
   async cancelLesson(lesson) {
     await this.lessonService.cancel(lesson.id).toPromise().then(res => {
-      this.toastrService.success(this.translate.instant('lesson.cancel.success_description'), this.translate.instant('lesson.cancel.success'));
+      this.toastrService.primary(this.translate.instant('lesson.cancel.success_description'), this.translate.instant('lesson.cancel.success'));
       this.getLessons();
     }).catch(err => {
       this.toastrService.danger("Error", "An error has occured");

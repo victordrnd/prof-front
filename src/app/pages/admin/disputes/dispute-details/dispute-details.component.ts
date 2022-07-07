@@ -43,7 +43,7 @@ export class DisputeDetailsComponent implements OnInit {
 
   confirmRefund(student){
     this.adminService.proceedRefund(student.id, this.dispute.lesson.id).toPromise().then(res => {
-      this.notificationService.success("Le remboursement a correctement été effectué", "Succès");
+      this.notificationService.primary("Le remboursement a correctement été effectué", "Succès");
       this.getDispute(this.dispute.id);
     }).catch(err => {
       this.notificationService.danger("Impossible de procéder au remboursement de cet étudiant", "Error");
@@ -53,7 +53,7 @@ export class DisputeDetailsComponent implements OnInit {
 
   closeDispute(){
     this.adminService.closeDispute(this.dispute.id).toPromise().then(res => {
-      this.notificationService.success("Le litige a été marqué comme résolu", "Succès");
+      this.notificationService.primary("Le litige a été marqué comme résolu", "Succès");
       this.dispute = res;
     })
   }

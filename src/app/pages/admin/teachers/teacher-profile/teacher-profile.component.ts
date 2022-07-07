@@ -30,7 +30,7 @@ export class TeacherProfileComponent implements OnInit {
   async updateDiplomaStatus(diploma, status) {
     await this.adminService.updateDiplomaStatus(diploma.id, status).toPromise().then(res => {
       this.teacher = res;
-      this.notificationService.success("Le diploma a correctement été validé", "Succès");
+      this.notificationService.primary("Le diploma a correctement été validé", "Succès");
     }).catch(err => this.notificationService.danger("An error has occured", "Error"));
   }
 
@@ -38,7 +38,7 @@ export class TeacherProfileComponent implements OnInit {
     if (this.canApprove()) {
       this.adminService.approveTeacher(this.teacher.id, evt).toPromise().then(res => {
         this.teacher = res;
-        this.notificationService.success("La visibilité du professeur a été mis à jour", "Succès");
+        this.notificationService.primary("La visibilité du professeur a été mis à jour", "Succès");
       }).catch(err => this.notificationService.danger("An error has occured", "Error"));
     }
   }

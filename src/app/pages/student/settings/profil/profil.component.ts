@@ -75,7 +75,7 @@ export class ProfilComponent implements OnInit {
       postcode: this.place.context.find(el => el.id.includes("postcode"))?.text,
     }
     await this.addressService.attach(obj).toPromise().then(async (res: any) => {
-      this.notificationService.success(this.translate.instant("settings.success_description"),this.translate.instant('register.success.title'));
+      this.notificationService.primary(this.translate.instant("settings.success_description"),this.translate.instant('register.success.title'));
     })
   }
 
@@ -109,7 +109,7 @@ export class ProfilComponent implements OnInit {
       }
     }
     this.userService.updateUser(this.form.value).toPromise().then(() => {
-      this.notificationService.success(this.translate.instant("settings.success_description"),this.translate.instant('register.success.title'));
+      this.notificationService.primary(this.translate.instant("settings.success_description"),this.translate.instant('register.success.title'));
     }).catch(err => {
       for (const [key, value] of Object.entries(err)) {
         this.notificationService.danger(this.translate.instant('register.error.desc'), value)

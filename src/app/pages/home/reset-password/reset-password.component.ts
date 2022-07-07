@@ -37,7 +37,7 @@ export class ResetPasswordComponent implements OnInit {
 
   submit() {
     this.authService.changePassword(this.form.value, this.token).toPromise().then(success => {
-      this.notificationService.success(this.translate.instant('reset_pass.success.desc'), this.translate.instant('reset_pass.success.title'))
+      this.notificationService.primary(this.translate.instant('reset_pass.success.desc'), this.translate.instant('reset_pass.success.title'))
       this.router.navigate([`/login`]);
     }).catch(err => {
       for (const [key, value] of Object.entries(err)) {

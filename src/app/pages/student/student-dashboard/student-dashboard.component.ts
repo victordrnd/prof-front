@@ -33,7 +33,7 @@ export class StudentDashboardComponent implements OnInit {
     this.stripe.handleCardAction(intent.client_secret).toPromise().then(async res => {
       await this.paymentService.confirmIntent(action.id).toPromise();
       this.getActions();
-      this.notificationService.success("",this.translate.instant("shared.success"));
+      this.notificationService.primary("",this.translate.instant("shared.success"));
     }).catch(err => {
       this.notificationService.danger(this.translate.instant("shared.error_description", this.translate.instant("shared.error")));
     }).finally(() => this.loading = false);

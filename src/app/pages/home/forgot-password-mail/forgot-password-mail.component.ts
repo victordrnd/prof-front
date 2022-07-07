@@ -29,7 +29,7 @@ export class ForgotPasswordMailComponent implements OnInit {
 
   submit(){
     this.authService.sendMailForgotPassword(this.form.value).toPromise().then(success => {
-      this.notificationService.success(this.translate.instant('reset_pass.success.descMail'), this.translate.instant('reset_pass.success.title'))
+      this.notificationService.primary(this.translate.instant('reset_pass.success.descMail'), this.translate.instant('reset_pass.success.title'))
       this.router.navigate([`/login`]);
     }).catch(err => {
       for (const [key, value] of Object.entries(err)) {

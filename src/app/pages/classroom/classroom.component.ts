@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import ZoomVideo, { Participant, VideoQuality } from '@zoom/videosdk';
+import { AnimationOptions } from 'ngx-lottie';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CallService } from 'src/app/core/services/call.service';
 import { LessonService } from 'src/app/core/services/lesson.service';
@@ -23,6 +24,11 @@ export class ClassroomComponent implements OnInit, OnDestroy {
   participants = 0;
   lesson_id;
 
+  options: AnimationOptions = {
+    path: '/assets/animations/education.json',
+  };
+
+  
   client;
   stream;
   audioEncode = false;

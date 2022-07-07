@@ -67,11 +67,11 @@
                             <div [ngSwitch]="lesson?.relative_status?.code" class="float-right">
                                 <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
                                     text="{{lesson.relative_status.label | translate}}"></nb-tag>
-                                <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled"
+                                <nb-tag status="info" size="small" *ngSwitchCase="'confirmed'" appearance="filled"
                                     text="{{lesson.relative_status.label  | translate}}"></nb-tag>
                                 <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled"
                                     text="{{lesson.relative_status.label  | translate}}"></nb-tag>
-                                <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
+                                <nb-tag status="primary" size="small" *ngSwitchCase="'done'" appearance="filled"
                                     text="{{lesson.relative_status.label  | translate}}"></nb-tag>
                             </div>
                         </td>

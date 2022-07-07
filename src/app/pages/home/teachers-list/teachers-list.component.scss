@@ -1,11 +1,9 @@
 .profile{
-    height:270px;
     transition: all 0.2s;
     .profil-img{
+        height:270px;
         background-size: cover;
         background-position: center;
-        width: calc(100% + 10px);
-        height: calc(100% + 10px);
         border-radius : 9px;
         filter : grayscale(15%)
     }

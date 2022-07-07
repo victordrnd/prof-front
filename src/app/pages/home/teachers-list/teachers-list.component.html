@@ -27,13 +27,13 @@
         </div>
     </nb-sidebar>
 
-    <nb-layout-column style="overflow: auto; min-height: calc(100vh - 74px);" >
+    <nb-layout-column style="overflow: auto; min-height: calc(100vh - 74px);">
         <div class="row mx-0 mt-4 px-5" *ngIf="data">
-            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 px-4 mt-5 bg-white" *ngFor="let teacher of data?.data">
-                <div class="mt-5">
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 px-2 mt-5" *ngFor="let teacher of data?.data">
+                <div class="">
 
-                    <div class="profile pointer bg-white" (click)="openTeacherProfile(teacher.id)">
-                        <div class="profil-img" [ngStyle]="{'background-image' : 'url('+teacher.image+ ')'}">
+                    <div class="profile pointer px-2" (click)="openTeacherProfile(teacher.id)">
+                        <div class="profil-img w-100" [ngStyle]="{'background-image' : 'url('+teacher.image+ ')'}">
                             <div class="d-flex h-100">
                                 <!-- <div class="inblock-profile">
                                     <h2 class="text-white m-2 d-inline-block">{{teacher.firstname | titlecase}}
@@ -41,32 +41,35 @@
                                 </div> -->
                             </div>
                         </div>
-                        <p class="text-bold justify-content-between mt-3"
-                            style="overflow: hidden;white-space: nowrap;clear: both;display: inline-block;">
-                            {{teacher.firstname | titlecase}} {{teacher.lastname | titlecase}}
-                            <!-- <p class="locale mb-0 mt-1 text-right"> -->
-                            <span class="locale mb-0 mt-1 text-right">
-                                <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon> {{teacher.address.city}}
-                            </span>
-                        </p>
-                        <div class="row">
+                        <div class="bg-white px-4">
 
-                            <div class="col-6">
-                                <div class="mt-2">
-                                    <nz-tag *ngFor="let subject of teacher.teacher_subjects"
-                                        [nzColor]="subject.subject.color">
-                                        {{subject.subject.libelle | translate}}</nz-tag>
+                            <p class="text-bold justify-content-between mt-3"
+                                style="overflow: hidden;white-space: nowrap;clear: both;display: inline-block;">
+                                {{teacher.firstname | titlecase}} {{teacher.lastname | titlecase}}
+                                <!-- <p class="locale mb-0 mt-1 text-right"> -->
+                                <span class="locale mb-0 mt-1 text-right">
+                                    <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon> {{teacher.address.city}}
+                                </span>
+                            </p>
+                            <div class="row">
+
+                                <div class="col-6">
+                                    <div class="mt-2">
+                                        <nz-tag *ngFor="let subject of teacher.teacher_subjects"
+                                            [nzColor]="subject.subject.color">
+                                            {{subject.subject.libelle | translate}}</nz-tag>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="float-right">
+                                        {{teacher.note || ""}} <nb-icon icon="star" class="mt-1"></nb-icon>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="float-right">
-                                    {{teacher.note || ""}} <nb-icon icon="star" class="mt-1"></nb-icon>
-                                </div>
-                            </div>   
+                            <button nbButton hero size="small" class="w-100 mt-2 mb-4">
+                                {{teacher?.teacher_profil?.currency | uppercase}} {{teacher?.teacher_profil?.rate}} / h
+                            </button>
                         </div>
-                        <button nbButton size="small" class="w-100 mt-2">
-                            {{teacher?.teacher_profil?.currency | uppercase}} {{teacher?.teacher_profil?.rate}}  / h
-                        </button>
                     </div>
                 </div>
 

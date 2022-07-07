@@ -31,7 +31,7 @@ export class CollabLessonDetailsComponent implements OnInit {
   async joinLesson() {
     this.loading = true;
     await this.lessonService.joinCollaborationLesson(this.lesson.id).toPromise().then(res => {
-      this.notificationService.success(this.translate.instant("shared.success"), this.translate.instant('shared.success'));
+      this.notificationService.primary(this.translate.instant("shared.success"), this.translate.instant('shared.success'));
       this.router.navigate(['student/dashboard']);
     }).catch(err => {
       if (err.error) {
