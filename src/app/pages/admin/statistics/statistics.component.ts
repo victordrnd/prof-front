@@ -43,13 +43,13 @@ export class StatisticsComponent implements OnInit {
     this.loading = true;
     this.stats = await this.userService.getStats().toPromise();
 
-    this.kindUserData=[this.stats['usersCount']['validatedTeachersCount'], this.stats['usersCount']['studentsCount']];
-    this.isTeacherValidatedData=[this.stats['usersCount']['validatedTeachersCount'], this.stats['usersCount']['unvalidatedTeacherCount']];
-    this.TeacherSubjectsLabels=this.stats['allSubject'];
-    this.TeacherSubjectsData=this.stats['subjectStudiedCount'];
-    this.disputesStatusData=[this.stats['disputesStatusCount']['opened'], this.stats['disputesStatusCount']['closed']];
+    this.kindUserData=[this.stats.usersCount.validatedTeachersCount, this.stats.usersCount.studentsCount];
+    this.isTeacherValidatedData=[this.stats.usersCount.validatedTeachersCount, this.stats.usersCount.unvalidatedTeacherCount];
+    this.TeacherSubjectsLabels=this.stats.allSubjects;
+    this.TeacherSubjectsData=this.stats.subjectsStudiedCount;
+    this.disputesStatusData=[this.stats.disputesStatusCount.opened, this.stats.disputesStatusCount.closed];
 
-    this.ageAvairage = this.stats['averageAge'];
+    this.ageAvairage = this.stats.averageAge;
 
     this.loading = false;
   }
