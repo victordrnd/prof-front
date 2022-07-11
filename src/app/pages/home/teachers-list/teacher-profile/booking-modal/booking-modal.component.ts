@@ -10,7 +10,7 @@ import { AddressService } from 'src/app/core/services/address.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
-@Component({
+@Component({   
   selector: 'teacher-booking-modal',
   templateUrl: './booking-modal.component.html',
   styleUrls: ['./booking-modal.component.scss']

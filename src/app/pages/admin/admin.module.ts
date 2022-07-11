@@ -5,7 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NbButtonModule, NbCardModule, NbChatModule, NbIconModule, NbLayoutModule, NbSpinnerModule, NbTagModule, NbToastrModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbInputModule, NbChatModule, NbIconModule, NbLayoutModule, NbSpinnerModule, NbTagModule, NbToastrModule } from '@nebular/theme';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -34,6 +34,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { ChartsModule } from 'ng2-charts';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { SubjectsComponent } from './subjects/subjects.component';
+import { SubjectModalComponent } from './subject-modal/subject-modal.component';
+import { EditSubjectModalComponent } from './edit-subject-modal/edit-subject-modal.component';
 
 const config: SocketIoConfig = { url: environment.chatServer, options: { transports: ['websocket'] } };
 
@@ -47,8 +50,12 @@ const config: SocketIoConfig = { url: environment.chatServer, options: { transpo
     StudentsListComponent,
     StudentProfileComponent,
     StatisticsComponent,
+    SubjectsComponent,
+    SubjectModalComponent,
+    EditSubjectModalComponent,
   ],
   imports: [
+    NbInputModule,
     CommonModule,
     AdminRoutingModule,
     NzSliderModule,

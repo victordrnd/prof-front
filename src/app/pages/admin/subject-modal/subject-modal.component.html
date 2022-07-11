@@ -1,0 +1,25 @@
+<form [formGroup]="form">
+
+  <div class="row">
+    <div class="col-12">
+      <label>{{'admin.subject.codeform' | translate}}</label>
+      <input type="text" formControlName="libelle" placeholder="subject.maths" nbInput status="basic"
+        class="input-full-width">
+    </div>
+    <div class="col-12 mt-3">
+      <label>{{'admin.subject.libelleform' | translate}}</label>
+      <input type="text" formControlName="slug" nbInput status="basic" class="input-full-width">
+    </div>
+    <div class="col-12 mt-3">
+      <label>{{'admin.subject.libellefrform' | translate}}</label>
+      <input type="text" formControlName="slugFr" nbInput status="basic" class="input-full-width">
+    </div>
+    <div class="col-12 mt-3">
+      <label>{{'admin.subject.color' | translate}}</label>
+      <input maxlength="7" type="color" formControlName="color" nbInput status="basic" class="input-full-width">
+    </div>
+  </div>
+  <button nbButton (click)="submit()" class="w-100 mt-4" status="primary" [disabled]="loading || !form.valid">
+    {{'admin.subject.add' | translate}}
+  </button>
+</form>

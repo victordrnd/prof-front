@@ -42,6 +42,18 @@ export class AdminService {
     return this.http.get(`${environment.apiUrl}/admin/disputes/${dispute_id}`);
   }
 
+  getSubjects(){
+    return this.http.get(`${environment.apiUrl}/admin/subjects`);
+  }
+
+  addSubject(subject){
+    return this.http.post(`${environment.apiUrl}/admin/subject`, subject);
+  }
+
+  editSubject(id, subject){
+    return this.http.patch(`${environment.apiUrl}/admin/subject/${id}`, subject);
+  }
+
   closeDispute(dispute_id){
     return this.http.delete(`${environment.apiUrl}/admin/disputes/${dispute_id}`);
   }
