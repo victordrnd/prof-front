@@ -41,7 +41,7 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { MailValidatedComponent } from './mail-validated/mail-validated.component';
 import { WaitingValidationMailComponent } from './waiting-validation-mail/waiting-validation-mail.component';
 @NgModule({
-  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, ForgotPasswordMailComponent, ResetPasswordComponent, WaitingValidationMailComponent, MailValidatedComponent],
+  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome, CollabLessonDetailsComponent,ForgotPasswordMailComponent, ResetPasswordComponent,WaitingValidationMailComponent,  MailValidatedComponent],
   imports: [
     CommonModule,
     FormsModule,
