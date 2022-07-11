@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TeacherProfileComponent } from './teachers-list/teacher-profile/teacher-profile.component';
 import { TeachersListComponent } from './teachers-list/teachers-list.component';
+import { WaitingValidationMailComponent } from './waiting-validation-mail/waiting-validation-mail.component';
 import { CollabLessonDetailsComponent } from './collab-lesson-details/collab-lesson-details.component';
 import { MailValidatedComponent } from './mail-validated/mail-validated.component';
 
@@ -50,6 +51,10 @@ const routes: Routes = [
       {
         path : 'mail_validated',
         component : MailValidatedComponent
+      },
+      {
+        path : 'email_verified',
+        component : WaitingValidationMailComponent
       },
       {
         path : 'dashboard',

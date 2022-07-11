@@ -52,7 +52,8 @@
     },
     "validation_email" : {
       "title" : "Your email has been validated",
-      "back" : "Back to home"
+      "back" : "Back to home",
+      "main" : "Main"
     }
   },
   "login": {
