@@ -14,68 +14,63 @@ import { TeachersListComponent } from './teachers/teachers-list/teachers-list.co
 
 const routes: Routes = [
   {
-    path : "",
-    component : AdminComponent,
-    canActivate : [AdminGuardService],
-    children : [
+    path: "",
+    component: AdminComponent,
+    canActivate: [AdminGuardService],
+    children: [
       {
-        path : "",
-        component : TeachersListComponent
+        path: "",
+        component: TeachersListComponent
       },
       {
-        path : "teachers",
-        children : [
+        path: "teachers",
+        children: [
           {
-            path : "",
-            component : TeachersListComponent
+            path: "",
+            component: TeachersListComponent
           },
           {
-            path : ":id",
-            component : TeacherProfileComponent
+            path: ":id",
+            component: TeacherProfileComponent
           }
         ]
       },
       {
-        path : "students",
-        children : [
+        path: "students",
+        children: [
           {
-            path : "",
-            component : StudentsListComponent
+            path: "",
+            component: StudentsListComponent
           },
           {
-            path : ":id",
-            component : StudentProfileComponent
+            path: ":id",
+            component: StudentProfileComponent
           }
         ]
       },
       {
-        path : "statistics",
-        children : [
-          {
-            path : "",
-            component : StatisticsComponent
-          },
-        ]
+        path: "statistics",
+        component: StatisticsComponent
       },
       {
-        path : "disputes",
-        children : [
+        path: "disputes",
+        children: [
           {
-            path :"",
-            component : DisputesListComponent
+            path: "",
+            component: DisputesListComponent
           },
           {
-            path :":id",
-            component : DisputeDetailsComponent
+            path: ":id",
+            component: DisputeDetailsComponent
           }
         ]
       },
       {
-        path : "settings",
-        children : [
+        path: "settings",
+        children: [
           {
-            path : "profile",
-            component : ProfilComponent
+            path: "profile",
+            component: ProfilComponent
           }
         ]
       }
