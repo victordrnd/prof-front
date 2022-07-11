@@ -28,7 +28,7 @@ export class ClassroomComponent implements OnInit, OnDestroy {
     path: '/assets/animations/education.json',
   };
 
-  
+
   client;
   stream;
   audioEncode = false;
@@ -70,6 +70,15 @@ export class ClassroomComponent implements OnInit, OnDestroy {
       });
 
       this.callService.onNewMessage.subscribe((message) => {
+        const type = message.type;
+        message.type = message.type != "text" ? "file" : "text";
+        if (message.type == "file") {
+          message.files = [{
+            url: message.content,
+            type: type,
+            icon: 'file-text-outline'
+          }];
+        } 
         message.reply = this.userService.currentUserValue.id == message.user_id;
         if (!message.reply) {
           message.user = this.connectedUser
@@ -80,6 +89,7 @@ export class ClassroomComponent implements OnInit, OnDestroy {
         if (!this.inputs.chat) {
           this.unReadMessage++;
         }
+        console.log(message)
       });
 
       this.callService.onRemoteCameraChange.subscribe(event => {
@@ -134,7 +144,17 @@ export class ClassroomComponent implements OnInit, OnDestroy {
 
 
   sendMessage(message) {
-    delete message.files;
+    // delete message.files;
+    if (message.files.length) {
+      let files = !message.files ? [] : message.files.map((file) => {
+        return {
+          data: file,
+          type: file.type,
+          name: file.name,
+        };
+      });
+      message.files = files;
+    }
     message.date = new Date().getTime();
     message.room_id = this.lesson_id;
     message.user_id = this.userService.currentUserValue.id;

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbToastrModule, NbAutocompleteModule, NbIconModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbToastrModule, NbAutocompleteModule, NbIconModule, NbDatepickerModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './shared/shared.module';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -50,6 +50,7 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     NbAutocompleteModule,
     NgxStripeModule.forRoot(environment.publicStripeKey),
     SocketIoModule.forRoot(config),
+    NbDatepickerModule.forRoot(),
     LottieModule.forRoot({ player : playerFactory })
   ],
   providers: [

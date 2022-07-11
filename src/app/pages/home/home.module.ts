@@ -5,7 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent as CustomHome } from './home.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../../shared/shared.module';
-import { NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule, NbButtonComponent, NbButtonModule, NbCheckboxModule, NbRadioModule, NbToastrModule, NbAutocompleteModule, NbUserModule, NbLayoutModule, NbSidebarModule, NbAlertModule, NbDialogModule, NbPopoverModule, NbSelectModule, NbTagModule, NbSpinnerModule } from '@nebular/theme';
+import { NbCardModule, NbInputModule, NbIconModule, NbFormFieldModule, NbButtonComponent, NbButtonModule, NbCheckboxModule, NbRadioModule, NbToastrModule, NbAutocompleteModule, NbUserModule, NbLayoutModule, NbSidebarModule, NbAlertModule, NbDialogModule, NbPopoverModule, NbSelectModule, NbTagModule, NbSpinnerModule, NbDatepickerModule, NB_TIME_PICKER_CONFIG } from '@nebular/theme';
 import { HeadbandComponent } from './home/headband/headband.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -81,11 +81,17 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
     TeacherModule,
     NzSwitchModule,
     NzInputModule,
-    NzAutocompleteModule
-
+    NzAutocompleteModule,
+    NbDatepickerModule
   ],
   exports : [TeacherProfileComponent],
   entryComponents : [BookingModalComponent],
+  providers : [
+    {
+      provide:NB_TIME_PICKER_CONFIG,
+      useValue:{}
+      }
+  ],
   bootstrap : [CustomHome]
 })
 export class HomeModule { }

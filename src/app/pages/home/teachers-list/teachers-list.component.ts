@@ -17,7 +17,8 @@ export class TeachersListComponent implements OnInit {
   filters = {
     subject_id: null,
     lat: null,
-    lng: null
+    lng: null,
+    date : null,
   };
   data;
   environement = environment;
@@ -72,7 +73,17 @@ export class TeachersListComponent implements OnInit {
     this.data = await this.teacherService.search(this.filters).toPromise();
   }
 
+
   openTeacherProfile(teacher_id) {
     this.router.navigate([`teacher/profile/${teacher_id}`, { subject_id: this.filters.subject_id }]);
+  }
+
+  async onDateSelectionChange(date){
+    if(date instanceof InputEvent){
+      this.filters.date = null;
+    }else{
+      this.filters.date = date;
+    }
+    this.data = await this.teacherService.search(this.filters).toPromise();
   }
 }

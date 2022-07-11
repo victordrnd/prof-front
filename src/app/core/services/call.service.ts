@@ -266,6 +266,8 @@ interface AnswerInfo {
 }
 
 interface ClassRoomMessage {
+  type: any;
+  files: any;
   content: string;
   user_id: number;
   date: Date;

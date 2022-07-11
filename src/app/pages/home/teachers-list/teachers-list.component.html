@@ -15,6 +15,10 @@
                         [innerHtml]="option.place_name"></span>
                 </nb-option>
             </nb-autocomplete>
+            <h4 class="mt-4">Date</h4>
+            <input nbInput placeholder="Lesson date" (input)="onDateSelectionChange($event)" [nbDatepicker]="dateTimePicker">
+            <nb-date-timepicker (dateTimeChange)="onDateSelectionChange($event)" singleColumn #dateTimePicker></nb-date-timepicker>
+
             <h4 class="mt-4">Matières</h4>
             <nz-checkbox-wrapper style="width: 100%;">
                 <div nz-row>
@@ -41,7 +45,7 @@
                                 </div> -->
                             </div>
                         </div>
-                        <div class="bg-white px-4">
+                        <div class="bg-white rounded px-4">
 
                             <p class="text-bold justify-content-between mt-3"
                                 style="overflow: hidden;white-space: nowrap;clear: both;display: inline-block;">

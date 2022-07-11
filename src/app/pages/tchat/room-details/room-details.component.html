@@ -2,7 +2,7 @@
     <ng-template nbChatTitle>
         <div class="d-flex justify-content-between">
             <div>{{ room?.name }}
-                <span class="text-grey ml-2 text-small">
+                <span class="text-grey ms-2 text-small">
                     <ng-container *ngFor="let user of room?.users">{{user.firstname}} {{user.lastname}}, </ng-container>
                 </span>
             </div>
