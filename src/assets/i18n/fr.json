@@ -112,6 +112,22 @@
         },
         "rate" :"Taux horraire"
     },
+    "admin": {
+      "student" : {
+        "list": "Liste des étudiants",
+        "search": "Recherche",
+        "search-student": "Rechercher un étudiant",
+        "lastname": "Nom",
+        "firstname": "Prénom",
+        "email": "Mail",
+        "phone": "Téléphone",
+        "sexe": "Sexe",
+        "list-lessons": "Liste des lessons de l'étudiant",
+        "select-status": "Selectionner un statut",
+        "select-subject": "Selectionner un sujet"
+      },
+      "action": "Aucune action n'est possible"
+    },
     "general": {
         "hour": "heure",
         "hours": "heures"
@@ -130,6 +146,7 @@
         "coming": "Cours à venir",
         "history": "Historique de mes cours",
         "address" : "Adresse",
+        "scheduled": "Date",
         "student": {
             "lastname": "Nom",
             "firstname": "Prénom"

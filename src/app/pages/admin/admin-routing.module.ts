@@ -6,6 +6,9 @@ import { ProfilComponent } from '../student/settings/profil/profil.component';
 import { AdminComponent } from './admin.component';
 import { DisputeDetailsComponent } from './disputes/dispute-details/dispute-details.component';
 import { DisputesListComponent } from './disputes/disputes-list/disputes-list.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { StudentProfileComponent } from './students/student-profile/student-profile.component';
+import { StudentsListComponent } from './students/students-list/students-list.component';
 import { TeacherProfileComponent } from './teachers/teacher-profile/teacher-profile.component';
 import { TeachersListComponent } from './teachers/teachers-list/teachers-list.component';
 
@@ -30,6 +33,28 @@ const routes: Routes = [
             path : ":id",
             component : TeacherProfileComponent
           }
+        ]
+      },
+      {
+        path : "students",
+        children : [
+          {
+            path : "",
+            component : StudentsListComponent
+          },
+          {
+            path : ":id",
+            component : StudentProfileComponent
+          }
+        ]
+      },
+      {
+        path : "statistics",
+        children : [
+          {
+            path : "",
+            component : StatisticsComponent
+          },
         ]
       },
       {

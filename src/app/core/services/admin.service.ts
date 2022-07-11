@@ -13,8 +13,16 @@ export class AdminService {
     return this.http.post(`${environment.apiUrl}/admin/teachers/search`, filters);
   }
 
+  searchStudents(filters){
+    return this.http.post(`${environment.apiUrl}/admin/students/search`, filters);
+  }
+
   showTeacher(id){
     return this.http.get(`${environment.apiUrl}/admin/teachers/${id}`);
+  }
+
+  showStudent(id){
+    return this.http.get(`${environment.apiUrl}/admin/students/${id}`);
   }
 
   updateDiplomaStatus(diploma_id, status_code){
