@@ -10,7 +10,7 @@
                             translate}}
                             {{'lesson.with' | translate}} {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}
 
-                            <div [ngSwitch]="lesson?.status?.code" class="float-right">
+                            <div [ngSwitch]="lesson?.status?.code" class="float-end">
                                 <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
                                     text="{{lesson.status.label | translate}}"></nb-tag>
                                 <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled"

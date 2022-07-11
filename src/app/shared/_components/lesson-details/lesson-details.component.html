@@ -7,10 +7,10 @@
             <nb-card-header [style.backgroundColor]="lesson?.subject?.color">{{lesson?.subject?.libelle | translate}}
                 {{'lesson.with' | translate}} {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}
 
-                <nb-icon nbPrefix icon="settings-2-outline" class="mx-3 mt-1 float-right pointer"
+                <nb-icon nbPrefix icon="settings-2-outline" class="mx-3 mt-1 float-end pointer"
                     *ngIf="isTeacher && (lesson?.status?.code == 'confirmed' ||  lesson?.status?.code == 'unconfirmed')"
                     (click)="openSettingsModal()" pack="eva"></nb-icon>
-                <div [ngSwitch]="lesson?.relative_status?.code" class="float-right">
+                <div [ngSwitch]="lesson?.relative_status?.code" class="float-end">
                     <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
                         text="{{lesson.relative_status.label | translate}}"></nb-tag>
                     <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled"
@@ -96,7 +96,7 @@
             <nb-card-footer *ngIf="lesson?.status?.code != 'cancelled' && !isPast">
                 <button nbButton size="small" (click)="openCancelModal()">{{'lesson.cancel.title' | translate}}
                 </button>
-                <button nbButton size="small" status="primary" class="float-right"
+                <button nbButton size="small" status="primary" class="float-end"
                     *ngIf="lesson?.status?.code =='confirmed' " (click)="joinCourse()">{{'lesson.join.title' |
                     translate}}</button>
             </nb-card-footer>
@@ -121,7 +121,7 @@
                     (click)="goToTeacherProfil()">
                     <nb-icon icon="email-outline" pack="eva"></nb-icon> Laisser un avis
                 </button>
-                <button nbButton size="small" status="warning" class="mx-auto d-block mt-3"
+                <button hero nbButton size="small" status="warning" class="mx-auto d-block mt-3"
                     *ngIf="lesson?.relative_status?.code == 'confirmed' || lesson?.relative_status?.code == 'done'" (click)="startDispute()">
                     <nb-icon icon="alert-triangle-outline" pack="eva"></nb-icon> Signaler un problème avec ce cours
                 </button>

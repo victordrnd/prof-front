@@ -61,7 +61,7 @@
             </td>
             <td>{{lesson.scheduled_at | date:'MMMM d, y, h:mm a'}}</td>
             <td>
-              <div [ngSwitch]="lesson?.relative_status?.code" class="float-right">
+              <div [ngSwitch]="lesson?.relative_status?.code" class="float-end">
                 <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
                   text="{{lesson.relative_status.label | translate}}"></nb-tag>
                 <nb-tag status="primary" size="small" *ngSwitchCase="'confirmed'" appearance="filled"
