@@ -122,6 +122,20 @@
       "select-status": "Select a status",
       "select-subject": "Select a subject"
     },
+    "subject" :{
+      "title": "Edit your subjects",
+      "create": "Create new subject",
+      "libellefr": "French label",
+      "libelle": "English label",
+      "code": "Code",
+      "color": "Color",
+      "update": "Update",
+      "codeform": "Subject code",
+      "libelleform": "English subject name",
+      "libellefrform": "French subject name",
+      "add": "Add",
+      "updatetitle": "Update subject of "
+    },
     "action": "No action possible"
   },
   "general": {

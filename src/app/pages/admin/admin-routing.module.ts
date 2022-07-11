@@ -9,6 +9,7 @@ import { DisputesListComponent } from './disputes/disputes-list/disputes-list.co
 import { StatisticsComponent } from './statistics/statistics.component';
 import { StudentProfileComponent } from './students/student-profile/student-profile.component';
 import { StudentsListComponent } from './students/students-list/students-list.component';
+import { SubjectsComponent } from './subjects/subjects.component';
 import { TeacherProfileComponent } from './teachers/teacher-profile/teacher-profile.component';
 import { TeachersListComponent } from './teachers/teachers-list/teachers-list.component';
 
@@ -54,6 +55,15 @@ const routes: Routes = [
           {
             path : "",
             component : StatisticsComponent
+          },
+        ]
+      },
+      {
+        path : "subjects",
+        children : [
+          {
+            path : "",
+            component : SubjectsComponent
           },
         ]
       },

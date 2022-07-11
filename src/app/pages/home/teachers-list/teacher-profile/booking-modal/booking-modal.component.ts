@@ -7,7 +7,7 @@ import { AddPaymentComponent } from 'src/app/pages/student/settings/payment/add-
 import { TranslateService } from '@ngx-translate/core';
 import { NbToastrService } from '@nebular/theme';
 
-@Component({
+@Component({   
   selector: 'teacher-booking-modal',
   templateUrl: './booking-modal.component.html',
   styleUrls: ['./booking-modal.component.scss']
