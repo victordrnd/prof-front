@@ -1,0 +1,25 @@
+.headband{
+  display: flex;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  align-items: center;
+  background-image: url(../../../../assets/home/headband/background.png);
+  height: 350px;
+  background-color: #806bff;
+  background-position: 0px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.margin-negative{
+  margin-top:-20vh;
+  margin-bottom: 20vh;
+}
+:host::ng-deep{
+  .nb-theme-corporate [nbInput].size-medium:not(.input-full-width) {
+       max-width: 80%rem !important;
+  }
+  .input-full-width{
+      max-width: 100% !important;
+  }
+}

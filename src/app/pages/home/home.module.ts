@@ -38,8 +38,9 @@ import { TeacherModule } from '../teacher/teacher.module';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { MailValidatedComponent } from './mail-validated/mail-validated.component';
 @NgModule({
-  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome, CollabLessonDetailsComponent,ForgotPasswordMailComponent, ResetPasswordComponent],
+  declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome, CollabLessonDetailsComponent,ForgotPasswordMailComponent, ResetPasswordComponent, MailValidatedComponent],
   imports: [
     CommonModule,
     FormsModule,
