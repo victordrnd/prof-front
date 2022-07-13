@@ -1,86 +1,209 @@
 {
-    "header" : {
-        "home" : "Home",
-        "about" : "About us",
-        "contact" : "Contact",
-        "login" : "Login",
-        "register" : "Register",
-        "dashboard" : "Dashboard"
+  "header": {
+    "home": "Home",
+    "about": "About us",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "dashboard": "Dashboard",
+    "logout": "Log out",
+    "bank_info": "Banking Information",
+    "availabilities": "Availabilities management",
+    "diploma": "Upload your diploma"
+  },
+  "register": {
+    "title": "Register",
+    "profil": "Your informations",
+    "location": "Your address",
+    "student": {
+      "title": "I am a student",
+      "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
     },
-    "register" : {
-        "title" : "Register",
-        "profil" : "Your informations",
-        "location" : "Your address",
-        "student" : {
-            "title" : "I am a student",
-            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
-        },
-        "teacher" : {
-            "title" : "I am a teacher",
-            "desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
-        },
-        "next" : "Next",
-        "lastname" : "Lastname",
-        "firstname" : "Firstname",
-        "email" : "Email",
-        "password" : "Password",
-        "repeat-password" : "Repeat password",
-        "gender" : "Gender",
-        "male" : "Male",
-        "female" : "Female",
-        "success" : {
-            "title" : "Success",
-            "desc" : "Your account has successfully been created" 
-        },
-        "error" : {
-            "title" : "Error",
-            "desc" : "An error has occured"   
-        },
-        "no_account" : "No account yet ?",
-        "register_now" : "Register now",
-        "avatar" : "My profil picture",
-        "rate" : "Hourly rate",
-        "description" : {
-            "title" : "About me"
-        },
-        "subjects" : {
-            "title" : "Taught Subjects"
-        }
+    "teacher": {
+      "title": "I am a teacher",
+      "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
     },
-    "login" : {
-        "title" : "Login",
-        "submit" : "Log in"
+    "next": "Next",
+    "lastname": "Lastname",
+    "firstname": "Firstname",
+    "email": "Email",
+    "password": "Password",
+    "repeat-password": "Repeat password",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "success": {
+      "title": "Success",
+      "desc": "Your account has successfully been created"
     },
-    "subject" : {
-        "maths" : "Maths",
-        "english" : "English",
-        "french" : "French",
-        "history" : "History",
-        "law" : "Law",
-        "physics" : "Physics"
+    "error": {
+      "title": "Error",
+      "desc": "An error has occured"
     },
-    "payment" : {
-        "add" : "Add a payment method",
-        "number" : "Card number",
-        "expiration" : "Expiration date",
-        "expiration_placeholder" : "MM/YY",
-        "cvv" : "Card verification value",
-        "add_card" : "Add card",
-        "error" : "An error has occured, retry later",
-        "delete" : {
-            "title" : "Do you want to remove this Payment method from your account ?"
-        }
+    "no_account": "No account yet ?",
+    "register_now": "Register now",
+    "avatar": "My profil picture",
+    "rate": "Hourly rate",
+    "description": {
+      "title": "About me"
     },
-    "teacher" : {
-        "desc" : "Description",
-        "teached_subjects" : "Teached subjects",
-        "reviews" : "Reviews",
-        "no_reviews" :"No review",
-        "click_to_book" : "Click here to book lesson",
-        "locality" : "Locality"
+    "subjects": {
+      "title": "Taught Subjects"
     },
-    "general" :{
-        "hour" : "heure",
-        "hours" : "heures"
+    "validation_email" : {
+      "title" : "Your email has been validated",
+      "back" : "Back to home",
+      "main" : "Main"
     }
+  },
+  "login": {
+    "title": "Login",
+    "submit": "Log in"
+  },
+  "reset_pass": {
+    "email": "Email",
+    "mdp": "New password",
+    "repeat-password": "Repeat password",
+    "forgot": "Forgot your password?",
+    "reset": "Reset your password",
+    "click_to_change_password": "Click here",
+    "success": {
+      "descMail": "We just sent you an email",
+      "title": "Success",
+      "desc": "Your password has been changed"
+    },
+    "error": {
+      "title": "Error",
+      "desc": "An error has occured"
+    }
+  },
+  "subject": {
+    "maths": "Maths",
+    "english": "English",
+    "french": "French",
+    "history": "History",
+    "law": "Law",
+    "physics": "Physics"
+  },
+  "payment": {
+    "add": "Add a payment method",
+    "number": "Card number",
+    "expiration": "Expiration date",
+    "expiration_placeholder": "MM/YY",
+    "cvv": "Card verification value",
+    "fullname": "Card holder",
+    "add_card": "Add card",
+    "error": "An error has occured, retry later",
+    "use_by_default": "Use this card by default",
+    "delete": {
+      "title": "Do you want to remove this Payment method from your account ?"
+    }
+  },
+  "teacher": {
+    "desc": "Description",
+    "teached_subjects": "Teached subjects",
+    "reviews": "Reviews",
+    "no_reviews": "No review",
+    "click_to_book": "Click here to book lesson",
+    "grade": "Grade",
+    "locality": "Locality",
+    "not_found": "No teacher have been found nearby",
+    "private_tutoring": {
+      "tooltip": "Propose a group lesson"
+    },
+    "rate" :"Hourly rate"
+  },
+  "admin": {
+    "student" : {
+      "list": "List of students",
+      "search": "Search",
+      "search-student": "Search a student",
+      "lastname": "Lastname",
+      "firstname": "Firstname",
+      "email": "Email",
+      "phone": "Phone",
+      "sexe": "Sexe",
+      "list-lessons": "Lessons list of the student",
+      "select-status": "Select a status",
+      "select-subject": "Select a subject"
+    },
+    "subject" :{
+      "title": "Edit your subjects",
+      "create": "Create new subject",
+      "libellefr": "French label",
+      "libelle": "English label",
+      "code": "Code",
+      "color": "Color",
+      "update": "Update",
+      "codeform": "Subject code",
+      "libelleform": "English subject name",
+      "libellefrform": "French subject name",
+      "add": "Add",
+      "updatetitle": "Update subject of "
+    },
+    "action": "No action possible"
+  },
+  "general": {
+    "hour": "heure",
+    "hours": "heures"
+  },
+  "lesson": {
+    "detail": "Lesson details",
+    "with": "with",
+    "duration": "Duration",
+    "students": "Students",
+    "teacher": "Teacher",
+    "subject": "Subject",
+    "date": "Date",
+    "type": "Type",
+    "status": "Status",
+    "description": "Description",
+    "coming": "Upcoming Courses",
+    "history": "History of my courses",
+    "address" : "Address",
+    "scheduled": "Scheduled at",
+    "student": {
+      "lastname": "Lastname",
+      "firstname": "Firstname"
+    },
+    "settings": {
+      "accept_text": "Accept student",
+      "accept_confirm": "Do you really want to accept this student ?",
+      "accept_success": "Student has been added to this lesson",
+      "updated_success": "Lesson have correctly been updated"
+    },
+    "join": {
+      "title": "Join this course"
+    },
+    "cancel": {
+      "title": "Cancel this course",
+      "confirm": "Do you really want to cancel this course ?",
+      "ok": "I confirm",
+      "success": "Success",
+      "success_description": "This course has successfully been cancelled"
+    }
+  },
+  "settings": {
+    "success_description": "Your information have been updated",
+    "save": "Save profile",
+    "subjects": "Subjects",
+    "additional_info": "Additional Information",
+    "invalid_iban": "Invalid IBAN",
+    "add_subject": "Add subject",
+    "confirm_delete_subject": "Do you really want to remove this subject from your account ?"
+  },
+  "shared": {
+    "success": "Success",
+    "error": "Error",
+    "error_description": "An error has occured"
+  },
+  "status": {
+    "unconfirmed": "Unconfirmed",
+    "confirmed": "Confirmed",
+    "cancelled": "Cancelled",
+    "done": "Paid",
+    "waiting": "Waiting",
+    "approved": "Approved",
+    "refused": "Refused"
+  }
 }
