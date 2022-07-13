@@ -2,7 +2,7 @@
 <div class="container-lg" *ngIf="disputes">
     <nz-table [nzData]="disputes?.data" [nzLoading]="loading" [nzShowPagination]="true" [nzFrontPagination]="false"
         [nzPageIndex]="disputes?.current_page" [nzPageSize]="disputes?.per_page" [nzTotal]="disputes?.total"
-        (nzPageIndexChange)="onPageIndexChange($event)" class="mt-3">
+        class="mt-3">
         <thead>
             <tr>
                 <th></th>

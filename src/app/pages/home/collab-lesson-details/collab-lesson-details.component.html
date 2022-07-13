@@ -54,7 +54,7 @@
                             <img [src]="lesson?.teacher?.image" class="w-75 mx-auto d-block rounded">
                             <h5 class="text-center">{{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}</h5>
                             <p class="text-center">{{lesson?.teacher?.teacher_profil?.description}}</p>
-                            <button nbButton size="small" class="mx-auto d-block" *ngIf="!isTeacher">
+                            <button nbButton size="small" class="mx-auto d-block">
                                 <nb-icon nbPrefix icon="email-outline" pack="eva"></nb-icon> Contacter
                                 {{lesson?.teacher?.lastname}}
                                 {{lesson?.teacher?.firstname}}

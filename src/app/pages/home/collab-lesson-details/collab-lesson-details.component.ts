@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { TimeoutError } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { LessonService } from 'src/app/core/services/lesson.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class CollabLessonDetailsComponent implements OnInit {
   lesson;
   loading = false;
   cardLoading = true;
+  isTeacher;
   constructor(private route: ActivatedRoute,
     private notificationService: NbToastrService,
     private translate: TranslateService,

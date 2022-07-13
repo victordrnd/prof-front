@@ -33,6 +33,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
   declarations: [HeaderComponent, FooterComponent, LessonDetailsComponent, DefaultDashboardRedirectionComponent, LessonSettingsModalComponent, CreateCollabLessonModalComponent],
   imports: [
     CommonModule,
+    FormsModule,
     NzModalModule,
     NbLayoutModule,
     NbEvaIconsModule,

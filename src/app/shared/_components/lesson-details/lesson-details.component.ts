@@ -68,7 +68,7 @@ export class LessonDetailsComponent implements OnInit {
   }
 
 
-  async removeStudent() {
+  async removeStudent(student) {
 
   }
 

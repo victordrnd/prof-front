@@ -43,4 +43,8 @@ export class StudentsListComponent implements OnInit {
     this.router.navigate(['/admin/students/'+student_id]);
   }
 
+  async IndexChange(page) {
+    this.getStudents('page', page);
+  }
+
 }
