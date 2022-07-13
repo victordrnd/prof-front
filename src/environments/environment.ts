@@ -4,13 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: " http://localhost:8000/api",
-  assetsUrl : "https://prof.blob.core.windows.net/stockage/",
+  apiUrl: "http://192.168.1.186:8000/api",
   mapboxAccessToken : "pk.eyJ1IjoidmljdG9yZHJuZCIsImEiOiJjanR3eHhhY3oxNDUwNDNsemE1aG5peGl2In0.YeRJsFQXOp8GFHBiQsoHEQ",
   publicStripeKey : "pk_test_EgijVNj7OVzXPr5onG0G31Zo",
-  videoApiKey : "3416b90f-3295-4acb-b012-5d862ddde049",
   chatServer : "http://192.168.1.186:3000",
-  socketServer : "http://192.168.1.186:3005"
+  socketServer : "hhttp://192.168.1.186:3005"
 };
 
 /*
