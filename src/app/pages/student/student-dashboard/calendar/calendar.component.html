@@ -15,7 +15,7 @@
                             <h6 class="caption margin-negative px-3">{{item.time}}</h6>
                         </nz-list-item-meta-title>
                     </nz-list-item-meta>
-                    <nb-alert *ngIf="item.lesson" [style.backgroundColor]="item.lesson.subject.color" class="w-100 ms-5 me-4" [style.height]="getHeight(item.lesson)+'px'" [style.marginTop.px]="getLessonMarginTop(item.lesson)">
+                    <nb-alert *ngIf="item.lesson" [style.backgroundColor]="item.lesson.subject.color" class="w-100 ml-5 mr-4" [style.height]="getHeight(item.lesson)+'px'" [style.marginTop.px]="getLessonMarginTop(item.lesson)">
                         <div class="row">
                             <div class="col-6">
                                 <h6 class="text-white">{{item.time}} - {{item?.lesson?.subject.libelle | translate}} 
