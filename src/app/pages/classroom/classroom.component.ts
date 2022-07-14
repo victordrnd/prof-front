@@ -71,6 +71,7 @@ export class ClassroomComponent implements OnInit, OnDestroy {
 
       this.callService.onNewMessage.subscribe((message) => {
         const type = message.type;
+        console.log(message);
         message.type = message.type != "text" ? "file" : "text";
         if (message.type == "file") {
           message.files = [{
@@ -89,7 +90,6 @@ export class ClassroomComponent implements OnInit, OnDestroy {
         if (!this.inputs.chat) {
           this.unReadMessage++;
         }
-        console.log(message)
       });
 
       this.callService.onRemoteCameraChange.subscribe(event => {
@@ -154,6 +154,8 @@ export class ClassroomComponent implements OnInit, OnDestroy {
         };
       });
       message.files = files;
+    }else{
+      message.type= "text"
     }
     message.date = new Date().getTime();
     message.room_id = this.lesson_id;
