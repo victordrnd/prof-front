@@ -110,6 +110,9 @@ SOFTWARE.
 
 
 
+@ngneat/cashew
+MIT
+
 @ngx-translate/core
 MIT
 
