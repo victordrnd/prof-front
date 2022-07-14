@@ -6,25 +6,73 @@
         </ng-template>
         <nz-list class="list-virtual">
             <nz-list-item *ngFor="let item of date.hours;let i = index" [class.pointer]="!item?.disabled && isTeacher"
-             nbPopover="{{'teacher.private_tutoring.tooltip' | translate}}" (click)="bookCollabLesson(item, date, i )"
-            nbPopoverTrigger="hint" nbPopoverPlacement="left" [nbTooltipDisabled]="item?.disabled || !isTeacher"
-            [class.disabled]="item.disabled && isTeacher">
+                nbPopover="{{'teacher.private_tutoring.tooltip' | translate}}"
+                (click)="bookCollabLesson(item, date, i )" nbPopoverTrigger="hint" nbPopoverPlacement="left"
+                [nbTooltipDisabled]="item?.disabled || !isTeacher" [class.disabled]="item.disabled && isTeacher">
                 <ng-container>
                     <nz-list-item-meta>
                         <nz-list-item-meta-title>
-                            <h6 class="caption margin-negative px-3">{{item.time}}</h6>
+                            <h6 class="caption margin-negative px-3">{{item.time}}<span class="d-md-none"> -
+                                    {{item?.lesson?.subject.libelle | translate}} </span>
+                                <div [ngSwitch]="item?.lesson?.relative_status?.code"
+                                    class="d-inline-block float-right">
+                                    <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'"
+                                        appearance="filled" text="{{item?.lesson?.relative_status.label | translate}}">
+                                    </nb-tag>
+                                    <nb-tag status="primary" size="small" class="color-hover"
+                                        *ngSwitchCase="'confirmed'" appearance="filled"
+                                        text="{{item?.lesson?.relative_status.label  | translate}}">
+                                    </nb-tag>
+                                    <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'"
+                                        appearance="filled" text="{{item?.lesson?.relative_status.label  | translate}}">
+                                    </nb-tag>
+                                    <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
+                                        text="{{item?.lesson?.relative_status.label  | translate}}"></nb-tag>
+                                </div>
+                            </h6>
                         </nz-list-item-meta-title>
+                        <nz-list-item-meta-description class="margin-negative">
+                            <div *ngIf="item.lesson" class="w-100 d-md-none d-block transform-top"
+                                [style.height]="getHeight(item.lesson)+'px'">
+                                <div class="row w-100 mt-5 transform-inverse-top">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-end flex-column h-100 w-100">
+                                            <ng-container *ngIf="isTeacher">
+                                                <nb-user
+                                                    *ngIf="item.lesson.capacity == 1 && item.lesson.students.length"
+                                                    size="small"
+                                                    [name]="item.lesson.students[0].firstname + ' ' +item.lesson.students[0].lastname"
+                                                    title="">
+                                                </nb-user>
+                                                <nb-tag *ngIf="item.lesson.capacity != 1" size="small" class="small-tag"
+                                                    status="basic" appearance="filled"
+                                                    text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves">
+                                                </nb-tag>
+                                            </ng-container>
+                                            <button class="mt-auto w-75 mx-auto" nbButton size="small"
+                                                (click)="displayLesson(item.lesson)">{{'lesson.detail' |
+                                                translate}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nz-list-item-meta-description>
                     </nz-list-item-meta>
-                    <nb-alert *ngIf="item.lesson" [style.backgroundColor]="item.lesson.subject.color" class="w-100 ml-5 mr-4" [style.height]="getHeight(item.lesson)+'px'" [style.marginTop.px]="getLessonMarginTop(item.lesson)">
+                    <nb-alert *ngIf="item.lesson" [style.backgroundColor]="item.lesson.subject.color"
+                        class="w-100 ml-5 mr-4 d-none d-md-block" [style.height]="getHeight(item.lesson)+'px'"
+                        [style.marginTop.px]="getLessonMarginTop(item.lesson)">
                         <div class="row">
-                            <div class="col-6">
-                                <h6 class="text-white">{{item.time}} - {{item?.lesson?.subject.libelle | translate}} 
+                            <div class="col-md-6 col-12">
+                                <h6 class="text-white">{{item.time}} - {{item?.lesson?.subject.libelle | translate}}
                                     <div [ngSwitch]="item?.lesson?.relative_status?.code" class="d-inline-block">
-                                        <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'" appearance="filled"
+                                        <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'"
+                                            appearance="filled"
                                             text="{{item?.lesson?.relative_status.label | translate}}"></nb-tag>
-                                        <nb-tag status="primary" size="small" class="color-hover" *ngSwitchCase="'confirmed'" appearance="filled"
+                                        <nb-tag status="primary" size="small" class="color-hover"
+                                            *ngSwitchCase="'confirmed'" appearance="filled"
                                             text="{{item?.lesson?.relative_status.label  | translate}}"></nb-tag>
-                                        <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'" appearance="filled"
+                                        <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'"
+                                            appearance="filled"
                                             text="{{item?.lesson?.relative_status.label  | translate}}"></nb-tag>
                                         <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
                                             text="{{item?.lesson?.relative_status.label  | translate}}"></nb-tag>
@@ -35,20 +83,29 @@
                             <div class="col-6">
                                 <div class="d-flex align-items-end flex-column h-100">
                                     <ng-container *ngIf="!isTeacher">
-                                        <nb-user size="small" [name]="item.lesson.teacher.firstname + ' ' +item.lesson.teacher.lastname"  title="">
+                                        <nb-user class="d-none d-md-block" size="small"
+                                            [name]="item.lesson.teacher.firstname + ' ' +item.lesson.teacher.lastname"
+                                            title="">
                                         </nb-user>
                                     </ng-container>
                                     <ng-container *ngIf="isTeacher">
-                                        <nb-user *ngIf="item.lesson.capacity == 1 && item.lesson.students.length" size="small" [name]="item.lesson.students[0].firstname + ' ' +item.lesson.students[0].lastname"  title="">
+                                        <nb-user *ngIf="item.lesson.capacity == 1 && item.lesson.students.length"
+                                            size="small"
+                                            [name]="item.lesson.students[0].firstname + ' ' +item.lesson.students[0].lastname"
+                                            title="">
                                         </nb-user>
-                                        <nb-tag *ngIf="item.lesson.capacity != 1" size="small"  class="small-tag" status="basic" appearance="filled" text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves"></nb-tag>
+                                        <nb-tag *ngIf="item.lesson.capacity != 1" size="small" class="small-tag"
+                                            status="basic" appearance="filled"
+                                            text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves">
+                                        </nb-tag>
                                     </ng-container>
-                                    <button class="mt-auto" nbButton size="small" (click)="displayLesson(item.lesson)">{{'lesson.detail' | translate}}</button>
+                                    <button class="mt-auto" nbButton size="small"
+                                        (click)="displayLesson(item.lesson)">{{'lesson.detail' | translate}}</button>
                                 </div>
                             </div>
                         </div>
                     </nb-alert><br />
-                    
+
                 </ng-container>
             </nz-list-item>
         </nz-list>

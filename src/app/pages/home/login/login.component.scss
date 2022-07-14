@@ -1,4 +1,4 @@
-.headband{
+.headband {
     display: flex;
     justify-content: space-around;
     -webkit-box-align: center;
@@ -11,15 +11,22 @@
     background-repeat: no-repeat;
 }
 
-.margin-negative{
-    margin-top:-20vh;
+.margin-negative {
+    margin-top: -27vh;
     margin-bottom: 20vh;
 }
-:host::ng-deep{
-    .nb-theme-corporate [nbInput].size-medium:not(.input-full-width) {
-         max-width: 80%rem !important;
+
+@media (min-width: 768px) {
+    .margin-negative {
+        margin-top: -20vh;
+        margin-bottom: 20vh;
     }
-    .input-full-width{
+}
+:host::ng-deep {
+    .nb-theme-corporate [nbInput].size-medium:not(.input-full-width) {
+        max-width: 80%rem !important;
+    }
+    .input-full-width {
         max-width: 100% !important;
     }
 }

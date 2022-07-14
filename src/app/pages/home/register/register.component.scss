@@ -50,6 +50,13 @@
     }
 }
 .margin-negative {
-    margin-top: -20vh;
+    margin-top: -27vh;
     margin-bottom: 20vh;
+}
+
+@media (min-width: 768px) {
+    .margin-negative {
+        margin-top: -20vh;
+        margin-bottom: 20vh;
+    }
 }
