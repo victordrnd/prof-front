@@ -16,8 +16,10 @@ export class DefaultDashboardRedirectionComponent implements OnInit {
     const user = this.authService.currentUserValue;
     if(user.role.slug == 'student'){
       this.router.navigate(['/student/dashboard']);
-    }else{
+    }else if(user.role.slug == 'teacher'){
       this.router.navigate(['/teacher/dashboard']);
+    }else{
+      this.router.navigate(['/admin']);
     }
   }
 

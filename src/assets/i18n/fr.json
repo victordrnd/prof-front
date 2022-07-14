@@ -126,7 +126,35 @@
         "select-status": "Selectionner un statut",
         "select-subject": "Selectionner un sujet"
       },
-      "action": "Aucune action n'est possible"
+      "subject" :{
+        "title": "Modifiez vos matières",
+        "create": "Créez une nouvelle matière",
+        "libelle": "Libelle pour la traduction",
+        "code": "Code",
+        "color": "Couleur",
+        "update": "Modifier",
+        "codeform": "Code de la matière",
+        "libelleform": "Libelle pour la traduction",
+        "add": "Ajouter",
+        "updatetitle": "Modifier la matière de ",
+        "help": "Merci de contacter un developpeur pour ajouter la traduction",
+        "cancel": "Annuler"
+      },
+      "stats":{
+        "title": "Vos statistiques",
+        "averagestudents": "Age moyen des étudiants : ",
+        "averageteachers": "Age moyen des professeurs : ",
+        "year": "ans",
+        "kind": "Types d'utilisateurs",
+        "status": "Statut des professeurs",
+        "subjects": "Matières des professeurs",
+        "disputes": "Statut des litiges",
+        "teachervalid": "Professeurs validés",
+        "teacherunvalid": "Professeurs pas encore validés",
+        "student": "Etudiants",
+        "disputesop": "Litiges ouverts",
+        "disputescl": "Litiges fermés"
+      }
     },
     "general": {
         "hour": "heure",

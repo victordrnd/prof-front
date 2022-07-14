@@ -72,6 +72,10 @@ export class StudentProfileComponent implements OnInit {
     });
   }
 
+  showLesson(id){
+    this.router.navigate(['/admin/lessons/'+id]);
+  }
+
   async chatWithStudent() {
     //en attente serveur chat
     // await this.chatService.createRoom().toPromise().then(res => {

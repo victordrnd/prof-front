@@ -50,10 +50,10 @@
     "subjects": {
       "title": "Taught Subjects"
     },
-    "validation_email" : {
-      "title" : "Your email has been validated",
-      "back" : "Back to home",
-      "main" : "Main"
+    "validation_email": {
+      "title": "Your email has been validated",
+      "back": "Back to home",
+      "main": "Main"
     }
   },
   "login": {
@@ -111,10 +111,10 @@
     "private_tutoring": {
       "tooltip": "Propose a group lesson"
     },
-    "rate" :"Hourly rate"
+    "rate": "Hourly rate"
   },
   "admin": {
-    "student" : {
+    "student": {
       "list": "List of students",
       "search": "Search",
       "search-student": "Search a student",
@@ -127,21 +127,35 @@
       "select-status": "Select a status",
       "select-subject": "Select a subject"
     },
-    "subject" :{
+    "subject": {
       "title": "Edit your subjects",
       "create": "Create new subject",
-      "libellefr": "French label",
-      "libelle": "English label",
+      "libelle": "Label for translation",
       "code": "Code",
       "color": "Color",
       "update": "Update",
       "codeform": "Subject code",
-      "libelleform": "English subject name",
-      "libellefrform": "French subject name",
+      "libelleform": "Label for translation",
       "add": "Add",
-      "updatetitle": "Update subject of "
+      "updatetitle": "Update subject of ",
+      "help": "Please contact a developer in order to add a translation",
+      "cancel": "Cancel"
     },
-    "action": "No action possible"
+    "stats": {
+      "title": "Take a look to your statistics",
+      "averagestudents": "Average age students : ",
+      "averageteachers": "Average age teachers : ",
+      "year": "years old",
+      "kind": "Kind of users",
+      "status": "Teacher's status",
+      "subjects": "Teacher's subjects",
+      "disputes": "Status disputes",
+      "teachervalid": "Validated teacher",
+      "teacherunvalid": "Teacher unvalidated yet",
+      "student": "Students",
+      "disputesop": "Opened disputes",
+      "disputescl": "Closed disputes"
+    }
   },
   "general": {
     "hour": "heure",
@@ -160,7 +174,7 @@
     "description": "Description",
     "coming": "Upcoming Courses",
     "history": "History of my courses",
-    "address" : "Address",
+    "address": "Address",
     "scheduled": "Scheduled at",
     "student": {
       "lastname": "Lastname",
