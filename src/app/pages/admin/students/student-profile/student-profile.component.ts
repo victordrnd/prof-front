@@ -56,7 +56,6 @@ export class StudentProfileComponent implements OnInit {
     }
     this.lessons = await this.lessonService.getAllStudentsLessons(this.filters, this.student_id).toPromise();
     this.loading = false;
-    console.log(this.lessons)
   }
 
   async onPageIndexChange(page) {
@@ -76,13 +75,14 @@ export class StudentProfileComponent implements OnInit {
     this.router.navigate(['/admin/lessons/'+id]);
   }
 
-  async chatWithStudent() {
-    //en attente serveur chat
-    // await this.chatService.createRoom().toPromise().then(res => {
+  // async chatWithStudent() {
 
-    // }).catch(err => {
-    //   this.toastrService.danger("Error", "An error has occured");
-    // });
-  }
+  //   await this.chatService.createRoom({ name: "The admin has a question : ", withAdmin: true, users: [] }).toPromise().then((res:any) => {
+  //     console.log("iciii", res)
+  //     this.router.navigate(['/messages/room/'+res.id]);
+  //   }).catch(err => {
+  //     this.toastrService.danger("Error", "An error has occured");
+  //   });
+  // }
 }
 
