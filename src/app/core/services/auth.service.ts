@@ -4,6 +4,7 @@ import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { distinctUntilChanged, map, catchError } from "rxjs/operators";
 import { Router } from '@angular/router';
+import { withCache } from '@ngneat/cashew';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +31,7 @@ export class AuthService {
     if (this.getToken()) {
       try {
         const res: any = await this.http
-          .get(`${environment.apiUrl}/auth/current`)
+          .get(`${environment.apiUrl}/auth/current`, {context: withCache()})
           .toPromise();
         this.setAuth(res);
         this.isAuthenticatedSubject.next(true);

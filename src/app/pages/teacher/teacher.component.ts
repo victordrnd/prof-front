@@ -10,8 +10,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class TeacherComponent implements OnInit {
   mobile: boolean;
 
-  constructor(private userService : AuthService,
-    private socket : Socket) { }
+  constructor(private userService : AuthService) { }
 
   ngOnInit() {
     if (navigator.userAgent.match(/Android/i)

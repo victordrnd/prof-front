@@ -1,34 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { HttpCacheManager, withCache } from '@ngneat/cashew';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LessonService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,
+    private cache : HttpCacheManager) { }
 
   public getMyLessons(filters){
     const params = new HttpParams({
       fromObject: filters
     });
 
-    return this.http.get(`${environment.apiUrl}/lessons`, {params});
+    return this.http.get(`${environment.apiUrl}/lessons`, {params, context : withCache({key : 'lessons'})});
   }
 
-  public getAllStudentsLessons(filters, student_id){
-    const params = new HttpParams({
-      fromObject: filters
-    });
-    return this.http.get(`${environment.apiUrl}/admin/students/${student_id}/all-lessons`, {params});
-  }
+  
 
   getHistory(filters){
     const params = new HttpParams({
       fromObject: filters
     });
-    return this.http.get(`${environment.apiUrl}/lessons/history`, {params});
+    return this.http.get(`${environment.apiUrl}/lessons/history`, {params, context : withCache()});
   }
 
   find(lesson_id){
@@ -37,6 +34,8 @@ export class LessonService {
 
 
   store(obj){
+    this.cache.delete('lessons');
+    this.cache.delete('calendar');
     return this.http.post(`${environment.apiUrl}/lessons`, {...obj});
   }
 

@@ -7,6 +7,7 @@ import { LessonService } from 'src/app/core/services/lesson.service';
 import { StatusService } from 'src/app/core/services/status.service';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { ChatService } from 'src/app/core/services/chat.service';
+import { AdminService } from 'src/app/core/services/admin.service';
 
 
 @Component({
@@ -32,11 +33,9 @@ export class StudentProfileComponent implements OnInit {
     private lessonService: LessonService,
     private toastrService: NbToastrService,
     private translate: TranslateService,
-    private authService: AuthService,
+    private adminService: AdminService,
     private statusService: StatusService,
-    private chatService: ChatService,
     private subjectService: SubjectService,
-    private router: Router,
     private route: ActivatedRoute,
     ) {}
 
@@ -54,7 +53,7 @@ export class StudentProfileComponent implements OnInit {
         this.filters['date'] = new Date(value).toDateString();
       }
     }
-    this.lessons = await this.lessonService.getAllStudentsLessons(this.filters, this.student_id).toPromise();
+    this.lessons = await this.adminService.getAllStudentsLessons(this.filters, this.student_id).toPromise();
     this.loading = false;
     console.log(this.lessons)
   }

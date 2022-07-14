@@ -34,7 +34,7 @@
     <nb-card *ngFor="let subject of teached_subjects" accent="info" class="mx-5 mt-4"
         [style.borderTopColor]="subject.subject.color">
         <nb-card-header>{{subject.subject.libelle | translate}}
-            <div *ngIf="subject.id" class="float-end pointer text-danger" nz-popconfirm
+            <div *ngIf="subject.id" class="float-right pointer text-danger" nz-popconfirm
                 nzPopconfirmTitle="{{'settings.confirm_delete_subject' | translate}}"
                 (nzOnConfirm)="deleteSubject(subject)">
                 <nb-icon icon="archive-outline" pack="eva"></nb-icon>

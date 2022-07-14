@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { withCache } from '@ngneat/cashew';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CalendarService {
 
 
   getTimeTable(){
-    return this.http.get(`${environment.apiUrl}/calendar/timetable`)
+    return this.http.get(`${environment.apiUrl}/calendar/timetable`, {context : withCache({key : 'calendar'})})
   }
 
   getTwoUsersTimeTable(teacher_id){

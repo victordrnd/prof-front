@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { debounce, debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { timer } from 'rxjs';
+import { withCache } from '@ngneat/cashew';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,6 @@ export class AddressService {
   }
 
   getMyAddress(){
-    return this.http.get(`${environment.apiUrl}/address/my`);
+    return this.http.get(`${environment.apiUrl}/address/my`, {context : withCache({key : 'my_address'})});
   }
 }

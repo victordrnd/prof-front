@@ -2,19 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { HttpCacheManager, withCache } from '@ngneat/cashew';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,
+    private cache : HttpCacheManager) { }
 
   getAllPaymentMethods(){
-    return this.http.get(`${environment.apiUrl}/payments`)
+    return this.http.get(`${environment.apiUrl}/payments`, {context : withCache({key : 'pm_list'})})
   }
 
   createPaymentMethod(values){
+    this.cache.delete('pm_list');
     return this.http.post(`${environment.apiUrl}/payments`, values);
   }
 
@@ -35,7 +38,7 @@ export class PaymentService {
 
 
   hasPaymentMethods(){
-    return this.http.get(`${environment.apiUrl}/payments/can`);
+    return this.http.get(`${environment.apiUrl}/payments/can`, {context : withCache()});
   }
 
 
@@ -52,6 +55,6 @@ export class PaymentService {
   }
 
   getMyCharges(){
-    return this.http.get(`${environment.apiUrl}/payments/charges`).pipe(map((res:any) => res.data));
+    return this.http.get(`${environment.apiUrl}/payments/charges`, {context : withCache()}).pipe(map((res:any) => res.data));
   }
 }

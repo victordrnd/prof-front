@@ -21,6 +21,7 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
+import { HttpCacheInterceptorModule } from '@ngneat/cashew';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -51,7 +52,8 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     NgxStripeModule.forRoot(environment.publicStripeKey),
     SocketIoModule.forRoot(config),
     NbDatepickerModule.forRoot(),
-    LottieModule.forRoot({ player : playerFactory })
+    LottieModule.forRoot({ player : playerFactory }),
+    HttpCacheInterceptorModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},

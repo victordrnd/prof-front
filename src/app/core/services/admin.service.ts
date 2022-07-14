@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -33,7 +33,13 @@ export class AdminService {
     return this.http.put(`${environment.apiUrl}/admin/teachers/approve/${teacher_id}`, {validated});
   }
 
-
+  public getAllStudentsLessons(filters, student_id){
+    const params = new HttpParams({
+      fromObject: filters
+    });
+    return this.http.get(`${environment.apiUrl}/admin/students/${student_id}/all-lessons`, {params});
+  }
+  
   getDisputes(){
     return this.http.get(`${environment.apiUrl}/admin/disputes`);
   }

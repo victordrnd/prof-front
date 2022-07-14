@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { withCache } from '@ngneat/cashew';
 import { Socket } from 'ngx-socket-io';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -65,7 +66,7 @@ export class ChatService {
 
 
   async getMyRooms() {
-    let rooms: any[] = await this.http.get(`${environment.chatServer}/rooms/my`).toPromise() as any;
+    let rooms: any[] = await this.http.get(`${environment.chatServer}/rooms/my`, {context : withCache({key : 'rooms'})}).toPromise() as any;
     // const currentUserId = this.userService.currentUserValue.id;
     // rooms.map(room => {
     //   // if (room.users.length == 2 && !room.name.includes("Dispute")) {

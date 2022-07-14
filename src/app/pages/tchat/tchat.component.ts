@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { HttpCacheManager } from '@ngneat/cashew';
 import { AnimationOptions } from 'ngx-lottie';
 import { Socket } from 'ngx-socket-io';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -13,6 +14,7 @@ import { ChatService } from 'src/app/core/services/chat.service';
 export class TchatComponent implements OnInit, OnDestroy {
 
   constructor(private chatService: ChatService,
+    private cache : HttpCacheManager,
     private router: Router) { }
 
 
@@ -46,6 +48,7 @@ export class TchatComponent implements OnInit, OnDestroy {
     });
 
     const sb = this.chatService.socket.fromEvent('new_room').subscribe(async room => {
+      this.cache.delete('rooms');
       await this.chatService.connect(true);
       this.chatService.getMyRooms();
     });
