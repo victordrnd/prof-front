@@ -12,10 +12,10 @@
                 <ng-container>
                     <nz-list-item-meta>
                         <nz-list-item-meta-title>
-                            <h6 class="caption margin-negative px-3">{{item.time}}<span class="d-md-none"> -
+                            <h6 class="caption margin-negative px-3">{{item.time}}<span class="d-md-none" *ngIf="item.lesson"> -
                                     {{item?.lesson?.subject.libelle | translate}} </span>
                                 <div [ngSwitch]="item?.lesson?.relative_status?.code"
-                                    class="d-inline-block float-right">
+                                    class="d-inline-block float-right d-md-none d-block">
                                     <nb-tag status="basic" size="small" *ngSwitchCase="'unconfirmed'"
                                         appearance="filled" text="{{item?.lesson?.relative_status.label | translate}}">
                                     </nb-tag>
@@ -36,8 +36,8 @@
                                 [style.height]="getHeight(item.lesson)+'px'">
                                 <div class="row w-100 mt-5 transform-inverse-top">
                                     <div class="col-12">
-                                        <div class="d-flex align-items-end flex-column h-100 w-100">
-                                            <ng-container *ngIf="isTeacher">
+                                        <div class="d-flex align-items-end flex-column h-100 w-100 text-dark">
+                                            <!-- <ng-container  *ngIf="isTeacher">
                                                 <nb-user
                                                     *ngIf="item.lesson.capacity == 1 && item.lesson.students.length"
                                                     size="small"
@@ -48,7 +48,7 @@
                                                     status="basic" appearance="filled"
                                                     text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves">
                                                 </nb-tag>
-                                            </ng-container>
+                                            </ng-container> -->
                                             <button class="mt-auto w-75 mx-auto" nbButton size="small"
                                                 (click)="displayLesson(item.lesson)">{{'lesson.detail' |
                                                 translate}}</button>

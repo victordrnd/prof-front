@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { withCache } from '@ngneat/cashew';
+import { HttpCacheManager, withCache } from '@ngneat/cashew';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalendarService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,
+  private cache : HttpCacheManager ){ }
 
 
   getTimeTable(){
@@ -20,10 +21,11 @@ export class CalendarService {
   }
 
   getMyAvailabilities(){
-    return this.http.get(`${environment.apiUrl}/calendar/availabilities`);
+    return this.http.get(`${environment.apiUrl}/calendar/availabilities`, {context : withCache({key : 'availabilities'})});
   }
 
   saveAvailabilities(days){
+    this.cache.delete('availabilities');
     return this.http.post(`${environment.apiUrl}/calendar/availabilities/save`, {days});
   }
 }

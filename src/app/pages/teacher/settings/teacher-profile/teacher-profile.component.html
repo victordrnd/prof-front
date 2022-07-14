@@ -5,7 +5,7 @@
 
 
 <h3 class="mt-5 text-center">{{'settings.additional_info' | translate}}</h3>
-<nb-card class="mx-5 mt-4 p-3" *ngIf="profile">
+<nb-card class="mx-md-5 mx-3 mt-4 p-3" *ngIf="profile">
     <label class="w-100">{{'register.rate' | translate}} :</label><br />
     <div class="d-flex">
 
@@ -14,7 +14,7 @@
             <input type="text" [(ngModel)]="profile.rate" placeholder="40" nbInput class="my-3">
         </nb-form-field>
         <nb-form-field>
-            <nb-select [(ngModel)]="profile.currency">
+            <nb-select class="w-50" [(ngModel)]="profile.currency">
                 <nb-option value="eur">EUR</nb-option>
                 <nb-option value="usd">USD</nb-option>
                 <nb-option value="aed">AED</nb-option>
@@ -31,7 +31,7 @@
 
 <h3 class="mt-5 text-center">{{'settings.subjects' | translate}}</h3>
 <div class="">
-    <nb-card *ngFor="let subject of teached_subjects" accent="info" class="mx-5 mt-4"
+    <nb-card *ngFor="let subject of teached_subjects" accent="info" class="mx-md-5 mx-3 mt-4"
         [style.borderTopColor]="subject.subject.color">
         <nb-card-header>{{subject.subject.libelle | translate}}
             <div *ngIf="subject.id" class="float-right pointer text-danger" nz-popconfirm
@@ -46,7 +46,7 @@
                 placeholder="Description of your {{subject.libelle | translate | lowercase}} class"></textarea>
         </nb-card-body>
     </nb-card>
-    <div class="d-flex flex-row-reverse mx-5">
+    <div class="d-flex flex-row-reverse mx-md-5 mx-3">
         <button nbButton status="primary" (click)="saveSubjects()" class="mt-5 ml-2">{{'settings.save' | translate
             }}</button>
         <button nbButton (click)="openAddSubjectsModal()" class="mt-5 mr-2">{{'settings.add_subject' | translate

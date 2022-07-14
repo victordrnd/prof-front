@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { withCache } from '@ngneat/cashew';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class TeacherService {
   }
 
   getMyProfile(){
-    return this.http.get(`${environment.apiUrl}/teacher/profile/my`);
+    return this.http.get(`${environment.apiUrl}/teacher/profile/my`, {context : withCache()});
   }
 
   updateProfile(profile){
@@ -32,7 +33,7 @@ export class TeacherService {
   }
 
   getStripeAccount(){
-    return this.http.get(`${environment.apiUrl}/teacher/stripe`);
+    return this.http.get(`${environment.apiUrl}/teacher/stripe`, {context : withCache()});
   }
 
 
@@ -49,6 +50,6 @@ export class TeacherService {
   };
 
   getTransfers(){
-    return this.http.get(`${environment.apiUrl}/teacher/stripe/transfers`).pipe(map((res:any) => res.data));
+    return this.http.get(`${environment.apiUrl}/teacher/stripe/transfers`, {context : withCache()}).pipe(map((res:any) => res.data));
   }
 }

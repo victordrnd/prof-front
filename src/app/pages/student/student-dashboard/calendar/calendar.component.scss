@@ -20,6 +20,9 @@
         .margin-negative{
             margin-top:-75px;
         }
+        .user-name, .user-picture{
+            color : #fff !important;
+        }
     }
     .list-virtual{
         max-height: 70vh;
@@ -30,8 +33,9 @@
         color :#fff;
     }
     .user-name, .user-picture{
-        color : #fff !important;
+        color : rgb(0, 0, 0) !important;
     }
+    
     .status-warning {
         background-color: #23d7ff !important;
     }

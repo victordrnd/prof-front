@@ -16,7 +16,7 @@ export class LessonService {
       fromObject: filters
     });
 
-    return this.http.get(`${environment.apiUrl}/lessons`, {params, context : withCache({key : 'lessons'})});
+    return this.http.get(`${environment.apiUrl}/lessons`, {params, context : withCache({key : 'lessons', ttl : 60})});
   }
 
   
@@ -53,6 +53,8 @@ export class LessonService {
 
 
   confirm(lesson_id){
+    this.cache.delete('lessons');
+    this.cache.delete('calendar');
     return this.http.put(`${environment.apiUrl}/teacher/lesson/confirm/${lesson_id}`, {});
   }
 
