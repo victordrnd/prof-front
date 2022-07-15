@@ -45,7 +45,7 @@ export class TeachersListComponent implements OnInit {
     });
     this.subjects = await this.subjectService.getAll().toPromise();
     this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
-      this.places = await this.addressService.findPlaces(keyword).toPromise();
+      this.places = await this.addressService.findPlaces(keyword);
     })
   }
 

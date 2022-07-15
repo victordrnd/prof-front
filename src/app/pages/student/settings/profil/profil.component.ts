@@ -44,8 +44,8 @@ export class ProfilComponent implements OnInit {
       sexe: [user.sexe, Validators.required],
       description: [""]
     });
-    this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(100), distinctUntilChanged()).subscribe(async (keyword) => {
-      this.places = await this.addressService.findPlaces(keyword).toPromise();
+    this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
+      this.places = await this.addressService.findPlaces(keyword);
       this.selected = false;
     });
 
@@ -62,7 +62,6 @@ export class ProfilComponent implements OnInit {
     this.selected = true;
     this.place = place;
     this.placeInput.nativeElement.value = `${place.name} , ${place.country}`
-    console.log(this.place);
   }
 
   async attachPlace() {

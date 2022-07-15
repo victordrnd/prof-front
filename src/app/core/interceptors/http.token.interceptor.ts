@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { SpinService } from '../services/spin.service';
 import { finalize } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable()
@@ -20,10 +21,13 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     const headersConfig = {};
     this.spinService.setLoading(true);
     const token = this.userService.getToken();
+    let request = req.clone();
     if (token) {
-      headersConfig['Authorization'] = `Bearer ${token}`;
+      if(req.url.includes(environment.apiUrl) || req.url.includes(environment.chatServer)){
+        headersConfig['Authorization'] = `Bearer ${token}`;
+        request = req.clone({ setHeaders: headersConfig });
+      }
     }
-    const request = req.clone({ setHeaders: headersConfig });
     
     return next.handle(request).pipe(finalize(() => setTimeout(() => this.spinService.setLoading(false), 100)));
   }

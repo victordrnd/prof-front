@@ -12,11 +12,14 @@ export class AddressService {
 
   constructor(private http : HttpClient) { }
 
-  findPlaces(keyword){
-    return this.http.get(`${environment.chatServer}/maps/search?query=${keyword}`).pipe(map((res:any) => res.results));
-    // return this.http.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${keyword}.json?proximity=ip&types=address&access_token=${environment.mapboxAccessToken}`).pipe(map((res:any) => res.features))
+  async findPlaces(keyword){
+    const token : any = await this.getToken().toPromise();
+    return this.http.get(`https://maps-api.apple.com/v1/search?q=${keyword}`, {headers : {"Authorization" : "Bearer " +token.accessToken}}).pipe(map((res:any) => res.results)).toPromise();
   }
 
+  getToken(){
+    return this.http.get(`${environment.chatServer}/maps/token`, {context : withCache({ttl : 60*1000})})
+  }
 
   attach(place){
     return this.http.post(`${environment.apiUrl}/places/attach`, place);
