@@ -40,10 +40,14 @@ export class LessonService {
   }
 
   createCollabLesson(obj){
+    this.cache.delete('lessons');
+    this.cache.delete('calendar');
     return this.http.post(`${environment.apiUrl}/teacher/lesson/create`, obj);
   }
 
   joinCollaborationLesson(lesson_id){
+    this.cache.delete('lessons');
+    this.cache.delete('calendar');
     return this.http.post(`${environment.apiUrl}/lessons/join/${lesson_id}`, {});
   }
 
