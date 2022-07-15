@@ -13,7 +13,8 @@ export class AddressService {
   constructor(private http : HttpClient) { }
 
   findPlaces(keyword){
-    return this.http.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${keyword}.json?proximity=ip&types=address&access_token=${environment.mapboxAccessToken}`).pipe(map((res:any) => res.features))
+    return this.http.get(`${environment.chatServer}/maps/search?query=${keyword}`).pipe(map((res:any) => res.results));
+    // return this.http.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${keyword}.json?proximity=ip&types=address&access_token=${environment.mapboxAccessToken}`).pipe(map((res:any) => res.features))
   }
 
 

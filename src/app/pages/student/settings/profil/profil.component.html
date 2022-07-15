@@ -93,8 +93,8 @@
                 <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
     
                     <nb-option *ngFor="let option of places" [value]="option">
-                        <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon><span
-                            [innerHtml]="option.place_name"></span>
+                        <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon>
+                        <span>{{option.name}},<span class="text-grey"> {{option.country}}</span></span>
                     </nb-option>
                 </nb-autocomplete>
                 <button nbButton status="primary" (click)="submitChange()" class="d-block mx-auto mt-5">{{'settings.save' | translate}}</button>

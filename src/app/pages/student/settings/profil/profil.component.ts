@@ -44,7 +44,7 @@ export class ProfilComponent implements OnInit {
       sexe: [user.sexe, Validators.required],
       description: [""]
     });
-    this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
+    this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(100), distinctUntilChanged()).subscribe(async (keyword) => {
       this.places = await this.addressService.findPlaces(keyword).toPromise();
       this.selected = false;
     });
@@ -61,18 +61,19 @@ export class ProfilComponent implements OnInit {
   onSelectionChange(place) {
     this.selected = true;
     this.place = place;
-    this.placeInput.nativeElement.value = `${place.place_name}`
+    this.placeInput.nativeElement.value = `${place.name} , ${place.country}`
+    console.log(this.place);
   }
 
   async attachPlace() {
     const obj = {
-      address: this.place.place_name,
-      lat: this.place.center[0],
-      lng: this.place.center[1],
-      country: this.place.context.find(el => el.id.includes("country"))?.text,
-      city: this.place.context.find(el => el.id.includes("place"))?.text,
-      local: this.place.context.find(el => el.id.includes("region"))?.text,
-      postcode: this.place.context.find(el => el.id.includes("postcode"))?.text,
+      address: this.place.name,
+      lat: this.place.coordinate.latitude,
+      lng: this.place.coordinate.longitude,
+      country: this.place.country,
+      city: this.place.structuredAddress.locality,
+      local: this.place.structuredAddress.thoroughfare,
+      postcode: "00000",
     }
     await this.addressService.attach(obj).toPromise().then(async (res: any) => {
       this.notificationService.primary(this.translate.instant("settings.success_description"),this.translate.instant('register.success.title'));

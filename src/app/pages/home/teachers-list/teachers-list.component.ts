@@ -57,9 +57,9 @@ export class TeachersListComponent implements OnInit {
 
   async onSelectionChange(place) {
     this.place = place;
-    this.placeInput.nativeElement.value = `${place.place_name}`
-    this.filters.lat = place.center[0];
-    this.filters.lng = place.center[1];
+    this.placeInput.nativeElement.value = `${place.name}, ${place.country}`
+    this.filters.lat = place.coordinate.latitude;
+    this.filters.lng = place.coordinate.longitude;
     this.data = await this.teacherService.search(this.filters).toPromise();
   }
 

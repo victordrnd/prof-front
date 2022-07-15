@@ -140,13 +140,13 @@ export class RegisterComponent implements OnInit {
 
   async attachPlace() {
     const obj = {
-      address: this.place.place_name,
-      lat: this.place.center[0],
-      lng: this.place.center[1],
-      country: this.place.context.find(el => el.id.includes("country"))?.text,
-      city: this.place.context.find(el => el.id.includes("place"))?.text,
-      local: this.place.context.find(el => el.id.includes("region"))?.text,
-      postcode: this.place.context.find(el => el.id.includes("postcode"))?.text,
+      address: this.place.name,
+      lat: this.place.coordinate.latitude,
+      lng: this.place.coordinate.longitude,
+      country: this.place.country,
+      city: this.place.structuredAddress.locality,
+      local: this.place.structuredAddress.thoroughfare,
+      postcode: "00000",
     }
     this.loading = true;
     await this.addressService.attach(obj).toPromise().then(async (res: any) => {
