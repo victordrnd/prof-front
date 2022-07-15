@@ -6,12 +6,8 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LessonService } from 'src/app/core/services/lesson.service';
 import { TeacherService } from 'src/app/core/services/teacher.service';
-import { VideoSDKMeeting } from '@videosdk.live/rtc-js-prebuilt';
-import { environment } from 'src/environments/environment';
 import { LessonSettingsModalComponent } from '../lesson-settings-modal/lesson-settings-modal.component';
 import { ChatService } from 'src/app/core/services/chat.service';
-import ZoomVideo from '@zoom/videosdk'
-import { ZoomService } from 'src/app/core/services/zoom.service';
 import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-lesson-details',

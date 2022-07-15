@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomeComponent implements OnInit {
   subjects: Object;
   keyword:any;
-  subject : any
+  subject : any = [];
   constructor(private router : Router,
     private subjectService : SubjectService,
     private teacherService : TeacherService,

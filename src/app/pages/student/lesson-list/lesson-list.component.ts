@@ -13,7 +13,7 @@ import { SubjectService } from 'src/app/core/services/subject.service';
   styleUrls: ['./lesson-list.component.scss']
 })
 export class LessonListComponent implements OnInit {
-  lessons;
+  lessons : any= {};
   loading = true;
   title;
   type;
