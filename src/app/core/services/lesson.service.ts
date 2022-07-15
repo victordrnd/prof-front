@@ -16,7 +16,7 @@ export class LessonService {
       fromObject: filters
     });
 
-    return this.http.get(`${environment.apiUrl}/lessons`, {params, context : withCache({key : 'lessons'})});
+    return this.http.get(`${environment.apiUrl}/lessons`, {params, context : withCache({key : 'lessons', ttl : 500})});
   }
 
   

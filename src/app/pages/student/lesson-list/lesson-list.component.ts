@@ -45,6 +45,7 @@ export class LessonListComponent implements OnInit {
   }
 
   async getLessons(key = null, value = null) {
+    this.loading = true;
     if(key){
       this.filters[key] = value;
       if(key =='date' && value != null){
