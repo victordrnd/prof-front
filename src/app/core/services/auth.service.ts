@@ -4,13 +4,14 @@ import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { distinctUntilChanged, map, catchError } from "rxjs/operators";
 import { Router } from '@angular/router';
-import { withCache } from '@ngneat/cashew';
+import { HttpCacheManager, withCache } from '@ngneat/cashew';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http : HttpClient, private router : Router) { }
+  constructor(private http : HttpClient, private router : Router,
+    private cache : HttpCacheManager) { }
 
   get currentUserValue(){
     return this.currentUserSubject.value
@@ -31,7 +32,7 @@ export class AuthService {
     if (this.getToken()) {
       try {
         const res: any = await this.http
-          .get(`${environment.apiUrl}/auth/current`, {context: withCache()})
+          .get(`${environment.apiUrl}/auth/current`, {context: withCache({'key': 'user_current'})})
           .toPromise();
         this.setAuth(res);
         this.isAuthenticatedSubject.next(true);
@@ -82,6 +83,7 @@ export class AuthService {
   }
 
   purgeAuth() {
+    this.cache.delete('user_current');
     this.destroyToken();
     this.currentUserSubject.next({});
     this.isAuthenticatedSubject.next(false);
