@@ -1,11 +1,9 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import ZoomVideo, { Participant, VideoQuality } from '@zoom/videosdk';
 import { AnimationOptions } from 'ngx-lottie';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CallService } from 'src/app/core/services/call.service';
 import { LessonService } from 'src/app/core/services/lesson.service';
-import { ZoomService } from 'src/app/core/services/zoom.service';
 
 @Component({
   selector: 'app-classroom',
