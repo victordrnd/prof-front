@@ -9,23 +9,34 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class TeacherComponent implements OnInit {
   mobile: boolean;
-
-  constructor(private userService : AuthService) { }
+  collapsed = false;
+  constructor(private userService: AuthService) { }
 
   ngOnInit() {
     if (navigator.userAgent.match(/Android/i)
       || navigator.userAgent.match(/webOS/i)
       || navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/iPad/i)
-      || navigator.userAgent.match(/iPod/i)){
+      || navigator.userAgent.match(/iPod/i)
+      || document.documentElement.clientWidth <= 500) {
       this.mobile = true;
-    };
+      this.collapsed = true;
 
+    };
     // this.socket.connect();
     // this.socket.emit("register", {userId : this.userService.currentUserValue.id});
   }
 
-  logout(){
+
+  closeMenu(){
+    console.log('exec');
+    if(this.mobile){
+      this.collapsed = true;
+    }
+  }
+
+
+  logout() {
     this.userService.purgeAuth();
     document.location.reload();
   }

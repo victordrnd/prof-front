@@ -2,8 +2,8 @@
 
 <nz-layout class="layout">
 
-    <nz-sider nzCollapsible [nzCollapsed]="mobile ? true : false" [nzWidth]="290" [nzCollapsedWidth]="mobile ? 0 : 80">
-        <ul nz-menu nzMode="inline" class="w-100">
+    <nz-sider nzCollapsible [(nzCollapsed)]="collapsed" [nzWidth]="290" [nzCollapsedWidth]="mobile ? 0 : 80">
+        <ul nz-menu nzMode="inline" (nzClick)="closeMenu()" class="w-100">
             <li class="mt-0" nz-menu-item routerLink="dashboard">
                 <i nz-icon nzType="home" nzTheme="outline"></i>
                 <span>Tableau de bord</span>
@@ -18,7 +18,7 @@
                 <ul>
                     <li nz-menu-item routerLink="settings/profil">
                         Afficher mon profil</li>
-                    <li nz-menu-item routerLink="settings/availabilities">
+                    <li class="d-none d-md-block" nz-menu-item routerLink="settings/availabilities">
                         {{'header.availabilities' | translate}}</li>
                     <li nz-menu-item routerLink="settings/payments">
                         {{'header.bank_info' | translate}}</li>
