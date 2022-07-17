@@ -26,7 +26,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 registerLocaleData(fr);
-const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'] } };
+const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'],autoConnect : false }, };
 @NgModule({
   declarations: [
     AppComponent

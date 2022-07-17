@@ -19,17 +19,23 @@ export class ChatService {
   audioService = new Audio();
   constructor(private http: HttpClient, public socket: Socket,
     private userService: AuthService) {
-    socket.on('connect', function () {
-      socket.emit("register", { userId: userService.currentUserValue.id });
-    });
-    socket.on('disconnect', () => this.isRegistred = false);
+    
   }
 
   private subscriptions = [];
   async connect(forceReconnect = false) {
-    console.log(forceReconnect)
+    
+    console.log('connecting to socket',forceReconnect)
     if (!this.isRegistred || forceReconnect) {
+      this.socket.connect();
       //await this.getMyRooms();
+      const sock = this.socket;
+      const service = this.userService
+      this.socket.on('connect', function () {
+        console.log('connected to socket');
+        sock.emit("register", { userId: service.currentUserValue.id });
+      });
+      this.socket.on('disconnect', () => this.isRegistred = false);
       this.isRegistred = true;
       this.clearSubscriptions();
       this.clearUnReadMessage();

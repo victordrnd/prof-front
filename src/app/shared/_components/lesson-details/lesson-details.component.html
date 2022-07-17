@@ -3,7 +3,7 @@
         <h3 class="text-center mt-3">{{lesson?.subject?.libelle | translate}}</h3>
         <nb-alert status="danger" class="mx-4" *ngIf="lesson?.capacity > 1 && !lesson?.video_link">Le professeur n'a pas encore fourni de lien de vidéoconférence pour ce cours collectif ! Contactez le pour plus de détails</nb-alert>
 
-        <nb-card status="success" [nbSpinner]="loading" nbSpinnerStatus="primary" class="mx-4">
+        <nb-card status="primary" [nbSpinner]="loading" nbSpinnerStatus="primary" class="mx-4">
             <nb-card-header [style.backgroundColor]="lesson?.subject?.color">{{lesson?.subject?.libelle | translate}}
                 {{'lesson.with' | translate}} {{lesson?.teacher?.lastname}} {{lesson?.teacher?.firstname}}
 
@@ -61,7 +61,7 @@
                                         appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
                                     <nb-tag status="warning" size="small" *ngSwitchCase="'cancelled'"
                                         appearance="filled" text="{{student.pivot.status.label | translate}}"></nb-tag>
-                                    <nb-tag status="success" size="small" *ngSwitchCase="'done'" appearance="filled"
+                                    <nb-tag status="primary" size="small" *ngSwitchCase="'done'" appearance="filled"
                                         text="{{student.pivot.status.label | translate}}"></nb-tag>
                                 </div>
                             </td>
