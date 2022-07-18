@@ -31,18 +31,22 @@
                 *ngIf="!isConnected"><i nz-icon nzType="user" class="mr-2" nzTheme="outline"></i> {{'header.register' |
                 translate}}</button>
             <button nbButton hero status="primary" size="small" (click)="goToDashboard()" class=" ml-2 mr-4"
-                *ngIf="isConnected && (router.url != '/student/dashboard' && router.url != '/teacher/dashboard')"><i
+                *ngIf="isConnected"><i
                     nz-icon nzType="user" nzTheme="outline"></i>
                 {{'header.dashboard' | translate}}</button>
 
-            <button nbButton hero status="primary" size="small" (click)="logout()" class=" ml-2 mr-4"
+            <!-- <button nbButton hero status="primary" size="small" (click)="logout()" class=" ml-2 mr-4"
                 *ngIf="isConnected && (router.url == '/student/dashboard' || router.url == '/teacher/dashboard')"><i
                     nz-icon nzType="user" nzTheme="outline"></i>
-                {{'header.logout' | translate}}</button>
+                {{'header.logout' | translate}}</button> -->
         </div>
     </div>
     <div class="float-right d-inline d-md-none mobile-menu">
         <div class="d-inline">
+            <nz-badge class="mx-3 pointer" (click)="goToMessages()" [nzCount]="unreadMessageCount">
+                <nb-icon class="d-inline-block" icon="inbox-outline" pack="eva"></nb-icon>
+            </nz-badge>
+
             <button nbButton hero size="small" routerLink="/login" class="mx-2" *ngIf="!isConnected"><i nz-icon
                     nzType="user" class="mx-2" nzTheme="outline"></i> {{'header.login' | translate}}</button>
             <button nbButton hero status="primary" size="small" routerLink="/register" class=" ml-2 mr-4"
@@ -51,14 +55,14 @@
                 !</button>
 
             <button nbButton hero status="primary" size="small" (click)="goToDashboard()" class=" ml-2 mr-4"
-                *ngIf="isConnected && (router.url != '/student/dashboard' && router.url != '/teacher/dashboard')"><i
+                *ngIf="isConnected"><i
                     nz-icon nzType="user" nzTheme="outline"></i>
                 {{'header.dashboard' | translate}}</button>
 
-            <button nbButton hero status="primary" size="small" (click)="logout()" class=" ml-2 mr-4"
+            <!-- <button nbButton hero status="primary" size="small" (click)="logout()" class=" ml-2 mr-4"
                 *ngIf="isConnected && (router.url == '/student/dashboard' || router.url == '/teacher/dashboard')"><i
                     nz-icon nzType="user" nzTheme="outline"></i>
-                {{'header.logout' | translate}}</button>
+                {{'header.logout' | translate}}</button> -->
         </div>
     </div>
 

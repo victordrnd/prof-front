@@ -74,9 +74,9 @@ export class ProfilComponent implements OnInit {
       local: this.place.structuredAddress.thoroughfare,
       postcode: "00000",
     }
-    await this.addressService.attach(obj).toPromise().then(async (res: any) => {
-      this.notificationService.primary(this.translate.instant("settings.success_description"),this.translate.instant('register.success.title'));
-    })
+    // await this.addressService.attach(obj).toPromise().then(async (res: any) => {
+    //   this.notificationService.primary(this.translate.instant("settings.success_description"),this.translate.instant('register.success.title'));
+    // })
   }
 
 
@@ -104,7 +104,7 @@ export class ProfilComponent implements OnInit {
 
   submitChange(){
     if(this.place){
-      if(this.oldAddress.address != this.place.place_name && this.selected){
+      if(this.oldAddress.address != this.place.name && this.selected){
         this.attachPlace();
       }
     }

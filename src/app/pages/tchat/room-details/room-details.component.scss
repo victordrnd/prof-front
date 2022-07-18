@@ -3,19 +3,34 @@
         font-size: 9px;
     }
     .scrollable {
-        min-height: 80vh;
-        max-height: 80vh;
+        min-height: 70vh;
+        max-height: 70vh;
         background: #f8f9fb;
     }
-    .header{
+    .text-small {
+        font-size: 9px;
+    }
+    .one-line {
+        // width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    @media (min-width: 768px) {
+        .scrollable {
+            min-height: 80vh;
+            max-height: 80vh;
+        }
+        .text-small {
+            font-size: 12px;
+        }
+    }
+    .header {
         background: #f8f9fb !important;
         box-shadow: 0 5px 15px rgb(0 0 0 / 8%);
     }
-    nb-chat-message.reply nb-chat-message-text .text{
+    nb-chat-message.reply nb-chat-message-text .text {
         background-color: white;
-    }
-    .text-small{
-        font-size: 12px;
     }
 
     // nb-chat-form {

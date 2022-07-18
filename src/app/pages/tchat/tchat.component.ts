@@ -23,6 +23,7 @@ export class TchatComponent implements OnInit, OnDestroy {
   };
   rooms;
   mobile = false;
+  collapsed = true;
   subscriptions = [];
   home = true;
   async ngOnInit() {
@@ -30,8 +31,10 @@ export class TchatComponent implements OnInit, OnDestroy {
       || navigator.userAgent.match(/webOS/i)
       || navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/iPad/i)
-      || navigator.userAgent.match(/iPod/i)) {
+      || navigator.userAgent.match(/iPod/i)
+      || document.documentElement.clientWidth <= 500) {
       this.mobile = true;
+      this.collapsed = true;
     };
     this.home = this.router.url == "/messages";
     const sb3 = this.router.events.subscribe(el => {
@@ -62,6 +65,10 @@ export class TchatComponent implements OnInit, OnDestroy {
 
   }
 
+  closeMenu(){
+    console.log('close');
+    this.collapsed = true;
+  }
 
 
 
