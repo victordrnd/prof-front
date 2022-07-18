@@ -84,7 +84,8 @@ import { WaitingValidationMailComponent } from './waiting-validation-mail/waitin
     NzSwitchModule,
     NzInputModule,
     NzAutocompleteModule,
-    NbDatepickerModule
+    NbDatepickerModule,
+    NbSpinnerModule
   ],
   exports : [TeacherProfileComponent],
   entryComponents : [BookingModalComponent],

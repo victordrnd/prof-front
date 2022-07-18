@@ -1,63 +1,66 @@
 <nb-layout>
     <nb-layout-column>
-        <nz-tabset nzSelectedIndex="0" [nzAnimated]="false">
-            <nz-tab *ngFor="let date of dates;let i =index" [nzTitle]="title">
-                <ng-template #title>
-                    <h2 class="text-center ant-tabs-tab" [class.color-hover]="i==0">{{date.date.day}}</h2>
-                    <p class="caption text-center">{{date.date.month}}</p>
-                </ng-template>
-                <nz-list class="list-virtual">
-                    <nz-list-item *ngFor="let item of date.hours;let i = index" [class.pointer]="!item?.disabled"
-                        (click)="bookLesson(item, date, i )" nbPopover="{{'teacher.click_to_book' | translate}}"
-                        nbPopoverTrigger="hint" nbPopoverPlacement="left" [nbTooltipDisabled]="item?.disabled"
-                        [class.disabled]="item.disabled">
-                        <ng-container>
-                            <nz-list-item-meta>
-                                <nz-list-item-meta-title>
-                                    <h6 class="caption px-3">{{item.time}}</h6>
-                                </nz-list-item-meta-title>
-                            </nz-list-item-meta>
-                            <div class="row" style="flex:100" *ngIf="item.disabled && !item.lesson">
-                                <div class="col-12 px-0">
-                                    <div class="d-flex align-items-center h-100">
-                                        <nz-divider nzText="Non disponible"></nz-divider>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <nb-alert *ngIf="item.lesson" class="w-100 ml-5 mr-1"
-                                [style.backgroundColor]="item.lesson.subject.color"
-                                [style.height]="'calc(90px *'+ item.lesson.duration +')'"
-                                [style.marginTop.px]="getLessonMarginTop(item.lesson)"
-                                [style.zIndex]="4">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h6 class="text-white">{{item.time}} - {{item.lesson.subject.libelle |
-                                            translate}}
-                                        </h6>
-                                        <p class="caption-2">{{item.lesson?.teacher_subject?.description}}</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="d-flex align-items-end flex-column h-100">
-                                            
-                                            <nb-tag size="small" status="basic"
-                                                appearance="filled"
-                                                text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves">
-                                            </nb-tag>
-                                            <br />
-                                            <button class="mt-auto button-small" nbButton size="small"
-                                                (click)="displayLesson(item.lesson)">Réserver ma place - {{item.lesson.currency | uppercase}} {{item.lesson.amount}} </button>
+        <div style="min-height: 100px;" [nbSpinner]="loading" nbSpinnerStatus="primary">
+            <nz-tabset nzSelectedIndex="0" [nzAnimated]="false">
+                <nz-tab *ngFor="let date of dates;let i =index" [nzTitle]="title">
+                    <ng-template #title>
+                        <h2 class="text-center ant-tabs-tab" [class.color-hover]="i==0">{{date.date.day}}</h2>
+                        <p class="caption text-center">{{date.date.month}}</p>
+                    </ng-template>
+                    <nz-list class="list-virtual">
+                        <nz-list-item *ngFor="let item of date.hours;let i = index" [class.pointer]="!item?.disabled"
+                            (click)="bookLesson(item, date, i )" nbPopover="{{'teacher.click_to_book' | translate}}"
+                            nbPopoverTrigger="hint" nbPopoverPlacement="left" [nbTooltipDisabled]="item?.disabled"
+                            [class.disabled]="item.disabled">
+                            <ng-container>
+                                <nz-list-item-meta>
+                                    <nz-list-item-meta-title>
+                                        <h6 class="caption px-3">{{item.time}}</h6>
+                                    </nz-list-item-meta-title>
+                                </nz-list-item-meta>
+                                <div class="row" style="flex:100" *ngIf="item.disabled && !item.lesson">
+                                    <div class="col-12 px-0">
+                                        <div class="d-flex align-items-center h-100">
+                                            <nz-divider nzText="Non disponible"></nz-divider>
                                         </div>
                                     </div>
                                 </div>
 
-                            </nb-alert><br />
+                                <nb-alert *ngIf="item.lesson" class="w-100 ml-5 mr-1"
+                                    [style.backgroundColor]="item.lesson.subject.color"
+                                    [style.height]="'calc(90px *'+ item.lesson.duration +')'"
+                                    [style.marginTop.px]="getLessonMarginTop(item.lesson)" [style.zIndex]="4">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h6 class="text-white">{{item.time}} - {{item.lesson.subject.libelle |
+                                                translate}}
+                                            </h6>
+                                            <p class="caption-2">{{item.lesson?.teacher_subject?.description}}</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="d-flex align-items-end flex-column h-100">
+
+                                                <nb-tag size="small" status="basic" appearance="filled"
+                                                    text="{{item.lesson.students.length}} / {{item.lesson.capacity}} élèves">
+                                                </nb-tag>
+                                                <br />
+                                                <button class="mt-auto button-small" nbButton size="small"
+                                                    (click)="displayLesson(item.lesson)">Réserver ma place -
+                                                    {{item.lesson.currency | uppercase}} {{item.lesson.amount}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </nb-alert><br />
 
 
-                        </ng-container>
-                    </nz-list-item>
-                </nz-list>
-            </nz-tab>
-        </nz-tabset>
+                            </ng-container>
+                        </nz-list-item>
+                    </nz-list>
+                </nz-tab>
+            </nz-tabset>
+        </div>
+
     </nb-layout-column>
 </nb-layout>

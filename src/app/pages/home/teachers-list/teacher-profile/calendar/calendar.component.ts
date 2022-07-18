@@ -22,6 +22,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     'success',
     'primary'
   ]
+  loading = true;
   subscriptions : Subscription[]= [];
   constructor(private calendarService : CalendarService,
     private authService : AuthService,
@@ -32,6 +33,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.authService.populate();
     this.dates = await this.calendarService.getTwoUsersTimeTable(this.teacher.id).toPromise();
+    this.loading = false;
     this.dates = Object.values(this.dates);
   }
 
