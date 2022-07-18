@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
       firstname: [null, Validators.required],
       lastname: [null, Validators.required],
       email: [null, [Validators.email, Validators.required]],
-      birth: [null, Validators.required],
+      birth: [new Date("2000-01-01"), Validators.required],
       password: [null, Validators.required],
       repeat_password: [null, Validators.required],
       sexe: ["m", Validators.required],
@@ -134,7 +134,7 @@ export class RegisterComponent implements OnInit {
   onSelectionChange(place) {
     this.selected = true;
     this.place = place;
-    this.placeInput.nativeElement.value = `${place.place_name}`
+    this.placeInput.nativeElement.value = `${place.name}`
 
   }
 

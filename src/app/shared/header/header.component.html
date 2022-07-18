@@ -14,7 +14,7 @@
         </ul>
         <div class="d-inline">
             <div class="d-inline">
-                <nz-badge class="mx-3 pointer" (click)="goToMessages()" [nzCount]="unreadMessageCount">
+                <nz-badge *ngIf="isConnected" class="mx-3 pointer" (click)="goToMessages()" [nzCount]="unreadMessageCount">
                     <nb-icon class="d-inline-block" icon="inbox-outline" pack="eva"></nb-icon>
                 </nz-badge>
 
@@ -43,7 +43,7 @@
     </div>
     <div class="float-right d-inline d-md-none mobile-menu">
         <div class="d-inline">
-            <nz-badge class="mx-3 pointer" (click)="goToMessages()" [nzCount]="unreadMessageCount">
+            <nz-badge *ngIf="isConnected" class="mx-3 pointer" (click)="goToMessages()" [nzCount]="unreadMessageCount">
                 <nb-icon class="d-inline-block" icon="inbox-outline" pack="eva"></nb-icon>
             </nz-badge>
 

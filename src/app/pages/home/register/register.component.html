@@ -35,7 +35,7 @@
                                     placeholder="{{'register.lastname' | translate}}">
                             </nb-form-field>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-4 mt-md-0">
                             <label>{{'register.firstname' | translate}} :</label><br />
                             <nb-form-field>
                                 <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
@@ -58,18 +58,24 @@
                             <label>{{'register.email' | translate}} :</label><br />
                             <nb-form-field>
                                 <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
-                                <input type="email" formControlName="email" nbInput class="w-100 input-full-width"
+                                <input type="email" autocomplete="email" formControlName="email" nbInput class="w-100 input-full-width"
                                     placeholder="{{'register.email' | translate}}">
                             </nb-form-field>
                         </div>
-                        <div class="offset-md-6 col-md-4">
-                          <label>Date of birth :</label><br />
-                          <nb-form-field>
-                              <nb-icon nbPrefix icon="gift-outline" pack="eva"></nb-icon>
-                              <input type="date" formControlName="birth" nbInput max="{{currentDate | date:'yyyy-MM-dd'}}" class="w-100 input-full-width"
-                                  placeholder="Date of birth">
-                          </nb-form-field>
-                      </div>
+                        <div class="offset-md-2 mt-4 col-md-4">
+                            <label>Date of birth :</label><br />
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="gift-outline" pack="eva"></nb-icon>
+                                <input autocomplete="bday" nbInput formControlName="birth" placeholder="Date of birth"  class="w-100" [nbDatepicker]="dateTimePicker">
+                                <nb-datepicker #dateTimePicker></nb-datepicker>
+                                <!-- <input type="date" formControlName="birth" nbInput
+                                    max="{{currentDate | date:'yyyy-MM-dd'}}" class="w-100 input-full-width"
+                                    placeholder="Date of birth"> -->
+                            </nb-form-field>
+                        </div>
+                        <div class="col-6">
+
+                        </div>
                         <div class="offset-md-2 col-md-4 mt-4">
                             <label>{{'register.password' | translate}} : </label>
                             <nb-form-field>
@@ -110,7 +116,7 @@
                     </div>
                     <div class="row my-4" *ngSwitchCase="4">
                         <div class="col-12">
-                            <div class="mx-5">
+                            <div class="mx-md-5">
 
                                 <!-- <label>{{'register.avatar' | translate}} : </label> -->
                                 <nz-upload class="avatar-uploader mx-auto d-block" nzName="avatar"
@@ -125,8 +131,8 @@
                                     </ng-container>
                                 </nz-upload>
                             </div>
-                            <label class="mx-5 mt-5">{{'register.subjects.title' | translate}} :</label><br />
-                            <nb-card class="mx-5 my-3">
+                            <label class="mx-md-5 mt-5">{{'register.subjects.title' | translate}} :</label><br />
+                            <nb-card class="mx-md-5 my-3">
                                 <nb-card-body>
                                     <div>
                                         <nz-tag nzMode="checkable" (nzCheckedChange)="checkSubject($event, subject)"
@@ -138,7 +144,7 @@
                                     </div>
                                 </nb-card-body>
                             </nb-card>
-                            <div class="mx-5 mt-5">
+                            <div class="mx-md-5 mt-5">
                                 <div class="mt-3" *ngFor="let subject of subjects">
                                     <ng-container *ngIf="subject.checked">
                                         <!-- {{subject | json}} -->
@@ -149,7 +155,7 @@
                                     </ng-container>
                                 </div>
                             </div>
-                            <div class="mx-5 mt-5">
+                            <div class="mx-md-5 mt-5">
                                 <label class="w-100">{{'register.rate' | translate}} :</label><br />
                                 <div class="d-flex">
 
@@ -169,9 +175,9 @@
                                 <textarea nbInput fullWidth formControlName="description" placeholder=""
                                     class="my-3"></textarea>
 
-                                <nb-card>
+                                <nb-card class="d-none d-md-block">
                                     <nb-card-body>
-                                        <app-teacher-availabilities></app-teacher-availabilities>
+                                        <app-teacher-availabilities [embedded]="true"></app-teacher-availabilities>
                                     </nb-card-body>
                                 </nb-card>
                             </div>

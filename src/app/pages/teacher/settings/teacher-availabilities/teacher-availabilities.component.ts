@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { NzResizeEvent } from 'ng-zorro-antd/resizable';
@@ -11,6 +11,7 @@ import { CalendarService } from 'src/app/core/services/calendar.service';
 })
 export class TeacherAvailabilitiesComponent implements OnInit {
 
+  @Input() embedded = false;
   constructor(private calendarService : CalendarService,
     private translate : TranslateService,
     private notificationService : NbToastrService) { }
