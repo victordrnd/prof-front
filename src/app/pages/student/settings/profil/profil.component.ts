@@ -38,7 +38,7 @@ export class ProfilComponent implements OnInit {
     this.form = this.fb.group({
       firstname: [user.firstname, Validators.required],
       lastname: [user.lastname, Validators.required],
-      email: [{ value : user.email, disabled : true}, [Validators.email, Validators.required]],
+      email: [{ value: user.email, disabled: true }, [Validators.email, Validators.required]],
       password: [null, Validators.required],
       repeat_password: [null, Validators.required],
       sexe: [user.sexe, Validators.required],
@@ -50,7 +50,9 @@ export class ProfilComponent implements OnInit {
     });
 
     this.oldAddress = await this.addressService.getMyAddress().toPromise();
-    this.placeInput.nativeElement.value = this.oldAddress.address;
+    if (this.oldAddress) {
+      this.placeInput.nativeElement.value = this.oldAddress.address;
+    }
   }
 
   async findPlaces(keyword) {
@@ -74,9 +76,7 @@ export class ProfilComponent implements OnInit {
       local: this.place.structuredAddress.thoroughfare,
       postcode: "00000",
     }
-    // await this.addressService.attach(obj).toPromise().then(async (res: any) => {
-    //   this.notificationService.primary(this.translate.instant("settings.success_description"),this.translate.instant('register.success.title'));
-    // })
+    await this.addressService.attach(obj).toPromise();
   }
 
 
@@ -91,7 +91,7 @@ export class ProfilComponent implements OnInit {
   }
 
   getAvatarBlob(file): any {
-    if(file instanceof File){
+    if (file instanceof File) {
       var reader = new FileReader();
       reader.onloadend = async () => {
         this.avatarUrl = reader.result;
@@ -102,14 +102,14 @@ export class ProfilComponent implements OnInit {
 
 
 
-  submitChange(){
-    if(this.place){
-      if(this.oldAddress.address != this.place.name && this.selected){
+  submitChange() {
+    if (this.place) {
+      if ((!this.oldAddress || this.oldAddress.address != this.place.name) && this.selected) {
         this.attachPlace();
       }
     }
     this.userService.updateUser(this.form.value).toPromise().then(() => {
-      this.notificationService.primary(this.translate.instant("settings.success_description"),this.translate.instant('register.success.title'));
+      this.notificationService.primary(this.translate.instant("settings.success_description"), this.translate.instant('register.success.title'));
     }).catch(err => {
       for (const [key, value] of Object.entries(err)) {
         this.notificationService.danger(this.translate.instant('register.error.desc'), value)
