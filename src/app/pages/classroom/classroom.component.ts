@@ -69,7 +69,6 @@ export class ClassroomComponent implements OnInit, OnDestroy {
 
       this.callService.onNewMessage.subscribe((message) => {
         const type = message.type;
-        console.log(message);
         message.type = message.type != "text" ? "file" : "text";
         if (message.type == "file") {
           message.files = [{

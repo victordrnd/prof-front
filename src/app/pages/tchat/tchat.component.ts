@@ -23,7 +23,7 @@ export class TchatComponent implements OnInit, OnDestroy {
   };
   rooms;
   mobile = false;
-  collapsed = true;
+  collapsed = false;
   subscriptions = [];
   home = true;
   async ngOnInit() {
@@ -66,8 +66,9 @@ export class TchatComponent implements OnInit, OnDestroy {
   }
 
   closeMenu(){
-    console.log('close');
-    this.collapsed = true;
+    if(this.mobile){
+      this.collapsed = true;
+    }
   }
 
 

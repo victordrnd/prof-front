@@ -103,7 +103,6 @@ export class LessonDetailsComponent implements OnInit {
           this.lesson = res;
           this.notificationService.primary(this.translate.instant('lesson.settings.updated_success'), this.translate.instant('shared.success'))
         }).catch(err => {
-          console.log(err);
           this.notificationService.danger(this.translate.instant("lesson.settings.updated_success"), this.translate.instant('shared.error'));
         })
       }

@@ -55,7 +55,6 @@ export class StudentProfileComponent implements OnInit {
     }
     this.lessons = await this.adminService.getAllStudentsLessons(this.filters, this.student_id).toPromise();
     this.loading = false;
-    console.log(this.lessons)
   }
 
   async onPageIndexChange(page) {

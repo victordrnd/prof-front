@@ -29,7 +29,6 @@ export class TeacherComponent implements OnInit {
 
 
   closeMenu(){
-    console.log('exec');
     if(this.mobile){
       this.collapsed = true;
     }

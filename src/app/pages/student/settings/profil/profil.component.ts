@@ -45,7 +45,9 @@ export class ProfilComponent implements OnInit {
       description: [""]
     });
     this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
-      this.places = await this.addressService.findPlaces(keyword);
+      if(keyword){
+        this.places = await this.addressService.findPlaces(keyword);
+      }
       this.selected = false;
     });
 
@@ -61,14 +63,15 @@ export class ProfilComponent implements OnInit {
 
 
   onSelectionChange(place) {
+    console.log(place);
     this.selected = true;
     this.place = place;
-    this.placeInput.nativeElement.value = `${place.name} , ${place.country}`
+    this.placeInput.nativeElement.value = place.name +' ' +place.formattedAddressLines.join(' ');
   }
 
   async attachPlace() {
     const obj = {
-      address: this.place.name,
+      address: this.place.name +' '+this.place.formattedAddressLines.join(' '),
       lat: this.place.coordinate.latitude,
       lng: this.place.coordinate.longitude,
       country: this.place.country,

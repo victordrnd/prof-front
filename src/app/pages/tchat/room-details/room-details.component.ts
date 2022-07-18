@@ -26,7 +26,6 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
   subscriptions = [];
   async ngOnInit() {
     this.currentUser = this.authService.currentUserValue;
-    console.log(this.currentUser);
     if (!this.roomId) {
       const sb = this.route.params.subscribe(params => {
         this.fetchRoom(params.id);
@@ -57,7 +56,6 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(event) {
-    console.log(event);
     let files = [];
     if (event.files.length) {
       files = !event.files ? [] : event.files.map((file) => {

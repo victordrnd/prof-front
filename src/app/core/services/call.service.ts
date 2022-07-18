@@ -66,7 +66,6 @@ export class CallService {
     });
 
     const sb6 = this.socket.fromEvent('classroom.camera_toggle').subscribe((event : CameraToggleEvent)=> {
-      console.log('camera toogled', event)
       this.onRemoteCameraChange.next(event);
     });
 

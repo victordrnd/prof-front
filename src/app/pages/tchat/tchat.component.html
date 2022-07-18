@@ -2,7 +2,7 @@
 
 <nz-layout class="layout">
 
-    <nz-sider [nzCollapsible]="mobile ? true : false" [(nzCollapsed)]="collapsed" [nzWidth]="mobile ? '100vw' : 390" [nzCollapsedWidth]="mobile ? 0 : 80">
+    <nz-sider [nzCollapsible]="mobile ? true : false" [(nzCollapsed)]="collapsed" [nzWidth]="mobile ? '100vw' : 390" [nzCollapsedWidth]="mobile ? 0 : 390">
         <ul nz-menu (nzClick)="closeMenu()" nzMode="inline" class="w-100 max-dimension">
             <nz-empty *ngIf="rooms?.length == 0"></nz-empty>
             <li class="mt-0 py-4" *ngFor="let room of rooms" nz-menu-item routerLink="room/{{room.id}}">

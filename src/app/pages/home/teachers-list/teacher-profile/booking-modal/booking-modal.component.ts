@@ -29,6 +29,7 @@ export class BookingModalComponent implements OnInit {
   place = null;
   @ViewChild('placeInput') placeInput;
   placeInputValue = new Subject();
+  selectedPlace;
 
   address = null;
   constructor(private modalService: NzModalService,
@@ -47,7 +48,7 @@ export class BookingModalComponent implements OnInit {
       }
     }
     this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
-      if(keyword){
+      if (keyword) {
         this.places = await this.addressService.findPlaces(keyword);;
       }
     })
@@ -56,8 +57,7 @@ export class BookingModalComponent implements OnInit {
 
 
   async findPlaces(keyword) {
-    const place=  this.places.find(el => el.name == keyword);
-    this.placeInputValue.next(place.formattedAddressLines.join(', '));
+    this.placeInputValue.next(keyword);
   }
 
 
@@ -69,9 +69,18 @@ export class BookingModalComponent implements OnInit {
     return arr;
   }
 
+  selectPlace(item){
+    if(item.formattedAddressLines.includes(item.name)){
+      this.place = item.formattedAddressLines.join(' ')
+    }else{
+      this.place = item.name + ' ' + item.formattedAddressLines.join(' ');
+    }
+    this.placeInput.nativeElement.innerHtml = this.place;
+    this.selectedPlace = item;
+  }
 
   async confirm() {
-    const place = this.places.find(el => el.place_name == this.place)
+    const place = this.selectedPlace;
     let obj = {
       subject_id: this.selectedSubject,
       duration: this.selectedDuration,
@@ -81,12 +90,12 @@ export class BookingModalComponent implements OnInit {
     }
     if (place) {
       let address = {
-        address: this.place.name,
-        lat: this.place.coordinate.latitude,
-        lng: this.place.coordinate.longitude,
-        country: this.place.country,
-        city: this.place.structuredAddress.locality,
-        local: this.place.structuredAddress.thoroughfare,
+        address: place.name,
+        lat: place.coordinate.latitude,
+        lng: place.coordinate.longitude,
+        country: place.country,
+        city: place.structuredAddress.locality,
+        local: place.structuredAddress.thoroughfare,
         postcode: "00000",
       }
       obj = { ...obj, ...address };
@@ -122,6 +131,6 @@ export class BookingModalComponent implements OnInit {
 
 
   checkDisabled() {
-    return this.at_home && !this.places.find(el => el.name == this.place);
+    return this.at_home && !this.selectedPlace
   }
 }

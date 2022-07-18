@@ -22,11 +22,19 @@ export class TeacherProfileComponent implements OnInit {
   teached_subjects: any[] = [];
   subjects;
 
-  profile;
+  profile = {
+    rate : 30,
+    currency : 'aed',
+    description : null,
+    subjects : []
+  };
 
   async ngOnInit() {
     this.getMySubjects();
-    this.profile = await this.teacherService.getMyProfile().toPromise();
+    const profile = await this.teacherService.getMyProfile().toPromise() as any;
+    if(profile){
+      this.profile = profile;
+    }
   }
 
 
