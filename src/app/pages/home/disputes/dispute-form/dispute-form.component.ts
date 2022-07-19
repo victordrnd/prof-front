@@ -43,7 +43,6 @@ export class DisputeFormComponent implements OnInit {
       await this.disputeService.create(this.dispute).toPromise().then((res: any) => {
         this.chatService.sendMessage({
           type: "text",
-          userId: res.user_id,
           roomId: this.dispute.room_id,
           content: res.description
         }, true);

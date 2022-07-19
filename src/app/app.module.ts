@@ -8,9 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbToastrModule, NbAutocompleteModule, NbIconModule, NbDatepickerModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './shared/shared.module';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpTokenInterceptor } from './core/interceptors/http.token.interceptor';
 import { registerLocaleData } from '@angular/common';
 import fr from "@angular/common/locales/fr";
@@ -26,7 +26,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 registerLocaleData(fr);
-const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'],autoConnect : false }, };
+const config: SocketIoConfig = { url: environment.socketServer, options: { transports: ['websocket'], autoConnect: false, query : {authorization : 'Bearer '+localStorage.getItem('token')}}};
 @NgModule({
   declarations: [
     AppComponent
@@ -44,7 +44,7 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-    }
+      }
     }),
     NbToastrModule.forRoot(),
     NzSpinModule,
@@ -52,11 +52,11 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     NgxStripeModule.forRoot(environment.publicStripeKey),
     SocketIoModule.forRoot(config),
     NbDatepickerModule.forRoot(),
-    LottieModule.forRoot({ player : playerFactory }),
+    LottieModule.forRoot({ player: playerFactory }),
     HttpCacheInterceptorModule.forRoot()
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     { provide: NZ_I18N, useValue: fr_FR }
   ],
   bootstrap: [AppComponent]

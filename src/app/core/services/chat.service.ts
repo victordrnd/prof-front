@@ -19,6 +19,7 @@ export class ChatService {
   audioService = new Audio();
   constructor(private http: HttpClient, public socket: Socket,
     private userService: AuthService) {
+      
     
   }
 
@@ -26,11 +27,11 @@ export class ChatService {
   async connect(forceReconnect = false) {
     
     if (!this.isRegistred || forceReconnect) {
+      this.socket.ioSocket.io.opts.query = { Authorization: `Bearer ${localStorage.getItem('token')}`}
       this.socket.connect();
       const sock = this.socket;
-      const service = this.userService
       this.socket.on('connect', function () {
-        sock.emit("register", { userId: service.currentUserValue.id });
+        sock.emit("register");
       });
       this.socket.on('disconnect', () => this.isRegistred = false);
       this.isRegistred = true;
@@ -142,7 +143,6 @@ class CreateMessageDto {
   type: string;
   content: string;
   files?: any[];
-  userId: number;
   roomId: number;
 }
 

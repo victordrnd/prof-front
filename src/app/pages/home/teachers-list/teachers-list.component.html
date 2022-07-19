@@ -12,7 +12,7 @@
 
                 <nb-option *ngFor="let option of places" [value]="option">
                     <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon>
-                    <span>{{option.name}},<span class="text-grey"> {{option.country}}</span></span>
+                    <span>{{option.name}}, <span class="text-grey" *ngFor="let item of option.formattedAddressLines">{{item}} </span></span>
                 </nb-option>
             </nb-autocomplete>
             <h4 class="mt-4">Date</h4>

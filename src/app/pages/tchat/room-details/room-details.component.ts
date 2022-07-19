@@ -70,7 +70,6 @@ export class RoomDetailsComponent implements OnInit, OnDestroy {
     this.chatService.sendMessage({
       type: files.length ? "file" : "text",
       files: files,
-      userId: this.currentUser.id,
       roomId: this.room.id,
       content: event.message
     });

@@ -15,7 +15,9 @@ export class CallService {
   onNewParticipant: Subject<any> = new Subject();
   onNewMessage: Subject<ClassRoomMessage> = new Subject();
   onRemoteCameraChange: Subject<CameraToggleEvent> = new Subject();
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket) {
+    this.socket.ioSocket.io.opts.query = { Authorization: `Bearer ${localStorage.getItem('token')}`}
+   }
 
 
   async joinRoom(joinRoomInfo: JoinRoom, video = true, audio = true) {
