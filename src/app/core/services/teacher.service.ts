@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { withCache } from '@ngneat/cashew';
@@ -9,47 +9,47 @@ import { withCache } from '@ngneat/cashew';
 })
 export class TeacherService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  attachProfile(profile){
+  attachProfile(profile) {
     return this.http.post(`${environment.apiUrl}/teacher/profile/create`, profile);
   }
 
 
-  search(filters){
+  search(filters) {
     return this.http.post(`${environment.apiUrl}/teacher/search`, filters);
   }
 
-  get(teacher_id){
+  get(teacher_id) {
     return this.http.get(`${environment.apiUrl}/teacher/${teacher_id}`);
   }
 
-  getMyProfile(){
-    return this.http.get(`${environment.apiUrl}/teacher/profile/my`, {context : withCache()});
+  getMyProfile() {
+    return this.http.get(`${environment.apiUrl}/teacher/profile/my`, { context: withCache() });
   }
 
-  updateProfile(profile){
+  updateProfile(profile) {
     return this.http.put(`${environment.apiUrl}/teacher/profile`, profile);
   }
 
-  getStripeAccount(){
-    return this.http.get(`${environment.apiUrl}/teacher/stripe`, {context : withCache()});
+  getStripeAccount() {
+    return this.http.get(`${environment.apiUrl}/teacher/stripe`, { context: withCache() });
   }
 
 
-  getStripeAccountLink(){
+  getStripeAccountLink() {
     return this.http.get(`${environment.apiUrl}/teacher/stripe/account_link`);
   }
 
-  createBankAccount(iban){
-    return this.http.post(`${environment.apiUrl}/teacher/stripe/iban`, {iban});
+  createBankAccount(iban) {
+    return this.http.post(`${environment.apiUrl}/teacher/stripe/iban`, { iban });
   }
 
-  acceptStudentLesson(student_id, lesson_id){
-    return this.http.put(`${environment.apiUrl}/teacher/lesson/confirm/student`,{student_id, lesson_id});
+  acceptStudentLesson(student_id, lesson_id) {
+    return this.http.put(`${environment.apiUrl}/teacher/lesson/confirm/student`, { student_id, lesson_id });
   };
 
-  getTransfers(){
-    return this.http.get(`${environment.apiUrl}/teacher/stripe/transfers`, {context : withCache()}).pipe(map((res:any) => res.data));
+  getTransfers() {
+    return this.http.get(`${environment.apiUrl}/teacher/stripe/transfers`, { context: withCache() }).pipe(map((res: any) => res.data));
   }
 }

@@ -2,7 +2,13 @@
 <nb-layout>
     <nb-sidebar>
         <div class="m-1">
-            <h4>{{'register.location' | translate}}</h4>
+            <h4>Recherche</h4>
+            <nb-form-field>
+                <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+                <input type="text" (input)="setKeyword($event)"  nbInput fullWidth
+                    fieldSize="medium" placeholder="Search by name">
+            </nb-form-field>
+            <h4 class="mt-4">{{'register.location' | translate}}</h4>
             <nb-form-field>
                 <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
                 <input type="text" #placeInput [nbAutocomplete]="auto" (input)="findPlaces($event)" nbInput fullWidth
@@ -28,6 +34,12 @@
                     </div>
                 </div>
             </nz-checkbox-wrapper>
+
+            <h4 class="mt-4">Préferences</h4>
+            <nz-radio-group (ngModelChange)="onFilterChange('at_home', $event)" class="w-100" [(ngModel)]="filters.at_home">
+                <label nz-radio [nzValue]="true">A domicile</label>
+                <label nz-radio [nzValue]="false">A distance</label>
+              </nz-radio-group>
         </div>
     </nb-sidebar>
 
@@ -38,19 +50,13 @@
 
                     <div class="profile pointer px-2" (click)="openTeacherProfile(teacher.id)">
                         <div class="profil-img w-100" [ngStyle]="{'background-image' : 'url('+teacher.image+ ')'}">
-                            <div class="d-flex h-100">
-                                <!-- <div class="inblock-profile">
-                                    <h2 class="text-white m-2 d-inline-block">{{teacher.firstname | titlecase}}
-                                        {{teacher.lastname | titlecase}}</h2>
-                                </div> -->
-                            </div>
+                        
                         </div>
                         <div class="bg-white rounded px-4">
 
                             <p class="text-bold justify-content-between mt-3 w-100"
                                 style="overflow: hidden;white-space: nowrap;clear: both;display: inline-block;">
                                 {{teacher.firstname | titlecase}} {{teacher.lastname | titlecase}}
-                                <!-- <p class="locale mb-0 mt-1 text-right"> -->
                                 <span class="locale mb-0 mt-1 text-right float-right">
                                     <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon> {{teacher.address.city}}
                                 </span>

@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeacherService } from 'src/app/core/services/teacher.service';
 import { environment } from '../../../../environments/environment';
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { AddressService } from 'src/app/core/services/address.service';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
@@ -12,13 +12,14 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
   templateUrl: './teachers-list.component.html',
   styleUrls: ['./teachers-list.component.scss']
 })
-export class TeachersListComponent implements OnInit {
-  subscription;
+export class TeachersListComponent implements OnInit, OnDestroy {
   filters = {
+    keyword : null,
     subject_id: null,
     lat: null,
     lng: null,
     date : null,
+    at_home : true
   };
   data;
   environement = environment;
@@ -28,25 +29,34 @@ export class TeachersListComponent implements OnInit {
   @ViewChild('placeInput') placeInput;
 
   placeInputValue = new Subject();
+  keywordInputValue = new Subject();
 
-
+  subscriptions : Subscription[] = [];
   constructor(private route: ActivatedRoute,
     private teacherService: TeacherService,
     private subjectService: SubjectService,
     private addressService: AddressService,
     private router: Router) { }
+  
 
   async ngOnInit() {
-    this.subscription = this.route.params.subscribe(async (params: any) => {
+    const sb = this.route.params.subscribe(async (params: any) => {
       if (params.subject_id) {
         this.filters.subject_id = params.subject_id;
       }
       this.data = await this.teacherService.search(this.filters).toPromise();
     });
     this.subjects = await this.subjectService.getAll().toPromise();
-    this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
+    const sb1 = this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
       this.places = await this.addressService.findPlaces(keyword);
     })
+
+    const sb2 = this.keywordInputValue.pipe(debounceTime(150), distinctUntilChanged()).subscribe(keyword => {
+      if(keyword == '')
+        keyword = null;
+      this.onFilterChange('keyword', keyword);
+    });
+    this.subscriptions.push(sb,sb1,sb2);
   }
 
 
@@ -54,6 +64,9 @@ export class TeachersListComponent implements OnInit {
     this.placeInputValue.next(keyword);
   }
 
+  setKeyword(keyword){
+    this.keywordInputValue.next(keyword.srcElement.value);
+  }
 
   async onSelectionChange(place) {
     this.place = place;
@@ -64,6 +77,10 @@ export class TeachersListComponent implements OnInit {
   }
 
 
+  async onFilterChange(key, evt){
+    this.filters[key] = evt;
+    this.data = await this.teacherService.search(this.filters).toPromise();
+  }
 
 
   async selectedSubjectsChange(value, subj) {
@@ -78,6 +95,7 @@ export class TeachersListComponent implements OnInit {
     this.router.navigate([`teacher/profile/${teacher_id}`, { subject_id: this.filters.subject_id }]);
   }
 
+
   async onDateSelectionChange(date){
     if(date instanceof InputEvent){
       this.filters.date = null;
@@ -85,5 +103,10 @@ export class TeachersListComponent implements OnInit {
       this.filters.date = date;
     }
     this.data = await this.teacherService.search(this.filters).toPromise();
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscriptions.map(sb => sb.unsubscribe());
   }
 }

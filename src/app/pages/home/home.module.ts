@@ -40,6 +40,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { MailValidatedComponent } from './mail-validated/mail-validated.component';
 import { WaitingValidationMailComponent } from './waiting-validation-mail/waiting-validation-mail.component';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 @NgModule({
   declarations: [HomeComponent, HeadbandComponent, LoginComponent, RegisterComponent,  TeachersListComponent, TeacherProfileComponent, TeacherCalendar, BookingModalComponent, DisputeFormComponent, CustomHome, CollabLessonDetailsComponent,ForgotPasswordMailComponent, ResetPasswordComponent,WaitingValidationMailComponent,  MailValidatedComponent],
   imports: [
@@ -85,7 +86,8 @@ import { WaitingValidationMailComponent } from './waiting-validation-mail/waitin
     NzInputModule,
     NzAutocompleteModule,
     NbDatepickerModule,
-    NbSpinnerModule
+    NbSpinnerModule,
+    NzRadioModule
   ],
   exports : [TeacherProfileComponent],
   entryComponents : [BookingModalComponent],
