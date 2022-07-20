@@ -9,6 +9,7 @@ import { TeacherService } from 'src/app/core/services/teacher.service';
 import { LessonSettingsModalComponent } from '../lesson-settings-modal/lesson-settings-modal.component';
 import { ChatService } from 'src/app/core/services/chat.service';
 import { formatDate } from '@angular/common';
+import { AddressService } from 'src/app/core/services/address.service';
 @Component({
   selector: 'app-lesson-details',
   templateUrl: './lesson-details.component.html',
@@ -22,6 +23,8 @@ export class LessonDetailsComponent implements OnInit {
   isPast = false;
 
   paymentLoading = false;
+
+ 
   constructor(private route: ActivatedRoute,
     @Inject(LOCALE_ID) private locale: string,
     private lessonService: LessonService,
@@ -31,6 +34,7 @@ export class LessonDetailsComponent implements OnInit {
     private authService: AuthService,
     private notificationService: NbToastrService,
     private chatService: ChatService,
+    private addressService : AddressService,
     private router: Router) { }
 
   async ngOnInit() {

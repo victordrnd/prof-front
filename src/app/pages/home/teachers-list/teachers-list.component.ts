@@ -27,7 +27,6 @@ export class TeachersListComponent implements OnInit, OnDestroy {
   environement = environment;
   subjects;
   places;
-  place;
   @ViewChild('placeInput') placeInput;
 
   placeInputValue = new Subject();
@@ -51,7 +50,13 @@ export class TeachersListComponent implements OnInit, OnDestroy {
     });
     this.subjects = await this.subjectService.getAll().toPromise();
     const sb1 = this.placeInputValue.pipe(map((word: any) => word.srcElement.value), debounceTime(200), distinctUntilChanged()).subscribe(async (keyword) => {
-      this.places = await this.addressService.findPlaces(keyword);
+      if(keyword == ''){
+        this.filters.lat = null;
+        this.filters.lng = null;
+        this.onFilterChange('lat', null);
+      }else{
+        this.places = await this.addressService.findPlaces(keyword);
+      }
     })
 
     const sb2 = this.keywordInputValue.pipe(debounceTime(150), distinctUntilChanged()).subscribe(keyword => {
@@ -64,6 +69,7 @@ export class TeachersListComponent implements OnInit, OnDestroy {
 
 
   async findPlaces(keyword) {
+    
     this.placeInputValue.next(keyword);
   }
 
@@ -72,10 +78,9 @@ export class TeachersListComponent implements OnInit, OnDestroy {
   }
 
   async onSelectionChange(place) {
-    this.place = place;
-    this.placeInput.nativeElement.value = `${place.name}, ${place.country}`
-    this.filters.lat = place.coordinate.latitude;
-    this.filters.lng = place.coordinate.longitude;
+    this.placeInput.nativeElement.value = place.displayLines.join(' ');
+    this.filters.lat = place.location.lat;
+    this.filters.lng = place.location.lng;
     this.data = await this.teacherService.search(this.filters).toPromise();
   }
 

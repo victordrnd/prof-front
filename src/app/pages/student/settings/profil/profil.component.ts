@@ -66,17 +66,18 @@ export class ProfilComponent implements OnInit {
     console.log(place);
     this.selected = true;
     this.place = place;
-    this.placeInput.nativeElement.value = place.name +' ' +place.formattedAddressLines.join(' ');
+    this.placeInput.nativeElement.value = place.displayLines.join(' ');
   }
 
   async attachPlace() {
+    const details = await this.addressService.getPlaceDetails(this.place.completionUrl);
     const obj = {
-      address: this.place.name +' '+this.place.formattedAddressLines.join(' '),
-      lat: this.place.coordinate.latitude,
-      lng: this.place.coordinate.longitude,
-      country: this.place.country,
-      city: this.place.structuredAddress.locality,
-      local: this.place.structuredAddress.thoroughfare,
+      address: this.place.displayLines.join(' '),
+      lat: this.place.location.lat,
+      lng: this.place.location.lng,
+      country: details.country,
+      city: details.locality,
+      local: details.thoroughfare,
       postcode: "00000",
     }
     await this.addressService.attach(obj).toPromise();

@@ -69,14 +69,13 @@ export class BookingModalComponent implements OnInit {
     return arr;
   }
 
-  selectPlace(item){
-    if(item.formattedAddressLines.includes(item.name)){
-      this.place = item.formattedAddressLines.join(' ')
-    }else{
-      this.place = item.name + ' ' + item.formattedAddressLines.join(' ');
-    }
+  async selectPlace(item){
+    const details = await this.addressService.getPlaceDetails(item.completionUrl);
+  
+    this.place = item.displayLines.join(' ');
+    
     this.placeInput.nativeElement.innerHtml = this.place;
-    this.selectedPlace = item;
+    this.selectedPlace = details;
   }
 
   async confirm() {
@@ -90,12 +89,12 @@ export class BookingModalComponent implements OnInit {
     }
     if (place) {
       let address = {
-        address: place.name,
-        lat: place.coordinate.latitude,
-        lng: place.coordinate.longitude,
+        address: this.place,
+        lat: place.center.lat,
+        lng: place.center.lng,
         country: place.country,
-        city: place.structuredAddress.locality,
-        local: place.structuredAddress.thoroughfare,
+        city: place.locality,
+        local: place.thoroughfare,
         postcode: "00000",
       }
       obj = { ...obj, ...address };

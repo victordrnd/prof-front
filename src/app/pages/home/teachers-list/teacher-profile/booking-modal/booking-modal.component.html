@@ -26,10 +26,8 @@
                 <input type="text" #placeInput (input)="findPlaces($event)" [(ngModel)]="place" nz-input placeholder="Prefered lesson location" [nzAutocomplete]="auto" />
             </nz-input-group>
             <nz-autocomplete #auto>
-                <nz-auto-option (click)="selectPlace(item)" *ngFor="let item of places" [nzValue]="item.name">
-                    {{item.name}} 
-                    <span *ngFor="let line of item.formattedAddressLines"> {{line}} </span>
-                    <!-- {{ item.name }} <span class="text-grey">{{item.country}}</span> -->
+                <nz-auto-option (click)="selectPlace(item)" *ngFor="let item of places" [nzValue]="item.displayLines.join(' ')">
+                    <span *ngFor="let line of item.displayLines"> {{line}} </span>
                 
                 </nz-auto-option>
             </nz-autocomplete>

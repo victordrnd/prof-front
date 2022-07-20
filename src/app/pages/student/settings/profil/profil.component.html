@@ -93,7 +93,7 @@
 
                     <nb-option *ngFor="let option of places" [value]="option">
                         <nb-icon pack="eva" icon="pin-outline" class="text-primary mt-1"></nb-icon>
-                        {{option.name}}, {{option.formattedAddressLines.join(' ')}}
+                        {{option.displayLines.join(' ')}}
                     </nb-option>
                 </nb-autocomplete>
                 <button nbButton status="primary" (click)="submitChange()"

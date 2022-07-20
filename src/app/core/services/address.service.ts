@@ -14,9 +14,13 @@ export class AddressService {
 
   async findPlaces(keyword){
     const token : any = await this.getToken().toPromise();
-    return this.http.get(`https://maps-api.apple.com/v1/search?q=${keyword}`, {headers : {"Authorization" : "Bearer " +token.accessToken}}).pipe(map((res:any) => res.results)).toPromise();
+    return this.http.get(`https://api.apple-mapkit.com/v1/searchAutocomplete?q=${keyword}`, {headers : {"Authorization" : "Bearer " +token.accessToken}}).pipe(map((res:any) => res.results)).toPromise();
   }
 
+  async getPlaceDetails(completionUrl){
+    const token : any = await this.getToken().toPromise();
+    return this.http.get(`https://api.apple-mapkit.com${completionUrl}`, {headers : {"Authorization" : "Bearer " +token.accessToken}}).pipe(map((res:any) => res.results[0])).toPromise();
+  }
   getToken(){
     return this.http.get(`${environment.chatServer}/maps/token`, {context : withCache({ttl : 60*1000})})
   }
