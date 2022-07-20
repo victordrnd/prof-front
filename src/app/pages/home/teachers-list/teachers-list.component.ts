@@ -6,6 +6,7 @@ import { SubjectService } from 'src/app/core/services/subject.service';
 import { AddressService } from 'src/app/core/services/address.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'app-teachers-list',
@@ -19,8 +20,9 @@ export class TeachersListComponent implements OnInit, OnDestroy {
     lat: null,
     lng: null,
     date : null,
-    at_home : true
+    at_home : false
   };
+
   data;
   environement = environment;
   subjects;
@@ -36,6 +38,7 @@ export class TeachersListComponent implements OnInit, OnDestroy {
     private teacherService: TeacherService,
     private subjectService: SubjectService,
     private addressService: AddressService,
+    private sidebarService: NbSidebarService,
     private router: Router) { }
   
 
@@ -105,6 +108,11 @@ export class TeachersListComponent implements OnInit, OnDestroy {
     this.data = await this.teacherService.search(this.filters).toPromise();
   }
 
+
+
+  toogleSidebar(){
+    this.sidebarService.toggle();
+  }
 
   ngOnDestroy(): void {
     this.subscriptions.map(sb => sb.unsubscribe());

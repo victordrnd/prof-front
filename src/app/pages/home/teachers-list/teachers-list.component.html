@@ -1,7 +1,8 @@
 <app-header></app-header>
 <nb-layout>
-    <nb-sidebar>
+    <nb-sidebar responsive start class="top-0">
         <div class="m-1">
+            <nb-icon (click)="toogleSidebar()" icon="close-outline" pack="eva" class="mx-2 pointer d-md-none d-block float-right"></nb-icon>
             <h4>Recherche</h4>
             <nb-form-field>
                 <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
@@ -22,7 +23,7 @@
                 </nb-option>
             </nb-autocomplete>
             <h4 class="mt-4">Date</h4>
-            <input nbInput placeholder="Lesson date" (input)="onDateSelectionChange($event)" [nbDatepicker]="dateTimePicker">
+            <input class="w-100 date-input" nbInput placeholder="Lesson date" (input)="onDateSelectionChange($event)" [nbDatepicker]="dateTimePicker">
             <nb-date-timepicker (dateTimeChange)="onDateSelectionChange($event)" singleColumn #dateTimePicker></nb-date-timepicker>
 
             <h4 class="mt-4">Matières</h4>
@@ -44,7 +45,8 @@
     </nb-sidebar>
 
     <nb-layout-column style="overflow: auto; min-height: calc(100vh - 74px);">
-        <div class="row mx-0 mt-4 px-5" *ngIf="data">
+        <button nbButton type="primary" class="mx-auto d-block d-md-none mt-3" (click)="toogleSidebar()"><nb-icon icon="options-2-outline" pack="eva" class="mx-2"></nb-icon>Filter les professeurs</button>
+        <div class="row mx-0 mt-4 px-md-5 px-3" *ngIf="data">
             <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 px-2 mt-5" *ngFor="let teacher of data?.data">
                 <div class="">
 
