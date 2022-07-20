@@ -29,7 +29,6 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { CreateCollabLessonModalComponent } from './_components/create-collab-lesson-modal/create-collab-lesson-modal.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { AppleMapsModule } from 'ngx-apple-maps';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, LessonDetailsComponent, DefaultDashboardRedirectionComponent, LessonSettingsModalComponent, CreateCollabLessonModalComponent],
   imports: [
@@ -63,7 +62,6 @@ import { AppleMapsModule } from 'ngx-apple-maps';
     NzSelectModule,
     NbFormFieldModule,
     NbAlertModule,
-    AppleMapsModule
   ],
   exports : [HeaderComponent, FooterComponent, TranslateModule, FormsModule, ReactiveFormsModule, LessonDetailsComponent],
   providers: [
