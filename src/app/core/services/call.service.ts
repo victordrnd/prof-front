@@ -155,7 +155,7 @@ export class CallService {
     try {
       if (navigator.mediaDevices) {
         this.stream = await navigator.mediaDevices.getUserMedia({
-          audio: audio, video: video ? {
+          audio: audio ? {echoCancellation : true, noiseSuppression : true } : false, video: video ? {
             width: { ideal: 4096 },
             height: { ideal: 2160 },
             //facingMode: "user",
