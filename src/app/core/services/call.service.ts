@@ -201,11 +201,11 @@ export class CallService {
     return new RTCPeerConnection({
       iceServers: [
         { urls: "stun:stun.l.google.com:19302" },
-        // {
-        //   urls: "turn:srv1.victordurand.fr",
-        //   username: "visio",
-        //   credential: "123+aze"
-        // }
+        {
+          urls: "turn:turn.master-classroom.com:3478",
+          username: "masterclassroom",
+          credential: "masterclassroom2022"
+        }
       ]
     });
   }
