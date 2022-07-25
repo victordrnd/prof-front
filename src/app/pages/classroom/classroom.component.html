@@ -5,7 +5,7 @@
     <nb-layout-column>
 
         <div [class.d-none]="!connected">
-            <div [nbSpinner]="!started && connected" nbSpinnerStatus="primary"
+            <div class="h-100" [nbSpinner]="!started && connected" nbSpinnerStatus="primary"
                 nbSpinnerMessage="Waiting for remote to connect">
                 <video autoplay [class.d-none]="!connectedUser?.camera" #participantVideo playsinline
                     id="participants-video" class="w-100 h-100"></video>
