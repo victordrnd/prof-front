@@ -28,15 +28,15 @@
         </div>
 
         <div class="col-12 ">
-            <h5>Liste des paiements</h5>
+            <h5>{{'settings.payments.list' | translate}}</h5>
             <nz-table #basicTable [nzLoading]="loading" [nzFrontPagination]="false" [nzData]="charges">
                 <thead>
                     <tr>
-                        <th>Description</th>
-                        <th>Montant</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Receipt</th>
+                        <th>{{'settings.payments.description' | translate}}</th>
+                        <th>{{'settings.payments.amount' | translate}}</th>
+                        <th>{{'settings.payments.date' | translate}}</th>
+                        <th>{{'settings.payments.status' | translate}}</th>
+                        <th>{{'settings.payments.receipt' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,11 +46,11 @@
                         <td>{{charge.created * 1000 | date:'medium'}}</td>
                         <td>
                             <nb-tag *ngIf="charge.paid && !charge.refunded" size="small" status="primary" appearance="filled"
-                                text="Terminé"></nb-tag>
+                                text="{{'settings.payments.done' | translate}}"></nb-tag>
                             <nb-tag *ngIf="charge.disputed" size="small" status="warning" appearance="filled"
-                                text="Litige en cours"></nb-tag>
+                                text="{{'settings.payments.disputed' | translate}}"></nb-tag>
                             <nb-tag *ngIf="charge.refunded" size="small" status="danger" appearance="filled"
-                                text="Remboursé"></nb-tag>
+                                text="{{'settings.payments.refunded' | translate}}"></nb-tag>
                                 <p *ngIf="charge.failure_message">{{charge.failure_message}}</p>
                         </td>
                         <td>

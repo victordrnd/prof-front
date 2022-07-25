@@ -1,10 +1,7 @@
 <h3 class="text-center mt-3">{{'header.diploma' | translate}}</h3>
 
 
-<p class="text-center mx-md-5 mx-3">Afin de valider votre profil de professeur, nous aurions besoin de vérifier vos diplômes
-    d'enseignants,
-    cette étape est nécessaire afin de nous assurer que l'ensemble des professeurs propose un contenu de qualité aux
-    étudiants de la plateforme</p>
+<p class="text-center mx-md-5 mx-3">{{'settings.diploma.notice' | translate}}</p>
 
 
 <div class="row mx-md-5 mx-3">
@@ -13,9 +10,9 @@
             <p class="ant-upload-drag-icon">
                 <nb-icon nbPrefix icon="cloud-upload-outline" pack="eva" class="h1 text-primary"></nb-icon>
             </p>
-            <p class="ant-upload-text">Click or drag diploma to this area to upload</p>
+            <p class="ant-upload-text">{{'settings.diploma.upload' | translate}}</p>
             <p class="ant-upload-hint">
-                Support for a single or bulk upload. Supported format are PDF, PNG, JPG, JPEG (max : 5 Mo / file)
+                {{'settings.diploma.upload_hint' | translate}}
             </p>
         </nz-upload>
     </div>
@@ -24,14 +21,14 @@
 
 <div class="mx-md-5 mx-3">
 
-    <h5 class="text-center mt-5">Mes diplômes enregistrés</h5>
+    <h5 class="text-center mt-5">{{'settings.diploma.my_diploma' | translate}}</h5>
     
     <nz-table #basicTable [nzData]="diplomas" [nzLoading]="loading" [nzShowPagination]="false">
         <thead>
             <tr>
-                <th>File</th>
-                <th>Status</th>
-                <th class="d-none d-md-block">Action</th>
+                <th>{{'settings.diploma.file' | translate}}</th>
+                <th>{{'settings.diploma.status' | translate}}</th>
+                <th class="d-none d-md-block">{{'settings.diploma.action' | translate}}</th>
             </tr>
         </thead>
         <tbody>

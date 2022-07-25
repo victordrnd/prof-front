@@ -1,209 +1,264 @@
 {
-  "header": {
-    "home": "Home",
-    "about": "About us",
-    "contact": "Contact",
-    "login": "Login",
-    "register": "Register",
-    "dashboard": "Dashboard",
-    "logout": "Log out",
-    "bank_info": "Banking Information",
-    "availabilities": "Availabilities management",
-    "diploma": "Upload your diploma"
-  },
-  "register": {
-    "title": "Register",
-    "profil": "Your informations",
-    "location": "Your address",
-    "student": {
-      "title": "I am a student",
-      "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
-    },
-    "teacher": {
-      "title": "I am a teacher",
-      "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!"
-    },
-    "next": "Next",
-    "lastname": "Lastname",
-    "firstname": "Firstname",
-    "email": "Email",
-    "password": "Password",
-    "repeat-password": "Repeat password",
-    "gender": "Gender",
-    "male": "Male",
-    "female": "Female",
-    "success": {
-      "title": "Success",
-      "desc": "Your account has successfully been created"
-    },
-    "error": {
-      "title": "Error",
-      "desc": "An error has occured"
-    },
-    "no_account": "No account yet ?",
-    "register_now": "Register now",
-    "avatar": "My profil picture",
-    "rate": "Hourly rate",
-    "description": {
-      "title": "About me"
-    },
-    "subjects": {
-      "title": "Taught Subjects"
-    },
-    "validation_email" : {
-      "title" : "Your email has been validated",
-      "back" : "Back to home",
-      "main" : "Main"
-    }
-  },
-  "login": {
-    "title": "Login",
-    "submit": "Log in"
-  },
-  "reset_pass": {
-    "email": "Email",
-    "mdp": "New password",
-    "repeat-password": "Repeat password",
-    "forgot": "Forgot your password?",
-    "reset": "Reset your password",
-    "click_to_change_password": "Click here",
-    "success": {
-      "descMail": "We just sent you an email",
-      "title": "Success",
-      "desc": "Your password has been changed"
-    },
-    "error": {
-      "title": "Error",
-      "desc": "An error has occured"
-    }
-  },
-  "subject": {
-    "maths": "Maths",
-    "english": "English",
-    "french": "French",
-    "history": "History",
-    "law": "Law",
-    "physics": "Physics"
-  },
-  "payment": {
-    "add": "Add a payment method",
-    "number": "Card number",
-    "expiration": "Expiration date",
-    "expiration_placeholder": "MM/YY",
-    "cvv": "Card verification value",
-    "fullname": "Card holder",
-    "add_card": "Add card",
-    "error": "An error has occured, retry later",
-    "use_by_default": "Use this card by default",
-    "delete": {
-      "title": "Do you want to remove this Payment method from your account ?"
-    }
-  },
-  "teacher": {
-    "desc": "Description",
-    "teached_subjects": "Teached subjects",
-    "reviews": "Reviews",
-    "no_reviews": "No review",
-    "click_to_book": "Click here to book lesson",
-    "grade": "Grade",
-    "locality": "Locality",
-    "not_found": "No teacher have been found nearby",
-    "private_tutoring": {
-      "tooltip": "Propose a group lesson"
-    },
-    "rate" :"Hourly rate"
-  },
-  "admin": {
-    "student" : {
-      "list": "List of students",
-      "search": "Search",
-      "search-student": "Search a student",
-      "lastname": "Lastname",
-      "firstname": "Firstname",
-      "email": "Email",
-      "phone": "Phone",
-      "sexe": "Sexe",
-      "list-lessons": "Lessons list of the student",
-      "select-status": "Select a status",
-      "select-subject": "Select a subject"
-    },
-    "subject" :{
-      "title": "Edit your subjects",
-      "create": "Create new subject",
-      "libellefr": "French label",
-      "libelle": "English label",
-      "code": "Code",
-      "color": "Color",
-      "update": "Update",
-      "codeform": "Subject code",
-      "libelleform": "English subject name",
-      "libellefrform": "French subject name",
-      "add": "Add",
-      "updatetitle": "Update subject of "
-    },
-    "action": "No action possible"
-  },
-  "general": {
-    "hour": "heure",
-    "hours": "heures"
-  },
-  "lesson": {
-    "detail": "Lesson details",
-    "with": "with",
-    "duration": "Duration",
-    "students": "Students",
-    "teacher": "Teacher",
-    "subject": "Subject",
-    "date": "Date",
-    "type": "Type",
-    "status": "Status",
-    "description": "Description",
-    "coming": "Upcoming Courses",
-    "history": "History of my courses",
-    "address" : "Address",
-    "scheduled": "Scheduled at",
-    "student": {
-      "lastname": "Lastname",
-      "firstname": "Firstname"
-    },
-    "settings": {
-      "accept_text": "Accept student",
-      "accept_confirm": "Do you really want to accept this student ?",
-      "accept_success": "Student has been added to this lesson",
-      "updated_success": "Lesson have correctly been updated"
-    },
-    "join": {
-      "title": "Join this course"
-    },
-    "cancel": {
-      "title": "Cancel this course",
-      "confirm": "Do you really want to cancel this course ?",
-      "ok": "I confirm",
-      "success": "Success",
-      "success_description": "This course has successfully been cancelled"
-    }
-  },
-  "settings": {
-    "success_description": "Your information have been updated",
-    "save": "Save profile",
-    "subjects": "Subjects",
-    "additional_info": "Additional Information",
-    "invalid_iban": "Invalid IBAN",
-    "add_subject": "Add subject",
-    "confirm_delete_subject": "Do you really want to remove this subject from your account ?"
-  },
-  "shared": {
-    "success": "Success",
-    "error": "Error",
-    "error_description": "An error has occured"
-  },
-  "status": {
-    "unconfirmed": "Unconfirmed",
-    "confirmed": "Confirmed",
-    "cancelled": "Cancelled",
-    "done": "Paid",
-    "waiting": "Waiting",
-    "approved": "Approved",
-    "refused": "Refused"
-  }
+	"admin": {
+		"action": "No action possible",
+		"student": {
+			"email": "Email",
+			"firstname": "Firstname",
+			"lastname": "Lastname",
+			"list": "List of students",
+			"list-lessons": "Lessons list of the student",
+			"phone": "Phone",
+			"search": "Search",
+			"search-student": "Search a student",
+			"select-status": "Select a status",
+			"select-subject": "Select a subject",
+			"sexe": "Sexe"
+		},
+		"subject": {
+			"add": "Add",
+			"code": "Code",
+			"codeform": "Subject code",
+			"color": "Color",
+			"create": "Create new subject",
+			"libelle": "English label",
+			"libelleform": "English subject name",
+			"libellefr": "French label",
+			"libellefrform": "French subject name",
+			"title": "Edit your subjects",
+			"update": "Update",
+			"updatetitle": "Update subject of "
+		}
+	},
+	"dispute": {
+		"submitted_success": "Le litige a été correctement transmis et sera traité dans les plus bref délais",
+		"title": "Ouverture d'un litige"
+	},
+	"general": {
+		"hour": "heure",
+		"hours": "heures"
+	},
+	"header": {
+		"about": "About us",
+		"availabilities": "Availabilities management",
+		"bank_info": "Banking Information",
+		"contact": "Contact",
+		"dashboard": "Dashboard",
+		"diploma": "Upload your diploma",
+		"home": "Home",
+		"login": "Login",
+		"logout": "Log out",
+		"my_lessons": "My Lessons",
+		"profil": "My Profile",
+		"register": "Register"
+	},
+	"home": {
+		"brand": "Master ClassRoom",
+		"give_class": "You'd like to give class ?",
+		"register_teacher": "Register as a teacher"
+	},
+	"lesson": {
+		"action": "Action",
+		"address": "Address",
+		"cancel": {
+			"confirm": "Do you really want to cancel this course ?",
+			"ok": "I confirm",
+			"success": "Success",
+			"success_description": "This course has successfully been cancelled",
+			"title": "Cancel this course"
+		},
+		"coming": "Upcoming Courses",
+		"date": "Date",
+		"description": "Description",
+		"detail": "Lesson details",
+		"duration": "Duration",
+		"history": "History of my courses",
+		"join": {
+			"title": "Join this course"
+		},
+		"scheduled": "Scheduled at",
+		"scheduled_at": "Scheduled at",
+		"settings": {
+			"accept_confirm": "Do you really want to accept this student ?",
+			"accept_success": "Student has been added to this lesson",
+			"accept_text": "Accept student",
+			"updated_success": "Lesson have correctly been updated"
+		},
+		"status": "Status",
+		"student": {
+			"firstname": "Firstname",
+			"lastname": "Lastname"
+		},
+		"students": "Students",
+		"subject": "Subject",
+		"success_description": "Inquiry has been saved successfully",
+		"teacher": "Teacher",
+		"type": "Type",
+		"with": "with"
+	},
+	"login": {
+		"submit": "Log in",
+		"title": "Login"
+	},
+	"payment": {
+		"add": "Add a payment method",
+		"add_card": "Add card",
+		"cvv": "Card verification value",
+		"delete": {
+			"title": "Do you want to remove this Payment method from your account ?"
+		},
+		"error": "An error has occured, retry later",
+		"expiration": "Expiration date",
+		"expiration_placeholder": "MM/YY",
+		"fullname": "Card holder",
+		"number": "Card number",
+		"use_by_default": "Use this card by default"
+	},
+	"register": {
+		"avatar": "My profil picture",
+		"description": {
+			"title": "About me"
+		},
+		"email": "Email",
+		"error": {
+			"desc": "An error has occured",
+			"title": "Error"
+		},
+		"female": "Female",
+		"firstname": "Firstname",
+		"gender": "Gender",
+		"lastname": "Lastname",
+		"location": "Your address",
+		"male": "Male",
+		"next": "Next",
+		"no_account": "No account yet ?",
+		"password": "Password",
+		"profil": "Your informations",
+		"rate": "Hourly rate",
+		"register_now": "Register now",
+		"repeat-password": "Repeat password",
+		"student": {
+			"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!",
+			"title": "I am a student"
+		},
+		"subjects": {
+			"title": "Taught Subjects"
+		},
+		"success": {
+			"desc": "Your account has successfully been created",
+			"title": "Success"
+		},
+		"teacher": {
+			"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, neque!",
+			"title": "I am a teacher"
+		},
+		"title": "Register",
+		"validation_email": {
+			"back": "Back to home",
+			"main": "Main",
+			"title": "Your email has been validated"
+		}
+	},
+	"reset_pass": {
+		"click_to_change_password": "Click here",
+		"email": "Email",
+		"error": {
+			"desc": "An error has occured",
+			"title": "Error"
+		},
+		"forgot": "Forgot your password?",
+		"mdp": "New password",
+		"repeat-password": "Repeat password",
+		"reset": "Reset your password",
+		"success": {
+			"desc": "Your password has been changed",
+			"descMail": "We just sent you an email",
+			"title": "Success"
+		}
+	},
+	"settings": {
+		"add_subject": "Add subject",
+		"additional_info": "Additional Information",
+		"availabilities": {
+			"available": "Disponible",
+			"legend": "Legende",
+			"unavailable": "Non Disponible"
+		},
+		"bank_info": {
+			"active": "Active",
+			"amount": "Amount",
+			"complete_profile": "Complete my profile",
+			"date": "Date",
+			"in_progress": "In Progress",
+			"inactive": "Inactive yet",
+			"notice": "Il semblerait que vous n'ayez pas encore complété vos informations pour recevoir les paiements de vos cours, merci de cliquer sur le lien suivant pour compléter votre profil",
+			"payment_list": "Payments history",
+			"status": "Status",
+			"transfers": "Transfers",
+			"type": "Type"
+		},
+		"confirm_delete_subject": "Do you really want to remove this subject from your account ?",
+		"description": "Description",
+		"diploma": {
+			"action": "Action",
+			"file": "File",
+			"my_diploma": "My saved diplomas",
+			"notice": "Afin de valider votre profil de professeur, nous aurions besoin de vérifier vos diplômes d'enseignants, cette étape est nécessaire afin de nous assurer que l'ensemble des professeurs propose un contenu de qualité aux étudiants de la plateforme",
+			"status": "Status",
+			"upload": "Click or drag diploma to this area to upload",
+			"upload_hint": "Support for a single or bulk upload. Supported format are PDF, PNG, JPG, JPEG (max : 5 Mo / file)"
+		},
+		"invalid_iban": "Invalid IBAN",
+		"payments": {
+			"amount": "Amount",
+			"date": "Date",
+			"description": "Description",
+			"disputed": "Disputed",
+			"done": "Done",
+			"list": "Payments history",
+			"receipt": "Receipt",
+			"refunded": "Refunded",
+			"status": "Status"
+		},
+		"profile": "My profile",
+		"save": "Save profile",
+		"subjects": "Subjects",
+		"success_description": "Your information have been updated"
+	},
+	"shared": {
+		"error": "Error",
+		"error_description": "An error has occured",
+		"save": "Sauvegarder",
+		"success": "Success"
+	},
+	"status": {
+		"approved": "Approved",
+		"cancelled": "Cancelled",
+		"confirmed": "Confirmed",
+		"done": "Paid",
+		"refused": "Refused",
+		"unconfirmed": "Unconfirmed",
+		"waiting": "Waiting"
+	},
+	"subject": {
+		"english": "English",
+		"french": "French",
+		"history": "History",
+		"law": "Law",
+		"maths": "Maths",
+		"physics": "Physics"
+	},
+	"teacher": {
+		"click_to_book": "Click here to book lesson",
+		"desc": "Description",
+		"grade": "Grade",
+		"locality": "Locality",
+		"no_reviews": "No review",
+		"not_found": "No teacher have been found nearby",
+		"private_tutoring": {
+			"tooltip": "Propose a group lesson"
+		},
+		"rate": "Hourly rate",
+		"reviews": "Reviews",
+		"teached_subjects": "Teached subjects"
+	}
 }

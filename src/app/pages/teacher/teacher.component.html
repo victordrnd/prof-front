@@ -6,25 +6,25 @@
         <ul nz-menu nzMode="inline" (nzClick)="closeMenu()" class="w-100">
             <li class="mt-0" nz-menu-item routerLink="dashboard">
                 <i nz-icon nzType="home" nzTheme="outline"></i>
-                <span>Tableau de bord</span>
+                <span>{{'header.dashboard' | translate}}</span>
             </li>
-            <li nz-submenu nzTitle="Mes cours" nzIcon="book" nzOpen>
+            <li nz-submenu nzTitle="{{'header.my_lessons' | translate}}" nzIcon="book" nzOpen>
                 <ul>
                     <li nz-menu-item routerLink="lessons">{{'lesson.coming' | translate}}</li>
                     <li nz-menu-item routerLink="lessons/history">{{'lesson.history' | translate}}</li>
                 </ul>
 
-            <li nz-submenu nzTitle="Mon profil" nzIcon="user" nzOpen>
+            <li nz-submenu nzTitle="{{'header.profil' | translate}}" nzIcon="user" nzOpen>
                 <ul>
                     <li nz-menu-item routerLink="settings/profil">
-                        Afficher mon profil</li>
+                        {{'header.profil' | translate}}</li>
                     <li class="d-none d-md-block" nz-menu-item routerLink="settings/availabilities">
                         {{'header.availabilities' | translate}}</li>
                     <li nz-menu-item routerLink="settings/payments">
                         {{'header.bank_info' | translate}}</li>
                     <li nz-menu-item routerLink="settings/diploma">
                         {{'header.diploma' | translate}}</li>
-                    <li nz-menu-item (click)="logout()">Déconnexion
+                    <li nz-menu-item (click)="logout()">{{'header.logout' | translate}}
                     </li>
                 </ul>
             </li>

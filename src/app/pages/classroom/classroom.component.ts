@@ -118,18 +118,13 @@ export class ClassroomComponent implements OnInit, OnDestroy {
 
 
 
-  onScreenSharingChange(activated) {
+  async onScreenSharingChange(activated) {
     this.inputs.screenShare = activated;
-    // if (this.inputs.camera) {
-    //   this.toogleCamera(false);
-    // }
     if (activated) {
       this.callService.startScreenShare()
     } else {
-      this.callService.stopScreenShare();
-      if (this.inputs.camera) {
-        this.toogleCamera(true);
-      }
+      await this.callService.stopScreenShare(this.inputs.camera, this.inputs.mic);
+      this.startVideoFallback()
     }
   }
 
@@ -167,7 +162,6 @@ export class ClassroomComponent implements OnInit, OnDestroy {
       this.connectedUser = this.lesson.teacher;
     }
     this.connectedUser.camera = true;
-    console.log(this.connectedUser);
   }
 
   startVideoFallback() {

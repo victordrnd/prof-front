@@ -6,7 +6,7 @@
             <div class="row mx-0">
                 <div class="col-md-6">
                     <div class="mt-5">
-                        <h1 class="text-center text-primary" style="margin-top:25vh">MasterClassRoom</h1>
+                        <h1 class="text-center text-primary" style="margin-top:25vh">{{'home.brand' | translate}}</h1>
                     </div>
                     <nb-form-field class="center mx-md-5">
                         <nb-icon nbPrefix icon="pin-outline" pack="eva"></nb-icon>
@@ -22,8 +22,8 @@
 
                     </nb-autocomplete>
 
-                    <p class="text-center mt-5 center">You'd like to give classes ? <span class="text-primary pointer"
-                            (click)="registerTeacher()">Register as teacher</span></p>
+                    <p class="text-center mt-5 center">{{'home.give_class' | translate}} <span class="text-primary pointer"
+                            (click)="registerTeacher()">{{'home.register_teacher' | translate}}</span></p>
                 </div>
                 <div class="col-md-6">
                     <img src="../../../assets/home/hero.png" class="w-100">

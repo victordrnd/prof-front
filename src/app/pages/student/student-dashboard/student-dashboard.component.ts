@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -15,6 +16,7 @@ export class StudentDashboardComponent implements OnInit {
   constructor(private paymentService: PaymentService,
     private notificationService: NbToastrService,
     private translate: TranslateService,
+    private router : Router,
     private stripe: StripeService) { }
 
   actions;
@@ -37,5 +39,10 @@ export class StudentDashboardComponent implements OnInit {
     }).catch(err => {
       this.notificationService.danger(this.translate.instant("shared.error_description", this.translate.instant("shared.error")));
     }).finally(() => this.loading = false);
+  }
+
+
+  goToTeachers(){
+    this.router.navigate(['search'])
   }
 }

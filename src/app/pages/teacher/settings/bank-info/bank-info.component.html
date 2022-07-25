@@ -4,8 +4,7 @@
 
     <nb-card class="p-3 mx-md-5 mx-3" *ngIf="account?.requirements.currently_due.length > 0">
         <div>
-            <p class="text-center muted">Il semblerait que vous n'ayez pas encore complété vos informations pour
-                recevoir les paiements de vos cours, merci de cliquer sur le lien suivant pour compléter votre profil
+            <p class="text-center muted">{{'settings.bank_info.notice' | translate}}
             </p>
             <div class="mx-5">
                 <ul class="text-center list-unstyled">
@@ -13,17 +12,15 @@
                 </ul>
                 <!-- <nb-alert *ngFor="let error of account.requirements.errors" accent="danger">{{error.reason}}</nb-alert> -->
             </div>
-            <button nbButton status="primary" class="mx-auto d-block" (click)="openStripeSetup()">Completer mon
-                profil</button>
+            <button nbButton status="primary" class="mx-auto d-block" (click)="openStripeSetup()">{{'settings.bank_info.complete_profile' | translate}}</button>
         </div>
     </nb-card>
 
     <div class="m-md-5 m-3">
-        <label>Transfers : </label>
+        <label>{{'settings.bank_info.transfers' | translate}} : </label>
         <div class="mt-3" *ngIf="account">
-            <nb-alert class="d-inline-block" status="danger" *ngIf="account.capabilities.transfers !='active'">Inactive
-                yet</nb-alert>
-            <nb-alert class="d-inline-block" status="primary" *ngIf="account.capabilities.transfers =='active'">Active
+            <nb-alert class="d-inline-block" status="danger" *ngIf="account.capabilities.transfers !='active'">{{'settings.bank_info.inactive' | translate}}</nb-alert>
+            <nb-alert class="d-inline-block" status="primary" *ngIf="account.capabilities.transfers =='active'">{{'settings.bank_info.active' | translate}}
             </nb-alert>
         </div>
     </div>
@@ -40,14 +37,14 @@
 
     <div class="row mx-md-5 mx-3">
         <div class="col-12 px-0">
-            <h5>Liste des paiements</h5>
+            <h5>{{'settings.bank_info.payment_list' | translate}}</h5>
             <nz-table #basicTable [nzLoading]="loading" [nzFrontPagination]="false" [nzData]="transfers">
                 <thead>
                     <tr>
-                        <th>Type</th>
-                        <th>Montant</th>
-                        <th>Date</th>
-                        <th>Status</th>
+                        <th>{{'settings.bank_info.type' | translate}}</th>
+                        <th>{{'settings.bank_info.amount' | translate}}</th>
+                        <th>{{'settings.bank_info.date' | translate}}</th>
+                        <th>{{'settings.bank_info.status' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +56,7 @@
                             <td>{{transfer.created * 1000 | date:'mediumDate'}}</td>
                             <td>
                                 <nb-tag *ngIf="!transfer.reversed" size="small" class="px-2 px-md-4" status="basic" appearance="filled"
-                                    text="En cours"></nb-tag>
+                                    text="{{'settings.bank_info.in_progress' | translate}}"></nb-tag>
                             </td>
                         </tr>
                     </ng-container>

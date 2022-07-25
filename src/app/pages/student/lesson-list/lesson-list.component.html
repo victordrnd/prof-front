@@ -41,9 +41,9 @@
                         <th>{{'lesson.students' | translate}}</th>
                         <th class="d-none d-md-block">{{'lesson.teacher' | translate}}</th>
                         <th>{{'lesson.subject' | translate}}</th>
-                        <th>Scheduled at</th>
-                        <th>Status</th>
-                        <th class="d-none d-md-block">Action</th>
+                        <th>{{'lesson.scheduled_at' | translate}}</th>
+                        <th>{{'lesson.status' | translate}}</th>
+                        <th class="d-none d-md-block">{{'lesson.action' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,18 +77,17 @@
                         </td>
                         <td class="d-none d-md-block">
                             <button nz-button nz-dropdown (click)="$event.stopPropagation()" [nzDropdownMenu]="menu">
-                                Action
+                                {{'lesson.action' | translate}}
                                 <i nz-icon nzType="down"></i>
                             </button>
                             <nz-dropdown-menu #menu="nzDropdownMenu">
                                 <ul nz-menu>
-                                    <li nz-menu-item (click)="goToCourse(lesson)">Afficher le cours</li>
+                                    <li nz-menu-item (click)="goToCourse(lesson)">{{'lesson.detail' | translate}}</li>
                                     <li *ngIf="lesson?.relative_status?.code !='cancelled' && lesson.scheduled_at > date"
                                         nz-menu-item nz-popconfirm
                                         nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}"
                                         nzPopconfirmPlacement="bottom" (nzOnConfirm)="cancelLesson(lesson)"
-                                        nzOkText="{{'lesson.cancel.ok' | translate}}">Annuler le
-                                        cours</li>
+                                        nzOkText="{{'lesson.cancel.ok' | translate}}">{{'lesson.cancel.title'}}</li>
                                 </ul>
                             </nz-dropdown-menu>
                         </td>

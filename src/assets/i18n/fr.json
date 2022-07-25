@@ -7,9 +7,16 @@
         "register": "Inscription",
         "dashboard": "Tableau de bord",
         "logout": "Déconnexion",
+        "my_lessons" : "Mes cours",
         "bank_info": "Informations bancaires",
         "availabilities": "Gestion des disponibilités",
-        "diploma": "Gestion des diplômes"
+        "diploma": "Gestion des diplômes",
+        "profil" : "Mon profil"
+    },
+    "home" : {
+        "brand" : "Master ClassRoom",
+        "give_class" : "Vous aimeriez donner des cours ?",
+        "register_teacher" : "Enregistrez vous en tant que professeur"
     },
     "register": {
         "title": "Inscription",
@@ -139,9 +146,11 @@
         "date": "Date",
         "type": "Type",
         "students": "Etudiants",
+        "scheduled_at" : "Planifié le",
         "teacher": "Professeur",
         "subject": "Matière",
         "status": "Statut",
+        "action" : "Action",
         "description": "Description",
         "coming": "Cours à venir",
         "history": "Historique de mes cours",
@@ -170,13 +179,53 @@
         }
     },
     "settings": {
+        "profile" : "Mon profil",
+        "description" : "Description",
         "success_description": "Vos informations ont été mises à jour",
         "save": "Sauvegarder",
         "additional_info": "Mes informations complémentaires",
         "subjects": "Matières enseignées",
         "invalid_iban": "IBAN invalide",
         "add_subject": "Ajouter une matière",
-        "confirm_delete_subject": "Êtes-vous certains de vouloir supprimer cette matière de vos enseignements ?"
+        "confirm_delete_subject": "Êtes-vous certains de vouloir supprimer cette matière de vos enseignements ?",
+        "availabilities" : {
+            "legend" : "Legende",
+            "available" : "Disponible",
+            "unavailable" : "Non Disponible"
+        },
+        "bank_info" : {
+            "notice"  :"Il semblerait que vous n'ayez pas encore complété vos informations pour recevoir les paiements de vos cours, merci de cliquer sur le lien suivant pour compléter votre profil",
+            "complete_profile" : "Completer mon profil",
+            "transfers" : "Virement",
+            "inactive" : "Inactif pour le moment",
+            "active" : "Actif",
+            "payment_list" : "Liste des paiements",
+            "type" : "Type",
+            "amount" : "Montant",
+            "date" : "Date",
+            "status" : "Statut",
+            "in_progress" : "En cours"
+        },
+        "diploma" : {
+            "notice" : "Afin de valider votre profil de professeur, nous aurions besoin de vérifier vos diplômes d'enseignants, cette étape est nécessaire afin de nous assurer que l'ensemble des professeurs propose un contenu de qualité aux étudiants de la plateforme",
+            "upload" : "Click or drag diploma to this area to upload",
+            "upload_hint" : "Support for a single or bulk upload. Supported format are PDF, PNG, JPG, JPEG (max : 5 Mo / file)",
+            "my_diploma" : "Mes diplômes enregistrés",
+            "file" :"Fichier",
+            "status" : "Statut",
+            "action" : "Action"
+        },
+        "payments" : {
+            "list" : "Liste des paiements",
+            "description" : "Description",
+            "amount" : "Montant",
+            "date" : "Date",
+            "status" : "Statut",
+            "receipt" : "Reçu",
+            "done" : "Terminé",
+            "disputed" : "Litige en cours",
+            "refunded" : "Remboursé"
+        }
     },
     "shared": {
         "save": "Sauvegarder",

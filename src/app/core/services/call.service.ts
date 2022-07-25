@@ -141,10 +141,7 @@ export class CallService {
   addTracksToPeerConnection(stream: MediaStream): void {
     if (stream) {
       stream.getTracks().forEach((track: MediaStreamTrack) => {
-        if (track.kind == "video") {
-          // this.videoTrack = track
-        }
-        this.peerConnection.addTrack(track, stream);
+        this.videoTrack = this.peerConnection.addTrack(track, stream);
       });
     }
   }
@@ -189,11 +186,17 @@ export class CallService {
 
 
 
-  async stopScreenShare() {
+  async stopScreenShare(video : boolean, audio : boolean) {
     if (this.stream) {
       this.stream.getVideoTracks().forEach(track => {
         track.enabled = false;
       });
+       await this.getMediaStream(video,audio);
+       const videoTrack = this.stream.getVideoTracks()[0];
+      if(this.videoTrack){
+        this.videoTrack.replaceTrack(videoTrack);
+        this.socket.emit('classroom.camera_toggle', {room_id : this.currentRoomId, active : video})
+      }
     }
   }
 

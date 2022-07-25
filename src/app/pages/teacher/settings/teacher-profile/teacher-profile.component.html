@@ -1,4 +1,4 @@
-<h3 class="text-center mt-3">Profile</h3>
+<h3 class="text-center mt-3">{{'settings.profile' | translate}}</h3>
 <app-profil></app-profil>
 
 
@@ -41,7 +41,7 @@
             </div>
         </nb-card-header>
         <nb-card-body>
-            <label>Description : </label>
+            <label>{{'settings.description' | translate}} : </label>
             <textarea [(ngModel)]="subject.description" class="mt-3" nbInput fullWidth
                 placeholder="Description of your {{subject.libelle | translate | lowercase}} class"></textarea>
         </nb-card-body>
