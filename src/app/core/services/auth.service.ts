@@ -88,7 +88,7 @@ export class AuthService {
   }
 
   async purgeAuth() {
-    await this.logout().toPromise().catch(e => {});
+    //await this.logout().toPromise().catch(e => {});
     this.cache.delete('user_current');
     this.destroyToken();
     this.currentUserSubject.next({});
