@@ -51,8 +51,8 @@ export class HeaderComponent implements OnInit {
   goToMessages() {
     this.router.navigate(['/messages']);
   }
-  logout() {
-    this.authService.purgeAuth();
+  async logout() {
+    await this.authService.purgeAuth();
     this.router.navigate(['/']);
   }
 

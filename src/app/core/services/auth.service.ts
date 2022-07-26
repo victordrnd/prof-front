@@ -39,14 +39,14 @@ export class AuthService {
         this.currentUserSubject.next(res);
         return true;
       } catch (error) {
-        this.purgeAuth();
+        await this.purgeAuth();
         this.currentUserSubject.next(null);
         this.isAuthenticatedSubject.next(false);
         this.router.navigate(['/login']);
         return false;
       }
     } else {
-      this.purgeAuth();
+      await this.purgeAuth();
       // this.router.navigate(['/login']);
       return false;
     }
@@ -56,7 +56,7 @@ export class AuthService {
     if (token) {
       this.saveToken(token);
     }
-    
+
     this.currentUserSubject.next(user);
     this.isAuthenticatedSubject.next(true);
   }
@@ -83,11 +83,17 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/auth/signup`, user);
   }
 
-  purgeAuth() {
+  logout() {
+    return this.http.get(`${environment.apiUrl}/auth/logout`);
+  }
+
+  async purgeAuth() {
+    await this.logout().toPromise().catch(e => {});
     this.cache.delete('user_current');
     this.destroyToken();
     this.currentUserSubject.next({});
     this.isAuthenticatedSubject.next(false);
+
   }
 
   private formatErrors(error: any) {

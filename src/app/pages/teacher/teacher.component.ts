@@ -35,8 +35,8 @@ export class TeacherComponent implements OnInit {
   }
 
 
-  logout() {
-    this.userService.purgeAuth();
+  async logout() {
+    await this.userService.purgeAuth();
     document.location.reload();
   }
 
