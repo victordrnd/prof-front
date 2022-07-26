@@ -260,5 +260,19 @@
 		"rate": "Hourly rate",
 		"reviews": "Reviews",
 		"teached_subjects": "Teached subjects"
-	}
+	},
+	"booking" : {
+        "confirm_title" : "Confirm",
+        "notice-1" : "To book a lesson with ",
+        "on" : "on",
+        "at" : "at",
+        "notice-2" : "You need to choose the subject and the duration of the lesson.",
+        "subject" : "Subject",
+        "duration": "Duration",
+        "at_home" : "Tutoring at home",
+        "address" : "Address",
+        "total" : "Total",
+        "confirm" : "Confirm",
+        "cancel" : "Cancel"
+    }
 }

@@ -1,27 +1,27 @@
-<h5>Confirmation</h5>
-<p>Pour réserver un cours avec {{teacher.firstname | titlecase}} le <b>{{date.date.day}} {{date.date.month}}</b>
-    à <b>{{item.time}}</b> vous devez préalablement choisir la matière à étudier ainsi que la durée du cours.</p>
+<h5>{{'booking.confirm_title' | translate}}</h5>
+<p>{{'booking.notice-1' | translate}} {{teacher.firstname | titlecase}} {{'booking.on' | translate}} <b>{{date.date.day}} {{date.date.month}}</b>
+    {{'booking.at' | translate}} <b>{{item.time}}</b> {{'booking.notice-2' | translate}}</p>
 <div class="row">
     <div class="col-md-6">
-        <label>Matière :</label>
+        <label>{{'booking.subject' | translate}} :</label>
         <nz-select [(ngModel)]="selectedSubject" class="mt-2 w-100 mx-3 d-block mx-auto">
             <nz-option *ngFor="let subject of teacher.teacher_subjects" [nzValue]="subject.subject.id"
                 nzLabel="{{subject.subject.libelle | translate}}"></nz-option>
         </nz-select>
     </div>
     <div class="col-md-6">
-        <label>Durée :</label>
+        <label>{{'booking.duration' | translate}} :</label>
         <nz-select [(ngModel)]="selectedDuration" class="mt-2 w-100 mx-3 d-block mx-auto">
             <nz-option *ngFor="let number of counter(maxDuration)" [nzValue]="number"
                 nzLabel="{{number}} {{(number ==1 ? 'general.hour' : 'general.hours') | translate}}"></nz-option>
         </nz-select>
     </div>
     <div class="col-12 mt-3">
-        <label>Cours à domicile :</label><br />
+        <label>{{'booking.at_home' | translate}} :</label><br />
         <nz-switch class="mt-2" [(ngModel)]="at_home"></nz-switch>
         <br />
         <div *ngIf="at_home">
-            <label class="mt-4">Addresse:</label>
+            <label class="mt-4">{{'booking.address' | translate}} :</label>
             <nz-input-group class="mt-2" [nzPrefix]="prefixTemplateUser">
                 <input type="text" #placeInput (input)="findPlaces($event)" [(ngModel)]="place" nz-input placeholder="Prefered lesson location" [nzAutocomplete]="auto" />
             </nz-input-group>
@@ -37,11 +37,11 @@
 </div>
 
 
-<p class="text-right mt-4 mx-3"><b>Total : {{selectedDuration * teacher.teacher_profil.rate |
+<p class="text-right mt-4 mx-3"><b>{{'booking.total' | translate}} : {{selectedDuration * teacher.teacher_profil.rate |
         currency:teacher.teacher_profil.currency}}</b></p>
 <nz-divider></nz-divider>
 <div class="">
-    <button nbButton size="small" [disabled]="checkDisabled()" status="primary" class="mx-2 float-right" (click)="confirm()">Confirm</button>
-    <button nbButton size="small" status="basic" class="float-right" (click)="cancel()">Cancel</button>
+    <button nbButton size="small" [disabled]="checkDisabled()" status="primary" class="mx-2 float-right" (click)="confirm()">{{'booking.confirm' | translate}}</button>
+    <button nbButton size="small" status="basic" class="float-right" (click)="cancel()">{{'booking.cancel' | translate}}</button>
     <p class="mb-0">&nbsp;</p>
 </div>

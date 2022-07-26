@@ -245,5 +245,19 @@
     "dispute": {
         "title": "Ouverture d'un litige",
         "submitted_success": "Le litige a été correctement transmis et sera traité dans les plus bref délais"
+    },
+    "booking" : {
+        "confirm_title" : "Confirmation",
+        "notice-1" : "Pour réserver un cours avec ",
+        "on" : "le",
+        "at" : "à",
+        "notice-2" : "vous devez préalablement choisir la matière à étudier ainsi que la durée du cours.",
+        "subject" : "Matière",
+        "duration": "Durée",
+        "at_home" : "Cours à domicile",
+        "address" : "Adresse",
+        "total" : "Total",
+        "confirm" : "Confirmer",
+        "cancel" : "Annuler"
     }
 }
