@@ -39,7 +39,7 @@ const config: SocketIoConfig = { url: environment.socketServer, options: { trans
     SharedModule,
     NbLayoutModule,
     TranslateModule.forRoot({
-      defaultLanguage: localStorage.getItem('language') ?? 'en',
+      defaultLanguage: localStorage.getItem('language') ?? navigator.language.slice(0,2),
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,

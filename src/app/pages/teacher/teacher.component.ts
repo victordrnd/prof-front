@@ -23,6 +23,7 @@ export class TeacherComponent implements OnInit {
       this.collapsed = true;
 
     };
+    
     // this.socket.connect();
     // this.socket.emit("register", {userId : this.userService.currentUserValue.id});
   }

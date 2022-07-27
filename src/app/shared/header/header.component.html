@@ -22,7 +22,7 @@
             </div>
             <nb-select class="language-selector" size="small" (selectedChange)="languageChange($event)"
                 [(selected)]="language">
-                <nb-option selected value="en">🇬🇧</nb-option>
+                <nb-option value="en">🇬🇧</nb-option>
                 <nb-option value="fr">🇫🇷</nb-option>
             </nb-select>
             <button nbButton hero size="small" routerLink="/login" class="mx-2" *ngIf="!isConnected"><i nz-icon

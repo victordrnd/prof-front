@@ -10,7 +10,7 @@ import { ChatService } from 'src/app/core/services/chat.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  language = localStorage.getItem('language') ?? 'en';
+  language = localStorage.getItem('language') ?? navigator.language.slice(0,2);
   isConnected: any;
   unreadMessageCount = 0;
   constructor(private translationService: TranslateService,
