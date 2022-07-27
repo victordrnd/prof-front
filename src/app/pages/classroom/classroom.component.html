@@ -30,19 +30,19 @@
         </div>
         <div *ngIf="!connected">
             <app-header></app-header>
-            <h4 class="text-grey text-center mt-4">Lesson {{lesson?.scheduled_at | date:'MMM d, y, h:mm a'}}</h4>
+            <h4 class="text-grey text-center mt-4">{{'classroom.title' | translate}} {{lesson?.scheduled_at | date:'MMM d, y, h:mm a'}}</h4>
             <div class="d-block mx-auto" style="width:40%">
                 <ng-lottie [options]="options"></ng-lottie>
             </div>
             <button nbButton hero class="d-block mx-auto" (click)="initConnection()" size="large"
-                status="primary">Connect to classroom</button>
+                status="primary">{{'classroom.connect' | translate}}</button>
         </div>
 
 
         <nz-drawer [nzClosable]="true" [nzVisible]="inputs.chat" nzPlacement="left" nzSize="large" [nzTitle]="null"
             (nzOnClose)="inputs.chat = false">
             <ng-container *nzDrawerContent>
-                <nb-chat title="Conversation">
+                <nb-chat title="{{'classroom.conversation' | translate}}">
                     <nb-chat-message *ngFor="let msg of messages" [files]="msg.files" [type]="msg.type"
                         [message]="msg.message" [reply]="msg.reply" [sender]="msg.user.firstname" [date]="msg.date"
                         dateFormat="shortTime" [avatar]="msg.user.image">

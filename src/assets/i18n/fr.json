@@ -165,7 +165,15 @@
             "accept_text": "Accepter l'étudiant",
             "accept_confirm": "Êtes-vous certains d'accepter cet élève ?",
             "accept_success": "L'étudiant est désormais confirmé pour ce cours",
-            "updated_success": "Le cours a correctement été mis à jour"
+            "updated_success": "Le cours a correctement été mis à jour",
+            "group" : "Cours collectif",
+            "max" : "Nombre d'étudiant maximum",
+            "link" : "Lien de la vidéo",
+            "price" : "Prix par élève",
+            "students" : "Etudiants",
+            "confirm" : "Confirmer",
+            "cancel" : "Annuler",
+            "title" :"Proposer un cours collectif"
         },
         "join": {
             "title": "Rejoindre le cours"
@@ -259,5 +267,14 @@
         "total" : "Total",
         "confirm" : "Confirmer",
         "cancel" : "Annuler"
+    },
+    "classroom" : {
+        "title" : "Cours",
+        "connect" : "Rejoindre la salle de classe",
+        "conversation" : "Conversation"
+    },
+    "tchat" : {
+        "title" : "Messagerie instantanée",
+        "show_lesson" : "Afficher le cours"
     }
 }

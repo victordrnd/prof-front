@@ -81,7 +81,15 @@
 			"accept_confirm": "Do you really want to accept this student ?",
 			"accept_success": "Student has been added to this lesson",
 			"accept_text": "Accept student",
-			"updated_success": "Lesson have correctly been updated"
+			"updated_success": "Lesson have correctly been updated",
+			"group" : "Group lesson",
+            "max" : "Maxiumum number of students",
+            "link" : "Video link",
+            "price" : "Price per student",
+            "students" : "students",
+            "confirm" : "Confirm",
+            "cancel" : "Cancel",
+            "title" :"Propose a group lesson"
 		},
 		"status": "Status",
 		"student": {
@@ -274,5 +282,14 @@
         "total" : "Total",
         "confirm" : "Confirm",
         "cancel" : "Cancel"
+    },
+	"classroom" : {
+        "title" : "Lesson",
+        "connect" : "Connect to classroom",
+        "conversation" : "Chat"
+    },
+	"tchat" : {
+        "title" : "Instant messaging",
+        "show_lesson" : "Lesson details"
     }
 }

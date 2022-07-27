@@ -1,4 +1,4 @@
-<h5>Proposer un cours collectif</h5>
+<h5>{{'lesson.settings.title' | translate}}</h5>
 <p>Pour proposer un cours collectif le <b>{{date.date.day}} {{date.date.month}}</b>
     à <b>{{item.time}}</b> vous devez préalablement choisir la matière ainsi que la durée du cours.</p>
 <div class="row">
@@ -17,13 +17,13 @@
 </div>
 
 <div class="mt-4">
-    <label>Nombre d'étudiants maximum : ({{capacity}} élèves)<span nz-tooltip nzTooltipTitle="Nombre d'étudiant pouvant rejoindre le cours ">
+    <label>{{'lesson.settings.max' | translate}} : ({{capacity}} {{'lesson.settings.students' | translate}})<span nz-tooltip nzTooltipTitle="{{'lesson.settings.max' | translate}}">
         <nb-icon nbPrefix icon="question-mark-circle-outline" class="mx-2 pointer text-primary" pack="eva"></nb-icon>
     </span> </label>
     <nz-slider [(ngModel)]="capacity" [nzMax]="10" [nzMin]="2" [nzTipFormatter]="formatToolTip"></nz-slider>
 </div>
 
-<label class="w-100">Prix par élève :</label><br />
+<label class="w-100">{{'lesson.settings.price' | translate}} :</label><br />
     <div class="d-flex">
 
         <nb-form-field>
@@ -40,7 +40,7 @@
     </div>
 <nz-divider></nz-divider>
 <div class="">
-    <button nbButton size="small" status="primary" class="mx-2 float-right" (click)="confirm()">Confirm</button>
-    <button nbButton size="small" status="basic" class="float-right" (click)="cancel()">Cancel</button>
+    <button nbButton size="small" status="primary" class="mx-2 float-right" (click)="confirm()">{{'lesson.settings.confirm' | translate}}</button>
+    <button nbButton size="small" status="basic" class="float-right" (click)="cancel()">{{'lesson.settings.cancel' | translate}}</button>
     <p class="mb-0">&nbsp;</p>
 </div>

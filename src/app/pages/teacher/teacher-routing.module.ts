@@ -9,6 +9,7 @@ import { LessonDetailsComponent } from 'src/app/shared/_components/lesson-detail
 import { BankInfoComponent } from './settings/bank-info/bank-info.component';
 import { DiplomaUploadComponent } from './settings/diploma-upload/diploma-upload.component';
 import { TeacherAvailabilitiesComponent } from './settings/teacher-availabilities/teacher-availabilities.component';
+import { TeacherGuardService } from 'src/app/core/gards/teacher-guards.service';
 
 
 
@@ -16,7 +17,7 @@ const routes: Routes = [
   {
     path : "",
     component : TeacherComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService, TeacherGuardService],
     children : [
       {
         path : "dashboard",

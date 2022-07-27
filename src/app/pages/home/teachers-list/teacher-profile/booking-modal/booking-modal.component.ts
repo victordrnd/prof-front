@@ -101,8 +101,8 @@ export class BookingModalComponent implements OnInit {
     }
     await this.lessonService.store(obj).toPromise().then(res => {
       this.modalService.closeAll();
-      this.notificationService.primary(this.translate.instant('lesson.success_description'), this.translate.instant('shared.success'));
       this.router.navigate(['student/dashboard']);
+      this.notificationService.primary(this.translate.instant('lesson.success_description'), this.translate.instant('shared.success'));
     }).catch(err => {
       if (err.status == 409) {
         const modalref = this.modalService.create({
