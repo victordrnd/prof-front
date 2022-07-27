@@ -139,6 +139,8 @@
 		"male": "Male",
 		"next": "Next",
 		"no_account": "No account yet ?",
+		"already_account" : "Already have an account ?",
+        "login" : "Login now",
 		"password": "Password",
 		"profil": "Your informations",
 		"rate": "Hourly rate",

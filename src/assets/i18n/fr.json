@@ -49,6 +49,8 @@
         },
         "no_account": "Pas encore de compte ?",
         "register_now": "Inscrivez vous",
+        "already_account" : "Vous possédez déjà un compte ?",
+        "login" : "Connectez vous",
         "avatar": "Ma photo de profil",
         "rate": "Taux horraire",
         "description": {
