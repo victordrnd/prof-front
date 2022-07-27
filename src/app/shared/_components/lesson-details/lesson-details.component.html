@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-8">
         <h3 class="text-center mt-3">{{lesson?.subject?.libelle | translate}}</h3>
-        <nb-alert status="danger" class="mx-md-4" *ngIf="lesson?.capacity > 1 && !lesson?.video_link">Le professeur n'a pas encore fourni de lien de vidéoconférence pour ce cours collectif ! Contactez le pour plus de détails</nb-alert>
+        <!-- <nb-alert status="danger" class="mx-md-4" *ngIf="lesson?.capacity > 1 && !lesson?.video_link">Le professeur n'a pas encore fourni de lien de vidéoconférence pour ce cours collectif ! Contactez le pour plus de détails</nb-alert> -->
 
         <nb-card status="primary" [nbSpinner]="loading" nbSpinnerStatus="primary" class="mx-md-4 mx-2">
             <nb-card-header [style.backgroundColor]="lesson?.subject?.color">{{lesson?.subject?.libelle | translate}}
