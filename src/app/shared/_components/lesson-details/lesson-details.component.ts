@@ -93,7 +93,8 @@ export class LessonDetailsComponent implements OnInit {
       return;
     }
     if (this.lesson.capacity == 1 || this.lesson.students.length == 1) {
-      this.router.navigate([`/classroom/${this.lesson.id}`]);
+      window.open(`https://meet.master-classroom.com/${this.lesson.hash}?jwt=${localStorage.getItem('token')}`)
+      // this.router.navigate([`/classroom/${this.lesson.id}`]);
     }
   }
 

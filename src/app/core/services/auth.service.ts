@@ -32,7 +32,7 @@ export class AuthService {
     if (this.getToken()) {
       try {
         const res: any = await this.http
-          .get(`${environment.apiUrl}/auth/current`, { context: withCache({ 'key': 'user_current' }) })
+          .get(`${environment.apiUrl}/auth/current`, { context: withCache({ key: 'user_current' }) })
           .toPromise();
         this.setAuth(res);
         this.isAuthenticatedSubject.next(true);
