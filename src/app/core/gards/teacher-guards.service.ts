@@ -10,7 +10,8 @@ export class TeacherGuardService implements CanActivate {
   constructor(private userService: AuthService) { }
 
   async canActivate() {
+    await this.userService.populate()
     const user = this.userService.currentUserValue;
-    return user.role.slug == "teacher";
+    return user.role?.slug == "teacher";
   }
 }
