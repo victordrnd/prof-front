@@ -9,7 +9,9 @@
     "logout": "Log out",
     "bank_info": "Banking Information",
     "availabilities": "Availabilities management",
-    "diploma": "Upload your diploma"
+    "diploma": "Upload your diploma",
+    "verification": "Your account needs an email verification",
+    "mail": "Send an email"
   },
   "register": {
     "title": "Register",

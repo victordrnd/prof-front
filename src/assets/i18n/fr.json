@@ -9,7 +9,9 @@
         "logout": "Déconnexion",
         "bank_info": "Informations bancaires",
         "availabilities": "Gestion des disponibilités",
-        "diploma": "Gestion des diplômes"
+        "diploma": "Gestion des diplômes",
+        "verification": "Votre compte nécessite une vérification de votre mail",
+        "mail": "Envoyer un mail"
     },
     "register": {
         "title": "Inscription",

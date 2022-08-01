@@ -80,6 +80,10 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/auth/signup`, user);
   }
 
+  sendEmail(): any {
+    return this.http.get(`${environment.apiUrl}/auth/mail_verification`);
+  }
+
   purgeAuth() {
     this.destroyToken();
     this.currentUserSubject.next({});
