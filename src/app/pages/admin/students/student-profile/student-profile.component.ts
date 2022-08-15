@@ -37,6 +37,7 @@ export class StudentProfileComponent implements OnInit {
     private statusService: StatusService,
     private subjectService: SubjectService,
     private route: ActivatedRoute,
+    private router: Router
     ) {}
 
   async ngOnInit() {
