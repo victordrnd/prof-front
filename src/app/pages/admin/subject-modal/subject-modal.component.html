@@ -1,18 +1,21 @@
 <form [formGroup]="form">
-
+  <div class="container mb-3 text-danger">
+    <div class="row">
+      <div class="col-1"><i style="vertical-align: middle;" nz-icon nzType="warning" nzTheme="outline"></i></div>
+      <div class="col-11">
+        {{'admin.subject.help' | translate}}
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12">
-      <label>{{'admin.subject.codeform' | translate}}</label>
+      <label>{{'admin.subject.libelleform' | translate}}</label>
       <input type="text" formControlName="libelle" placeholder="subject.maths" nbInput status="basic"
         class="input-full-width">
     </div>
     <div class="col-12 mt-3">
-      <label>{{'admin.subject.libelleform' | translate}}</label>
+      <label>{{'admin.subject.codeform' | translate}}</label>
       <input type="text" formControlName="slug" nbInput status="basic" class="input-full-width">
-    </div>
-    <div class="col-12 mt-3">
-      <label>{{'admin.subject.libellefrform' | translate}}</label>
-      <input type="text" formControlName="slugFr" nbInput status="basic" class="input-full-width">
     </div>
     <div class="col-12 mt-3">
       <label>{{'admin.subject.color' | translate}}</label>

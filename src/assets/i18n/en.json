@@ -44,6 +44,8 @@
 		"contact": "Contact",
 		"dashboard": "Dashboard",
 		"diploma": "Upload your diploma",
+    "verification": "Your account needs an email verification",
+    "mail": "Send an email",
 		"home": "Home",
 		"login": "Login",
 		"logout": "Log out",

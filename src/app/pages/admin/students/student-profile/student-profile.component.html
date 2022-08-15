@@ -40,7 +40,7 @@
             <th>{{'lesson.scheduled' | translate}}</th>
             <th>{{'lesson.status' | translate}}</th>
             <th>Action</th>
-            <th>Contact</th>
+            <!-- <th>Contact</th> -->
           </tr>
         </thead>
         <tbody>
@@ -81,20 +81,21 @@
             </td>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu>
-                <li *ngIf="lesson?.relative_status?.code !='cancelled'; else noAction" nz-menu-item nz-popconfirm
+                <li *ngIf="lesson?.relative_status?.code !='cancelled'" nz-menu-item nz-popconfirm
                   nzPopconfirmTitle="{{'lesson.cancel.confirm' | translate}}" nzPopconfirmPlacement="bottom"
                   (nzOnConfirm)="cancelLesson(lesson)" nzOkText="{{'lesson.cancel.ok' | translate}}">
                   {{'lesson.cancel.title' | translate}}</li>
-                <ng-template #noAction>
-                  <li nz-menu-item>{{'admin.action' | translate}} </li>
-                </ng-template>
+              </ul>
+              <ul nz-menu>
+                <li nz-menu-item (click)="showLesson(lesson.id)">
+                  {{'lesson.detail' | translate}}</li>
               </ul>
             </nz-dropdown-menu>
-            <td>
+            <!-- <td>
               <button nz-button (click)="chatWithStudent()">
                 <i nz-icon nzType="message"></i>
               </button>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </nz-table>

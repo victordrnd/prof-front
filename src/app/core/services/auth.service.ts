@@ -83,13 +83,11 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/auth/signup`, user);
   }
 
-  logout() {
-    return this.http.get(`${environment.apiUrl}/auth/logout`);
+  sendEmail(): any {
+    return this.http.get(`${environment.apiUrl}/auth/mail_verification`);
   }
 
-  async purgeAuth() {
-    //await this.logout().toPromise().catch(e => {});
-    this.cache.delete('user_current');
+  purgeAuth() {
     this.destroyToken();
     this.currentUserSubject.next({});
     this.isAuthenticatedSubject.next(false);
