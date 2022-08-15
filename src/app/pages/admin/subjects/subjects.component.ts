@@ -32,7 +32,8 @@ export class SubjectsComponent implements OnInit {
   async addSubject(){
     const modalRef = this.modalService.create({
       nzContent: SubjectModalComponent,
-      nzTitle: this.translate.instant('admin.subject.create')
+      nzTitle: this.translate.instant('admin.subject.create'),
+      nzCancelText : this.translate.instant('admin.subject.cancel'),
     })
     modalRef.afterClose.subscribe(async () => {
       await this.getSubjects();
@@ -43,6 +44,7 @@ export class SubjectsComponent implements OnInit {
     const modalRef = this.modalService.create({
       nzContent: EditSubjectModalComponent,
       nzTitle: this.translate.instant('admin.subject.updatetitle') + this.translate.instant(subject.libelle),
+      nzCancelText : this.translate.instant('admin.subject.cancel'),
       nzComponentParams: {
         InputData: subject
     }

@@ -38,11 +38,15 @@ export class EditSubjectModalComponent implements OnInit {
       this.modalRef.close();
 
     })
-      .catch(err => {
-
-        this.notificationService.danger("echec", "echec");
-
-      })
+    .catch(err => {
+      if (err.error) {
+        this.notificationService.danger(err.error.errors[Object.keys(err.error.errors)[0]], this.translate.instant('shared.error'))
+      } else {
+        for (const [key, value] of Object.entries(err)) {
+          this.notificationService.danger(this.translate.instant('register.error.desc'), value)
+        }
+      }
+    })
     this.loading = false;
   }
 

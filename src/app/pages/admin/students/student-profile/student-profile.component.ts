@@ -70,13 +70,18 @@ export class StudentProfileComponent implements OnInit {
     });
   }
 
-  async chatWithStudent() {
-    //en attente serveur chat
-    // await this.chatService.createRoom().toPromise().then(res => {
-
-    // }).catch(err => {
-    //   this.toastrService.danger("Error", "An error has occured");
-    // });
+  showLesson(id){
+    this.router.navigate(['/admin/lessons/'+id]);
   }
+
+  // async chatWithStudent() {
+
+  //   await this.chatService.createRoom({ name: "The admin has a question : ", withAdmin: true, users: [] }).toPromise().then((res:any) => {
+  //     console.log("iciii", res)
+  //     this.router.navigate(['/messages/room/'+res.id]);
+  //   }).catch(err => {
+  //     this.toastrService.danger("Error", "An error has occured");
+  //   });
+  // }
 }
 

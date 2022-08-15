@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuardService } from 'src/app/core/gards/admin-gards.service';
 import { AuthGuardService } from 'src/app/core/gards/auth-gards.service';
+import { LessonDetailsComponent } from 'src/app/shared/_components/lesson-details/lesson-details.component';
 import { ProfilComponent } from '../student/settings/profil/profil.component';
 import { AdminComponent } from './admin.component';
 import { DisputeDetailsComponent } from './disputes/dispute-details/dispute-details.component';
@@ -73,6 +74,16 @@ const routes: Routes = [
           {
             path: ":id",
             component: DisputeDetailsComponent
+          }
+        ]
+      },
+      {
+
+        path: "lessons",
+        children: [
+          {
+            path: ":id",
+            component: LessonDetailsComponent,
           }
         ]
       },

@@ -32,8 +32,12 @@ export class ForgotPasswordMailComponent implements OnInit {
       this.notificationService.primary(this.translate.instant('reset_pass.success.descMail'), this.translate.instant('reset_pass.success.title'))
       this.router.navigate([`/login`]);
     }).catch(err => {
-      for (const [key, value] of Object.entries(err)) {
-        this.notificationService.danger(this.translate.instant('reset_pass.error.desc'), value)
+      if (err.error) {
+        this.notificationService.danger(err.error.errors[Object.keys(err.error.errors)[0]], this.translate.instant('shared.error'))
+      } else {
+        for (const [key, value] of Object.entries(err)) {
+          this.notificationService.danger(this.translate.instant('register.error.desc'), value)
+        }
       }
     })
   }
